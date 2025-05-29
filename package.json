@@ -1,0 +1,20 @@
+{
+  "name": "camel-catalog",
+  "version": "2.6.0",
+  "description": "The Camel Catalog for the Kaoto project",
+  "repository": "https://github.com/KaotoIO/camel-catalog",
+  "author": "The Kaoto Team",
+  "license": "Apache License v2.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install": "yarn workspace @kaoto/camel-catalog run build",
+    "version": "lerna version",
+    "publish": "lerna publish from-package"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "packageManager": "yarn@4.5.0"
+}
