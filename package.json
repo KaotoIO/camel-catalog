@@ -1,6 +1,6 @@
 {
   "name": "camel-catalog",
-  "version": "2.6.0",
+  "version": "2.7.0-dev",
   "description": "The Camel Catalog for the Kaoto project",
   "repository": "https://github.com/KaotoIO/camel-catalog",
   "author": "The Kaoto Team",
@@ -10,10 +10,18 @@
   ],
   "scripts": {
     "copy-catalog": "rsync -a --delete packages/camel-catalog/dist/camel-catalog/ catalog/",
-    "build": "yarn workspace @kaoto/camel-catalog run build && yarn copy-catalog"
+    "build": "yarn workspace @kaoto/camel-catalog run build && yarn copy-catalog",
+    "publish": "lerna publish from-package --yes",
+    "version": "lerna version",
+    "version:patch": "lerna version patch --no-push --no-git-tag-version --yes"
   },
   "engines": {
     "node": ">=18.x"
+  },
+  "devDependencies": {
+    "@lerna-lite/cli": "^3.0.0",
+    "@lerna-lite/publish": "^3.0.0",
+    "@lerna-lite/version": "^3.0.0"
   },
   "packageManager": "yarn@4.5.0"
 }

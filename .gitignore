@@ -131,7 +131,7 @@ lib
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
+.yarnrc.local.yml
 # testing
 **/cypress/screenshots/*
 **/cypress/videos/*
