@@ -145,3 +145,6 @@ storybook-static
 
 # OS
 .DS_Store
+.vscode/settings.json
+target/
+dependency-reduced-pom.xml

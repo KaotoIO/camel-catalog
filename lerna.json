@@ -4,7 +4,7 @@
   "npmClient": "yarn",
   "verbose": true,
   "packages": [
-    "./packages/*"
+    "./"
   ],
   "conventionalCommits": true,
   "changelog": true,
@@ -16,12 +16,7 @@
       "pushArgs": [
         "--follow-tags"
       ],
-      "ignore": [
-        "**/README.md",
-        "**/.github/**"
-      ],
-      "yes": true,
+      "yes": true
     }
-  },
-  "useWorkspaces": true
+  }
 }
