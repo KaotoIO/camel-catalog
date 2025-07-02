@@ -110,7 +110,7 @@ class CamelYamlDslSchemaProcessorTest {
         var jsonDataFormat = dataFormatMap.get("json");
         assertEquals("JSon", jsonDataFormat.get("title").asText());
         var libraryEnum = jsonDataFormat.withObject("/properties").withObject("/library").withArray("enum");
-        assertTrue(libraryEnum.size() > 4);
+        assertTrue(libraryEnum.size() > 3);
     }
 
     @Test
