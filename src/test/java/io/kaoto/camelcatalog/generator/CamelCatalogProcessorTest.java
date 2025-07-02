@@ -79,7 +79,6 @@ class CamelCatalogProcessorTest {
                 jsonMapper,
                 schemaProcessor,
                 CatalogRuntime.Main,
-                true,
                 camelCatalogVersionLoader
         );
 

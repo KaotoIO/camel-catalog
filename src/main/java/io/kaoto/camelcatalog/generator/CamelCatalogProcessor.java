@@ -31,38 +31,25 @@ import org.apache.camel.tooling.model.Kind;
 
 import java.io.StringWriter;
 import java.util.*;
-import java.util.logging.Logger;
 
 /**
  * Customize Camel Catalog for Kaoto.
  */
 public class CamelCatalogProcessor {
-    private static final Logger LOGGER = Logger.getLogger(CamelCatalogProcessor.class.getName());
 
-    private static final List<String> PARAMETRIZED_PROCESSORS = List.of(
-            "org.apache.camel.model.KameletDefinition",
-            "org.apache.camel.model.PollDefinition",
-            "org.apache.camel.model.ToDynamicDefinition",
-            "org.apache.camel.model.ToDefinition",
-            "org.apache.camel.model.WireTapDefinition"
-    );
-    private static final String SET_HEADERS_DEFINITION = "org.apache.camel.model.SetHeadersDefinition";
-    private static final String SET_VARIABLES_DEFINITION = "org.apache.camel.model.SetVariablesDefinition";
     private final ObjectMapper jsonMapper;
     private final CamelCatalog camelCatalog;
     private final CamelYamlDslSchemaProcessor schemaProcessor;
     private final CamelCatalogVersionLoader camelCatalogVersionLoader;
     private final CatalogRuntime runtime;
-    private final boolean verbose;
 
     public CamelCatalogProcessor(CamelCatalog camelCatalog, ObjectMapper jsonMapper,
-                                 CamelYamlDslSchemaProcessor schemaProcessor, CatalogRuntime runtime,
-                                 boolean verbose, CamelCatalogVersionLoader camelCatalogVersionLoader) {
+                                 CamelYamlDslSchemaProcessor schemaProcessor, CatalogRuntime runtime, 
+                                 CamelCatalogVersionLoader camelCatalogVersionLoader) {
         this.jsonMapper = jsonMapper;
         this.camelCatalog = camelCatalog;
         this.schemaProcessor = schemaProcessor;
         this.runtime = runtime;
-        this.verbose = verbose;
         this.camelCatalogVersionLoader = camelCatalogVersionLoader;
     }
 
