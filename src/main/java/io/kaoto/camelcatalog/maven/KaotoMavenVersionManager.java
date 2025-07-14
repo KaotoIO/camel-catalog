@@ -1,32 +1,23 @@
 package io.kaoto.camelcatalog.maven;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.apache.camel.catalog.maven.MavenVersionManager;
 import org.apache.camel.tooling.maven.MavenArtifact;
 import org.apache.camel.tooling.maven.MavenDownloader;
 import org.apache.camel.tooling.maven.MavenDownloaderImpl;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * This class is a copy of the MavenVersionManager class from the Apache Camel
  * Catalog project.
- *
  * This is needed because the `resolve` method doesn't resolve transitive
- * dependencies
- * and we need to load the underlying Camel YAML DSL from Quarkus and Spring
- * Boot
- * runtime providers.
+ * dependencies, and we need to load the underlying Camel YAML DSL from Quarkus and Spring
+ * Boot runtime providers.
  */
 public class KaotoMavenVersionManager extends MavenVersionManager {
     private static final Logger LOGGER = Logger.getLogger(KaotoMavenVersionManager.class.getName());
@@ -79,12 +70,11 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
     @Override
     public boolean loadRuntimeProviderVersion(String groupId, String artifactId, String version) {
         try {
-            MavenDownloader mavenDownloader = downloader;
             String gav = String.format("%s:%s:%s", groupId, artifactId, version);
             boolean shouldFetchTransitive = true;
             boolean shouldUseSnapshots = version.endsWith("SNAPSHOT");
 
-            resolve(mavenDownloader, gav, shouldUseSnapshots, shouldFetchTransitive);
+            resolve(downloader, gav, shouldUseSnapshots, shouldFetchTransitive);
             this.runtimeProviderVersion = version;
 
             if (artifactId.contains("catalog")) {
@@ -97,7 +87,7 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
         } catch (Exception e) {
             if (getLog()) {
                 LOGGER.log(Level.WARNING,
-                        String.format("Cannot load runtime provider version {} due {}", version, e.getMessage()), e);
+                        String.format("Cannot load runtime provider version %s due %s", version, e.getMessage()), e);
             }
             return false;
         }
@@ -112,8 +102,9 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
         try {
             Set<String> extraRepositories = new LinkedHashSet<>(repositories.values());
 
-            List<MavenArtifact> artifacts = mavenDownloader.resolveArtifacts(Collections.singletonList(gav),
-                    extraRepositories, transitive, useSnapshots);
+            List<MavenArtifact> artifacts =
+                    mavenDownloader.resolveArtifacts(Collections.singletonList(gav), extraRepositories, transitive,
+                            useSnapshots);
 
             if (getLog()) {
                 LOGGER.log(Level.INFO, () -> "Artifacts: " + artifacts);
@@ -124,8 +115,8 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
             }
         } catch (Throwable e) {
             if (getLog()) {
-                LOGGER.log(Level.WARNING,
-                        String.format("Error resolving artifact {} due to {}", gav, e.getMessage()), e);
+                LOGGER.log(Level.WARNING, String.format("Error resolving artifact %s due to %s", gav, e.getMessage()),
+                        e);
             }
         }
 
@@ -162,8 +153,8 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
             } catch (IOException e) {
                 if (getLog()) {
                     LOGGER.log(Level.WARNING,
-                            String.format("Cannot open resource {} and version {} due {}", name, version,
-                                    e.getMessage(), e));
+                            String.format("Cannot open resource %s and version %s due %s", name, version,
+                                    e.getMessage()), e);
 
                 }
             }

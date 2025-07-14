@@ -21,7 +21,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.kaoto.camelcatalog.generators.ComponentGenerator;
 import io.kaoto.camelcatalog.generators.EIPGenerator;
 import io.kaoto.camelcatalog.generators.EntityGenerator;
+import io.kaoto.camelcatalog.generators.FunctionsGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
+import io.kaoto.camelcatalog.maven.KaotoMavenVersionManager;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
@@ -46,6 +48,7 @@ class CamelCatalogProcessorTest {
     private final ObjectNode processorCatalog;
     private final ObjectNode entityCatalog;
     private final ObjectNode loadBalancerCatalog;
+    private final ObjectNode functionsCatalog;
 
     CamelCatalogProcessorTest() throws Exception {
         CamelCatalog catalog = new DefaultCamelCatalog();
@@ -73,6 +76,10 @@ class CamelCatalogProcessorTest {
                 openapiSpec,
                 camelCatalogVersionLoader.getLocalSchemas()
         );
+        FunctionsGenerator functionsGenerator = new FunctionsGenerator(
+                catalog,
+                camelCatalogVersionLoader
+        );
 
         this.processor = new CamelCatalogProcessor(
                 catalog,
@@ -89,6 +96,7 @@ class CamelCatalogProcessorTest {
         this.processorCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(eipGenerator.generate()));
         this.entityCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(entityGenerator.generate()));
         this.loadBalancerCatalog = (ObjectNode) jsonMapper.readTree(this.processor.getLoadBalancerCatalog());
+        this.functionsCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(functionsGenerator.generate()));
     }
 
     @Test
@@ -400,5 +408,18 @@ class CamelCatalogProcessorTest {
     @Test
     void testLoadBalancerEnumParameter() throws Exception {
         checkEnumParameters(loadBalancerCatalog);
+    }
+
+    @Test
+    void testGetFunctionsCatalog() {
+        assertFalse(functionsCatalog.isEmpty());
+        assertTrue(functionsCatalog.has("simple"), "Functions catalog should contain 'simple' language");
+
+        var simpleFunctions = functionsCatalog.withObject("/simple");
+        assertFalse(simpleFunctions.isEmpty(), "Simple functions should not be empty");
+
+        var simpleFunction = simpleFunctions.withObject("/uuid(type)");
+        assertEquals("Generate UUID", simpleFunction.get("displayName").asText(),
+                "Function name should be 'Generate UUID'");
     }
 }

@@ -1,0 +1,444 @@
+{
+  "simple" : {
+    "bean(name.method)" : {
+      "name" : "bean(name.method)",
+      "displayName" : "Call Java Bean",
+      "description" : "Calls a Java bean. The name of the bean can also refer to a class name using type prefix as follows `bean:type:com.foo.MyClass`. If no method name is given then Camel will automatic attempt to find the best method to use.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "body" : {
+      "name" : "body",
+      "displayName" : "Body",
+      "description" : "The message body",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "bodyAs(type)" : {
+      "name" : "bodyAs(type)",
+      "displayName" : "Body As",
+      "description" : "Converts the message body to the given type (classname).",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "bodyOneLine" : {
+      "name" : "bodyOneLine",
+      "displayName" : "Body One Line",
+      "description" : "Converts the body to a String and removes all line-breaks, so the string is in one line.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "camelContext" : {
+      "name" : "camelContext",
+      "displayName" : "Camel Context",
+      "description" : "The Camel Context",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "camelId" : {
+      "name" : "camelId",
+      "displayName" : "Camel Id",
+      "description" : "The name of the CamelContext",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "collate(num)" : {
+      "name" : "collate(num)",
+      "displayName" : "Group Message Body into Sub Lists",
+      "description" : "The collate function iterates the message body and groups the data into sub lists of specified size. This can be used with the Splitter EIP to split a message body and group/batch the split sub message into a group of N sub lists.",
+      "returnType" : "java.util.Iterator",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "date(command)" : {
+      "name" : "date(command)",
+      "displayName" : "Parse Date",
+      "description" : "Evaluates to a java.util.Date object. Supported commands are: `now` for current timestamp, `exchangeCreated` for the timestamp when the current exchange was created, `header.xxx` to use the Long/Date object in the header with the key xxx. `variable.xxx` to use the Long/Date in the variable with the key xxx. `exchangeProperty.xxx` to use the Long/Date object in the exchange property with the key xxx. `file` for the last modified timestamp of the file (available with a File consumer). Command accepts offsets such as: `now-24h` or `header.xxx+1h` or even `now+1h30m-100`.",
+      "returnType" : "java.util.Date",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "date-with-timezone(command:timezone:pattern)" : {
+      "name" : "date-with-timezone(command:timezone:pattern)",
+      "displayName" : "Date Formatter",
+      "description" : "Formats the date to a String using the given date pattern, and with support for timezone. Supported commands are: `now` for current timestamp, `exchangeCreated` for the timestamp when the current exchange was created, `header.xxx` to use the Long/Date object in the header with the key xxx. `variable.xxx` to use the Long/Date in the variable with the key xxx. `exchangeProperty.xxx` to use the Long/Date object in the exchange property with the key xxx. `file` for the last modified timestamp of the file (available with a File consumer). Command accepts offsets such as: `now-24h` or `header.xxx+1h` or even `now+1h30m-100`.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "empty(type)" : {
+      "name" : "empty(type)",
+      "displayName" : "Create Empty Object",
+      "description" : "Creates a new empty object (decided by type). Use `string` to create an empty String. Use `list` to create an empty `java.util.ArrayList`. Use `map` to create an empty `java.util.HashMap`.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "env.name" : {
+      "name" : "env.name",
+      "displayName" : "OS Environment Variable",
+      "description" : "The OS environment variable with the given name",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exception" : {
+      "name" : "exception",
+      "displayName" : "Exception",
+      "description" : "The exception object on the exchange (also from caught exceptions), is null if no exception present.",
+      "returnType" : "java.lang.Exception",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exception.message" : {
+      "name" : "exception.message",
+      "displayName" : "Exception Message",
+      "description" : "The exception message (also from caught exceptions), is null if no exception present.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exception.stackTrace" : {
+      "name" : "exception.stackTrace",
+      "displayName" : "Exception Stacktrace",
+      "description" : "The exception stacktrace (also from caught exceptions), is null if no exception present.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exchange" : {
+      "name" : "exchange",
+      "displayName" : "Exchange",
+      "description" : "The current exchange",
+      "returnType" : "org.apache.camel.Exchange",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exchangeId" : {
+      "name" : "exchangeId",
+      "displayName" : "Exchange Id",
+      "description" : "The exchange id",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "exchangeProperty.name" : {
+      "name" : "exchangeProperty.name",
+      "displayName" : "Exchange Property",
+      "description" : "The exchange property with the given name",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "fromRouteId" : {
+      "name" : "fromRouteId",
+      "displayName" : "From Route Id",
+      "description" : "The original route id where this exchange was created.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "hash(exp,algorithm)" : {
+      "name" : "hash(exp,algorithm)",
+      "displayName" : "Compute Hash Value",
+      "description" : "Returns a hashed value (string in hex decimal) of the message body/expression using JDK MessageDigest. The algorithm can be SHA-256 (default) or SHA3-256.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "header.name" : {
+      "name" : "header.name",
+      "displayName" : "Header",
+      "description" : "The message header with the given name",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "headerAs(key,type)" : {
+      "name" : "headerAs(key,type)",
+      "displayName" : "Header As",
+      "description" : "Converts the message header to the given type (classname).",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "headers" : {
+      "name" : "headers",
+      "displayName" : "Headers",
+      "description" : "Returns all the message headers in a Map",
+      "returnType" : "java.util.Map",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "hostName" : {
+      "name" : "hostName",
+      "displayName" : "Host Name",
+      "description" : "Returns the local hostname (may be empty if not possible to resolve).",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "id" : {
+      "name" : "id",
+      "displayName" : "Id",
+      "description" : "The message id",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "iif(predicate,trueExp,falseExp)" : {
+      "name" : "iif(predicate,trueExp,falseExp)",
+      "displayName" : "If Then Else",
+      "description" : "Evaluates the predicate and returns the value of trueExp or falseExp. This function is similar to the ternary operator in Java.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "join(separator,prefix,exp)" : {
+      "name" : "join(separator,prefix,exp)",
+      "displayName" : "Join",
+      "description" : "The join function iterates the message body/expression and joins the data into a string. The separator is by default a comma. The prefix is optional. The join uses the message body as source by default. It is possible to refer to another source (simple language) such as a header via the exp parameter. For example `join('&','id=','$\\{header.ids}')`.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "jq(input,exp)" : {
+      "name" : "jq(input,exp)",
+      "displayName" : "JQ",
+      "description" : "When working with JSon data, then this allows using the JQ language, for example, to extract data from the message body (in JSon format). This requires having camel-jq JAR on the classpath. For input (optional), you can choose `header:key`, `exchangeProperty:key` or `variable:key` to use as input for the JSon payload instead of the message body.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "jsonpath(input,exp)" : {
+      "name" : "jsonpath(input,exp)",
+      "displayName" : "JSonPath",
+      "description" : "When working with JSon data, then this allows using the JSonPath language, for example, to extract data from the message body (in JSon format). This requires having camel-jsonpath JAR on the classpath. For input (optional), you can choose `header:key`, `exchangeProperty:key` or `variable:key` to use as input for the JSon payload instead of the message body.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "mandatoryBodyAs(type)" : {
+      "name" : "mandatoryBodyAs(type)",
+      "displayName" : "Mandatory Body As",
+      "description" : "Converts the message body to the given type (classname). If the body is null then the function will fail with an exception",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "messageAs(type)" : {
+      "name" : "messageAs(type)",
+      "displayName" : "Message As",
+      "description" : "Converts the message to the given type (classname).",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "messageHistory(boolean)" : {
+      "name" : "messageHistory(boolean)",
+      "displayName" : "Print Message History",
+      "description" : "The message history of the current exchange (how it has been routed). This is similar to the route stack-trace message history the error handler logs in case of an unhandled exception. The boolean can be used to turn off detailed information to be less verbose, and avoid printing sensitive data from the message.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "messageTimestamp" : {
+      "name" : "messageTimestamp",
+      "displayName" : "Message Timestamp",
+      "description" : "The message timestamp (millis since epoc) that this message originates from. Some systems like JMS, Kafka, AWS have a timestamp on the event/message that Camel received. This method returns the timestamp if a timestamp exists. The message timestamp and exchange created are different. An exchange always has a created timestamp which is the local timestamp when Camel created the exchange. The message timestamp is only available in some Camel components when the consumer is able to extract the timestamp from the source event. If the message has no timestamp, then 0 is returned.",
+      "returnType" : "long",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "null" : {
+      "name" : "null",
+      "displayName" : "Null",
+      "description" : "Represents a null value",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "originalBody" : {
+      "name" : "originalBody",
+      "displayName" : "Original Body",
+      "description" : "The original incoming body (only available if allowUseOriginalMessage=true).",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "pretty(exp)" : {
+      "name" : "pretty(exp)",
+      "displayName" : "Pretty Print",
+      "description" : "Converts the expression to a String, and attempts to pretty print if JSon or XML, otherwise the expression is returned as the String value.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "prettyBody" : {
+      "name" : "prettyBody",
+      "displayName" : "Pretty Body",
+      "description" : "Converts the body to a String, and attempts to pretty print if JSon or XML; otherwise the body is returned as the String value.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "properties:key:default" : {
+      "name" : "properties:key:default",
+      "displayName" : "Property Placeholder",
+      "description" : "Lookup a property placeholder with the given key. If the key does not exist nor has a value, then an optional default value can be specified.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "propertiesExist:key" : {
+      "name" : "propertiesExist:key",
+      "displayName" : "Property Placeholder Exists",
+      "description" : "Checks whether a property placeholder with the given key exists or not. The result can be negated by prefixing the key with !",
+      "returnType" : "boolean",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "random(min,max)" : {
+      "name" : "random(min,max)",
+      "displayName" : "Generate Random Number",
+      "description" : "Returns a random number between min (included) and max (excluded).",
+      "returnType" : "int",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "ref:name" : {
+      "name" : "ref:name",
+      "displayName" : "Bean By Id",
+      "description" : "To look up a bean from the Registry with the given name.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "replace(from,to,exp)" : {
+      "name" : "replace(from,to,exp)",
+      "displayName" : "Replace String Values",
+      "description" : "Replace all the string values in the message body/expression. To make it easier to replace single and double quotes, then you can use XML escaped values `\\&quot;` as double quote, `\\&apos;` as single quote, and `\\&empty;` as empty value.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "routeGroup" : {
+      "name" : "routeGroup",
+      "displayName" : "Route Group",
+      "description" : "Returns the route group of the current route the Exchange is being routed. Not all routes have a group assigned, so this may be null.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "routeId" : {
+      "name" : "routeId",
+      "displayName" : "Route Id",
+      "description" : "The route id of the current route the Exchange is being routed",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "skip(num)" : {
+      "name" : "skip(num)",
+      "displayName" : "Skip First Items from the Message Body",
+      "description" : "The skip function iterates the message body and skips the first number of items. This can be used with the Splitter EIP to split a message body and skip the first N number of items.",
+      "returnType" : "java.util.Iterator",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "stepId" : {
+      "name" : "stepId",
+      "displayName" : "Step Id",
+      "description" : "Returns the id of the current step the Exchange is being routed.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "substring(head,tail)" : {
+      "name" : "substring(head,tail)",
+      "displayName" : "Substring",
+      "description" : "Returns a substring of the message body/expression. If only one positive number, then the returned string is clipped from the beginning. If only one negative number, then the returned string is clipped from the beginning. Otherwise the returned string is clipped between the head and tail positions.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "sys.name" : {
+      "name" : "sys.name",
+      "displayName" : "JVM System Property",
+      "description" : "The JVM system property with the given name",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "threadId" : {
+      "name" : "threadId",
+      "displayName" : "Thread Id",
+      "description" : "Returns the id of the current thread. Can be used for logging.",
+      "returnType" : "long",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "threadName" : {
+      "name" : "threadName",
+      "displayName" : "Thread Name",
+      "description" : "Returns the name of the current thread. Can be used for logging.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "type:name.field" : {
+      "name" : "type:name.field",
+      "displayName" : "Java Field Value",
+      "description" : "To refer to a type or field by its classname. To refer to a field, you can append .FIELD_NAME. For example, you can refer to the constant field from Exchange as: `org.apache.camel.Exchange.FILE_NAME`",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "uuid(type)" : {
+      "name" : "uuid(type)",
+      "displayName" : "Generate UUID",
+      "description" : "Returns a UUID using the Camel `UuidGenerator`. You can choose between `default`, `classic`, `short` and `simple` as the type. If no type is given, the default is used. It is also possible to use a custom `UuidGenerator` and bind the bean to the xref:manual::registry.adoc[Registry] with an id. For example `${uuid(myGenerator)}` where the ID is _myGenerator_.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "variable.name" : {
+      "name" : "variable.name",
+      "displayName" : "Variable",
+      "description" : "The variable with the given name",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "variableAs(key,type)" : {
+      "name" : "variableAs(key,type)",
+      "displayName" : "Variable As",
+      "description" : "Converts the variable to the given type (classname).",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "variables" : {
+      "name" : "variables",
+      "displayName" : "Variables",
+      "description" : "Returns all the variables from the current Exchange in a Map",
+      "returnType" : "java.util.Map",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "xpath(input,exp)" : {
+      "name" : "xpath(input,exp)",
+      "displayName" : "XPath",
+      "description" : "When working with XML data, then this allows using the XPath language, for example, to extract data from the message body (in XML format). This requires having camel-xpath JAR on the classpath. For input (optional), you can choose `header:key`, `exchangeProperty:key` or `variable:key` to use as input for the XML payload instead of the message body.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    }
+  }
+}

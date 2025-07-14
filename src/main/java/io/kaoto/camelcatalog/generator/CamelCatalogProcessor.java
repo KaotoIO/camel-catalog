@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.kaoto.camelcatalog.generators.ComponentGenerator;
 import io.kaoto.camelcatalog.generators.EIPGenerator;
 import io.kaoto.camelcatalog.generators.EntityGenerator;
+import io.kaoto.camelcatalog.generators.FunctionsGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
@@ -44,7 +45,7 @@ public class CamelCatalogProcessor {
     private final CatalogRuntime runtime;
 
     public CamelCatalogProcessor(CamelCatalog camelCatalog, ObjectMapper jsonMapper,
-                                 CamelYamlDslSchemaProcessor schemaProcessor, CatalogRuntime runtime, 
+                                 CamelYamlDslSchemaProcessor schemaProcessor, CatalogRuntime runtime,
                                  CamelCatalogVersionLoader camelCatalogVersionLoader) {
         this.jsonMapper = jsonMapper;
         this.camelCatalog = camelCatalog;
@@ -74,6 +75,8 @@ public class CamelCatalogProcessor {
                 camelCatalogVersionLoader.getLocalSchemas());
         var entityCatalog = Util.getPrettyJSON(entityGenerator.generate());
         var loadBalancerCatalog = getLoadBalancerCatalog();
+        var functionsCatalog = Util.getPrettyJSON(new FunctionsGenerator(camelCatalog, camelCatalogVersionLoader).generate());
+
         answer.put("components", componentCatalog);
         answer.put("dataformats", dataFormatCatalog);
         answer.put("languages", languageCatalog);
@@ -81,6 +84,7 @@ public class CamelCatalogProcessor {
         answer.put("patterns", patternCatalog);
         answer.put("entities", entityCatalog);
         answer.put("loadbalancers", loadBalancerCatalog);
+        answer.put("functions", functionsCatalog);
         return answer;
     }
 
