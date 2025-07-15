@@ -22,7 +22,6 @@ public class ResourceLoader {
     private final KaotoMavenVersionManager kaotoVersionManager;
     private final boolean verbose;
 
-    // TODO: Bring individual resource loader
     ResourceLoader(KaotoMavenVersionManager kaotoVersionManager, boolean verbose) {
         this.verbose = verbose;
         this.kaotoVersionManager = kaotoVersionManager;

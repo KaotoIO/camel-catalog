@@ -103,7 +103,7 @@ public class CamelCatalogVersionLoader {
             loadDependencyInClasspath(mavenCoordinates);
         }
 
-        /**
+        /*
          * Check the current runtime, so we can apply the corresponding RuntimeProvider
          * to the catalog
          */
@@ -215,28 +215,25 @@ public class CamelCatalogVersionLoader {
         resourceLoader.loadResourcesFromFolderAsString("kaoto-patterns", kaotoPatterns, ".json");
     }
 
-    private MavenCoordinates getCatalogMavenCoordinates(CatalogRuntime runtime, String version) {
-        switch (runtime) {
-            case Quarkus:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-catalog", version);
-            case SpringBoot:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot",
-                        "camel-catalog-provider-springboot", version);
-            default:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG, "camel-catalog", version);
-        }
+    MavenCoordinates getCatalogMavenCoordinates(CatalogRuntime runtime, String version) {
+        return switch (runtime) {
+            case Quarkus ->
+                    new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-catalog", version);
+            case SpringBoot -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot",
+                    "camel-catalog-provider-springboot", version);
+            default -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG, "camel-catalog", version);
+        };
     }
 
-    private MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version) {
-        switch (runtime) {
-            case Quarkus:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-yaml-dsl", version);
-            case SpringBoot:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot", "camel-yaml-dsl-starter",
-                        version);
-            default:
-                return new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, version);
-        }
+    MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version) {
+        return switch (runtime) {
+            case Quarkus ->
+                    new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-yaml-dsl", version);
+            case SpringBoot ->
+                    new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot", "camel-yaml-dsl-starter",
+                            version);
+            default -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, version);
+        };
     }
 
     /*
