@@ -2852,8 +2852,6 @@
               }, {
                 "required" : [ "custom" ]
               }, {
-                "required" : [ "dfdl" ]
-              }, {
                 "required" : [ "fhirJson" ]
               }, {
                 "required" : [ "fhirXml" ]
@@ -2991,14 +2989,6 @@
             "properties" : {
               "custom" : {
                 "$ref" : "#/items/definitions/org.apache.camel.model.dataformat.CustomDataFormat"
-              }
-            }
-          }, {
-            "type" : "object",
-            "required" : [ "dfdl" ],
-            "properties" : {
-              "dfdl" : {
-                "$ref" : "#/items/definitions/org.apache.camel.model.dataformat.DfdlDataFormat"
               }
             }
           }, {
@@ -3303,7 +3293,6 @@
           "crypto" : { },
           "csv" : { },
           "custom" : { },
-          "dfdl" : { },
           "fhirJson" : { },
           "fhirXml" : { },
           "flatpack" : { },
@@ -4118,11 +4107,6 @@
             "type" : "string",
             "title" : "Aggregation Strategy Method Name",
             "description" : "This option can be used to explicit declare the method name to use, when using POJOs as the AggregationStrategy."
-          },
-          "allowOptimisedComponents" : {
-            "type" : "boolean",
-            "title" : "Allow Optimised Components",
-            "description" : "Whether to allow components to optimise if they are org.apache.camel.spi.SendDynamicAware ."
           },
           "autoStartComponents" : {
             "type" : "boolean",
@@ -7781,7 +7765,6 @@
           "crypto" : { },
           "csv" : { },
           "custom" : { },
-          "dfdl" : { },
           "fhirJson" : { },
           "fhirXml" : { },
           "flatpack" : { },
@@ -7847,8 +7830,6 @@
                 "required" : [ "csv" ]
               }, {
                 "required" : [ "custom" ]
-              }, {
-                "required" : [ "dfdl" ]
               }, {
                 "required" : [ "fhirJson" ]
               }, {
@@ -7987,14 +7968,6 @@
             "properties" : {
               "custom" : {
                 "$ref" : "#/items/definitions/org.apache.camel.model.dataformat.CustomDataFormat"
-              }
-            }
-          }, {
-            "type" : "object",
-            "required" : [ "dfdl" ],
-            "properties" : {
-              "dfdl" : {
-                "$ref" : "#/items/definitions/org.apache.camel.model.dataformat.DfdlDataFormat"
               }
             }
           }, {
@@ -10725,39 +10698,6 @@
           }
         }
       },
-      "org.apache.camel.model.dataformat.DfdlDataFormat" : {
-        "title" : "DFDL",
-        "description" : "Handle DFDL (Data Format Description Language) transformation.",
-        "oneOf" : [ {
-          "type" : "string"
-        }, {
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "id" : {
-              "type" : "string",
-              "title" : "Id",
-              "description" : "The id of this node"
-            },
-            "rootElement" : {
-              "type" : "string",
-              "title" : "Root Element",
-              "description" : "The root element name of the schema to use. If not specified, the first root element in the schema will be used."
-            },
-            "rootNamespace" : {
-              "type" : "string",
-              "title" : "Root Namespace",
-              "description" : "The root namespace of the schema to use."
-            },
-            "schemaUri" : {
-              "type" : "string",
-              "title" : "Schema Uri",
-              "description" : "The path to the DFDL schema file."
-            }
-          }
-        } ],
-        "required" : [ "schemaUri" ]
-      },
       "org.apache.camel.model.dataformat.FhirJsonDataFormat" : {
         "title" : "FHIR JSon",
         "description" : "Marshall and unmarshall FHIR objects to/from JSON.",
@@ -11447,7 +11387,7 @@
             "title" : "Library",
             "description" : "Which json library to use.",
             "default" : "Jackson",
-            "enum" : [ "Fastjson", "Gson", "Jackson", "Johnzon", "Jsonb" ]
+            "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ]
           },
           "moduleClassNames" : {
             "type" : "string",

@@ -1857,7 +1857,8 @@
         "deprecated" : false,
         "autowired" : false,
         "secret" : false,
-        "defaultValue" : "ERROR"
+        "defaultValue" : "ERROR",
+        "description" : "The logging level to use in case of failures."
       },
       "intermittent" : {
         "index" : 5,
@@ -1911,6 +1912,7 @@
           "title" : "Logging Level",
           "default" : "ERROR",
           "enum" : [ "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "OFF" ],
+          "description" : "The logging level to use in case of failures.",
           "$comment" : "group:advanced"
         },
         "intermittent" : {
@@ -2319,7 +2321,7 @@
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "uri" : {
@@ -2789,7 +2791,7 @@
         "parallelProcessing" : {
           "type" : "boolean",
           "title" : "Parallel Processing",
-          "description" : "If enabled then sending messages to the recipients occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the recipients which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the recipient list, then make sure to enable the synchronous option as well.",
+          "description" : "If enabled then sending messages to the recipients occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the recipients which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the recipient list, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous = true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous = false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "$comment" : "group:common"
         },
         "synchronous" : {
@@ -4496,7 +4498,7 @@
         "disabled" : {
           "type" : "boolean",
           "title" : "Disabled",
-          "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description" : "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
           "$comment" : "group:advanced"
         },
         "expression" : { },
@@ -8065,7 +8067,7 @@
         "parallelProcessing" : {
           "type" : "boolean",
           "title" : "Parallel Processing",
-          "description" : "If enabled then processing each split messages occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. It's only processing the sub messages from the splitter which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the splitter, then make sure to enable the synchronous option as well.",
+          "description" : "If enabled then processing each split messages occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. It's only processing the sub messages from the splitter which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the splitter, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous = true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous = false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "$comment" : "group:common"
         },
         "synchronous" : {
@@ -9866,6 +9868,13 @@
           "description" : "If the breakOnShutdown attribute is true, then the loop will not iterate until it reaches the end when Camel is shut down.",
           "$comment" : "group:advanced"
         },
+        "onPrepare" : {
+          "type" : "string",
+          "title" : "On Prepare",
+          "description" : "Uses the Processor when preparing the org.apache.camel.Exchange for each loop iteration. This can be used to deep-clone messages, or any custom logic needed before the looping executes.",
+          "$comment" : "group:advanced",
+          "format" : "bean:org.apache.camel.Processor"
+        },
         "constant" : { },
         "csimple" : { },
         "datasonnet" : { },
@@ -11578,6 +11587,8 @@
             }, {
               "required" : [ "flatpack" ]
             }, {
+              "required" : [ "fury" ]
+            }, {
               "required" : [ "grok" ]
             }, {
               "required" : [ "gzipDeflater" ]
@@ -11605,6 +11616,8 @@
               "required" : [ "protobuf" ]
             }, {
               "required" : [ "rss" ]
+            }, {
+              "required" : [ "smooks" ]
             }, {
               "required" : [ "soap" ]
             }, {
@@ -11733,6 +11746,14 @@
           }
         }, {
           "type" : "object",
+          "required" : [ "fury" ],
+          "properties" : {
+            "fury" : {
+              "$ref" : "#/definitions/org.apache.camel.model.dataformat.FuryDataFormat"
+            }
+          }
+        }, {
+          "type" : "object",
           "required" : [ "grok" ],
           "properties" : {
             "grok" : {
@@ -11841,6 +11862,14 @@
           "properties" : {
             "rss" : {
               "$ref" : "#/definitions/org.apache.camel.model.dataformat.RssDataFormat"
+            }
+          }
+        }, {
+          "type" : "object",
+          "required" : [ "smooks" ],
+          "properties" : {
+            "smooks" : {
+              "$ref" : "#/definitions/org.apache.camel.model.dataformat.SmooksDataFormat"
             }
           }
         }, {
@@ -11979,13 +12008,13 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "asn1" : { },
@@ -12001,6 +12030,7 @@
         "fhirJson" : { },
         "fhirXml" : { },
         "flatpack" : { },
+        "fury" : { },
         "grok" : { },
         "gzipDeflater" : { },
         "hl7" : { },
@@ -12015,6 +12045,7 @@
         "pgp" : { },
         "protobuf" : { },
         "rss" : { },
+        "smooks" : { },
         "soap" : { },
         "swiftMt" : { },
         "swiftMx" : { },
@@ -13053,6 +13084,47 @@
             }
           }
         },
+        "org.apache.camel.model.dataformat.FuryDataFormat" : {
+          "title" : "Fury",
+          "description" : "Serialize and deserialize messages using Apache Fury",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "title" : "Id",
+              "description" : "The id of this node",
+              "$comment" : "group:common"
+            },
+            "unmarshalType" : {
+              "type" : "string",
+              "title" : "Unmarshal Type",
+              "description" : "Class of the java type to use when unmarshalling",
+              "$comment" : "group:common"
+            },
+            "requireClassRegistration" : {
+              "type" : "boolean",
+              "title" : "Require Class Registration",
+              "description" : "Whether to require register classes",
+              "$comment" : "group:advanced",
+              "default" : true
+            },
+            "threadSafe" : {
+              "type" : "boolean",
+              "title" : "Thread Safe",
+              "description" : "Whether to use the threadsafe fury",
+              "$comment" : "group:advanced",
+              "default" : true
+            },
+            "allowAutoWiredFury" : {
+              "type" : "boolean",
+              "title" : "Allow Auto Wired Fury",
+              "description" : "Whether to auto-discover Fury from the registry",
+              "$comment" : "group:advanced",
+              "default" : true
+            }
+          }
+        },
         "org.apache.camel.model.dataformat.GrokDataFormat" : {
           "title" : "Grok",
           "description" : "Unmarshal unstructured data to objects using Logstash based Grok patterns.",
@@ -13443,7 +13515,13 @@
               "title" : "Library",
               "description" : "Which json library to use.",
               "default" : "Jackson",
-              "enum" : [ "Fastjson", "Gson", "Jackson", "Johnzon", "Jsonb" ],
+              "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ],
+              "$comment" : "group:common"
+            },
+            "combineUnicodeSurrogates" : {
+              "type" : "boolean",
+              "title" : "Combine Unicode Surrogates",
+              "description" : "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese.",
               "$comment" : "group:common"
             },
             "unmarshalType" : {
@@ -13937,6 +14015,27 @@
               "$comment" : "group:common"
             }
           }
+        },
+        "org.apache.camel.model.dataformat.SmooksDataFormat" : {
+          "title" : "Smooks",
+          "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "title" : "Id",
+              "description" : "The id of this node",
+              "$comment" : "group:common"
+            },
+            "smooksConfig" : {
+              "type" : "string",
+              "title" : "Smooks Config",
+              "description" : "Path to the Smooks configuration file.",
+              "$comment" : "group:common"
+            }
+          },
+          "required" : [ "smooksConfig" ]
         },
         "org.apache.camel.model.dataformat.SoapDataFormat" : {
           "title" : "SOAP",
@@ -14910,11 +15009,6 @@
           "title" : "Fallback Via Network",
           "description" : "Whether the fallback goes over the network. If the fallback will go over the network it is another possible point of failure. It is important to execute the fallback command on a separate thread-pool, otherwise if the main command were to become latent and fill the thread-pool this would prevent the fallback from running if the two commands share the same pool.",
           "$comment" : "group:advanced"
-        },
-        "disabled" : {
-          "type" : "boolean",
-          "title" : "Disabled",
-          "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime."
         }
       },
       "$schema" : "http://json-schema.org/draft-07/schema#"
@@ -15180,12 +15274,6 @@
               "description" : "The id of this node",
               "$comment" : "group:common"
             },
-            "circuitBreaker" : {
-              "type" : "string",
-              "title" : "Circuit Breaker",
-              "description" : "Refers to an existing io.smallrye.faulttolerance.core.circuit.breaker.CircuitBreaker instance to lookup and use from the registry. When using this, then any other circuit breaker options are not in use.",
-              "$comment" : "group:advanced"
-            },
             "delay" : {
               "type" : "string",
               "title" : "Delay",
@@ -15236,13 +15324,6 @@
               "default" : "10",
               "$comment" : "group:advanced"
             },
-            "timeoutScheduledExecutorService" : {
-              "type" : "string",
-              "title" : "Timeout Scheduled Executor Service",
-              "description" : "References to a custom thread pool to use when timeout is enabled",
-              "$comment" : "group:advanced",
-              "format" : "bean:java.util.concurrent.ScheduledExecutorService"
-            },
             "bulkheadEnabled" : {
               "type" : "boolean",
               "title" : "Bulkhead Enabled",
@@ -15266,9 +15347,17 @@
             "bulkheadExecutorService" : {
               "type" : "string",
               "title" : "Bulkhead Executor Service",
-              "description" : "References to a custom thread pool to use when bulkhead is enabled.",
-              "$comment" : "group:advanced",
-              "format" : "bean:java.util.concurrent.ExecutorService"
+              "description" : "References to a custom thread pool to use when bulkhead is enabled."
+            },
+            "circuitBreaker" : {
+              "type" : "string",
+              "title" : "Circuit Breaker",
+              "description" : "Refers to an existing io.smallrye.faulttolerance.core.circuit.breaker.CircuitBreaker instance to lookup and use from the registry. When using this, then any other circuit breaker options are not in use."
+            },
+            "timeoutScheduledExecutorService" : {
+              "type" : "string",
+              "title" : "Timeout Scheduled Executor Service",
+              "description" : "References to a custom thread pool to use when timeout is enabled"
             }
           }
         },
@@ -15295,11 +15384,6 @@
               "title" : "Fallback Via Network",
               "description" : "Whether the fallback goes over the network. If the fallback will go over the network it is another possible point of failure. It is important to execute the fallback command on a separate thread-pool, otherwise if the main command were to become latent and fill the thread-pool this would prevent the fallback from running if the two commands share the same pool.",
               "$comment" : "group:advanced"
-            },
-            "disabled" : {
-              "type" : "boolean",
-              "title" : "Disabled",
-              "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime."
             },
             "steps" : {
               "type" : "array",
@@ -15822,13 +15906,13 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "aggregationStrategy" : {
@@ -19538,7 +19622,7 @@
         "disabled" : {
           "type" : "boolean",
           "title" : "Disabled",
-          "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description" : "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
           "$comment" : "group:advanced"
         }
       },
@@ -19762,7 +19846,7 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
@@ -21648,11 +21732,6 @@
           "title" : "Disabled",
           "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
           "$comment" : "group:advanced"
-        },
-        "inheritErrorHandler" : {
-          "type" : "boolean",
-          "title" : "Inherit Error Handler",
-          "description" : "Sets whether or not to inherit the configured error handler. The default value is true. You can use this to disable using the inherited error handler for a given DSL such as a load balancer where you want to use a custom error handler strategy."
         },
         "customLoadBalancer" : { },
         "failoverLoadBalancer" : { },
@@ -33984,6 +34063,12 @@
           "description" : "To refer to a custom logger instance to lookup from the registry.",
           "$comment" : "group:advanced",
           "format" : "bean:org.slf4j.Logger"
+        },
+        "logLanguage" : {
+          "type" : "string",
+          "title" : "Log Language",
+          "description" : "To configure the language to use. By default, the simple language is used. However, Camel also supports other languages such as groovy.",
+          "$comment" : "group:advanced"
         }
       },
       "$schema" : "http://json-schema.org/draft-07/schema#"
@@ -34158,15 +34243,15 @@
         },
         "onWhen" : {
           "title" : "On When",
-          "description" : "Sets an additional predicate that should be true before the onCatch is triggered. To be used for fine grained controlling whether a thrown exception should be intercepted by this exception type or not.",
-          "$ref" : "#/definitions/org.apache.camel.model.WhenDefinition",
+          "description" : "Used for triggering doCatch in specific situations",
+          "$ref" : "#/definitions/org.apache.camel.model.OnWhenDefinition",
           "$comment" : "group:common"
         }
       },
       "definitions" : {
-        "org.apache.camel.model.WhenDefinition" : {
-          "title" : "When",
-          "description" : "Triggers a route when the expression evaluates to true",
+        "org.apache.camel.model.OnWhenDefinition" : {
+          "title" : "On When",
+          "description" : "To use a predicate to determine when to trigger this.",
           "type" : "object",
           "additionalProperties" : false,
           "anyOf" : [ {
@@ -34236,7 +34321,6 @@
               "properties" : {
                 "expression" : {
                   "title" : "Expression",
-                  "description" : "Expression used as the predicate to evaluate whether this when should trigger and route the message or not.",
                   "$ref" : "#/definitions/org.apache.camel.model.language.ExpressionDefinition"
                 }
               }
@@ -34256,19 +34340,7 @@
               "description" : "Sets the description of this node",
               "$comment" : "group:common"
             },
-            "disabled" : {
-              "type" : "boolean",
-              "title" : "Disabled",
-              "description" : "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-              "$comment" : "group:advanced"
-            },
             "expression" : { },
-            "steps" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/items/definitions/org.apache.camel.model.ProcessorDefinition"
-              }
-            },
             "constant" : { },
             "csimple" : { },
             "datasonnet" : { },
@@ -36357,7 +36429,7 @@
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "aggregationStrategy" : {
@@ -57129,7 +57201,7 @@
         "parallelProcessing" : {
           "type" : "boolean",
           "title" : "Parallel Processing",
-          "description" : "If enabled then sending messages to the multicasts occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the multicasts which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the multicast, then make sure to enable the synchronous option as well.",
+          "description" : "If enabled then sending messages to the multicasts occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the multicasts which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the multicast, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous = true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous = false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "$comment" : "group:common"
         },
         "synchronous" : {
@@ -57343,6 +57415,7 @@
       "definitions" : {
         "org.apache.camel.model.tokenizer.LangChain4jCharacterTokenizerDefinition" : {
           "title" : "LangChain4J Tokenizer with character splitter",
+          "description" : "Camel AI: Tokenizer for splitting by character.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -57396,6 +57469,7 @@
         },
         "org.apache.camel.model.tokenizer.LangChain4jParagraphTokenizerDefinition" : {
           "title" : "LangChain4J Tokenizer with paragraph splitter",
+          "description" : "Camel AI: Tokenizer for splitting by paragraphs.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -57429,6 +57503,7 @@
         },
         "org.apache.camel.model.tokenizer.LangChain4jSentenceTokenizerDefinition" : {
           "title" : "LangChain4J Tokenizer with sentence splitter",
+          "description" : "Camel AI: Tokenizer for splitting by sentences.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -57462,6 +57537,7 @@
         },
         "org.apache.camel.model.tokenizer.LangChain4jWordTokenizerDefinition" : {
           "title" : "LangChain4J Tokenizer with word splitter",
+          "description" : "Camel AI: Tokenizer for splitting by word.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -59402,13 +59478,13 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "allowNullBody" : {
@@ -59430,6 +59506,7 @@
         "fhirJson" : { },
         "fhirXml" : { },
         "flatpack" : { },
+        "fury" : { },
         "grok" : { },
         "gzipDeflater" : { },
         "hl7" : { },
@@ -59444,6 +59521,7 @@
         "pgp" : { },
         "protobuf" : { },
         "rss" : { },
+        "smooks" : { },
         "soap" : { },
         "swiftMt" : { },
         "swiftMx" : { },
@@ -59497,6 +59575,8 @@
             }, {
               "required" : [ "flatpack" ]
             }, {
+              "required" : [ "fury" ]
+            }, {
               "required" : [ "grok" ]
             }, {
               "required" : [ "gzipDeflater" ]
@@ -59524,6 +59604,8 @@
               "required" : [ "protobuf" ]
             }, {
               "required" : [ "rss" ]
+            }, {
+              "required" : [ "smooks" ]
             }, {
               "required" : [ "soap" ]
             }, {
@@ -59652,6 +59734,14 @@
           }
         }, {
           "type" : "object",
+          "required" : [ "fury" ],
+          "properties" : {
+            "fury" : {
+              "$ref" : "#/definitions/org.apache.camel.model.dataformat.FuryDataFormat"
+            }
+          }
+        }, {
+          "type" : "object",
           "required" : [ "grok" ],
           "properties" : {
             "grok" : {
@@ -59760,6 +59850,14 @@
           "properties" : {
             "rss" : {
               "$ref" : "#/definitions/org.apache.camel.model.dataformat.RssDataFormat"
+            }
+          }
+        }, {
+          "type" : "object",
+          "required" : [ "smooks" ],
+          "properties" : {
+            "smooks" : {
+              "$ref" : "#/definitions/org.apache.camel.model.dataformat.SmooksDataFormat"
             }
           }
         }, {
@@ -60899,6 +60997,47 @@
             }
           }
         },
+        "org.apache.camel.model.dataformat.FuryDataFormat" : {
+          "title" : "Fury",
+          "description" : "Serialize and deserialize messages using Apache Fury",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "title" : "Id",
+              "description" : "The id of this node",
+              "$comment" : "group:common"
+            },
+            "unmarshalType" : {
+              "type" : "string",
+              "title" : "Unmarshal Type",
+              "description" : "Class of the java type to use when unmarshalling",
+              "$comment" : "group:common"
+            },
+            "requireClassRegistration" : {
+              "type" : "boolean",
+              "title" : "Require Class Registration",
+              "description" : "Whether to require register classes",
+              "$comment" : "group:advanced",
+              "default" : true
+            },
+            "threadSafe" : {
+              "type" : "boolean",
+              "title" : "Thread Safe",
+              "description" : "Whether to use the threadsafe fury",
+              "$comment" : "group:advanced",
+              "default" : true
+            },
+            "allowAutoWiredFury" : {
+              "type" : "boolean",
+              "title" : "Allow Auto Wired Fury",
+              "description" : "Whether to auto-discover Fury from the registry",
+              "$comment" : "group:advanced",
+              "default" : true
+            }
+          }
+        },
         "org.apache.camel.model.dataformat.GrokDataFormat" : {
           "title" : "Grok",
           "description" : "Unmarshal unstructured data to objects using Logstash based Grok patterns.",
@@ -61289,7 +61428,13 @@
               "title" : "Library",
               "description" : "Which json library to use.",
               "default" : "Jackson",
-              "enum" : [ "Fastjson", "Gson", "Jackson", "Johnzon", "Jsonb" ],
+              "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ],
+              "$comment" : "group:common"
+            },
+            "combineUnicodeSurrogates" : {
+              "type" : "boolean",
+              "title" : "Combine Unicode Surrogates",
+              "description" : "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese.",
               "$comment" : "group:common"
             },
             "unmarshalType" : {
@@ -61783,6 +61928,27 @@
               "$comment" : "group:common"
             }
           }
+        },
+        "org.apache.camel.model.dataformat.SmooksDataFormat" : {
+          "title" : "Smooks",
+          "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "title" : "Id",
+              "description" : "The id of this node",
+              "$comment" : "group:common"
+            },
+            "smooksConfig" : {
+              "type" : "string",
+              "title" : "Smooks Config",
+              "description" : "Path to the Smooks configuration file.",
+              "$comment" : "group:common"
+            }
+          },
+          "required" : [ "smooksConfig" ]
         },
         "org.apache.camel.model.dataformat.SoapDataFormat" : {
           "title" : "SOAP",
@@ -62966,7 +63132,7 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
@@ -63276,13 +63442,13 @@
         "variableSend" : {
           "type" : "string",
           "title" : "Variable Send",
-          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current Message , however the headers from the Message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
+          "description" : "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "$comment" : "group:common"
         },
         "variableReceive" : {
           "type" : "string",
           "title" : "Variable Receive",
-          "description" : "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description" : "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "$comment" : "group:common"
         },
         "uri" : {

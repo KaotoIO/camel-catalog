@@ -3169,6 +3169,129 @@
       "required" : [ ]
     }
   },
+  "fury" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "fury",
+      "title" : "Fury",
+      "description" : "Serialize and deserialize messages using Apache Fury",
+      "deprecated" : false,
+      "firstVersion" : "4.9.0",
+      "label" : "dataformat,transformation",
+      "javaType" : "org.apache.camel.model.dataformat.FuryDataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "unmarshalType" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Unmarshal Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Class of the java type to use when unmarshalling"
+      },
+      "requireClassRegistration" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Require Class Registration",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to require register classes"
+      },
+      "threadSafe" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Thread Safe",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to use the threadsafe fury"
+      },
+      "allowAutoWiredFury" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Allow Auto Wired Fury",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to auto-discover Fury from the registry"
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "Fury",
+      "description" : "Serialize and deserialize messages using Apache Fury",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "unmarshalType" : {
+          "type" : "string",
+          "title" : "Unmarshal Type",
+          "description" : "Class of the java type to use when unmarshalling"
+        },
+        "requireClassRegistration" : {
+          "type" : "boolean",
+          "title" : "Require Class Registration",
+          "description" : "Whether to require register classes"
+        },
+        "threadSafe" : {
+          "type" : "boolean",
+          "title" : "Thread Safe",
+          "description" : "Whether to use the threadsafe fury"
+        },
+        "allowAutoWiredFury" : {
+          "type" : "boolean",
+          "title" : "Allow Auto Wired Fury",
+          "description" : "Whether to auto-discover Fury from the registry"
+        }
+      },
+      "required" : [ ]
+    }
+  },
   "grok" : {
     "model" : {
       "kind" : "model",
@@ -4330,7 +4453,7 @@
         "required" : false,
         "type" : "enum",
         "javaType" : "org.apache.camel.model.dataformat.JsonLibrary",
-        "enum" : [ "Fastjson", "Gson", "Jackson", "Johnzon", "Jsonb" ],
+        "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ],
         "deprecated" : false,
         "autowired" : false,
         "secret" : false,
@@ -4620,6 +4743,11 @@
           "title" : "Collection Type",
           "description" : "Refers to a custom collection type to lookup in the registry to use. This option should rarely be used, but allows using different collection types than java.util.Collection based as default."
         },
+        "combineUnicodeSurrogates" : {
+          "type" : "boolean",
+          "title" : "Combine Unicode Surrogates",
+          "description" : "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese."
+        },
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
@@ -4660,7 +4788,7 @@
           "title" : "Library",
           "description" : "Which json library to use.",
           "default" : "Jackson",
-          "enum" : [ "Fastjson", "Gson", "Jackson", "Johnzon", "Jsonb" ]
+          "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ]
         },
         "moduleClassNames" : {
           "type" : "string",
@@ -5892,6 +6020,69 @@
         }
       },
       "required" : [ ]
+    }
+  },
+  "smooks" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "smooks",
+      "title" : "Smooks",
+      "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+      "deprecated" : false,
+      "firstVersion" : "4.9.0",
+      "label" : "dataformat,transformation",
+      "javaType" : "org.apache.camel.model.dataformat.SmooksDataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "smooksConfig" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Smooks Config",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Path to the Smooks configuration file."
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "Smooks",
+      "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "smooksConfig" : {
+          "type" : "string",
+          "title" : "Smooks Config",
+          "description" : "Path to the Smooks configuration file."
+        }
+      },
+      "required" : [ "smooksConfig" ]
     }
   },
   "soap" : {
