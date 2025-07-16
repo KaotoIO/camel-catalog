@@ -1,94 +1,94 @@
 {
   "definitions" : [ {
-    "name" : "Camel Main 4.12.0",
-    "version" : "4.12.0",
+    "name" : "Camel Main 4.13.0",
+    "version" : "4.13.0",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.12.0/index-1732e58745e2a7be4d4d678efc4e34d2.json"
+    "fileName" : "camel-main/4.13.0/index-9c05abaf74115b916785b01aff98737d.json"
   }, {
-    "name" : "Camel Main 4.10.4",
-    "version" : "4.10.4",
+    "name" : "Camel Main 4.10.6",
+    "version" : "4.10.6",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.10.4/index-9657b0d0c6bafe3120e3e12b1c5ffc90.json"
+    "fileName" : "camel-main/4.10.6/index-1d316571b537d72da2c959d1f2f0c018.json"
   }, {
-    "name" : "Camel Main 4.8.6",
-    "version" : "4.8.6",
+    "name" : "Camel Main 4.8.8",
+    "version" : "4.8.8",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.8.6/index-a5e5b505c588b1f97fb7d38c93f05f6a.json"
+    "fileName" : "camel-main/4.8.8/index-4e3faf45f347f223879fcdda1bbea542.json"
   }, {
-    "name" : "Camel Main 4.10.3.redhat-00020",
-    "version" : "4.10.3.redhat-00020",
+    "name" : "Camel Main 4.10.3.redhat-00025",
+    "version" : "4.10.3.redhat-00025",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.10.3.redhat-00020/index-7a18e77a8868ef06f47e81558f790408.json"
+    "fileName" : "camel-main/4.10.3.redhat-00025/index-6b48346969740230c610dd704497938f.json"
   }, {
     "name" : "Camel Main 4.8.5.redhat-00008",
     "version" : "4.8.5.redhat-00008",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.8.5.redhat-00008/index-48ec082e85ba457ee047a471731b7ef.json"
+    "fileName" : "camel-main/4.8.5.redhat-00008/index-cd7db9531e95d9542b77824dee2398f7.json"
   }, {
     "name" : "Camel Main 4.4.0.redhat-00046",
     "version" : "4.4.0.redhat-00046",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.4.0.redhat-00046/index-6454c3e283e5c422b2ff75a35190e073.json"
+    "fileName" : "camel-main/4.4.0.redhat-00046/index-cc4f7c932c2823fff6bcf1a89f6a3f08.json"
   }, {
     "name" : "Camel Quarkus 3.24.0",
     "version" : "3.24.0",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.24.0/index-37c7f5af0a0422316374d5cda6bed6be.json"
+    "fileName" : "camel-quarkus/3.24.0/index-4edb992ade0cde5e70cfe75b08fd0f06.json"
   }, {
     "name" : "Camel Quarkus 3.20.2",
     "version" : "3.20.2",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.20.2/index-a9c8cd82e53819b77fb0ff20bd0ed250.json"
+    "fileName" : "camel-quarkus/3.20.2/index-d3dbfc073e3728975d793980f298d0fd.json"
   }, {
-    "name" : "Camel Quarkus 3.15.3",
-    "version" : "3.15.3",
+    "name" : "Camel Quarkus 3.15.4",
+    "version" : "3.15.4",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.15.3/index-99be094138af44cf60001d5f2bd5beaa.json"
+    "fileName" : "camel-quarkus/3.15.4/index-10ff167c0d5a32d45d3d700397415b89.json"
   }, {
-    "name" : "Camel Quarkus 3.20.0.redhat-00002",
-    "version" : "3.20.0.redhat-00002",
+    "name" : "Camel Quarkus 3.20.0.redhat-00003",
+    "version" : "3.20.0.redhat-00003",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.20.0.redhat-00002/index-686c54be6f95241b2bdc9133d3f4e6c3.json"
+    "fileName" : "camel-quarkus/3.20.0.redhat-00003/index-1a728d0e6f3ac46dad7ab9c51763e79c.json"
   }, {
     "name" : "Camel Quarkus 3.15.0.redhat-00010",
     "version" : "3.15.0.redhat-00010",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.15.0.redhat-00010/index-c5adf5823b4973fdd08b2f7b801be9d5.json"
+    "fileName" : "camel-quarkus/3.15.0.redhat-00010/index-be71b48cd634a32687c3172598a1aead.json"
   }, {
     "name" : "Camel Quarkus 3.8.0.redhat-00018",
     "version" : "3.8.0.redhat-00018",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.8.0.redhat-00018/index-5bc944edb04dc2371d06f48cc65fe2a7.json"
+    "fileName" : "camel-quarkus/3.8.0.redhat-00018/index-699a8ef5120e8f6f24b7906a677dcb9a.json"
   }, {
-    "name" : "Camel Spring Boot 4.12.0",
-    "version" : "4.12.0",
+    "name" : "Camel Spring Boot 4.13.0",
+    "version" : "4.13.0",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.12.0/index-4f1ba4d52de16b31318cc2bf37a5f15f.json"
+    "fileName" : "camel-springboot/4.13.0/index-43f767fba5f27a29cb91e83b711958d5.json"
   }, {
-    "name" : "Camel Spring Boot 4.10.4",
-    "version" : "4.10.4",
+    "name" : "Camel Spring Boot 4.10.6",
+    "version" : "4.10.6",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.10.4/index-2beb1cfee2a2cf4cd5af45d4524d7508.json"
+    "fileName" : "camel-springboot/4.10.6/index-c9ee5721941f4b8b64a6977b8a3c8e65.json"
   }, {
-    "name" : "Camel Spring Boot 4.8.6",
-    "version" : "4.8.6",
+    "name" : "Camel Spring Boot 4.8.8",
+    "version" : "4.8.8",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.8.6/index-d8359fa09ea2fd51251028436393115e.json"
+    "fileName" : "camel-springboot/4.8.8/index-fdd70df0d82c3c5059b06054d732b291.json"
   }, {
-    "name" : "Camel Spring Boot 4.10.3.redhat-00019",
-    "version" : "4.10.3.redhat-00019",
+    "name" : "Camel Spring Boot 4.10.3.redhat-00023",
+    "version" : "4.10.3.redhat-00023",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.10.3.redhat-00019/index-af980e3612dd7ade75a6617208358d26.json"
+    "fileName" : "camel-springboot/4.10.3.redhat-00023/index-6b52d0b55316012a250c4215b3cf8e42.json"
   }, {
     "name" : "Camel Spring Boot 4.8.5.redhat-00008",
     "version" : "4.8.5.redhat-00008",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.8.5.redhat-00008/index-2109b4c42923cbbf8a962a22a53cad7a.json"
+    "fileName" : "camel-springboot/4.8.5.redhat-00008/index-ad9dbfca4bf2c3eaefea1765593a6857.json"
   }, {
     "name" : "Camel Spring Boot 4.4.0.redhat-00039",
     "version" : "4.4.0.redhat-00039",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.4.0.redhat-00039/index-9f0be672b0ca428b17480fd08ff7c946.json"
+    "fileName" : "camel-springboot/4.4.0.redhat-00039/index-1614225cf6325186a58678586cb634eb.json"
   } ],
   "version" : 2,
   "name" : "Default Kaoto catalog"
