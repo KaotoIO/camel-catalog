@@ -44,11 +44,12 @@ public class CamelCatalogVersionLoader {
     private final Map<String, String> localSchemas = new HashMap<>();
     private final Map<String, String> kaotoPatterns = new HashMap<>();
     private final CatalogRuntime runtime;
+    private final KaotoMavenVersionManager kaotoVersionManager;
     private String camelYamlDSLSchema;
     private String kubernetesSchema;
 
     public CamelCatalogVersionLoader(CatalogRuntime runtime, boolean verbose) {
-        KaotoMavenVersionManager kaotoVersionManager = new KaotoMavenVersionManager();
+        kaotoVersionManager = new KaotoMavenVersionManager();
         kaotoVersionManager.setLog(verbose);
 
         this.resourceLoader = new ResourceLoader(kaotoVersionManager, verbose);
@@ -94,6 +95,10 @@ public class CamelCatalogVersionLoader {
 
     public ResourceLoader getResourceLoader() {
         return resourceLoader;
+    }
+
+    public ClassLoader getClassLoader() {
+        return kaotoVersionManager.getClassLoader();
     }
 
     public boolean loadCamelCatalog(String version) {

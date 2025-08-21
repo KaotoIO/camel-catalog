@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.kaoto.camelcatalog.generators.CRDGenerator;
+import io.kaoto.camelcatalog.generators.SchemasGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogDefinitionEntry;
@@ -67,11 +68,11 @@ public class CatalogGenerator {
         camelCatalogVersionLoader.loadCamelYamlDsl(camelCatalogVersion);
 
         var catalogDefinition = new CatalogDefinition();
-        var yamlDslSchemaProcessor = processCamelSchema(catalogDefinition);
+        var yamlDslSchemaProcessor = processCamelSchema();
         processCatalog(yamlDslSchemaProcessor, catalogDefinition);
         processKameletBoundaries(catalogDefinition);
         processKamelets(catalogDefinition);
-        processKameletsCRDs(catalogDefinition);
+        processSchemas(catalogDefinition);
 
         try {
             catalogDefinition
@@ -120,7 +121,7 @@ public class CatalogGenerator {
         this.camelKCRDsVersion = camelKCRDsVersion;
     }
 
-    private CamelYamlDslSchemaProcessor processCamelSchema(CatalogDefinition index) {
+    private CamelYamlDslSchemaProcessor processCamelSchema() {
         if (camelCatalogVersionLoader.getCamelYamlDslSchema() == null) {
             LOGGER.severe("Camel YAML DSL JSON Schema is not loaded");
             return null;
@@ -128,28 +129,9 @@ public class CatalogGenerator {
 
         var camelYamlDSLSchema07 = camelCatalogVersionLoader.getCamelYamlDslSchema().replace(
                 "http://json-schema.org/draft-04/schema#", "http://json-schema.org/draft-07/schema#");
-        try {
-            var outputFileName = String.format("%s-%s.json", CAMEL_YAML_DSL_FILE_NAME,
-                    Util.generateHash(camelYamlDSLSchema07));
-            var output = outputDirectory.toPath().resolve(outputFileName);
-            output.getParent().toFile().mkdirs();
-
-            Files.writeString(output, camelYamlDSLSchema07);
-
-            var indexEntry = new CatalogDefinitionEntry(
-                    CAMEL_YAML_DSL_FILE_NAME,
-                    "Camel YAML DSL JSON schema",
-                    camelCatalogVersion,
-                    outputFileName);
-            index.getSchemas().put(CAMEL_YAML_DSL_FILE_NAME, indexEntry);
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-            return null;
-        }
-
+        
         try {
             var yamlDslSchema = (ObjectNode) jsonMapper.readTree(camelYamlDSLSchema07);
-
             return new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
@@ -268,28 +250,43 @@ public class CatalogGenerator {
             }).toList();
     }
 
-    private void processKameletsCRDs(CatalogDefinition index) {
-        if (camelCatalogVersionLoader.getCamelKCRDs().isEmpty()) {
-            LOGGER.severe("CamelK CRDs are not loaded");
-            return;
-        }
 
-        CRDGenerator crdGenerator = new CRDGenerator(camelCatalogVersionLoader.getCamelKCRDs());
-        var crdMap = crdGenerator.generate();
-        crdMap.forEach((name, catalog) -> {
+    private void processSchemas(CatalogDefinition index) {
+        SchemasGenerator schemasGenerator = new SchemasGenerator(camelCatalogVersionLoader, 
+                                                                 camelCatalogVersionLoader.getClassLoader());
+        var schemaMap = schemasGenerator.generate();
+        
+        schemaMap.forEach((name, schema) -> {
             try {
-                var outputFileName = String.format(
-                        "%s-%s-%s.json", CRD_SCHEMA, name.toLowerCase(), Util.generateHash(catalog));
+                String outputFileName;
+                String description;
+                String version;
+                
+                if (CAMEL_YAML_DSL_FILE_NAME.equals(name)) {
+                    outputFileName = String.format("%s-%s.json", name, Util.generateHash(schema));
+                    description = "Camel YAML DSL JSON schema";
+                    version = camelCatalogVersion;
+                } else if (schema.startsWith("<?xml") || schema.contains("http://www.w3.org/2001/XMLSchema")) {
+                    // XSD schemas - detected by XML content
+                    outputFileName = String.format("%s-%s.xsd", name, Util.generateHash(schema));
+                    description = "Camel XSD schema for " + name;
+                    version = camelCatalogVersion;
+                } else {
+                    // CRD schemas
+                    outputFileName = String.format("%s-%s-%s.json", CRD_SCHEMA, name.toLowerCase(), Util.generateHash(schema));
+                    description = name;
+                    version = camelKCRDsVersion;
+                }
+                
                 var output = outputDirectory.toPath().resolve(outputFileName);
-                Files.writeString(output, catalog);
-                var indexEntry = new CatalogDefinitionEntry(
-                        name,
-                        name,
-                        camelKCRDsVersion,
-                        outputFileName);
+                output.getParent().toFile().mkdirs();
+                Files.writeString(output, schema);
+                
+                var indexEntry = new CatalogDefinitionEntry(name, description, version, outputFileName);
                 index.getSchemas().put(name, indexEntry);
+                
             } catch (Exception e) {
-                LOGGER.log(Level.SEVERE, e.toString(), e);
+                LOGGER.log(Level.SEVERE, "Error processing schema: " + name, e);
             }
         });
     }

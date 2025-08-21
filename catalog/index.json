@@ -3,93 +3,93 @@
     "name" : "Camel Main 4.13.0",
     "version" : "4.13.0",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.13.0/index-9c05abaf74115b916785b01aff98737d.json"
+    "fileName" : "camel-main/4.13.0/index-42976aae3d404a0a774252d32f1ac4d5.json"
   }, {
     "name" : "Camel Main 4.10.6",
     "version" : "4.10.6",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.10.6/index-1d316571b537d72da2c959d1f2f0c018.json"
+    "fileName" : "camel-main/4.10.6/index-8ce33d89a617e00b3371abdbfc312a9a.json"
   }, {
     "name" : "Camel Main 4.8.8",
     "version" : "4.8.8",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.8.8/index-4e3faf45f347f223879fcdda1bbea542.json"
+    "fileName" : "camel-main/4.8.8/index-ef27e6ae83ef13f1d564314d095f9b97.json"
   }, {
     "name" : "Camel Main 4.10.3.redhat-00025",
     "version" : "4.10.3.redhat-00025",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.10.3.redhat-00025/index-6b48346969740230c610dd704497938f.json"
+    "fileName" : "camel-main/4.10.3.redhat-00025/index-f4ee2dd2576ebe4bb3d1e1c868607027.json"
   }, {
     "name" : "Camel Main 4.8.5.redhat-00008",
     "version" : "4.8.5.redhat-00008",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.8.5.redhat-00008/index-cd7db9531e95d9542b77824dee2398f7.json"
+    "fileName" : "camel-main/4.8.5.redhat-00008/index-dbed217b526d88536e97c7d872a82a47.json"
   }, {
     "name" : "Camel Main 4.4.0.redhat-00046",
     "version" : "4.4.0.redhat-00046",
     "runtime" : "Main",
-    "fileName" : "camel-main/4.4.0.redhat-00046/index-cc4f7c932c2823fff6bcf1a89f6a3f08.json"
+    "fileName" : "camel-main/4.4.0.redhat-00046/index-fa24d939331a05508abf50aaac4d7668.json"
   }, {
     "name" : "Camel Quarkus 3.24.0",
     "version" : "3.24.0",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.24.0/index-4edb992ade0cde5e70cfe75b08fd0f06.json"
+    "fileName" : "camel-quarkus/3.24.0/index-9be12bde9e44db00b6155ab7864ce34f.json"
   }, {
     "name" : "Camel Quarkus 3.20.2",
     "version" : "3.20.2",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.20.2/index-d3dbfc073e3728975d793980f298d0fd.json"
+    "fileName" : "camel-quarkus/3.20.2/index-ea290bb939c4533d5a5b73021e99cb1b.json"
   }, {
     "name" : "Camel Quarkus 3.15.4",
     "version" : "3.15.4",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.15.4/index-10ff167c0d5a32d45d3d700397415b89.json"
+    "fileName" : "camel-quarkus/3.15.4/index-eaa7caa27bf100a5c357f2db4ba3ed2.json"
   }, {
     "name" : "Camel Quarkus 3.20.0.redhat-00003",
     "version" : "3.20.0.redhat-00003",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.20.0.redhat-00003/index-1a728d0e6f3ac46dad7ab9c51763e79c.json"
+    "fileName" : "camel-quarkus/3.20.0.redhat-00003/index-370315a7290223974a22dd8c19c727d8.json"
   }, {
     "name" : "Camel Quarkus 3.15.0.redhat-00010",
     "version" : "3.15.0.redhat-00010",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.15.0.redhat-00010/index-be71b48cd634a32687c3172598a1aead.json"
+    "fileName" : "camel-quarkus/3.15.0.redhat-00010/index-b33cc16b0b154e722d138f87ee896553.json"
   }, {
     "name" : "Camel Quarkus 3.8.0.redhat-00018",
     "version" : "3.8.0.redhat-00018",
     "runtime" : "Quarkus",
-    "fileName" : "camel-quarkus/3.8.0.redhat-00018/index-699a8ef5120e8f6f24b7906a677dcb9a.json"
+    "fileName" : "camel-quarkus/3.8.0.redhat-00018/index-c84b191292018d1798b7ecc3202b0edf.json"
   }, {
     "name" : "Camel Spring Boot 4.13.0",
     "version" : "4.13.0",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.13.0/index-43f767fba5f27a29cb91e83b711958d5.json"
+    "fileName" : "camel-springboot/4.13.0/index-5ab56246112f4d8bd1894a3d74d420c9.json"
   }, {
     "name" : "Camel Spring Boot 4.10.6",
     "version" : "4.10.6",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.10.6/index-c9ee5721941f4b8b64a6977b8a3c8e65.json"
+    "fileName" : "camel-springboot/4.10.6/index-87425e4eae704e311e18648a86a6eb8b.json"
   }, {
     "name" : "Camel Spring Boot 4.8.8",
     "version" : "4.8.8",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.8.8/index-fdd70df0d82c3c5059b06054d732b291.json"
+    "fileName" : "camel-springboot/4.8.8/index-2aa5e4ae462015c001a6ed8df5236265.json"
   }, {
     "name" : "Camel Spring Boot 4.10.3.redhat-00023",
     "version" : "4.10.3.redhat-00023",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.10.3.redhat-00023/index-6b52d0b55316012a250c4215b3cf8e42.json"
+    "fileName" : "camel-springboot/4.10.3.redhat-00023/index-7dfba6fbf2bc8879818ec4449c84fad4.json"
   }, {
     "name" : "Camel Spring Boot 4.8.5.redhat-00008",
     "version" : "4.8.5.redhat-00008",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.8.5.redhat-00008/index-ad9dbfca4bf2c3eaefea1765593a6857.json"
+    "fileName" : "camel-springboot/4.8.5.redhat-00008/index-6d74efb41c26302217e5df2d2f7b10f8.json"
   }, {
     "name" : "Camel Spring Boot 4.4.0.redhat-00039",
     "version" : "4.4.0.redhat-00039",
     "runtime" : "Spring Boot",
-    "fileName" : "camel-springboot/4.4.0.redhat-00039/index-1614225cf6325186a58678586cb634eb.json"
+    "fileName" : "camel-springboot/4.4.0.redhat-00039/index-1d1546d08d3498cf737a5a117304426e.json"
   } ],
-  "version" : 2,
+  "version" : 3,
   "name" : "Default Kaoto catalog"
 }

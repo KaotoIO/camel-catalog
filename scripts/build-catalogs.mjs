@@ -9,9 +9,6 @@ import { existsSync } from 'node:fs';
 
 const require = createRequire(import.meta.url);
 const { CATALOGS, KAMELETS_VERSION } = require('../index.js');
-/**
- * @type {Record<import('../dist/types').CatalogRuntime, string[]>}
- **/
 
 const generateCatalogs = () => {
   let camelCatalogPath = '';
