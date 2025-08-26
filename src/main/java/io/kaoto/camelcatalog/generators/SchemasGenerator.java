@@ -22,12 +22,7 @@ import java.io.InputStream;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
@@ -38,7 +33,7 @@ import static io.kaoto.camelcatalog.model.Constants.CAMEL_YAML_DSL_FILE_NAME;
 public class SchemasGenerator {
     private static final Logger LOGGER = Logger.getLogger(SchemasGenerator.class.getName());
     private static final String XSD_RESOURCE_PATH = "org/apache/camel/catalog/schemas";
-    private static final String XSD_FILE_SUFFIX = ".xsd";
+    private static final String CAMEL_XML_IO_SCHEMA = "camel-xml-io";
 
     private final CamelCatalogVersionLoader versionLoader;
     private final ClassLoader classLoader;
@@ -62,8 +57,7 @@ public class SchemasGenerator {
         String yamlDslSchema = versionLoader.getCamelYamlDslSchema();
         if (yamlDslSchema != null) {
             // Convert from draft-04 to draft-07 (same as existing code)
-            String schema07 = yamlDslSchema.replace(
-                    "http://json-schema.org/draft-04/schema#", 
+            String schema07 = yamlDslSchema.replace("http://json-schema.org/draft-04/schema#",
                     "http://json-schema.org/draft-07/schema#");
             schemas.put(CAMEL_YAML_DSL_FILE_NAME, schema07);
             LOGGER.log(Level.INFO, "Added Camel YAML DSL schema");
@@ -100,16 +94,14 @@ public class SchemasGenerator {
 
                 while (entries.hasMoreElements()) {
                     JarEntry entry = entries.nextElement();
-                    if (entry.getName().startsWith(entryBaseName) && 
-                        !entry.isDirectory() && 
-                        entry.getName().endsWith(XSD_FILE_SUFFIX)) {
+                    if (entry.getName().startsWith(entryBaseName) && !entry.isDirectory() &&
+                            entry.getName().contains(CAMEL_XML_IO_SCHEMA)) {
 
                         LOGGER.log(Level.INFO, "Loading XSD schema: {0}", entry.getName());
-                        
+
                         try (InputStream inputStream = jarFile.getInputStream(entry)) {
                             String schemaContent = readInputStreamAsString(inputStream);
-                            String schemaName = extractSchemaName(entry.getName(), entryBaseName);
-                            schemas.put(schemaName, schemaContent);
+                            schemas.put(CAMEL_XML_IO_SCHEMA, schemaContent);
                         } catch (IOException e) {
                             LOGGER.log(Level.WARNING, "Error reading XSD schema: " + entry.getName(), e);
                         }
@@ -128,7 +120,8 @@ public class SchemasGenerator {
             return;
         }
 
-        io.kaoto.camelcatalog.generators.CRDGenerator crdGenerator = new io.kaoto.camelcatalog.generators.CRDGenerator(crdList);
+        io.kaoto.camelcatalog.generators.CRDGenerator crdGenerator =
+                new io.kaoto.camelcatalog.generators.CRDGenerator(crdList);
         Map<String, String> crdMap = crdGenerator.generate();
         crdMap.forEach((name, content) -> {
             schemas.put(name, content);
@@ -137,15 +130,9 @@ public class SchemasGenerator {
     }
 
     private String readInputStreamAsString(InputStream inputStream) throws IOException {
-        try (Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name())) {
+        try (Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8)) {
             scanner.useDelimiter("\\A");
             return scanner.hasNext() ? scanner.next() : "";
         }
-    }
-
-    private String extractSchemaName(String entryName, String basePath) {
-        return entryName
-                .replace(basePath + "/", "")
-                .replace(XSD_FILE_SUFFIX, "");
     }
 }

@@ -89,12 +89,6 @@
       "version" : "2.3.1",
       "file" : "crd-schema-pipe-a3c7c1fce69a636a15ecaaa093128a09.json"
     },
-    "camel-spring" : {
-      "name" : "camel-spring",
-      "description" : "Camel XSD schema for camel-spring",
-      "version" : "4.4.0.redhat-00039",
-      "file" : "camel-spring-4844393fad0dff8fe01ac75180c782f5.xsd"
-    },
     "camel-xml-io" : {
       "name" : "camel-xml-io",
       "description" : "Camel XSD schema for camel-xml-io",

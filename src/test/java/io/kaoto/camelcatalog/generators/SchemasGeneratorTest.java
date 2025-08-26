@@ -83,7 +83,7 @@ class SchemasGeneratorTest {
         
         assertNotNull(schemasMap);
 
-        assertEquals(7, schemasMap.size()); // 1 YAML DSL + 4 CRDs + 2 XML
+        assertEquals(6, schemasMap.size()); // 1 YAML DSL + 4 CRDs + 1 XML
     }
 
     @Test
