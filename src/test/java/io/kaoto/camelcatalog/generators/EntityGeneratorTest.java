@@ -317,4 +317,23 @@ class EntityGeneratorTest {
                         .anyMatch(msg -> msg.getMessage().contains("invalidEntity: model definition not found in the catalog")),
                 "Expected warning message not logged");
     }
+
+    @Test
+    void shouldNormalizeRouteAutoStartupBooleanDefaultValue() {
+        var entitiesMap = entityGenerator.generate();
+        var routeEntity = entitiesMap.get("route");
+        var autoStartupDefaultNode = routeEntity.withObject("propertiesSchema")
+                .withObject("properties")
+                .withObject("autoStartup")
+                .get("default");
+        assertTrue(autoStartupDefaultNode.isBoolean());
+        assertTrue(autoStartupDefaultNode.asBoolean());
+
+        var logMaskDefaultNode = routeEntity.withObject("propertiesSchema")
+                .withObject("properties")
+                .withObject("logMask")
+                .get("default");
+        assertTrue(logMaskDefaultNode.isBoolean());
+        assertFalse(logMaskDefaultNode.asBoolean());
+    }
 }

@@ -143,7 +143,7 @@ class CamelCatalogProcessorTest {
         assertEquals("string", sqlDSProperty.get("type").asText());
         assertEquals("bean:javax.sql.DataSource", sqlDSProperty.get("format").asText());
         var sqlBEHProperty = sqlSchema.withObject("/properties").withObject("/bridgeErrorHandler");
-        assertFalse(sqlBEHProperty.has("default"));
+        assertFalse(sqlBEHProperty.get("default").asBoolean());
 
         var activeMQSchema = componentCatalog
                 .withObject("/activemq")

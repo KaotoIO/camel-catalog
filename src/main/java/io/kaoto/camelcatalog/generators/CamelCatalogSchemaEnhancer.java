@@ -321,11 +321,19 @@ public class CamelCatalogSchemaEnhancer {
         var defaultValue = modelOption.getDefaultValue();
         if (defaultValue != null && !propertyNode.has("default")) {
             var propertyType = modelOption.getType();
+            var schemaPropTypeNode = propertyNode.get("type");
+            if ("boolean".equals(schemaPropTypeNode.asText())) {
+                // some boolean properties have its type as string in the catalog. prioritize the schema if type is declared.
+                propertyType = "boolean";
+            }
+
             if ("integer".equals(propertyType) && !(defaultValue instanceof String)) {
                 propertyNode.put("default", ((BigDecimal) defaultValue).intValue());
             } else if ("boolean".equals(propertyType)) {
                 if ("true".equals(defaultValue.toString())) {
                     propertyNode.put("default", true);
+                } else if ("false".equals(defaultValue.toString())) {
+                    propertyNode.put("default", false);
                 }
             } else {
                 propertyNode.put("default", defaultValue.toString());
