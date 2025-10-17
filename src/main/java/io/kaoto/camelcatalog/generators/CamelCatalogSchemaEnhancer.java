@@ -232,10 +232,10 @@ public class CamelCatalogSchemaEnhancer {
      *
      * @param modelNode the JSON schema node of the model
      */
-    void fillExpressionFormatInOneOf(ObjectNode modelNode) {
+    void fillModelFormatInOneOf(ObjectNode modelNode) {
         if (modelNode.has("anyOf") && modelNode.get("anyOf").isArray()) {
             modelNode.withArray("anyOf").elements().forEachRemaining(node -> {
-                fillExpressionFormatInOneOf((ObjectNode) node);
+                fillModelFormatInOneOf((ObjectNode) node);
             });
         }
 
@@ -246,6 +246,18 @@ public class CamelCatalogSchemaEnhancer {
         modelNode.withArray("oneOf").elements().forEachRemaining(node -> {
             if (node.has("$ref") && node.get("$ref").asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
                 modelNode.put("format", "expression");
+            } else if (node.has("properties") && node.get("properties").has("customLoadBalancer")
+                    && node.get("properties").get("customLoadBalancer").has("$ref")
+                    && node.get("properties").get("customLoadBalancer").get("$ref").asText().contains("org.apache.camel.model.loadbalancer")) {
+                modelNode.put("format", "loadBalancerType");
+            } else if (node.has("properties") && node.get("properties").has("asn1")
+                    && node.get("properties").get("asn1").has("$ref")
+                    && node.get("properties").get("asn1").get("$ref").asText().contains("org.apache.camel.model.dataformat")) {
+                modelNode.put("format", "dataFormatType");
+            } else if (node.has("properties") && node.get("properties").has("deadLetterChannel")
+                    && node.get("properties").get("deadLetterChannel").has("$ref")
+                    && node.get("properties").get("deadLetterChannel").get("$ref").asText().contains("org.apache.camel.model.errorhandler")) {
+                modelNode.put("format", "errorHandlerType");
             }
         });
     }

@@ -307,7 +307,7 @@ class CamelCatalogSchemaEnhancerTest {
                 .withObject("definitions")
                 .withObject("org.apache.camel.model.SetHeaderDefinition");
 
-        camelCatalogSchemaEnhancer.fillExpressionFormatInOneOf(setHeaderNode);
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(setHeaderNode);
 
         var firstOneOfNode = setHeaderNode.withArray("anyOf").get(0);
 
@@ -321,7 +321,7 @@ class CamelCatalogSchemaEnhancerTest {
                 .withObject("definitions")
                 .withObject("org.apache.camel.model.ResequenceDefinition");
 
-        camelCatalogSchemaEnhancer.fillExpressionFormatInOneOf(setHeaderNode);
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(setHeaderNode);
 
         /* The first anyOf node is the one that contains the expression property */
         var firstOneOfNode = setHeaderNode.withArray("anyOf").get(0);
@@ -339,9 +339,51 @@ class CamelCatalogSchemaEnhancerTest {
                 .withObject("definitions")
                 .withObject("org.apache.camel.model.PropertyExpressionDefinition");
 
-        camelCatalogSchemaEnhancer.fillExpressionFormatInOneOf(propertyExpressionNode);
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(propertyExpressionNode);
 
         var firstOneOfNode = propertyExpressionNode.withArray("anyOf").get(0);
+
+        assertTrue(firstOneOfNode.has("format"));
+    }
+
+    @Test
+    void shouldSetFormatInAnyOfFromMarshal() {
+        ObjectNode propertyNode = camelYamlDslSchema
+                .withObject("items")
+                .withObject("definitions")
+                .withObject("org.apache.camel.model.MarshalDefinition");
+
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(propertyNode);
+
+        var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
+
+        assertTrue(firstOneOfNode.has("format"));
+    }
+
+    @Test
+    void shouldSetFormatInAnyOfFromLoadBalance() {
+        ObjectNode propertyNode = camelYamlDslSchema
+                .withObject("items")
+                .withObject("definitions")
+                .withObject("org.apache.camel.model.LoadBalanceDefinition");
+
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(propertyNode);
+
+        var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
+
+        assertTrue(firstOneOfNode.has("format"));
+    }
+
+    @Test
+    void shouldSetFormatInAnyOfFromErrorHandler() {
+        ObjectNode propertyNode = camelYamlDslSchema
+                .withObject("items")
+                .withObject("definitions")
+                .withObject("org.apache.camel.model.ErrorHandlerDefinition");
+
+        camelCatalogSchemaEnhancer.fillModelFormatInOneOf(propertyNode);
+
+        var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
     }
