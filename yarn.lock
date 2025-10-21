@@ -1037,11 +1037,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^20.0.0":
-  version: 20.17.51
-  resolution: "@types/node@npm:20.17.51"
+  version: 20.19.23
+  resolution: "@types/node@npm:20.19.23"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10/1f98f9c7dba22e7e494e6436cfdf241f99287c3f7edab8fdb616de78c50eb1b9afd41132a6f9cb619ae0f3e485b862b81d65744ceec7ad1c6fdf1597c2b5fa96
+    undici-types: "npm:~6.21.0"
+  checksum: 10/35ca928381fab74abe2938a5ef00e3e9721ed0475e370a2c5c49877ed88858690d8d5464b6cb6bbe717497482e9087d1f58b6140dbcdd2742750fbe39e271489
   languageName: node
   linkType: hard
 
@@ -4643,10 +4643,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
   languageName: node
   linkType: hard
 
