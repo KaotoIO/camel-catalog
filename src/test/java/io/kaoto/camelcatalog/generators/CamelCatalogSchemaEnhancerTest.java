@@ -312,6 +312,7 @@ class CamelCatalogSchemaEnhancerTest {
         var firstOneOfNode = setHeaderNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("expression"));
     }
 
     @Test
@@ -329,6 +330,7 @@ class CamelCatalogSchemaEnhancerTest {
         var secondOneOfNode = setHeaderNode.withArray("anyOf").get(1);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("expression"));
         assertFalse(secondOneOfNode.has("format"));
     }
 
@@ -344,6 +346,7 @@ class CamelCatalogSchemaEnhancerTest {
         var firstOneOfNode = propertyExpressionNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("expression"));
     }
 
     @Test
@@ -358,6 +361,7 @@ class CamelCatalogSchemaEnhancerTest {
         var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("dataFormatType"));
     }
 
     @Test
@@ -372,6 +376,7 @@ class CamelCatalogSchemaEnhancerTest {
         var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("loadBalancerType"));
     }
 
     @Test
@@ -386,5 +391,6 @@ class CamelCatalogSchemaEnhancerTest {
         var firstOneOfNode = propertyNode.withArray("anyOf").get(0);
 
         assertTrue(firstOneOfNode.has("format"));
+        assertTrue(firstOneOfNode.get("format").asText().contains("errorHandlerType"));
     }
 }
