@@ -1,0 +1,105 @@
+{
+  "name" : "Camel Main 4.8.9",
+  "version" : "4.8.9",
+  "runtime" : "Main",
+  "catalogs" : {
+    "components" : {
+      "name" : "components",
+      "description" : "Aggregated Camel catalog for components",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-components-95a46070714154fce3e552f45e71481b.json"
+    },
+    "dataformats" : {
+      "name" : "dataformats",
+      "description" : "Aggregated Camel catalog for dataformats",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-dataformats-96b14289e795c60975d72fa6c96736cf.json"
+    },
+    "entities" : {
+      "name" : "entities",
+      "description" : "Aggregated Camel catalog for entities",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-entities-42efd7b69d59bb787d024afe94cf5d1d.json"
+    },
+    "functions" : {
+      "name" : "functions",
+      "description" : "Aggregated Camel catalog for functions",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-functions-6c1e1d0b9b74522bf7814be081642c4e.json"
+    },
+    "kameletBoundaries" : {
+      "name" : "kameletBoundaries",
+      "description" : "Aggregated Kamelet boundaries in JSON",
+      "version" : "4.15.0",
+      "file" : "kamelet-boundaries-9883bcb6b6ea05fd035b3407818d65a8.json"
+    },
+    "kamelets" : {
+      "name" : "kamelets",
+      "description" : "Aggregated Kamelets in JSON",
+      "version" : "4.15.0",
+      "file" : "kamelets-aggregate-a7ebd8d601af6cfba9fbfb87117f0384.json"
+    },
+    "languages" : {
+      "name" : "languages",
+      "description" : "Aggregated Camel catalog for languages",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-languages-a052eac3e11486cb45b56ed0fe613d08.json"
+    },
+    "loadbalancers" : {
+      "name" : "loadbalancers",
+      "description" : "Aggregated Camel catalog for loadbalancers",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-loadbalancers-536b24ebfa6414d9c50a7ec0e04ec2fc.json"
+    },
+    "models" : {
+      "name" : "models",
+      "description" : "Aggregated Camel catalog for models",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-models-b15796319a91495ba7450419d4b7ec89.json"
+    },
+    "patterns" : {
+      "name" : "patterns",
+      "description" : "Aggregated Camel catalog for patterns",
+      "version" : "4.8.9",
+      "file" : "camel-catalog-aggregate-patterns-ebae07dd82d755ee470af8443bd5db40.json"
+    }
+  },
+  "schemas" : {
+    "Integration" : {
+      "name" : "Integration",
+      "description" : "Integration",
+      "version" : "2.3.1",
+      "file" : "crd-schema-integration-de43dd78321dddf82a16ab09ae3cae77.json"
+    },
+    "Kamelet" : {
+      "name" : "Kamelet",
+      "description" : "Kamelet",
+      "version" : "2.3.1",
+      "file" : "crd-schema-kamelet-eccbf305027fc05d42a371c667bb25c8.json"
+    },
+    "KameletBinding" : {
+      "name" : "KameletBinding",
+      "description" : "KameletBinding",
+      "version" : "2.3.1",
+      "file" : "crd-schema-kameletbinding-7334fb4e5567aa656c21a323cf47cfb1.json"
+    },
+    "Pipe" : {
+      "name" : "Pipe",
+      "description" : "Pipe",
+      "version" : "2.3.1",
+      "file" : "crd-schema-pipe-a3c7c1fce69a636a15ecaaa093128a09.json"
+    },
+    "camel-xml-io" : {
+      "name" : "camel-xml-io",
+      "description" : "Camel XSD schema for camel-xml-io",
+      "version" : "4.8.9",
+      "file" : "camel-xml-io-774ccb36674613c43f99224695b24776.xsd"
+    },
+    "camelYamlDsl" : {
+      "name" : "camelYamlDsl",
+      "description" : "Camel YAML DSL JSON schema",
+      "version" : "4.8.9",
+      "file" : "camelYamlDsl-d1c49d93ea884defd12be4f22faed864.json"
+    }
+  }
+}
