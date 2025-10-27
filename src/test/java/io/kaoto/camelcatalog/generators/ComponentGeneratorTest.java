@@ -94,8 +94,7 @@ public class ComponentGeneratorTest {
         var componentsMap = componentGenerator.generate();
 
         var as2Node = componentsMap.get("as2");
-        var apiNamePropertyNode = as2Node.withObject("propertiesSchema")
-                .withObject("properties").withObject("apiName");
+        var apiNamePropertyNode = as2Node.withObject("propertiesSchema").withObject("properties").withObject("apiName");
 
         assertTrue(apiNamePropertyNode.has("$comment"));
         assertEquals("group:common", apiNamePropertyNode.get("$comment").asText());
@@ -106,17 +105,29 @@ public class ComponentGeneratorTest {
         var componentsMap = componentGenerator.generate();
 
         var sftpNode = componentsMap.get("sftp");
-        var separatorPropertyNode = sftpNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("separator");
-        var keyPairPropertyNode = sftpNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("keyPair");
+        var keyPairPropertyNode =
+                sftpNode.withObject("propertiesSchema").withObject("properties").withObject("keyPair");
 
-        assertTrue(separatorPropertyNode.has("format"));
         assertTrue(keyPairPropertyNode.has("format"));
-        assertEquals("bean:org.apache.camel.component.file.remote.RemoteFileConfiguration.PathSeparator",
-                separatorPropertyNode.get("format").asText());
-        assertEquals("bean:java.security.KeyPair|password",
-                keyPairPropertyNode.get("format").asText());
+        assertEquals("bean:java.security.KeyPair|password", keyPairPropertyNode.get("format").asText());
+    }
+
+    @Test
+    void shouldNotFillFormatInformationForEnums() {
+        var componentsMap = componentGenerator.generate();
+
+        var sftpNode = componentsMap.get("sftp");
+        var separatorPropertyNode =
+                sftpNode.withObject("propertiesSchema").withObject("properties").withObject("separator");
+
+        assertFalse(separatorPropertyNode.has("format"));
+        assertTrue(separatorPropertyNode.has("type"));
+        assertEquals("enum", separatorPropertyNode.get("type").asText());
+
+
+        List<String> enumValues = new ArrayList<>();
+        separatorPropertyNode.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));
+        assertEquals(List.of("UNIX", "Windows", "Auto"), enumValues);
     }
 
     @Test
@@ -124,10 +135,10 @@ public class ComponentGeneratorTest {
         var componentsMap = componentGenerator.generate();
 
         var slackNode = componentsMap.get("slack");
-        var channelPropertyNode = slackNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("channel");
-        var usernamePropertyNode = slackNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("username");
+        var channelPropertyNode =
+                slackNode.withObject("propertiesSchema").withObject("properties").withObject("channel");
+        var usernamePropertyNode =
+                slackNode.withObject("propertiesSchema").withObject("properties").withObject("username");
 
         assertFalse(channelPropertyNode.has("deprecated"));
         assertTrue(usernamePropertyNode.has("deprecated"));
@@ -139,14 +150,14 @@ public class ComponentGeneratorTest {
         var componentsMap = componentGenerator.generate();
 
         var activemqNode = componentsMap.get("activemq");
-        var destinationTypePropertyNode = activemqNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("destinationType");
-        var acknowledgementModeNamePropertyNode = activemqNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("acknowledgementModeName");
-        var autoStartupPropertyNode = activemqNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("autoStartup");
-        var priorityPropertyNode = activemqNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("priority");
+        var destinationTypePropertyNode =
+                activemqNode.withObject("propertiesSchema").withObject("properties").withObject("destinationType");
+        var acknowledgementModeNamePropertyNode = activemqNode.withObject("propertiesSchema").withObject("properties")
+                .withObject("acknowledgementModeName");
+        var autoStartupPropertyNode =
+                activemqNode.withObject("propertiesSchema").withObject("properties").withObject("autoStartup");
+        var priorityPropertyNode =
+                activemqNode.withObject("propertiesSchema").withObject("properties").withObject("priority");
 
         assertTrue(destinationTypePropertyNode.has("default"));
         assertEquals("queue", destinationTypePropertyNode.get("default").asText());
@@ -167,7 +178,6 @@ public class ComponentGeneratorTest {
 
         var logNode = componentsMap.get("log");
         var componentVersion = logNode.withObject("component").get("version").asText();
-
 
         assertTrue(Pattern.matches(MULTI_VERSION_REGEXP, componentVersion));
     }
@@ -237,8 +247,8 @@ public class ComponentGeneratorTest {
         ObjectNode result = componentGenerator.getComponentJson("invalidComponent");
 
         assertNull(result, "Expected null result for invalid component");
-        assertTrue(mockLoggerHandler.getRecords().stream()
-                .anyMatch(msg -> msg.getMessage().contains("invalidComponent: component definition not found in the catalog")),
+        assertTrue(mockLoggerHandler.getRecords().stream().anyMatch(
+                        msg -> msg.getMessage().contains("invalidComponent: component definition not found in the catalog")),
                 "Expected warning message not logged");
     }
 }

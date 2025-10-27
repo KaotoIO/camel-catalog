@@ -110,8 +110,16 @@ class FunctionsGeneratorTest {
         logger.setUseParentHandlers(false);
         logger.addHandler(mockLoggerHandler);
 
+        // Mock catalog to exclude 'simple' language so fallback is triggered
         CamelCatalog realCatalog = new DefaultCamelCatalog();
-        functionsGenerator = new FunctionsGenerator(realCatalog, mockLoader);
+        CamelCatalog spyCatalog = spy(realCatalog);
+        when(spyCatalog.findLanguageNames()).thenReturn(
+            realCatalog.findLanguageNames().stream()
+                .filter(name -> !"simple".equals(name))
+                .toList()
+        );
+
+        functionsGenerator = new FunctionsGenerator(spyCatalog, mockLoader);
         functionsGenerator.generate();
 
         // Should still contain other languages, but 'simple' should be empty or missing
@@ -132,8 +140,16 @@ class FunctionsGeneratorTest {
         logger.setUseParentHandlers(false);
         logger.addHandler(mockLoggerHandler);
 
+        // Mock catalog to exclude 'simple' language so fallback is triggered
         CamelCatalog realCatalog = new DefaultCamelCatalog();
-        functionsGenerator = new FunctionsGenerator(realCatalog, mockLoader);
+        CamelCatalog spyCatalog = spy(realCatalog);
+        when(spyCatalog.findLanguageNames()).thenReturn(
+            realCatalog.findLanguageNames().stream()
+                .filter(name -> !"simple".equals(name))
+                .toList()
+        );
+
+        functionsGenerator = new FunctionsGenerator(spyCatalog, mockLoader);
         functionsGenerator.generate();
 
         assertTrue(mockLoggerHandler.getRecords().stream().anyMatch(msg -> msg.getMessage()

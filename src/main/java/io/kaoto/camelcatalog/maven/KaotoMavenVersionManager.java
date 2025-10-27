@@ -132,8 +132,18 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
         if (is == null && version != null) {
             is = doGetResourceAsStream(name, version);
         }
-        if (getClassLoader() != null && is == null) {
+
+        // Only use fallback for non-versioned resources (like JSON schemas files)
+        // DO NOT use fallback for version-specific JSON files as this would return resources
+        // from the wrong version (e.g., 4.15.0 instead of 4.8.5.redhat-00008)
+        boolean isVersionedResource = name.contains("/models/")
+                || name.contains("/components/") || name.contains("/languages/")
+                || name.contains("/dataformats/") || name.contains("/beans/")
+                || name.contains("/others/") || name.contains("/transformers/");
+        if (getClassLoader() != null && is == null && !isVersionedResource) {
             is = getClassLoader().getResourceAsStream(name);
+        } else if (is == null && isVersionedResource && getLog()) {
+            LOGGER.log(Level.WARNING, String.format("Versioned resource '%s' not found for version '%s', returning null instead of falling back to runtime", name, version));
         }
 
         return is;
@@ -143,11 +153,22 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
         if (version != null) {
             try {
                 Enumeration<URL> urls = getClassLoader().getResources(name);
+                boolean found = false;
                 while (urls.hasMoreElements()) {
                     URL url = urls.nextElement();
+                    if (getLog() && name.contains("bean.json")) {
+                        LOGGER.log(Level.WARNING, String.format("Found resource '%s' at URL: %s", name, url.getPath()));
+                    }
                     if (url.getPath().contains(version)) {
+                        if (getLog() && name.contains("bean.json")) {
+                            LOGGER.log(Level.WARNING, String.format("URL path contains version '%s', using this resource", version));
+                        }
+                        found = true;
                         return url.openStream();
                     }
+                }
+                if (getLog() && !found && name.contains("bean.json")) {
+                    LOGGER.log(Level.WARNING, String.format("No URL found containing version '%s' for resource '%s'", version, name));
                 }
 
             } catch (IOException e) {

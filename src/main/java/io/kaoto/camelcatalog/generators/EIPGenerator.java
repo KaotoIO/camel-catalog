@@ -63,8 +63,8 @@ public class EIPGenerator implements Generator {
 
         getEIPNames().forEach(eipName -> {
             var processorJSON = getModelJson(eipName);
-            setProvider(processorJSON);
             if (processorJSON != null) {
+                setProvider(processorJSON);
                 String javaType = camelCatalogSchemaEnhancer.getJavaTypeByModelName(eipName);
                 var processorJSONSchema = camelYAMLSchemaReader.getEIPJSONSchema(eipName, javaType);
                 processorJSON.set("propertiesSchema", processorJSONSchema);
@@ -76,8 +76,8 @@ public class EIPGenerator implements Generator {
 
         getRestProcessorNames().forEach(processorName -> {
             var processorJSON = getModelJson(processorName);
-            setProvider(processorJSON);
             if (processorJSON != null) {
+                setProvider(processorJSON);
                 var processorJSONSchema = camelYAMLSchemaReader.getRestProcessorJSONSchema(processorName);
                 processorJSON.set("propertiesSchema", processorJSONSchema);
 

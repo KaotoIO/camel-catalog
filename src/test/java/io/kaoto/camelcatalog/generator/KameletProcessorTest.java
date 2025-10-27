@@ -60,13 +60,14 @@ class KameletProcessorTest {
 
     @Test
     void test() throws Exception {
-        var beerSource = processKamelet("beer-source");
-        assertTrue(beerSource.has("propertiesSchema"));
-        var periodProp = beerSource.withObject("/propertiesSchema")
+        // beer-source was removed in Camel 4.15.0, using aws-sqs-source instead
+        var awsSqsSource = processKamelet("aws-sqs-source");
+        assertTrue(awsSqsSource.has("propertiesSchema"));
+        var delayProp = awsSqsSource.withObject("/propertiesSchema")
                 .withObject("/properties")
-                .withObject("/period");
-        assertEquals("integer", periodProp.get("type").asText());
-        assertEquals(5000, periodProp.get("default").asInt());
+                .withObject("/delay");
+        assertEquals("integer", delayProp.get("type").asText());
+        assertEquals(500, delayProp.get("default").asInt());
         var googleStorageSink = processKamelet("google-storage-sink");
         var serviceAccountKeyProp = googleStorageSink.withObject("/propertiesSchema")
                 .withObject("/properties")

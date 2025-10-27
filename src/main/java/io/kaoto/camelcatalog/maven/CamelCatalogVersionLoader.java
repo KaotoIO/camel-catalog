@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 public class CamelCatalogVersionLoader {
     private static final Logger LOGGER = Logger.getLogger(CamelCatalogVersionLoader.class.getName());
     private final ResourceLoader resourceLoader;
-    private final CamelCatalog camelCatalog = new DefaultCamelCatalog(true);
+    private final CamelCatalog camelCatalog = new DefaultCamelCatalog(false);
     private final Map<String, String> kameletBoundaries = new HashMap<>();
     private final Map<String, String> kamelets = new HashMap<>();
     private final List<String> camelKCRDs = new ArrayList<>();

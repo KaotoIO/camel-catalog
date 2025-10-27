@@ -116,13 +116,10 @@ class CamelYamlDslSchemaProcessorTest {
     @Test
     void testGetDataFormatYaml() throws Exception {
         var dataFormatMap = processor.getDataFormats();
-        var yamlDataFormat = dataFormatMap.get("yaml");
-        var typeFilterDefinition = yamlDataFormat.withObject("/definitions")
-                .withObject("org.apache.camel.model.dataformat.YAMLTypeFilterDefinition");
-        assertEquals("object", typeFilterDefinition.get("type").asText());
-        var propType = typeFilterDefinition.withObject("/properties").withObject("/type");
-        assertEquals("string", propType.get("type").asText());
-        assertEquals("Type", propType.get("title").asText());
+        var jsonDataFormat = dataFormatMap.get("json");
+        var useListDefinition = jsonDataFormat.withObject("/properties").withObject("/useList");
+        assertEquals("boolean", useListDefinition.get("type").asText());
+        assertEquals("Use List", useListDefinition.get("title").asText());
     }
 
     @Test

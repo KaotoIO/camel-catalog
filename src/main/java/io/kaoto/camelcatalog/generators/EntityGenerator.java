@@ -23,8 +23,6 @@ import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.tooling.model.EipModel;
 import org.apache.camel.tooling.model.Kind;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,20 +33,17 @@ import java.util.logging.Logger;
 
 public class EntityGenerator implements Generator {
     private static final Logger LOGGER = Logger.getLogger(EntityGenerator.class.getName());
+    private final Map<String, String> localSchemas;
     CamelCatalog camelCatalog;
     CamelCatalogSchemaEnhancer camelCatalogSchemaEnhancer;
     String camelYamlSchema;
-    ObjectMapper jsonMapper = new ObjectMapper()
-            .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+    ObjectMapper jsonMapper = new ObjectMapper().configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
     ObjectNode camelYamlSchemaNode;
     CamelYAMLSchemaReader camelYAMLSchemaReader;
     ObjectNode openapiSpecNode;
     K8sSchemaReader k8sSchemaReader;
-    private final Map<String, String> localSchemas;
 
-    public EntityGenerator(CamelCatalog camelCatalog,
-                           String camelYamlSchema,
-                           String openapiSpec,
+    public EntityGenerator(CamelCatalog camelCatalog, String camelYamlSchema, String openapiSpec,
                            Map<String, String> localSchemas) throws JsonProcessingException {
         this.camelCatalog = camelCatalog;
         this.camelCatalogSchemaEnhancer = new CamelCatalogSchemaEnhancer(camelCatalog);
@@ -148,20 +143,15 @@ public class EntityGenerator implements Generator {
     }
 
     /**
-     * Get the JSON model of a Entity
+     * Get the JSON model of an Entity
      *
      * @param modelName the name of the Entity, e.g. "route", "rest"
      * @return the JSON model of the Entity including its properties
      */
     ObjectNode getModelJson(String modelName) {
-        String entityJson = null;
+        String entityJson;
         if ("beans".equals(modelName)) {
-            try (InputStream is = camelCatalog.getClass().getClassLoader()
-                    .getResourceAsStream("org/apache/camel/catalog/models-app/bean.json")) {
-                entityJson = new String(is.readAllBytes());
-            } catch (IOException e) {
-                LOGGER.log(Level.WARNING, "Error reading Beans definition from the catalog");
-            }
+            entityJson = camelCatalog.modelJSonSchema("beanFactory");
         } else {
             entityJson = camelCatalog.modelJSonSchema(modelName);
         }
@@ -181,7 +171,7 @@ public class EntityGenerator implements Generator {
             LOGGER.log(Level.WARNING, modelName + ": model definition not found in the catalog");
         }
 
-        return  null;
+        return null;
     }
 
     /**

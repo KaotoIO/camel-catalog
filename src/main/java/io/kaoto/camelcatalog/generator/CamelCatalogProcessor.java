@@ -32,11 +32,14 @@ import org.apache.camel.tooling.model.Kind;
 
 import java.io.StringWriter;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Customize Camel Catalog for Kaoto.
  */
 public class CamelCatalogProcessor {
+    private static final Logger LOGGER = Logger.getLogger(CamelCatalogProcessor.class.getName());
 
     private final ObjectMapper jsonMapper;
     private final CamelCatalog camelCatalog;
@@ -56,8 +59,6 @@ public class CamelCatalogProcessor {
 
     /**
      * Create Camel catalogs customized for Kaoto usage.
-     *
-     * @return
      */
     public Map<String, String> processCatalog() throws Exception {
         var answer = new LinkedHashMap<String, String>();
@@ -90,9 +91,6 @@ public class CamelCatalogProcessor {
 
     /**
      * Get aggregated Camel DataFormat catalog with a custom dataformat added.
-     *
-     * @return
-     * @throws Exception
      */
     public String getDataFormatCatalog() throws Exception {
         var catalogMap = new LinkedHashMap<String, EipModel>();
@@ -106,7 +104,7 @@ public class CamelCatalogProcessor {
             var dataFormatName = entry.getKey();
             var dataFormatSchema = entry.getValue();
             EipModel eipModel = catalogMap.get(dataFormatName);
-            List<EipOptionModel> eipModelOptions = Arrays.asList();
+            List<EipOptionModel> eipModelOptions = List.of();
             if (eipModel != null) {
                 eipModelOptions = eipModel.getOptions();
             }
@@ -115,7 +113,8 @@ public class CamelCatalogProcessor {
 
             var dataFormatCatalog = (EipModel) camelCatalog.model(Kind.eip, dataFormatName);
             if (dataFormatCatalog == null) {
-                throw new Exception("DataFormat " + dataFormatName + " is not found in Camel model catalog.");
+                LOGGER.log(Level.WARNING, dataFormatName + ": dataformat definition not found in the catalog");
+                continue;
             }
             var json = JsonMapper.asJsonObject(dataFormatCatalog).toJson();
             var catalogTree = (ObjectNode) jsonMapper.readTree(json);
@@ -133,9 +132,6 @@ public class CamelCatalogProcessor {
 
     /**
      * Get Camel language catalog with a custom language added.
-     *
-     * @return
-     * @throws Exception
      */
     public String getLanguageCatalog() throws Exception {
         var answer = jsonMapper.createObjectNode();
@@ -149,7 +145,7 @@ public class CamelCatalogProcessor {
             var languageName = entry.getKey();
             var languageSchema = entry.getValue();
             EipModel eipModel = catalogMap.get(languageName);
-            List<EipOptionModel> eipModelOptions = Arrays.asList();
+            List<EipOptionModel> eipModelOptions = List.of();
             if (eipModel != null) {
                 eipModelOptions = eipModel.getOptions();
             }
@@ -158,7 +154,8 @@ public class CamelCatalogProcessor {
 
             var languageCatalog = (EipModel) camelCatalog.model(Kind.eip, languageName);
             if (languageCatalog == null) {
-                throw new Exception("Language " + languageName + " is not found in Camel model catalog.");
+                LOGGER.log(Level.WARNING, languageName + ": languageCatalog definition not found in the catalog");
+                continue;
             }
             var json = JsonMapper.asJsonObject(languageCatalog).toJson();
             var catalogTree = (ObjectNode) jsonMapper.readTree(json);
@@ -211,10 +208,7 @@ public class CamelCatalogProcessor {
     }
 
     /**
-     * Get Camel LoadBalancer catalog with a custom loadbalancer added.
-     *
-     * @return
-     * @throws Exception
+     * Get Camel LoadBalancer catalog with a custom load balancer added.
      */
     public String getLoadBalancerCatalog() throws Exception {
         var answer = jsonMapper.createObjectNode();
@@ -224,7 +218,8 @@ public class CamelCatalogProcessor {
             var loadBalancerSchema = entry.getValue();
             var loadBalancerCatalog = (EipModel) camelCatalog.model(Kind.eip, loadBalancerName);
             if (loadBalancerCatalog == null) {
-                throw new Exception("LoadBalancer " + loadBalancerName + " is not found in Camel model catalog.");
+                LOGGER.log(Level.WARNING, loadBalancerName + ": load balancer definition not found in the catalog");
+                continue;
             }
             var json = JsonMapper.asJsonObject(loadBalancerCatalog).toJson();
             var catalogTree = (ObjectNode) jsonMapper.readTree(json);

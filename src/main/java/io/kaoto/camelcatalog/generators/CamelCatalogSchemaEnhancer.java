@@ -68,15 +68,14 @@ public class CamelCatalogSchemaEnhancer {
             });
         }
 
-        List<? extends BaseOptionModel> modelOptions = (model instanceof ComponentModel)
-                ? ((ComponentModel) model).getEndpointOptions()
-                : model.getOptions();
+        List<? extends BaseOptionModel> modelOptions =
+                (model instanceof ComponentModel) ? ((ComponentModel) model).getEndpointOptions() : model.getOptions();
 
         modelOptions.forEach(option -> {
-            if (option.isRequired() && modelNode.has("properties")
-                    && modelNode.get("properties").has(option.getName())
-                    && !modelNode.get("properties").get(option.getName()).isEmpty()
-                    && !requiredProperties.contains(option.getName())) {
+            if (option.isRequired() && modelNode.has("properties") &&
+                    modelNode.get("properties").has(option.getName()) &&
+                    !modelNode.get("properties").get(option.getName()).isEmpty() &&
+                    !requiredProperties.contains(option.getName())) {
                 requiredProperties.add(option.getName());
             }
         });
@@ -109,15 +108,12 @@ public class CamelCatalogSchemaEnhancer {
      * @param modelNode the JSON schema node of the model
      */
     void sortPropertiesAccordingToCatalog(EipModel model, ObjectNode modelNode) {
-        var modelNodeProperties = modelNode.withObject("/properties").properties().stream()
-                .map(Map.Entry::getKey).sorted(
-                        new CamelYamlDSLKeysComparator(model.getOptions()))
-                .toList();
+        var modelNodeProperties = modelNode.withObject("/properties").properties().stream().map(Map.Entry::getKey)
+                .sorted(new CamelYamlDSLKeysComparator(model.getOptions())).toList();
         var sortedSchemaProperties = jsonMapper.createObjectNode();
 
         for (var propertyName : modelNodeProperties) {
-            var propertySchema = modelNode.withObject("/properties")
-                    .withObject("/" + propertyName);
+            var propertySchema = modelNode.withObject("/properties").withObject("/" + propertyName);
             sortedSchemaProperties.set(propertyName, propertySchema);
         }
         modelNode.set("properties", sortedSchemaProperties);
@@ -244,19 +240,23 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         modelNode.withArray("oneOf").elements().forEachRemaining(node -> {
-            if (node.has("$ref") && node.get("$ref").asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
+            if (node.has("$ref") &&
+                    node.get("$ref").asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
                 modelNode.put("format", "expression");
-            } else if (node.has("properties") && node.get("properties").has("customLoadBalancer")
-                    && node.get("properties").get("customLoadBalancer").has("$ref")
-                    && node.get("properties").get("customLoadBalancer").get("$ref").asText().contains("org.apache.camel.model.loadbalancer")) {
+            } else if (node.has("properties") && node.get("properties").has("customLoadBalancer") &&
+                    node.get("properties").get("customLoadBalancer").has("$ref") &&
+                    node.get("properties").get("customLoadBalancer").get("$ref").asText()
+                            .contains("org.apache.camel.model.loadbalancer")) {
                 modelNode.put("format", "loadBalancerType");
-            } else if (node.has("properties") && node.get("properties").has("asn1")
-                    && node.get("properties").get("asn1").has("$ref")
-                    && node.get("properties").get("asn1").get("$ref").asText().contains("org.apache.camel.model.dataformat")) {
+            } else if (node.has("properties") && node.get("properties").has("asn1") &&
+                    node.get("properties").get("asn1").has("$ref") &&
+                    node.get("properties").get("asn1").get("$ref").asText()
+                            .contains("org.apache.camel.model.dataformat")) {
                 modelNode.put("format", "dataFormatType");
-            } else if (node.has("properties") && node.get("properties").has("deadLetterChannel")
-                    && node.get("properties").get("deadLetterChannel").has("$ref")
-                    && node.get("properties").get("deadLetterChannel").get("$ref").asText().contains("org.apache.camel.model.errorhandler")) {
+            } else if (node.has("properties") && node.get("properties").has("deadLetterChannel") &&
+                    node.get("properties").get("deadLetterChannel").has("$ref") &&
+                    node.get("properties").get("deadLetterChannel").get("$ref").asText()
+                            .contains("org.apache.camel.model.errorhandler")) {
                 modelNode.put("format", "errorHandlerType");
             }
         });
@@ -276,8 +276,7 @@ public class CamelCatalogSchemaEnhancer {
     }
 
     private void addGroupInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
-        String group =
-                modelOption.getGroup() != null ? modelOption.getGroup() : modelOption.getLabel();
+        String group = modelOption.getGroup() != null ? modelOption.getGroup() : modelOption.getLabel();
         if (group == null) {
             return;
         }
@@ -296,8 +295,7 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         var propertyType = modelOption.getType();
-        String bean =
-                "object".equals(propertyType) && !propertyNode.has("$ref") ? modelOption.getJavaType() : null;
+        String bean = "object".equals(propertyType) && !propertyNode.has("$ref") ? modelOption.getJavaType() : null;
 
         if (bean != null && !bean.startsWith("java.util.Map")) {
             format.add("bean:" + bean);

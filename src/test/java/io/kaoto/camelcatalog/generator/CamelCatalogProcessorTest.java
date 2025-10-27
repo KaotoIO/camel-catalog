@@ -23,7 +23,6 @@ import io.kaoto.camelcatalog.generators.EIPGenerator;
 import io.kaoto.camelcatalog.generators.EntityGenerator;
 import io.kaoto.camelcatalog.generators.FunctionsGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
-import io.kaoto.camelcatalog.maven.KaotoMavenVersionManager;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
@@ -31,6 +30,7 @@ import org.apache.camel.dsl.yaml.YamlRoutesBuilderLoader;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,7 +38,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CamelCatalogProcessorTest {
-    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string");
+    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string", "enum");
     private final CamelCatalogProcessor processor;
 
     private final ObjectNode componentCatalog;
@@ -70,24 +70,13 @@ class CamelCatalogProcessorTest {
         ComponentGenerator componentGenerator = new ComponentGenerator(catalog, CatalogRuntime.Main);
         EIPGenerator eipGenerator = new EIPGenerator(catalog, jsonMapper.writeValueAsString(yamlDslSchema),
                 camelCatalogVersionLoader.getKaotoPatterns());
-        EntityGenerator entityGenerator = new EntityGenerator(
-                catalog,
-                jsonMapper.writeValueAsString(yamlDslSchema),
-                openapiSpec,
-                camelCatalogVersionLoader.getLocalSchemas()
-        );
-        FunctionsGenerator functionsGenerator = new FunctionsGenerator(
-                catalog,
-                camelCatalogVersionLoader
-        );
+        EntityGenerator entityGenerator =
+                new EntityGenerator(catalog, jsonMapper.writeValueAsString(yamlDslSchema), openapiSpec,
+                        camelCatalogVersionLoader.getLocalSchemas());
+        FunctionsGenerator functionsGenerator = new FunctionsGenerator(catalog, camelCatalogVersionLoader);
 
-        this.processor = new CamelCatalogProcessor(
-                catalog,
-                jsonMapper,
-                schemaProcessor,
-                CatalogRuntime.Main,
-                camelCatalogVersionLoader
-        );
+        this.processor = new CamelCatalogProcessor(catalog, jsonMapper, schemaProcessor, CatalogRuntime.Main,
+                camelCatalogVersionLoader);
 
         this.componentCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(componentGenerator.generate()));
         this.dataFormatCatalog = (ObjectNode) jsonMapper.readTree(this.processor.getDataFormatCatalog());
@@ -115,53 +104,42 @@ class CamelCatalogProcessorTest {
     void testGetComponentCatalog() throws Exception {
         assertTrue(componentCatalog.size() > 300);
 
-        var directModel = componentCatalog
-                .withObject("/direct")
-                .withObject("/component");
+        var directModel = componentCatalog.withObject("/direct").withObject("/component");
         assertEquals("Direct", directModel.get("title").asText());
 
-        var googleCalendarSchema = componentCatalog
-                .withObject("/google-calendar")
-                .withObject("/propertiesSchema");
-        var scopesProperty = googleCalendarSchema.withObject("/properties").withObject("/scopes");
+        var cxfrsSchema = componentCatalog.withObject("/cxfrs").withObject("/propertiesSchema");
+        var scopesProperty = cxfrsSchema.withObject("/properties").withObject("/schemaLocations");
         assertEquals("array", scopesProperty.get("type").asText());
         assertEquals("string", scopesProperty.withObject("/items").get("type").asText());
 
-        var gdSchema = componentCatalog
-                .withObject("/google-drive")
-                .withObject("/propertiesSchema");
-        var gdScopesProperty = gdSchema.withObject("/properties").withObject("/scopes");
-        assertEquals("array", gdScopesProperty.get("type").asText());
-        assertEquals("string", gdScopesProperty.withObject("/items").get("type").asText());
-        var gdSPProperty = gdSchema.withObject("/properties").withObject("/schedulerProperties");
-        assertEquals("object", gdSPProperty.get("type").asText());
+        var jcacheSchema = componentCatalog.withObject("/jcache").withObject("/propertiesSchema");
+        var eventFiltersProperty = jcacheSchema.withObject("/properties").withObject("/eventFilters");
+        assertEquals("array", eventFiltersProperty.get("type").asText());
+        assertEquals("string", eventFiltersProperty.withObject("/items").get("type").asText());
+        var filteredEventsProperty = jcacheSchema.withObject("/properties").withObject("/filteredEvents");
+        assertEquals("enum", filteredEventsProperty.get("type").asText());
+        List<String> enumValues = new ArrayList<>();
+        filteredEventsProperty.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));
+        assertEquals(List.of("CREATED", "UPDATED", "REMOVED", "EXPIRED"), enumValues);
 
-        var sqlSchema = componentCatalog
-                .withObject("/sql")
-                .withObject("/propertiesSchema");
+        var sqlSchema = componentCatalog.withObject("/sql").withObject("/propertiesSchema");
         var sqlDSProperty = sqlSchema.withObject("/properties").withObject("/dataSource");
         assertEquals("string", sqlDSProperty.get("type").asText());
         assertEquals("bean:javax.sql.DataSource", sqlDSProperty.get("format").asText());
         var sqlBEHProperty = sqlSchema.withObject("/properties").withObject("/bridgeErrorHandler");
         assertFalse(sqlBEHProperty.get("default").asBoolean());
 
-        var activeMQSchema = componentCatalog
-                .withObject("/activemq")
-                .withObject("/propertiesSchema");
+        var activeMQSchema = componentCatalog.withObject("/activemq").withObject("/propertiesSchema");
         var destinationTypeProperty = activeMQSchema.withObject("/properties").withObject("/destinationType");
         assertEquals("queue", destinationTypeProperty.get("default").asText());
 
-        var smbSchema = componentCatalog
-                .withObject("/smb")
-                .withObject("/propertiesSchema");
+        var smbSchema = componentCatalog.withObject("/smb").withObject("/propertiesSchema");
         var smbUsernameProperty = smbSchema.withObject("/properties").withObject("/username");
         assertEquals("password", smbUsernameProperty.get("format").asText());
         var smbPasswordProperty = smbSchema.withObject("/properties").withObject("/password");
         assertEquals("password", smbPasswordProperty.get("format").asText());
 
-        var cxfSchema = componentCatalog
-                .withObject("/cxf")
-                .withObject("/propertiesSchema");
+        var cxfSchema = componentCatalog.withObject("/cxf").withObject("/propertiesSchema");
         var cxfContinuationTimeout = cxfSchema.withObject("/properties").withObject("/continuationTimeout");
         assertEquals("duration", cxfContinuationTimeout.get("format").asText());
     }
@@ -199,18 +177,12 @@ class CamelCatalogProcessorTest {
 
     @Test
     void testGetDataFormatCatalog() throws Exception {
-        var customModel = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/model");
+        var customModel = dataFormatCatalog.withObject("/custom").withObject("/model");
         assertEquals("model", customModel.get("kind").asText());
         assertEquals("Custom", customModel.get("title").asText());
-        var customProperties = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/properties");
+        var customProperties = dataFormatCatalog.withObject("/custom").withObject("/properties");
         assertEquals("Ref", customProperties.withObject("/ref").get("displayName").asText());
-        var customPropertiesSchema = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/propertiesSchema");
+        var customPropertiesSchema = dataFormatCatalog.withObject("/custom").withObject("/propertiesSchema");
         assertEquals("Custom", customPropertiesSchema.get("title").asText());
         var refProperty = customPropertiesSchema.withObject("/properties").withObject("/ref");
         assertEquals("Ref", refProperty.get("title").asText());
@@ -221,24 +193,12 @@ class CamelCatalogProcessorTest {
 
     @Test
     void testRestProcessors() throws Exception {
-        var restGetProcessorSchema = processorCatalog
-                .withObject("/get")
-                .withObject("propertiesSchema");
-        var restPostProcessorSchema = processorCatalog
-                .withObject("/post")
-                .withObject("propertiesSchema");
-        var restPutProcessorSchema = processorCatalog
-                .withObject("/put")
-                .withObject("propertiesSchema");
-        var restDeleteProcessorSchema = processorCatalog
-                .withObject("/delete")
-                .withObject("propertiesSchema");
-        var restHeadProcessorSchema = processorCatalog
-                .withObject("/head")
-                .withObject("propertiesSchema");
-        var restPatchProcessorSchema = processorCatalog
-                .withObject("/patch")
-                .withObject("propertiesSchema");
+        var restGetProcessorSchema = processorCatalog.withObject("/get").withObject("propertiesSchema");
+        var restPostProcessorSchema = processorCatalog.withObject("/post").withObject("propertiesSchema");
+        var restPutProcessorSchema = processorCatalog.withObject("/put").withObject("propertiesSchema");
+        var restDeleteProcessorSchema = processorCatalog.withObject("/delete").withObject("propertiesSchema");
+        var restHeadProcessorSchema = processorCatalog.withObject("/head").withObject("propertiesSchema");
+        var restPatchProcessorSchema = processorCatalog.withObject("/patch").withObject("propertiesSchema");
 
         assertFalse(restGetProcessorSchema.isEmpty(), "get processor schema should not be empty");
         assertFalse(restPostProcessorSchema.isEmpty(), "post processor schema should not be empty");
@@ -256,18 +216,12 @@ class CamelCatalogProcessorTest {
     @Test
     void testGetLanguageCatalog() throws Exception {
         assertFalse(languageCatalog.has("file"));
-        var languageModel = languageCatalog
-                .withObject("/language")
-                .withObject("/model");
+        var languageModel = languageCatalog.withObject("/language").withObject("/model");
         assertEquals("model", languageModel.get("kind").asText());
         assertEquals("Language", languageModel.get("title").asText());
-        var languageProperties = languageCatalog
-                .withObject("/language")
-                .withObject("/properties");
+        var languageProperties = languageCatalog.withObject("/language").withObject("/properties");
         assertEquals("Language", languageProperties.withObject("/language").get("displayName").asText());
-        var languagePropertiesSchema = languageCatalog
-                .withObject("/language")
-                .withObject("/propertiesSchema");
+        var languagePropertiesSchema = languageCatalog.withObject("/language").withObject("/propertiesSchema");
         assertEquals("Language", languagePropertiesSchema.get("title").asText());
         var languageProperty = languagePropertiesSchema.withObject("/properties").withObject("/language");
         assertEquals("Language", languageProperty.get("title").asText());
@@ -286,9 +240,7 @@ class CamelCatalogProcessorTest {
     @Test
     void testGetModelCatalog() throws Exception {
         assertTrue(modelCatalog.size() > 200);
-        var aggregateModel = modelCatalog
-                .withObject("/aggregate")
-                .withObject("/model");
+        var aggregateModel = modelCatalog.withObject("/aggregate").withObject("/model");
         assertEquals("model", aggregateModel.get("kind").asText());
         assertEquals("Aggregate", aggregateModel.get("title").asText());
     }
@@ -336,37 +288,20 @@ class CamelCatalogProcessorTest {
 
     @Test
     void testGetEntityCatalog() throws Exception {
-        List.of(
-                "bean",
-                "errorHandler",
-                "from",
-                "intercept",
-                "interceptFrom",
-                "interceptSendToEndpoint",
-                "onCompletion",
-                "onException",
-                "routeConfiguration",
-                "route",
-                "routeTemplate",
-                "templatedRoute",
-                "restConfiguration",
+        List.of("bean", "errorHandler", "from", "intercept", "interceptFrom", "interceptSendToEndpoint", "onCompletion",
+                "onException", "routeConfiguration", "route", "routeTemplate", "templatedRoute", "restConfiguration",
                 "rest").forEach(name -> assertTrue(entityCatalog.has(name), name));
         var beans = entityCatalog.withObject("/bean");
-        var beansScript = beans.withObject("/propertiesSchema")
-                .withObject("/definitions")
-                .withObject("/org.apache.camel.model.BeanFactoryDefinition")
-                .withObject("/properties")
+        var beansScript = beans.withObject("/propertiesSchema").withObject("/definitions")
+                .withObject("/org.apache.camel.model.BeanFactoryDefinition").withObject("/properties")
                 .withObject("/script");
         assertEquals("Script", beansScript.get("title").asText());
         var from = entityCatalog.withObject("/from");
-        var uri = from.withObject("/propertiesSchema")
-                .withObject("/properties")
-                .withObject("/uri");
+        var uri = from.withObject("/propertiesSchema").withObject("/properties").withObject("/uri");
         assertEquals("group:common", uri.get("$comment").asText());
         var restConfiguration = entityCatalog.withObject("/restConfiguration");
-        var apiComponent = restConfiguration.withObject("/propertiesSchema")
-                .withObject("/properties")
-                .withObject("/apiComponent");
+        var apiComponent =
+                restConfiguration.withObject("/propertiesSchema").withObject("/properties").withObject("/apiComponent");
         assertEquals("Api Component", apiComponent.get("title").asText());
     }
 
