@@ -414,7 +414,7 @@ Rest DELETE command
     <xs:annotation>
       <xs:documentation xml:lang="en">
 <![CDATA[
-Transforms fixed format data such as EDI message from/to XML using a Data Format Description Language (DFDL).
+Handle DFDL (Data Format Description Language) transformation.
 ]]>
       </xs:documentation>
     </xs:annotation>
@@ -574,20 +574,20 @@ Flatpack library.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:element name="fory" type="tns:foryDataFormat">
-    <xs:annotation>
-      <xs:documentation xml:lang="en">
-<![CDATA[
-Serialize and deserialize messages using Apache Fory
-]]>
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
   <xs:element name="from" type="tns:fromDefinition">
     <xs:annotation>
       <xs:documentation xml:lang="en">
 <![CDATA[
 Act as a message source as input to a route
+]]>
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="fury" type="tns:furyDataFormat">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+<![CDATA[
+Serialize and deserialize messages using Apache Fury
 ]]>
       </xs:documentation>
     </xs:annotation>
@@ -747,15 +747,6 @@ Intercepts incoming messages
       <xs:documentation xml:lang="en">
 <![CDATA[
 Intercepts messages being sent to an endpoint
-]]>
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="iso8583" type="tns:iso8583DataFormat">
-    <xs:annotation>
-      <xs:documentation xml:lang="en">
-<![CDATA[
-Create, edit and read ISO-8583 messages.
 ]]>
       </xs:documentation>
     </xs:annotation>
@@ -2312,7 +2303,8 @@ Deprecated: null
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Disables this EIP from the route. Default value: false
+Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled
+later at runtime. Default value: false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -2988,15 +2980,6 @@ The script language to use when using inlined script for creating the bean, such
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="scriptPropertyPlaceholders" type="xs:string">
-      <xs:annotation>
-        <xs:documentation xml:lang="en">
-<![CDATA[
-Whether the script should support using Camel property placeholder syntax {{ }}. Default value: true
-]]>
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="beanConstructorsDefinition">
     <xs:sequence>
@@ -3275,7 +3258,8 @@ during startup to keep at runtime only the branch that matched. Default value: f
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Disables this EIP from the route. Default value: false
+Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at
+runtime. Default value: false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -3364,7 +3348,8 @@ Disables this EIP from the route. Default value: false
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Disables this EIP from the route. Default value: false
+Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at
+runtime. Default value: false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -3556,9 +3541,7 @@ size is 10. Default value: 10
             <xs:documentation xml:lang="en">
 <![CDATA[
 Whether to throw io.github.resilience4j.circuitbreaker.CallNotPermittedException when the call is rejected due circuit
-breaker is half open (and was not attempted but rejected immediately) or open (always rejected). This option is only in
-use when there is NOT a fallback configured on the circuit breaker. When there is a fallback then the fallback is always
-executed and CallNotPermittedException is not thrown. Default value: false
+breaker is half open or open. Default value: false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -4483,7 +4466,7 @@ Ignore the invalidate endpoint exception when try to create a producer with that
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Whether to allow components to optimise enricher if they are org.apache.camel.spi.SendDynamicAware. Default value: true
+Whether to allow components to optimise enricher if they are org.apache.camel.spi.SendDynamicAware . Default value: true
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -6229,12 +6212,11 @@ messages, or any custom logic needed before the looping executes.
             <xs:element ref="tns:fhirJson"/>
             <xs:element ref="tns:fhirXml"/>
             <xs:element ref="tns:flatpack"/>
-            <xs:element ref="tns:fory"/>
+            <xs:element ref="tns:fury"/>
             <xs:element ref="tns:grok"/>
             <xs:element ref="tns:gzipDeflater"/>
             <xs:element ref="tns:hl7"/>
             <xs:element ref="tns:ical"/>
-            <xs:element ref="tns:iso8583"/>
             <xs:element ref="tns:jacksonXml"/>
             <xs:element ref="tns:jaxb"/>
             <xs:element ref="tns:json"/>
@@ -7550,7 +7532,7 @@ References to a custom parser factory to lookup in the registry.
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="foryDataFormat">
+  <xs:complexType name="furyDataFormat">
     <xs:complexContent>
       <xs:extension base="tns:dataFormat">
         <xs:sequence/>
@@ -7576,16 +7558,16 @@ Whether to require register classes. Default value: true
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Whether to use the threadsafe Fory. Default value: true
+Whether to use the threadsafe fury. Default value: true
 ]]>
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="allowAutoWiredFory" type="xs:string">
+        <xs:attribute name="allowAutoWiredFury" type="xs:string">
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Whether to auto-discover Fory from the registry. Default value: true
+Whether to auto-discover Fury from the registry. Default value: true
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -7670,40 +7652,6 @@ Whether to validate the HL7 message Is by default true. Default value: true
             <xs:documentation xml:lang="en">
 <![CDATA[
 Whether to validate. Default value: false
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="iso8583DataFormat">
-    <xs:complexContent>
-      <xs:extension base="tns:dataFormat">
-        <xs:sequence/>
-        <xs:attribute name="configFile" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-The j8583 configuration file to load from classpath. Default value: j8583-config.xml
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="isoType" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-The default ISO-Type to use.
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="allowAutoWiredMessageFormat" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Whether to auto-discover com.solab.iso8583.MessageFactory from the registry. Default value: true
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -7870,18 +7818,6 @@ can be separated by comma.
 Whether the data format should set the Content-Type header with the type from the data format. For example
 application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON. Default
 value: true
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="maxStringLength" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is
-not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater
-than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values
-with sizes less than or equal to this limit will be treated as invalid.
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -8317,18 +8253,6 @@ value: true
             <xs:documentation xml:lang="en">
 <![CDATA[
 To configure the date format while marshall or unmarshall Date fields in JSON using Gson.
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="maxStringLength" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Jackson. Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This
-limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes
-greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text
-values with sizes less than or equal to this limit will be treated as invalid.
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -10654,12 +10578,12 @@ recommended to use a timeout value. Default value: -1
 Sets the maximum size used by the org.apache.camel.spi.ConsumerCache which is used to cache and reuse consumers when
 uris are reused. Beware that when using dynamic endpoints then it affects how well the cache can be utilized. If each
 dynamic endpoint is unique then its best to turn off caching by setting this to -1, which allows Camel to not cache both
-the consumers and endpoints; they are regarded as prototype scoped and will be stopped and discarded after use. This
-reduces memory usage as otherwise consumers/endpoints are stored in memory in the caches. However, if there are a high
-degree of dynamic endpoints that have been used before, then it can benefit to use the cache to reuse both consumers and
+the producers and endpoints; they are regarded as prototype scoped and will be stopped and discarded after use. This
+reduces memory usage as otherwise producers/endpoints are stored in memory in the caches. However if there are a high
+degree of dynamic endpoints that have been used before, then it can benefit to use the cache to reuse both producers and
 endpoints and therefore the cache size can be set accordingly or rely on the default size (1000). If there is a mix of
 unique and used before dynamic endpoints, then setting a reasonable cache size can help reduce memory usage to avoid
-storing too many non-frequent used consumers.
+storing too many non frequent used producers.
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -10668,7 +10592,7 @@ storing too many non-frequent used consumers.
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Ignore the invalidate endpoint exception when try to create a consumer with that endpoint. Default value: false
+Ignore the invalidate endpoint exception when try to create a producer with that endpoint. Default value: false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -10677,7 +10601,7 @@ Ignore the invalidate endpoint exception when try to create a consumer with that
           <xs:annotation>
             <xs:documentation xml:lang="en">
 <![CDATA[
-Whether to allow components to optimise if they are org.apache.camel.spi.PollDynamicAware. Default value: true
+Whether to allow components to optimise if they are org.apache.camel.spi.SendDynamicAware . Default value: true
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -12743,15 +12667,6 @@ Sets a prefix to use for all node ids (not route id).
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="group" type="xs:string">
-      <xs:annotation>
-        <xs:documentation xml:lang="en">
-<![CDATA[
-The group name for the route built from this template. Multiple routes can belong to the same group.
-]]>
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="templatedRouteParameterDefinition">
     <xs:sequence/>
@@ -13286,15 +13201,6 @@ Sets the maximum number of tokens that can overlap in each segment.
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="modelName" type="xs:string" use="required">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Sets the model name.
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -13574,12 +13480,11 @@ To type used as a target data type in the transformation.
             <xs:element ref="tns:fhirJson"/>
             <xs:element ref="tns:fhirXml"/>
             <xs:element ref="tns:flatpack"/>
-            <xs:element ref="tns:fory"/>
+            <xs:element ref="tns:fury"/>
             <xs:element ref="tns:grok"/>
             <xs:element ref="tns:gzipDeflater"/>
             <xs:element ref="tns:hl7"/>
             <xs:element ref="tns:ical"/>
-            <xs:element ref="tns:iso8583"/>
             <xs:element ref="tns:jacksonXml"/>
             <xs:element ref="tns:jaxb"/>
             <xs:element ref="tns:json"/>
@@ -13860,15 +13765,6 @@ Allows to configure custom CORS headers.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="validationLevels" type="tns:restPropertyDefinition">
-        <xs:annotation>
-          <xs:documentation xml:lang="en">
-<![CDATA[
-Allows to configure custom validation levels when using camel-openapi-validator with client request/response validator.
-]]>
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
     </xs:sequence>
     <xs:attribute name="component" type="xs:string">
       <xs:annotation>
@@ -14061,18 +13957,6 @@ Status 400 if validation error. Default value: false
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="clientResponseValidation" type="xs:string">
-      <xs:annotation>
-        <xs:documentation xml:lang="en">
-<![CDATA[
-Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL
-response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If
-the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected. Default value:
-false
-]]>
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
     <xs:attribute name="enableCORS" type="xs:string">
       <xs:annotation>
         <xs:documentation xml:lang="en">
@@ -14240,18 +14124,6 @@ returns HTTP Status 415 if validation error. 2) Accept header matches what the R
 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if
 validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP
 Status 400 if validation error. Default value: false
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
-        <xs:attribute name="clientResponseValidation" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL
-response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If
-the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected. Default value:
-false
 ]]>
             </xs:documentation>
           </xs:annotation>
@@ -14665,18 +14537,6 @@ Status 400 if validation error. Default value: false
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="clientResponseValidation" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL
-response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If
-the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected. Default value:
-false
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
         <xs:attribute name="enableCORS" type="xs:string">
           <xs:annotation>
             <xs:documentation xml:lang="en">
@@ -14871,15 +14731,6 @@ Examples of response messages.
         <xs:documentation xml:lang="en">
 <![CDATA[
 The response code such as a HTTP status code. Default value: 200
-]]>
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="contentType" type="xs:string">
-      <xs:annotation>
-        <xs:documentation xml:lang="en">
-<![CDATA[
-The response content-type such as application/json.
 ]]>
         </xs:documentation>
       </xs:annotation>
@@ -15848,12 +15699,11 @@ Set a reference to a custom Expression to use.
         <xs:element ref="tns:fhirJson"/>
         <xs:element ref="tns:fhirXml"/>
         <xs:element ref="tns:flatpack"/>
-        <xs:element ref="tns:fory"/>
+        <xs:element ref="tns:fury"/>
         <xs:element ref="tns:grok"/>
         <xs:element ref="tns:gzipDeflater"/>
         <xs:element ref="tns:hl7"/>
         <xs:element ref="tns:ical"/>
-        <xs:element ref="tns:iso8583"/>
         <xs:element ref="tns:jacksonXml"/>
         <xs:element ref="tns:jaxb"/>
         <xs:element ref="tns:json"/>
@@ -16558,18 +16408,6 @@ Status 400 if validation error. Default value: false
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="clientResponseValidation" type="xs:string">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-<![CDATA[
-Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL
-response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If
-the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected. Default value:
-false
-]]>
-            </xs:documentation>
-          </xs:annotation>
-        </xs:attribute>
         <xs:attribute name="enableCORS" type="xs:string">
           <xs:annotation>
             <xs:documentation xml:lang="en">
@@ -16699,12 +16537,11 @@ Set the 'to' data type name. If you specify 'json:XYZ', the transformer will be 
             <xs:element ref="tns:fhirJson"/>
             <xs:element ref="tns:fhirXml"/>
             <xs:element ref="tns:flatpack"/>
-            <xs:element ref="tns:fory"/>
+            <xs:element ref="tns:fury"/>
             <xs:element ref="tns:grok"/>
             <xs:element ref="tns:gzipDeflater"/>
             <xs:element ref="tns:hl7"/>
             <xs:element ref="tns:ical"/>
-            <xs:element ref="tns:iso8583"/>
             <xs:element ref="tns:jacksonXml"/>
             <xs:element ref="tns:jaxb"/>
             <xs:element ref="tns:json"/>
