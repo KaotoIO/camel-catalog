@@ -106,7 +106,7 @@ public class CamelCatalogProcessor {
             var dataFormatName = entry.getKey();
             var dataFormatSchema = entry.getValue();
             EipModel eipModel = catalogMap.get(dataFormatName);
-            List<EipOptionModel> eipModelOptions = Arrays.asList();
+            List<EipOptionModel> eipModelOptions = List.of();
             if (eipModel != null) {
                 eipModelOptions = eipModel.getOptions();
             }
@@ -149,7 +149,7 @@ public class CamelCatalogProcessor {
             var languageName = entry.getKey();
             var languageSchema = entry.getValue();
             EipModel eipModel = catalogMap.get(languageName);
-            List<EipOptionModel> eipModelOptions = Arrays.asList();
+            List<EipOptionModel> eipModelOptions = List.of();
             if (eipModel != null) {
                 eipModelOptions = eipModel.getOptions();
             }

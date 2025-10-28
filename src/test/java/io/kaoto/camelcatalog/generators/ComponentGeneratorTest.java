@@ -106,17 +106,27 @@ public class ComponentGeneratorTest {
         var componentsMap = componentGenerator.generate();
 
         var sftpNode = componentsMap.get("sftp");
-        var separatorPropertyNode = sftpNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("separator");
-        var keyPairPropertyNode = sftpNode.withObject("propertiesSchema")
-                .withObject("properties").withObject("keyPair");
+        var keyPairPropertyNode =
+                sftpNode.withObject("propertiesSchema").withObject("properties").withObject("keyPair");
 
-        assertTrue(separatorPropertyNode.has("format"));
         assertTrue(keyPairPropertyNode.has("format"));
-        assertEquals("bean:org.apache.camel.component.file.remote.RemoteFileConfiguration.PathSeparator",
-                separatorPropertyNode.get("format").asText());
-        assertEquals("bean:java.security.KeyPair|password",
-                keyPairPropertyNode.get("format").asText());
+        assertEquals("bean:java.security.KeyPair|password", keyPairPropertyNode.get("format").asText());
+    }
+
+    @Test
+    void shouldNotFillFormatInformationForEnums() {
+        var componentsMap = componentGenerator.generate();
+        var sftpNode = componentsMap.get("sftp");
+        var separatorPropertyNode =
+                sftpNode.withObject("propertiesSchema").withObject("properties").withObject("separator");
+
+        assertFalse(separatorPropertyNode.has("format"));
+        assertTrue(separatorPropertyNode.has("type"));
+        assertEquals("enum", separatorPropertyNode.get("type").asText());
+
+        List<String> enumValues = new ArrayList<>();
+        separatorPropertyNode.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));
+        assertEquals(List.of("UNIX", "Windows", "Auto"), enumValues);
     }
 
     @Test

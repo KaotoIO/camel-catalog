@@ -131,14 +131,16 @@ public class CamelCatalogVersionLoader {
         MavenCoordinates mavenCoordinates = getYamlDslMavenCoordinates(runtime, version);
         loadDependencyInClasspath(mavenCoordinates);
 
-        ClassLoader classLoader = resourceLoader.getKaotoVersionManager().getClassLoader();
-        URL resourceURL = classLoader.getResource(Constants.CAMEL_YAML_DSL_ARTIFACT);
-        if (resourceURL == null) {
+        // Use version-aware resource loading from the version manager to avoid loading the
+        // first element from the classpath, as as this is problematic when loading multiple
+        // camel catalog versions or the Camel YAML DSL
+        InputStream inputStream = kaotoVersionManager.getResourceAsStream(Constants.CAMEL_YAML_DSL_ARTIFACT);
+        if (inputStream == null) {
             LOGGER.log(Level.SEVERE, "No " + Constants.CAMEL_YAML_DSL_ARTIFACT + " file found in the classpath");
             return false;
         }
 
-        try (InputStream inputStream = resourceURL.openStream()) {
+        try (inputStream) {
             try (Scanner scanner = new Scanner(inputStream)) {
                 scanner.useDelimiter("\\A");
                 camelYamlDSLSchema = scanner.hasNext() ? scanner.next() : "";

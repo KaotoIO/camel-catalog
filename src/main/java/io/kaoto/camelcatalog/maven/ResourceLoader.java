@@ -66,7 +66,7 @@ public class ResourceLoader {
                                 entry.getName().endsWith(fileSuffix)) {
 
                             if (verbose) {
-                                LOGGER.log(Level.INFO, () -> "Parsing: " + entry.getName());
+                                LOGGER.log(Level.FINE, () -> "Parsing: " + entry.getName());
                             }
 
                             try (InputStream inputStream = jarFile.getInputStream(entry)) {

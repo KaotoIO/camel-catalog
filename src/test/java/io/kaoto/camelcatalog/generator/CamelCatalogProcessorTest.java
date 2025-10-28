@@ -23,7 +23,6 @@ import io.kaoto.camelcatalog.generators.EIPGenerator;
 import io.kaoto.camelcatalog.generators.EntityGenerator;
 import io.kaoto.camelcatalog.generators.FunctionsGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
-import io.kaoto.camelcatalog.maven.KaotoMavenVersionManager;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
@@ -31,6 +30,7 @@ import org.apache.camel.dsl.yaml.YamlRoutesBuilderLoader;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,7 +38,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CamelCatalogProcessorTest {
-    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string");
+    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string", "enum");
     private final CamelCatalogProcessor processor;
 
     private final ObjectNode componentCatalog;
@@ -120,21 +120,20 @@ class CamelCatalogProcessorTest {
                 .withObject("/component");
         assertEquals("Direct", directModel.get("title").asText());
 
-        var googleCalendarSchema = componentCatalog
-                .withObject("/google-calendar")
-                .withObject("/propertiesSchema");
-        var scopesProperty = googleCalendarSchema.withObject("/properties").withObject("/scopes");
+        var cxfrsSchema = componentCatalog.withObject("/cxfrs").withObject("/propertiesSchema");
+        var scopesProperty = cxfrsSchema.withObject("/properties").withObject("/schemaLocations");
         assertEquals("array", scopesProperty.get("type").asText());
         assertEquals("string", scopesProperty.withObject("/items").get("type").asText());
 
-        var gdSchema = componentCatalog
-                .withObject("/google-drive")
-                .withObject("/propertiesSchema");
-        var gdScopesProperty = gdSchema.withObject("/properties").withObject("/scopes");
-        assertEquals("array", gdScopesProperty.get("type").asText());
-        assertEquals("string", gdScopesProperty.withObject("/items").get("type").asText());
-        var gdSPProperty = gdSchema.withObject("/properties").withObject("/schedulerProperties");
-        assertEquals("object", gdSPProperty.get("type").asText());
+        var jcacheSchema = componentCatalog.withObject("/jcache").withObject("/propertiesSchema");
+        var eventFiltersProperty = jcacheSchema.withObject("/properties").withObject("/eventFilters");
+        assertEquals("array", eventFiltersProperty.get("type").asText());
+        assertEquals("string", eventFiltersProperty.withObject("/items").get("type").asText());
+        var filteredEventsProperty = jcacheSchema.withObject("/properties").withObject("/filteredEvents");
+        assertEquals("enum", filteredEventsProperty.get("type").asText());
+        List<String> enumValues = new ArrayList<>();
+        filteredEventsProperty.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));
+        assertEquals(List.of("CREATED", "UPDATED", "REMOVED", "EXPIRED"), enumValues);
 
         var sqlSchema = componentCatalog
                 .withObject("/sql")

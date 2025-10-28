@@ -37,8 +37,9 @@ public class GenerateCommand implements Runnable {
                     File runtimeFolder = createSubFolder(outputFolder, runtimeFolderName);
                     File catalogDefinitionFolder = createSubFolder(runtimeFolder, catalogCliArg.getCatalogVersion());
 
+                    LOGGER.info("-------------------------------------------\n");
                     LOGGER.info("Generating catalog: " + catalogCliArg.getRuntime() + " "
-                            + catalogCliArg.getCatalogVersion() + "\n");
+                            + catalogCliArg.getCatalogVersion());
 
                     CatalogGeneratorBuilder builder = new CatalogGeneratorBuilder();
                     var catalogGenerator = builder.withRuntime(catalogCliArg.getRuntime())

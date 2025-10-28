@@ -156,12 +156,7 @@ public class EntityGenerator implements Generator {
     ObjectNode getModelJson(String modelName) {
         String entityJson = null;
         if ("beans".equals(modelName)) {
-            try (InputStream is = camelCatalog.getClass().getClassLoader()
-                    .getResourceAsStream("org/apache/camel/catalog/models-app/bean.json")) {
-                entityJson = new String(is.readAllBytes());
-            } catch (IOException e) {
-                LOGGER.log(Level.WARNING, "Error reading Beans definition from the catalog");
-            }
+            entityJson = camelCatalog.modelJSonSchema("beanFactory");
         } else {
             entityJson = camelCatalog.modelJSonSchema(modelName);
         }

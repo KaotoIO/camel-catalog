@@ -16,9 +16,9 @@
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <version.camel>4.12.0</version.camel>
-    <version.camel.quarkus>3.24.0</version.camel.quarkus>
-    <version.camel-kamelets>4.12.0</version.camel-kamelets>
+    <version.camel>4.15.0</version.camel>
+    <version.camel.quarkus>3.27.0</version.camel.quarkus>
+    <version.camel-kamelets>4.15.0</version.camel-kamelets>
     <version.jackson>2.17.2</version.jackson>
     <version.junit>5.12.2</version.junit>
     <version.kubernetes-model>6.13.5</version.kubernetes-model>
@@ -201,6 +201,11 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${version.maven-surefire-plugin}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <java.util.logging.config.file>${project.basedir}/src/main/resources/logging.properties</java.util.logging.config.file>
+          </systemPropertyVariables>
+        </configuration>
         <executions>
           <execution>
             <id>test</id>

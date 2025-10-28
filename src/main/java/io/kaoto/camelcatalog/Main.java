@@ -1,5 +1,7 @@
 package io.kaoto.camelcatalog;
 
+import java.io.InputStream;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import io.kaoto.camelcatalog.beans.ConfigBean;
@@ -7,9 +9,21 @@ import io.kaoto.camelcatalog.commands.GenerateCommand;
 import io.kaoto.camelcatalog.commands.GenerateCommandOptions;
 
 public class Main {
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    private static final Logger LOGGER;
     static final int EXIT_CODE_SUCCESS = 0;
     static final int EXIT_CODE_FAILURE = 1;
+
+    static {
+        // Load logging configuration from classpath
+        try (InputStream is = Main.class.getClassLoader().getResourceAsStream("logging.properties")) {
+            if (is != null) {
+                LogManager.getLogManager().readConfiguration(is);
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to load logging configuration: " + e.getMessage());
+        }
+        LOGGER = Logger.getLogger(Main.class.getName());
+    }
 
     public static void main(String[] args) {
         ConfigBean configBean = new ConfigBean();

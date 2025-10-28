@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import io.kaoto.camelcatalog.generators.CRDGenerator;
 import io.kaoto.camelcatalog.generators.SchemasGenerator;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
@@ -129,7 +128,7 @@ public class CatalogGenerator {
 
         var camelYamlDSLSchema07 = camelCatalogVersionLoader.getCamelYamlDslSchema().replace(
                 "http://json-schema.org/draft-04/schema#", "http://json-schema.org/draft-07/schema#");
-        
+
         try {
             var yamlDslSchema = (ObjectNode) jsonMapper.readTree(camelYamlDSLSchema07);
             return new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
@@ -252,16 +251,16 @@ public class CatalogGenerator {
 
 
     private void processSchemas(CatalogDefinition index) {
-        SchemasGenerator schemasGenerator = new SchemasGenerator(camelCatalogVersionLoader, 
+        SchemasGenerator schemasGenerator = new SchemasGenerator(camelCatalogVersionLoader,
                                                                  camelCatalogVersionLoader.getClassLoader());
         var schemaMap = schemasGenerator.generate();
-        
+
         schemaMap.forEach((name, schema) -> {
             try {
                 String outputFileName;
                 String description;
                 String version;
-                
+
                 if (CAMEL_YAML_DSL_FILE_NAME.equals(name)) {
                     outputFileName = String.format("%s-%s.json", name, Util.generateHash(schema));
                     description = "Camel YAML DSL JSON schema";
@@ -277,14 +276,14 @@ public class CatalogGenerator {
                     description = name;
                     version = camelKCRDsVersion;
                 }
-                
+
                 var output = outputDirectory.toPath().resolve(outputFileName);
                 output.getParent().toFile().mkdirs();
                 Files.writeString(output, schema);
-                
+
                 var indexEntry = new CatalogDefinitionEntry(name, description, version, outputFileName);
                 index.getSchemas().put(name, indexEntry);
-                
+
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Error processing schema: " + name, e);
             }

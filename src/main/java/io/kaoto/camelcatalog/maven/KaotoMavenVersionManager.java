@@ -107,7 +107,7 @@ public class KaotoMavenVersionManager extends MavenVersionManager {
                             useSnapshots);
 
             if (getLog()) {
-                LOGGER.log(Level.INFO, () -> "Artifacts: " + artifacts);
+                LOGGER.log(Level.FINE, () -> "Artifacts: " + artifacts);
             }
 
             for (MavenArtifact ma : artifacts) {

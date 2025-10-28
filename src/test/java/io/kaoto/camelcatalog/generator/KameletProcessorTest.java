@@ -60,13 +60,13 @@ class KameletProcessorTest {
 
     @Test
     void test() throws Exception {
-        var beerSource = processKamelet("beer-source");
-        assertTrue(beerSource.has("propertiesSchema"));
-        var periodProp = beerSource.withObject("/propertiesSchema")
+        var logActionKamelet = processKamelet("log-action");
+        assertTrue(logActionKamelet.has("propertiesSchema"));
+        var loggerNameProp = logActionKamelet.withObject("/propertiesSchema")
                 .withObject("/properties")
-                .withObject("/period");
-        assertEquals("integer", periodProp.get("type").asText());
-        assertEquals(5000, periodProp.get("default").asInt());
+                .withObject("/loggerName");
+        assertEquals("string", loggerNameProp.get("type").asText());
+        assertEquals("log-action", loggerNameProp.get("default").asText());
         var googleStorageSink = processKamelet("google-storage-sink");
         var serviceAccountKeyProp = googleStorageSink.withObject("/propertiesSchema")
                 .withObject("/properties")
