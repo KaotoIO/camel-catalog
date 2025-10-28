@@ -1,0 +1,3548 @@
+{
+  "constant" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "constant",
+      "title" : "Constant",
+      "description" : "A fixed value set only once during the route startup.",
+      "deprecated" : false,
+      "firstVersion" : "1.5.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.ConstantExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Constant",
+      "description" : "A fixed value set only once during the route startup.",
+      "required" : [ "expression" ]
+    }
+  },
+  "csimple" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "csimple",
+      "title" : "CSimple",
+      "description" : "Evaluate a compiled simple expression.",
+      "deprecated" : false,
+      "firstVersion" : "3.7.0",
+      "label" : "language,java",
+      "javaType" : "org.apache.camel.model.language.CSimpleExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "CSimple",
+      "description" : "Evaluate a compiled simple expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "datasonnet" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "datasonnet",
+      "title" : "DataSonnet",
+      "description" : "To use DataSonnet scripts for message transformations.",
+      "deprecated" : false,
+      "firstVersion" : "3.7.0",
+      "label" : "language,transformation",
+      "javaType" : "org.apache.camel.model.language.DatasonnetExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "bodyMediaType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Body Media Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The String representation of the message's body MediaType"
+      },
+      "outputMediaType" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Output Media Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The String representation of the MediaType to output"
+      },
+      "source" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "bodyMediaType" : {
+          "type" : "string",
+          "title" : "Body Media Type",
+          "description" : "The String representation of the message's body MediaType"
+        },
+        "outputMediaType" : {
+          "type" : "string",
+          "title" : "Output Media Type",
+          "description" : "The String representation of the MediaType to output"
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "DataSonnet",
+      "description" : "To use DataSonnet scripts for message transformations.",
+      "required" : [ "expression" ]
+    }
+  },
+  "exchangeProperty" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "exchangeProperty",
+      "title" : "ExchangeProperty",
+      "description" : "Gets a property from the Exchange.",
+      "deprecated" : false,
+      "firstVersion" : "2.0.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.ExchangePropertyExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "trim" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "ExchangeProperty",
+      "description" : "Gets a property from the Exchange.",
+      "required" : [ "expression" ]
+    }
+  },
+  "groovy" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "groovy",
+      "title" : "Groovy",
+      "description" : "Evaluates a Groovy script.",
+      "deprecated" : false,
+      "firstVersion" : "1.3.0",
+      "label" : "language,script",
+      "javaType" : "org.apache.camel.model.language.GroovyExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Groovy",
+      "description" : "Evaluates a Groovy script.",
+      "required" : [ "expression" ]
+    }
+  },
+  "header" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "header",
+      "title" : "Header",
+      "description" : "Gets a header from the Exchange.",
+      "deprecated" : false,
+      "firstVersion" : "1.5.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.HeaderExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "trim" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Header",
+      "description" : "Gets a header from the Exchange.",
+      "required" : [ "expression" ]
+    }
+  },
+  "hl7terser" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "hl7terser",
+      "title" : "HL7 Terser",
+      "description" : "Get the value of a HL7 message field specified by terse location specification syntax.",
+      "deprecated" : false,
+      "firstVersion" : "2.11.0",
+      "label" : "language,hl7",
+      "javaType" : "org.apache.camel.model.language.Hl7TerserExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "source" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "HL7 Terser",
+      "description" : "Get the value of a HL7 message field specified by terse location specification syntax.",
+      "required" : [ "expression" ]
+    }
+  },
+  "java" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "java",
+      "title" : "Java",
+      "description" : "Evaluates a Java (Java compiled once at runtime) expression.",
+      "deprecated" : false,
+      "firstVersion" : "4.3.0",
+      "label" : "language",
+      "javaType" : "org.apache.camel.model.language.JavaExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "preCompile" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Pre Compile",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether the expression should be pre compiled once during initialization phase. If this is turned off, then the expression is reloaded and compiled on each evaluation."
+      },
+      "singleQuotes" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Single Quotes",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether single quotes can be used as replacement for double quotes. This is convenient when you need to work with strings inside strings."
+      },
+      "resultType" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "preCompile" : {
+          "type" : "boolean",
+          "title" : "Pre Compile",
+          "description" : "Whether the expression should be pre compiled once during initialization phase. If this is turned off, then the expression is reloaded and compiled on each evaluation."
+        },
+        "singleQuotes" : {
+          "type" : "boolean",
+          "title" : "Single Quotes",
+          "description" : "Whether single quotes can be used as replacement for double quotes. This is convenient when you need to work with strings inside strings."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Java",
+      "description" : "Evaluates a Java (Java compiled once at runtime) expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "joor" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "joor",
+      "title" : "jOOR",
+      "description" : "Evaluates a jOOR (Java compiled once at runtime) expression.",
+      "deprecated" : true,
+      "firstVersion" : "3.7.0",
+      "label" : "language",
+      "javaType" : "org.apache.camel.model.language.JoorExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "preCompile" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Pre Compile",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether the expression should be pre compiled once during initialization phase. If this is turned off, then the expression is reloaded and compiled on each evaluation."
+      },
+      "singleQuotes" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Single Quotes",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether single quotes can be used as replacement for double quotes. This is convenient when you need to work with strings inside strings."
+      },
+      "resultType" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "preCompile" : {
+          "type" : "boolean",
+          "title" : "Pre Compile",
+          "description" : "Whether the expression should be pre compiled once during initialization phase. If this is turned off, then the expression is reloaded and compiled on each evaluation."
+        },
+        "singleQuotes" : {
+          "type" : "boolean",
+          "title" : "Single Quotes",
+          "description" : "Whether single quotes can be used as replacement for double quotes. This is convenient when you need to work with strings inside strings."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "jOOR",
+      "description" : "Evaluates a jOOR (Java compiled once at runtime) expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "jq" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "jq",
+      "title" : "JQ",
+      "description" : "Evaluates a JQ expression against a JSON message body.",
+      "deprecated" : false,
+      "firstVersion" : "3.18.0",
+      "label" : "language,json",
+      "javaType" : "org.apache.camel.model.language.JqExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "source" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "JQ",
+      "description" : "Evaluates a JQ expression against a JSON message body.",
+      "required" : [ "expression" ]
+    }
+  },
+  "js" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "js",
+      "title" : "JavaScript",
+      "description" : "Evaluates a JavaScript expression.",
+      "deprecated" : false,
+      "firstVersion" : "3.20.0",
+      "label" : "language,javascript",
+      "javaType" : "org.apache.camel.model.language.JavaScriptExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "JavaScript",
+      "description" : "Evaluates a JavaScript expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "jsonpath" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "jsonpath",
+      "title" : "JSONPath",
+      "description" : "Evaluates a JSONPath expression against a JSON message body.",
+      "deprecated" : false,
+      "firstVersion" : "2.13.0",
+      "label" : "language,json",
+      "javaType" : "org.apache.camel.model.language.JsonPathExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "suppressExceptions" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Suppress Exceptions",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to suppress exceptions such as PathNotFoundException."
+      },
+      "allowSimple" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Allow Simple",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to allow in inlined Simple exceptions in the JSONPath expression"
+      },
+      "allowEasyPredicate" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Allow Easy Predicate",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to allow using the easy predicate parser to pre-parse predicates."
+      },
+      "writeAsString" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Write As String",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to write the output of each row/element as a JSON String value instead of a Map/POJO value."
+      },
+      "unpackArray" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Unpack Array",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to unpack a single element json-array into an object."
+      },
+      "option" : {
+        "index" : 7,
+        "kind" : "attribute",
+        "displayName" : "Option",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "enum",
+        "javaType" : "java.lang.String",
+        "enum" : [ "DEFAULT_PATH_LEAF_TO_NULL", "ALWAYS_RETURN_LIST", "AS_PATH_LIST", "SUPPRESS_EXCEPTIONS", "REQUIRE_PROPERTIES" ],
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "To configure additional options on JSONPath. Multiple values can be separated by comma."
+      },
+      "source" : {
+        "index" : 8,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 9,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 10,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "suppressExceptions" : {
+          "type" : "boolean",
+          "title" : "Suppress Exceptions",
+          "description" : "Whether to suppress exceptions such as PathNotFoundException."
+        },
+        "allowSimple" : {
+          "type" : "boolean",
+          "title" : "Allow Simple",
+          "description" : "Whether to allow in inlined Simple exceptions in the JSONPath expression"
+        },
+        "allowEasyPredicate" : {
+          "type" : "boolean",
+          "title" : "Allow Easy Predicate",
+          "description" : "Whether to allow using the easy predicate parser to pre-parse predicates."
+        },
+        "writeAsString" : {
+          "type" : "boolean",
+          "title" : "Write As String",
+          "description" : "Whether to write the output of each row/element as a JSON String value instead of a Map/POJO value."
+        },
+        "unpackArray" : {
+          "type" : "boolean",
+          "title" : "Unpack Array",
+          "description" : "Whether to unpack a single element json-array into an object."
+        },
+        "option" : {
+          "type" : "string",
+          "title" : "Option",
+          "description" : "To configure additional options on JSONPath. Multiple values can be separated by comma.",
+          "enum" : [ "DEFAULT_PATH_LEAF_TO_NULL", "ALWAYS_RETURN_LIST", "AS_PATH_LIST", "SUPPRESS_EXCEPTIONS", "REQUIRE_PROPERTIES" ]
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "JSONPath",
+      "description" : "Evaluates a JSONPath expression against a JSON message body.",
+      "required" : [ "expression" ]
+    }
+  },
+  "language" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "language",
+      "title" : "Language",
+      "description" : "Evaluates a custom language.",
+      "deprecated" : false,
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.LanguageExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "language" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Language",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The name of the language to use"
+      },
+      "expression" : {
+        "index" : 2,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "Language",
+      "description" : "Evaluates a custom language.",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "language" : {
+          "type" : "string",
+          "title" : "Language",
+          "description" : "The name of the language to use"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "required" : [ "expression", "language" ]
+    }
+  },
+  "method" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "method",
+      "title" : "Bean Method",
+      "description" : "Calls a Java bean method.",
+      "deprecated" : false,
+      "firstVersion" : "1.3.0",
+      "label" : "language,core,java",
+      "javaType" : "org.apache.camel.model.language.MethodCallExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "ref" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Ref",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Reference to an existing bean (bean id) to lookup in the registry"
+      },
+      "method" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Method",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Name of method to call"
+      },
+      "beanType" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Bean Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Class name (fully qualified) of the bean to use Will lookup in registry and if there is a single instance of the same type, then the existing bean is used, otherwise a new bean is created (requires a default no-arg constructor)."
+      },
+      "scope" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Scope",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "enum",
+        "javaType" : "java.lang.String",
+        "enum" : [ "Singleton", "Request", "Prototype" ],
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : "Singleton",
+        "description" : "Scope of bean. When using singleton scope (default) the bean is created or looked up only once and reused for the lifetime of the endpoint. The bean should be thread-safe in case concurrent threads is calling the bean at the same time. When using request scope the bean is created or looked up once per request (exchange). This can be used if you want to store state on a bean while processing a request and you want to call the same bean instance multiple times while processing the request. The bean does not have to be thread-safe as the instance is only called from the same request. When using prototype scope, then the bean will be looked up or created per call. However in case of lookup then this is delegated to the bean registry such as Spring or CDI (if in use), which depends on their configuration can act as either singleton or prototype scope. So when using prototype scope then this depends on the bean registry implementation."
+      },
+      "validate" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Validate",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to validate the bean has the configured method."
+      },
+      "resultType" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 7,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "beanType" : {
+          "type" : "string",
+          "title" : "Bean Type",
+          "description" : "Class name (fully qualified) of the bean to use Will lookup in registry and if there is a single instance of the same type, then the existing bean is used, otherwise a new bean is created (requires a default no-arg constructor)."
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "method" : {
+          "type" : "string",
+          "title" : "Method",
+          "description" : "Name of method to call"
+        },
+        "ref" : {
+          "type" : "string",
+          "title" : "Ref",
+          "description" : "Reference to an existing bean (bean id) to lookup in the registry"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "scope" : {
+          "type" : "string",
+          "title" : "Scope",
+          "description" : "Scope of bean. When using singleton scope (default) the bean is created or looked up only once and reused for the lifetime of the endpoint. The bean should be thread-safe in case concurrent threads is calling the bean at the same time. When using request scope the bean is created or looked up once per request (exchange). This can be used if you want to store state on a bean while processing a request and you want to call the same bean instance multiple times while processing the request. The bean does not have to be thread-safe as the instance is only called from the same request. When using prototype scope, then the bean will be looked up or created per call. However in case of lookup then this is delegated to the bean registry such as Spring or CDI (if in use), which depends on their configuration can act as either singleton or prototype scope. So when using prototype scope then this depends on the bean registry implementation.",
+          "default" : "Singleton",
+          "enum" : [ "Singleton", "Request", "Prototype" ]
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        },
+        "validate" : {
+          "type" : "boolean",
+          "title" : "Validate",
+          "description" : "Whether to validate the bean has the configured method."
+        }
+      },
+      "title" : "Bean Method",
+      "description" : "Calls a Java bean method.",
+      "required" : [ ]
+    }
+  },
+  "mvel" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "mvel",
+      "title" : "MVEL",
+      "description" : "Evaluates a MVEL template.",
+      "deprecated" : false,
+      "firstVersion" : "2.0.0",
+      "label" : "language,java",
+      "javaType" : "org.apache.camel.model.language.MvelExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "MVEL",
+      "description" : "Evaluates a MVEL template.",
+      "required" : [ "expression" ]
+    }
+  },
+  "ognl" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "ognl",
+      "title" : "OGNL",
+      "description" : "Evaluates an OGNL expression (Apache Commons OGNL).",
+      "deprecated" : true,
+      "firstVersion" : "1.1.0",
+      "label" : "language,java",
+      "javaType" : "org.apache.camel.model.language.OgnlExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "OGNL",
+      "description" : "Evaluates an OGNL expression (Apache Commons OGNL).",
+      "required" : [ "expression" ]
+    }
+  },
+  "python" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "python",
+      "title" : "Python",
+      "description" : "Evaluates a Python expression.",
+      "deprecated" : false,
+      "firstVersion" : "3.19.0",
+      "label" : "language,python",
+      "javaType" : "org.apache.camel.model.language.PythonExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Python",
+      "description" : "Evaluates a Python expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "ref" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "ref",
+      "title" : "Ref",
+      "description" : "Uses an existing expression from the registry.",
+      "deprecated" : false,
+      "firstVersion" : "2.8.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.RefExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Ref",
+      "description" : "Uses an existing expression from the registry.",
+      "required" : [ "expression" ]
+    }
+  },
+  "simple" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "simple",
+      "title" : "Simple",
+      "description" : "Evaluates a Camel simple expression.",
+      "deprecated" : false,
+      "firstVersion" : "1.1.0",
+      "label" : "language,core,java",
+      "javaType" : "org.apache.camel.model.language.SimpleExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Simple",
+      "description" : "Evaluates a Camel simple expression.",
+      "required" : [ "expression" ]
+    }
+  },
+  "spel" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "spel",
+      "title" : "SpEL",
+      "description" : "Evaluates a Spring expression (SpEL).",
+      "deprecated" : false,
+      "firstVersion" : "2.7.0",
+      "label" : "language,spring",
+      "javaType" : "org.apache.camel.model.language.SpELExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "resultType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "SpEL",
+      "description" : "Evaluates a Spring expression (SpEL).",
+      "required" : [ "expression" ]
+    }
+  },
+  "tokenize" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "tokenize",
+      "title" : "Tokenize",
+      "description" : "Tokenize text payloads using delimiter patterns.",
+      "deprecated" : false,
+      "firstVersion" : "2.0.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.TokenizerExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "token" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Token",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The (start) token to use as tokenizer, for example you can use the new line token. You can use simple language as the token to support dynamic tokens."
+      },
+      "endToken" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "End Token",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The end token to use as tokenizer if using start/end token pairs. You can use simple language as the token to support dynamic tokens."
+      },
+      "inheritNamespaceTagName" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Inherit Namespace Tag Name",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "To inherit namespaces from a root/parent tag name when using XML You can use simple language as the tag name to support dynamic names."
+      },
+      "regex" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Regex",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "If the token is a regular expression pattern. The default value is false"
+      },
+      "xml" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Xml",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether the input is XML messages. This option must be set to true if working with XML payloads."
+      },
+      "includeTokens" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Include Tokens",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to include the tokens in the parts when using pairs. When including tokens then the endToken property must also be configured (to use pair mode). The default value is false"
+      },
+      "group" : {
+        "index" : 7,
+        "kind" : "attribute",
+        "displayName" : "Group",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "To group N parts together, for example to split big files into chunks of 1000 lines. You can use simple language as the group to support dynamic group sizes."
+      },
+      "groupDelimiter" : {
+        "index" : 8,
+        "kind" : "attribute",
+        "displayName" : "Group Delimiter",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the delimiter to use when grouping. If this has not been set then token will be used as the delimiter."
+      },
+      "skipFirst" : {
+        "index" : 9,
+        "kind" : "attribute",
+        "displayName" : "Skip First",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "To skip the very first element"
+      },
+      "source" : {
+        "index" : 10,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 11,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 12,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "token" : {
+          "type" : "string",
+          "title" : "Token",
+          "description" : "The (start) token to use as tokenizer, for example you can use the new line token. You can use simple language as the token to support dynamic tokens."
+        },
+        "endToken" : {
+          "type" : "string",
+          "title" : "End Token",
+          "description" : "The end token to use as tokenizer if using start/end token pairs. You can use simple language as the token to support dynamic tokens."
+        },
+        "inheritNamespaceTagName" : {
+          "type" : "string",
+          "title" : "Inherit Namespace Tag Name",
+          "description" : "To inherit namespaces from a root/parent tag name when using XML You can use simple language as the tag name to support dynamic names."
+        },
+        "regex" : {
+          "type" : "boolean",
+          "title" : "Regex",
+          "description" : "If the token is a regular expression pattern. The default value is false"
+        },
+        "xml" : {
+          "type" : "boolean",
+          "title" : "Xml",
+          "description" : "Whether the input is XML messages. This option must be set to true if working with XML payloads."
+        },
+        "includeTokens" : {
+          "type" : "boolean",
+          "title" : "Include Tokens",
+          "description" : "Whether to include the tokens in the parts when using pairs. When including tokens then the endToken property must also be configured (to use pair mode). The default value is false"
+        },
+        "group" : {
+          "type" : "string",
+          "title" : "Group",
+          "description" : "To group N parts together, for example to split big files into chunks of 1000 lines. You can use simple language as the group to support dynamic group sizes."
+        },
+        "groupDelimiter" : {
+          "type" : "string",
+          "title" : "Group Delimiter",
+          "description" : "Sets the delimiter to use when grouping. If this has not been set then token will be used as the delimiter."
+        },
+        "skipFirst" : {
+          "type" : "boolean",
+          "title" : "Skip First",
+          "description" : "To skip the very first element"
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Tokenize",
+      "description" : "Tokenize text payloads using delimiter patterns.",
+      "required" : [ "token" ]
+    }
+  },
+  "variable" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "variable",
+      "title" : "Variable",
+      "description" : "Gets a variable",
+      "deprecated" : false,
+      "firstVersion" : "4.4.0",
+      "label" : "language,core",
+      "javaType" : "org.apache.camel.model.language.VariableExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "trim" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Variable",
+      "description" : "Gets a variable",
+      "required" : [ "expression" ]
+    }
+  },
+  "wasm" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "wasm",
+      "title" : "Wasm",
+      "description" : "Call a wasm (web assembly) function.",
+      "deprecated" : false,
+      "firstVersion" : "4.5.0",
+      "label" : "language",
+      "javaType" : "org.apache.camel.model.language.WasmExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "module" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Module",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Set the module (the distributable, loadable, and executable unit of code in WebAssembly) resource that provides the expression function."
+      },
+      "resultType" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "module" : {
+          "type" : "string",
+          "title" : "Module",
+          "description" : "Set the module (the distributable, loadable, and executable unit of code in WebAssembly) resource that provides the expression function."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "Wasm",
+      "description" : "Call a wasm (web assembly) function.",
+      "required" : [ "expression", "module" ]
+    }
+  },
+  "xpath" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "xpath",
+      "title" : "XPath",
+      "description" : "Evaluates an XPath expression against an XML payload.",
+      "deprecated" : false,
+      "firstVersion" : "1.1.0",
+      "label" : "language,core,xml",
+      "javaType" : "org.apache.camel.model.language.XPathExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "documentType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Document Type",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Name of class for document type The default value is org.w3c.dom.Document"
+      },
+      "resultQName" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Result QName",
+        "group" : "common",
+        "required" : false,
+        "type" : "enum",
+        "javaType" : "java.lang.String",
+        "enum" : [ "NUMBER", "STRING", "BOOLEAN", "NODESET", "NODE" ],
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : "NODESET",
+        "description" : "Sets the output type supported by XPath."
+      },
+      "saxon" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Saxon",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to use Saxon."
+      },
+      "factoryRef" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Factory Ref",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "References to a custom XPathFactory to lookup in the registry"
+      },
+      "objectModel" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Object Model",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The XPath object model to use"
+      },
+      "logNamespaces" : {
+        "index" : 7,
+        "kind" : "attribute",
+        "displayName" : "Log Namespaces",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to log namespaces which can assist during troubleshooting"
+      },
+      "threadSafety" : {
+        "index" : 8,
+        "kind" : "attribute",
+        "displayName" : "Thread Safety",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Whether to enable thread-safety for the returned result of the xpath expression. This applies to when using NODESET as the result type, and the returned set has multiple elements. In this situation there can be thread-safety issues if you process the NODESET concurrently such as from a Camel Splitter EIP in parallel processing mode. This option prevents concurrency issues by doing defensive copies of the nodes. It is recommended to turn this option on if you are using camel-saxon or Saxon in your application. Saxon has thread-safety issues which can be prevented by turning this option on."
+      },
+      "preCompile" : {
+        "index" : 9,
+        "kind" : "attribute",
+        "displayName" : "Pre Compile",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to enable pre-compiling the xpath expression during initialization phase. pre-compile is enabled by default. This can be used to turn off, for example in cases the compilation phase is desired at the starting phase, such as if the application is ahead of time compiled (for example with camel-quarkus) which would then load the xpath factory of the built operating system, and not a JVM runtime."
+      },
+      "namespace" : {
+        "index" : 10,
+        "kind" : "element",
+        "displayName" : "Namespace",
+        "group" : "common",
+        "label" : "common",
+        "required" : false,
+        "type" : "array",
+        "javaType" : "java.util.List<org.apache.camel.model.PropertyDefinition>",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Injects the XML Namespaces of prefix - uri mappings"
+      },
+      "source" : {
+        "index" : 11,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 12,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 13,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "documentType" : {
+          "type" : "string",
+          "title" : "Document Type",
+          "description" : "Name of class for document type The default value is org.w3c.dom.Document"
+        },
+        "resultQName" : {
+          "type" : "string",
+          "title" : "Result QName",
+          "description" : "Sets the output type supported by XPath.",
+          "default" : "NODESET",
+          "enum" : [ "NUMBER", "STRING", "BOOLEAN", "NODESET", "NODE" ]
+        },
+        "saxon" : {
+          "type" : "boolean",
+          "title" : "Saxon",
+          "description" : "Whether to use Saxon."
+        },
+        "factoryRef" : {
+          "type" : "string",
+          "title" : "Factory Ref",
+          "description" : "References to a custom XPathFactory to lookup in the registry"
+        },
+        "objectModel" : {
+          "type" : "string",
+          "title" : "Object Model",
+          "description" : "The XPath object model to use"
+        },
+        "logNamespaces" : {
+          "type" : "boolean",
+          "title" : "Log Namespaces",
+          "description" : "Whether to log namespaces which can assist during troubleshooting"
+        },
+        "threadSafety" : {
+          "type" : "boolean",
+          "title" : "Thread Safety",
+          "description" : "Whether to enable thread-safety for the returned result of the xpath expression. This applies to when using NODESET as the result type, and the returned set has multiple elements. In this situation there can be thread-safety issues if you process the NODESET concurrently such as from a Camel Splitter EIP in parallel processing mode. This option prevents concurrency issues by doing defensive copies of the nodes. It is recommended to turn this option on if you are using camel-saxon or Saxon in your application. Saxon has thread-safety issues which can be prevented by turning this option on."
+        },
+        "preCompile" : {
+          "type" : "boolean",
+          "title" : "Pre Compile",
+          "description" : "Whether to enable pre-compiling the xpath expression during initialization phase. pre-compile is enabled by default. This can be used to turn off, for example in cases the compilation phase is desired at the starting phase, such as if the application is ahead of time compiled (for example with camel-quarkus) which would then load the xpath factory of the built operating system, and not a JVM runtime."
+        },
+        "namespace" : {
+          "type" : "array",
+          "title" : "Namespace",
+          "description" : "Injects the XML Namespaces of prefix - uri mappings",
+          "items" : {
+            "$ref" : "#/definitions/org.apache.camel.model.PropertyDefinition"
+          }
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "XPath",
+      "description" : "Evaluates an XPath expression against an XML payload.",
+      "definitions" : {
+        "org.apache.camel.model.PropertyDefinition" : {
+          "title" : "Property",
+          "description" : "A key value pair where the value is a literal value",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "key" : {
+              "type" : "string",
+              "title" : "Key",
+              "description" : "The name of the property"
+            },
+            "value" : {
+              "type" : "string",
+              "title" : "Value",
+              "description" : "The property value."
+            }
+          },
+          "required" : [ "key", "value" ]
+        }
+      },
+      "required" : [ "expression" ]
+    }
+  },
+  "xquery" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "xquery",
+      "title" : "XQuery",
+      "description" : "Evaluates an XQuery expressions against an XML payload.",
+      "deprecated" : false,
+      "firstVersion" : "1.0.0",
+      "label" : "language,xml",
+      "javaType" : "org.apache.camel.model.language.XQueryExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "configurationRef" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Configuration Ref",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Reference to a saxon configuration instance in the registry to use for xquery (requires camel-saxon). This may be needed to add custom functions to a saxon configuration, so these custom functions can be used in xquery expressions."
+      },
+      "namespace" : {
+        "index" : 3,
+        "kind" : "element",
+        "displayName" : "Namespace",
+        "group" : "common",
+        "label" : "common",
+        "required" : false,
+        "type" : "array",
+        "javaType" : "java.util.List<org.apache.camel.model.PropertyDefinition>",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Injects the XML Namespaces of prefix - uri mappings"
+      },
+      "source" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "configurationRef" : {
+          "type" : "string",
+          "title" : "Configuration Ref",
+          "description" : "Reference to a saxon configuration instance in the registry to use for xquery (requires camel-saxon). This may be needed to add custom functions to a saxon configuration, so these custom functions can be used in xquery expressions."
+        },
+        "namespace" : {
+          "type" : "array",
+          "title" : "Namespace",
+          "description" : "Injects the XML Namespaces of prefix - uri mappings",
+          "items" : {
+            "$ref" : "#/definitions/org.apache.camel.model.PropertyDefinition"
+          }
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "XQuery",
+      "description" : "Evaluates an XQuery expressions against an XML payload.",
+      "definitions" : {
+        "org.apache.camel.model.PropertyDefinition" : {
+          "title" : "Property",
+          "description" : "A key value pair where the value is a literal value",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "key" : {
+              "type" : "string",
+              "title" : "Key",
+              "description" : "The name of the property"
+            },
+            "value" : {
+              "type" : "string",
+              "title" : "Value",
+              "description" : "The property value."
+            }
+          },
+          "required" : [ "key", "value" ]
+        }
+      },
+      "required" : [ "expression" ]
+    }
+  },
+  "xtokenize" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "xtokenize",
+      "title" : "XML Tokenize",
+      "description" : "Tokenize XML payloads.",
+      "deprecated" : false,
+      "firstVersion" : "2.14.0",
+      "label" : "language,core,xml",
+      "javaType" : "org.apache.camel.model.language.XMLTokenizerExpression",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the id of this node"
+      },
+      "expression" : {
+        "index" : 1,
+        "kind" : "value",
+        "displayName" : "Expression",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The expression value in your chosen language syntax"
+      },
+      "mode" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Mode",
+        "group" : "common",
+        "required" : false,
+        "type" : "enum",
+        "javaType" : "java.lang.String",
+        "enum" : [ "i", "w", "u", "t" ],
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : "i",
+        "description" : "The extraction mode. The available extraction modes are: i - injecting the contextual namespace bindings into the extracted token (default) w - wrapping the extracted token in its ancestor context u - unwrapping the extracted token to its child content t - extracting the text content of the specified element"
+      },
+      "group" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Group",
+        "group" : "common",
+        "required" : false,
+        "type" : "integer",
+        "javaType" : "java.lang.Integer",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "To group N parts together"
+      },
+      "namespace" : {
+        "index" : 4,
+        "kind" : "element",
+        "displayName" : "Namespace",
+        "group" : "common",
+        "label" : "common",
+        "required" : false,
+        "type" : "array",
+        "javaType" : "java.util.List<org.apache.camel.model.PropertyDefinition>",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Injects the XML Namespaces of prefix - uri mappings"
+      },
+      "source" : {
+        "index" : 5,
+        "kind" : "attribute",
+        "displayName" : "Source",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+      },
+      "resultType" : {
+        "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Result Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the class of the result type (type from output)"
+      },
+      "trim" : {
+        "index" : 7,
+        "kind" : "attribute",
+        "displayName" : "Trim",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "Sets the id of this node"
+        },
+        "expression" : {
+          "type" : "string",
+          "title" : "Expression",
+          "description" : "The expression value in your chosen language syntax"
+        },
+        "mode" : {
+          "type" : "string",
+          "title" : "Mode",
+          "description" : "The extraction mode. The available extraction modes are: i - injecting the contextual namespace bindings into the extracted token (default) w - wrapping the extracted token in its ancestor context u - unwrapping the extracted token to its child content t - extracting the text content of the specified element",
+          "default" : "i",
+          "enum" : [ "i", "w", "u", "t" ]
+        },
+        "group" : {
+          "type" : "number",
+          "title" : "Group",
+          "description" : "To group N parts together"
+        },
+        "namespace" : {
+          "type" : "array",
+          "title" : "Namespace",
+          "description" : "Injects the XML Namespaces of prefix - uri mappings",
+          "items" : {
+            "$ref" : "#/definitions/org.apache.camel.model.PropertyDefinition"
+          }
+        },
+        "source" : {
+          "type" : "string",
+          "title" : "Source",
+          "description" : "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body."
+        },
+        "resultType" : {
+          "type" : "string",
+          "title" : "Result Type",
+          "description" : "Sets the class of the result type (type from output)"
+        },
+        "trim" : {
+          "type" : "boolean",
+          "title" : "Trim",
+          "description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
+        }
+      },
+      "title" : "XML Tokenize",
+      "description" : "Tokenize XML payloads.",
+      "definitions" : {
+        "org.apache.camel.model.PropertyDefinition" : {
+          "title" : "Property",
+          "description" : "A key value pair where the value is a literal value",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "key" : {
+              "type" : "string",
+              "title" : "Key",
+              "description" : "The name of the property"
+            },
+            "value" : {
+              "type" : "string",
+              "title" : "Value",
+              "description" : "The property value."
+            }
+          },
+          "required" : [ "key", "value" ]
+        }
+      },
+      "required" : [ "expression" ]
+    }
+  }
+}
