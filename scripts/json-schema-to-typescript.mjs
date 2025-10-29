@@ -29,6 +29,65 @@ const compileSchema = async (schemaContent, name, outputFile) => {
 };
 
 /**
+ * Function to sanitize default values in the schema to match their declared types.
+ * This fixes issues where Camel 4.15 schemas have string default values for boolean/number types,
+ * which causes json-schema-to-typescript to generate incorrect intersection types (e.g., boolean & string).
+ *
+ * @type {(obj: any) => void}
+ */
+const sanitizeDefaultValues = (obj) => {
+  if (!obj || typeof obj !== 'object') {
+    return;
+  }
+
+  // If this object has both 'type' and 'default', sanitize the default value
+  if (obj.type && obj.default !== undefined) {
+    const type = obj.type;
+    const defaultValue = obj.default;
+
+    // Fix boolean types with string defaults
+    if (type === 'boolean' && typeof defaultValue === 'string') {
+      obj.default = defaultValue === 'true';
+      console.log(`\tFixed boolean default: "${defaultValue}" -> ${obj.default}`);
+    }
+    // Fix number/integer types with string defaults
+    else if ((type === 'number' || type === 'integer') && typeof defaultValue === 'string') {
+      const numValue = Number(defaultValue);
+      if (!isNaN(numValue)) {
+        obj.default = numValue;
+        console.log(`\tFixed ${type} default: "${defaultValue}" -> ${obj.default}`);
+      }
+    }
+  }
+
+  // Recursively process all properties
+  if (obj.properties) {
+    Object.values(obj.properties).forEach(sanitizeDefaultValues);
+  }
+
+  // Recursively process definitions
+  if (obj.definitions) {
+    Object.values(obj.definitions).forEach(sanitizeDefaultValues);
+  }
+
+  // Recursively process items
+  if (obj.items) {
+    if (Array.isArray(obj.items)) {
+      obj.items.forEach(sanitizeDefaultValues);
+    } else {
+      sanitizeDefaultValues(obj.items);
+    }
+  }
+
+  // Recursively process allOf, anyOf, oneOf
+  ['allOf', 'anyOf', 'oneOf'].forEach((key) => {
+    if (Array.isArray(obj[key])) {
+      obj[key].forEach(sanitizeDefaultValues);
+    }
+  });
+};
+
+/**
  * Function to add a title property for schema properties that doesn't contains it
  * The goal for this is to provide a better naming for the generated types
  * @type {(schema: import('json-schema-to-typescript').JSONSchema) => void}
@@ -86,6 +145,9 @@ async function main() {
 
     /** @type {import('json-schema-to-typescript').JSONSchema} */
     const schemaContent = createRequire(import.meta.url)(schemaFile);
+
+    console.log(`Sanitizing default values for ${name}...`);
+    sanitizeDefaultValues(schemaContent);
 
     addTitleToDefinitions(schemaContent);
 
