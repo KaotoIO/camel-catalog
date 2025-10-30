@@ -107,6 +107,7 @@ public class EIPGenerator implements Generator {
      */
     private void enhanceJSONSchema(String processorName, ObjectNode processorJSONSchema) {
         camelCatalogSchemaEnhancer.fillSchemaInformation(processorJSONSchema);
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(processorJSONSchema);
         camelCatalogSchemaEnhancer.fillRequiredPropertiesIfNeeded(Kind.model, processorName, processorJSONSchema);
         camelCatalogSchemaEnhancer.sortPropertiesAccordingToCatalog(processorName, processorJSONSchema);
         camelCatalogSchemaEnhancer.fillPropertiesInformation(processorName, processorJSONSchema);

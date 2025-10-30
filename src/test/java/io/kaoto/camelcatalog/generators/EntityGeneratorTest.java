@@ -336,4 +336,109 @@ class EntityGeneratorTest {
         assertTrue(logMaskDefaultNode.isBoolean());
         assertFalse(logMaskDefaultNode.asBoolean());
     }
+
+    @Test
+    void shouldFixBooleanDefaultValuesInGeneratedEntitySchemas() {
+        var entitiesMap = entityGenerator.generate();
+
+        // Test from entity which has boolean properties with default values
+        var fromEntity = entitiesMap.get("from");
+        var propertiesNode = fromEntity.withObject("propertiesSchema").withObject("properties");
+
+        // Check various boolean properties if they exist
+        if (propertiesNode.has("disabled")) {
+            var disabledNode = propertiesNode.get("disabled");
+            if (disabledNode.has("default")) {
+                var defaultValue = disabledNode.get("default");
+                assertTrue(defaultValue.isBoolean(), "Default value should be boolean, not string");
+            }
+        }
+    }
+
+    @Test
+    void shouldFixIntegerDefaultValuesInGeneratedEntitySchemas() {
+        var entitiesMap = entityGenerator.generate();
+
+        // Test onCompletion entity which may have integer properties
+        var onCompletionEntity = entitiesMap.get("onCompletion");
+        if (onCompletionEntity != null) {
+            var propertiesNode = onCompletionEntity.withObject("propertiesSchema").withObject("properties");
+
+            // Check for any integer properties with defaults
+            propertiesNode.fields().forEachRemaining(entry -> {
+                var propertyNode = entry.getValue();
+                if (propertyNode.has("type") && propertyNode.has("default")) {
+                    var type = propertyNode.get("type").asText();
+                    var defaultValue = propertyNode.get("default");
+
+                    if ("integer".equals(type)) {
+                        assertTrue(defaultValue.isNumber(),
+                            "Integer property '" + entry.getKey() + "' should have numeric default, not string");
+                    } else if ("number".equals(type)) {
+                        assertTrue(defaultValue.isNumber(),
+                            "Number property '" + entry.getKey() + "' should have numeric default, not string");
+                    } else if ("boolean".equals(type)) {
+                        assertTrue(defaultValue.isBoolean(),
+                            "Boolean property '" + entry.getKey() + "' should have boolean default, not string");
+                    }
+                }
+            });
+        }
+    }
+
+    @Test
+    void shouldFixDefaultValuesInEntityDefinitions() {
+        var entitiesMap = entityGenerator.generate();
+
+        // Check that definitions in entities also have fixed default values
+        var onCompletionEntity = entitiesMap.get("onCompletion");
+        if (onCompletionEntity != null) {
+            var propertiesSchemaNode = onCompletionEntity.get("propertiesSchema");
+            if (propertiesSchemaNode != null && propertiesSchemaNode.has("definitions")) {
+                var definitions = propertiesSchemaNode.get("definitions");
+
+                // Check SimpleExpression definition if it exists
+                if (definitions.has("org.apache.camel.model.language.SimpleExpression")) {
+                    var simpleExpressionNode = definitions.get("org.apache.camel.model.language.SimpleExpression");
+                    var definitionPropertiesNode = simpleExpressionNode.get("properties");
+
+                    if (definitionPropertiesNode != null && definitionPropertiesNode.has("trim")) {
+                        var trimNode = definitionPropertiesNode.get("trim");
+                        if (trimNode.has("default")) {
+                            var defaultValue = trimNode.get("default");
+                            assertTrue(defaultValue.isBoolean(),
+                                "Default value in definitions should be boolean, not string");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    void shouldNotHaveStringBooleanDefaultValues() {
+        var entitiesMap = entityGenerator.generate();
+
+        // Verify that no entity has string boolean default values after fixing
+        for (var entityEntry : entitiesMap.entrySet()) {
+            var entityNode = entityEntry.getValue();
+            if (entityNode.has("propertiesSchema")) {
+                var propertiesSchemaNode = entityNode.get("propertiesSchema");
+                if (propertiesSchemaNode.has("properties")) {
+                    var propertiesNode = propertiesSchemaNode.get("properties");
+                    propertiesNode.fields().forEachRemaining(entry -> {
+                        var propertyNode = entry.getValue();
+                        if (propertyNode.has("type") && "boolean".equals(propertyNode.get("type").asText())
+                                && propertyNode.has("default")) {
+                            var defaultValue = propertyNode.get("default");
+                            assertFalse(defaultValue.isTextual() &&
+                                ("true".equals(defaultValue.asText()) || "false".equals(defaultValue.asText())),
+                                "Entity '" + entityEntry.getKey() + "' property '" + entry.getKey()
+                                + "' has string boolean default value instead of actual boolean");
+                        }
+                    });
+                }
+            }
+        }
+    }
 }

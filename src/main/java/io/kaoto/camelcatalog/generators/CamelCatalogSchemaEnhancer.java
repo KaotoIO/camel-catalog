@@ -225,6 +225,101 @@ public class CamelCatalogSchemaEnhancer {
     }
 
     /**
+     * Fix default values in the JSON schema that are incorrectly typed as strings
+     * This is a workaround for upstream Camel issue where default values are provided as strings
+     * regardless of the property type (e.g., "false" instead of false for booleans)
+     * See https://github.com/apache/camel/pull/19753
+     *
+     * @param schemaNode the JSON schema node to fix default values in
+     */
+    void fixDefaultValueTypesFromCamelSchema(ObjectNode schemaNode) {
+        // Process properties at the root level
+        if (schemaNode.has("properties")) {
+            ObjectNode properties = (ObjectNode) schemaNode.get("properties");
+            properties.fields().forEachRemaining(entry -> {
+                ObjectNode propertyNode = (ObjectNode) entry.getValue();
+                fixDefaultValueInProperty(propertyNode);
+            });
+        }
+
+        // Process definitions recursively
+        if (schemaNode.has("definitions")) {
+            ObjectNode definitions = (ObjectNode) schemaNode.get("definitions");
+            definitions.fields().forEachRemaining(entry -> {
+                ObjectNode definitionNode = (ObjectNode) entry.getValue();
+                fixDefaultValueTypesFromCamelSchema(definitionNode);
+            });
+        }
+
+        // Process anyOf/oneOf arrays
+        fixDefaultValueInArrayFields(schemaNode, "anyOf");
+        fixDefaultValueInArrayFields(schemaNode, "oneOf");
+    }
+
+    /**
+     * Fix default value type in a single property node
+     *
+     * @param propertyNode the property node to fix
+     */
+    private void fixDefaultValueInProperty(ObjectNode propertyNode) {
+        if (!propertyNode.has("default") || !propertyNode.has("type")) {
+            return;
+        }
+
+        var defaultValue = propertyNode.get("default");
+        var propertyType = propertyNode.get("type").asText();
+
+        // Only process if default is currently a string
+        if (!defaultValue.isTextual()) {
+            return;
+        }
+
+        String defaultValueString = defaultValue.asText();
+
+        // Fix boolean defaults
+        if ("boolean".equals(propertyType)) {
+            if ("true".equals(defaultValueString)) {
+                propertyNode.put("default", true);
+            } else if ("false".equals(defaultValueString)) {
+                propertyNode.put("default", false);
+            }
+        }
+        // Fix number/integer defaults
+        else if ("number".equals(propertyType) || "integer".equals(propertyType)) {
+            try {
+                // Check if it's a decimal number
+                if (defaultValueString.contains(".")) {
+                    propertyNode.put("default", Double.parseDouble(defaultValueString));
+                } else {
+                    propertyNode.put("default", Long.parseLong(defaultValueString));
+                }
+            } catch (NumberFormatException e) {
+                // Keep as string if parsing fails
+            }
+        }
+    }
+
+    /**
+     * Fix default values in array fields (anyOf, oneOf)
+     *
+     * @param node      the node containing the array field
+     * @param arrayName the name of the array field
+     */
+    private void fixDefaultValueInArrayFields(ObjectNode node, String arrayName) {
+        if (!node.has(arrayName)) {
+            return;
+        }
+
+        var array = (ArrayNode) node.get(arrayName);
+        array.forEach(element -> {
+            if (element.isObject()) {
+                var elementNode = (ObjectNode) element;
+                fixDefaultValueTypesFromCamelSchema(elementNode);
+            }
+        });
+    }
+
+    /**
      * Fill the expression format property in the oneOf nodes
      * This is used to provide a hint to the UI that this oneOf
      * is an expression. Example of this is the "setHeader" EIP or the

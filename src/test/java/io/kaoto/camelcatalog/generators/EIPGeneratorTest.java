@@ -402,4 +402,71 @@ class EIPGeneratorTest {
                         .anyMatch(msg -> msg.getMessage().contains("invalidEIP: model definition not found in the catalog")),
                 "Expected warning message not logged");
     }
+
+    @Test
+    void shouldFixBooleanDefaultValuesInGeneratedSchemas() {
+        var processorsMap = eipGenerator.generate();
+
+        // Test multicast processor which has boolean properties with default values
+        var multicastNode = processorsMap.get("multicast");
+        var parallelProcessingNode = multicastNode.withObject("propertiesSchema")
+                .withObject("properties")
+                .withObject("parallelProcessing");
+
+        if (parallelProcessingNode.has("default")) {
+            var defaultValue = parallelProcessingNode.get("default");
+            assertTrue(defaultValue.isBoolean(), "Default value should be boolean, not string");
+        }
+
+        var stopOnExceptionNode = multicastNode.withObject("propertiesSchema")
+                .withObject("properties")
+                .withObject("stopOnException");
+
+        if (stopOnExceptionNode.has("default")) {
+            var defaultValue = stopOnExceptionNode.get("default");
+            assertTrue(defaultValue.isBoolean(), "Default value should be boolean, not string");
+        }
+    }
+
+    @Test
+    void shouldFixIntegerDefaultValuesInGeneratedSchemas() {
+        var processorsMap = eipGenerator.generate();
+
+        // Test multicast processor which has timeout property
+        var multicastNode = processorsMap.get("multicast");
+        var timeoutNode = multicastNode.withObject("propertiesSchema")
+                .withObject("properties")
+                .withObject("timeout");
+
+        // Only check if both type is integer/number and default exists
+        if (timeoutNode.has("type") && timeoutNode.has("default")) {
+            var type = timeoutNode.get("type").asText();
+            if ("integer".equals(type) || "number".equals(type)) {
+                var defaultValue = timeoutNode.get("default");
+                assertTrue(defaultValue.isNumber(), "Default value should be number, not string");
+            }
+        }
+    }
+
+    @Test
+    void shouldFixDefaultValuesInDefinitions() {
+        var processorsMap = eipGenerator.generate();
+
+        // Check that definitions also have fixed default values
+        var setHeaderNode = processorsMap.get("setHeader");
+        var definitions = setHeaderNode.withObject("propertiesSchema").withObject("definitions");
+
+        if (definitions.has("org.apache.camel.model.language.SimpleExpression")) {
+            var simpleExpressionNode = definitions.get("org.apache.camel.model.language.SimpleExpression");
+            var propertiesNode = simpleExpressionNode.get("properties");
+
+            if (propertiesNode != null && propertiesNode.has("trim")) {
+                var trimNode = propertiesNode.get("trim");
+                if (trimNode.has("default")) {
+                    var defaultValue = trimNode.get("default");
+                    assertTrue(defaultValue.isBoolean(), "Default value in definitions should be boolean, not string");
+                }
+            }
+        }
+    }
 }

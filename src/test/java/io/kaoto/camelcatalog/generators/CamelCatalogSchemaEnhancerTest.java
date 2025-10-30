@@ -393,4 +393,239 @@ class CamelCatalogSchemaEnhancerTest {
         assertTrue(firstOneOfNode.has("format"));
         assertTrue(firstOneOfNode.get("format").asText().contains("errorHandlerType"));
     }
+
+    @Test
+    void shouldFixBooleanDefaultValueFromString() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertyNode.put("default", "true");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isBoolean());
+        assertTrue(defaultValue.asBoolean());
+    }
+
+    @Test
+    void shouldFixBooleanDefaultValueFalseFromString() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertyNode.put("default", "false");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isBoolean());
+        assertFalse(defaultValue.asBoolean());
+    }
+
+    @Test
+    void shouldFixIntegerDefaultValueFromString() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "integer");
+        propertyNode.put("default", "42");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isNumber());
+        assertEquals(42, defaultValue.asLong());
+    }
+
+    @Test
+    void shouldFixNumberDefaultValueFromString() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "number");
+        propertyNode.put("default", "3.14");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isNumber());
+        assertEquals(3.14, defaultValue.asDouble(), 0.001);
+    }
+
+    @Test
+    void shouldNotModifyNonStringDefaultValues() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertyNode.put("default", true);
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isBoolean());
+        assertTrue(defaultValue.asBoolean());
+    }
+
+    @Test
+    void shouldKeepStringDefaultForStringType() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "string");
+        propertyNode.put("default", "hello");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isTextual());
+        assertEquals("hello", defaultValue.asText());
+    }
+
+    @Test
+    void shouldFixDefaultValuesInDefinitions() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode definitionsNode = jsonMapper.createObjectNode();
+        ObjectNode definitionNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertyNode.put("default", "true");
+        propertiesNode.set("testProperty", propertyNode);
+        definitionNode.set("properties", propertiesNode);
+        definitionsNode.set("TestDefinition", definitionNode);
+        schemaNode.set("definitions", definitionsNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isBoolean());
+        assertTrue(defaultValue.asBoolean());
+    }
+
+    @Test
+    void shouldFixDefaultValuesInAnyOfArrays() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        var anyOfArray = schemaNode.putArray("anyOf");
+        ObjectNode anyOfItem = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertyNode.put("default", "false");
+        propertiesNode.set("testProperty", propertyNode);
+        anyOfItem.set("properties", propertiesNode);
+        anyOfArray.add(anyOfItem);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isBoolean());
+        assertFalse(defaultValue.asBoolean());
+    }
+
+    @Test
+    void shouldFixDefaultValuesInOneOfArrays() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        var oneOfArray = schemaNode.putArray("oneOf");
+        ObjectNode oneOfItem = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "integer");
+        propertyNode.put("default", "100");
+        propertiesNode.set("testProperty", propertyNode);
+        oneOfItem.set("properties", propertiesNode);
+        oneOfArray.add(oneOfItem);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isNumber());
+        assertEquals(100, defaultValue.asLong());
+    }
+
+    @Test
+    void shouldHandleInvalidNumberGracefully() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "integer");
+        propertyNode.put("default", "not-a-number");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        // Should keep as string if parsing fails
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isTextual());
+        assertEquals("not-a-number", defaultValue.asText());
+    }
+
+    @Test
+    void shouldNotModifyPropertiesWithoutDefaultValue() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("type", "boolean");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        assertFalse(propertyNode.has("default"));
+    }
+
+    @Test
+    void shouldNotModifyPropertiesWithoutType() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schemaNode = jsonMapper.createObjectNode();
+        ObjectNode propertiesNode = jsonMapper.createObjectNode();
+        ObjectNode propertyNode = jsonMapper.createObjectNode();
+
+        propertyNode.put("default", "true");
+        propertiesNode.set("testProperty", propertyNode);
+        schemaNode.set("properties", propertiesNode);
+
+        camelCatalogSchemaEnhancer.fixDefaultValueTypesFromCamelSchema(schemaNode);
+
+        // Should remain as string without type information
+        var defaultValue = propertyNode.get("default");
+        assertTrue(defaultValue.isTextual());
+    }
 }
