@@ -18,6 +18,7 @@ package io.kaoto.camelcatalog.generator;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.kaoto.camelcatalog.generators.CamelCatalogSchemaEnhancer;
 import io.kaoto.camelcatalog.generators.ComponentGenerator;
 import io.kaoto.camelcatalog.generators.EIPGenerator;
 import io.kaoto.camelcatalog.generators.EntityGenerator;
@@ -43,11 +44,13 @@ public class CamelCatalogProcessor {
     private final CamelYamlDslSchemaProcessor schemaProcessor;
     private final CamelCatalogVersionLoader camelCatalogVersionLoader;
     private final CatalogRuntime runtime;
+    private final CamelCatalogSchemaEnhancer schemaEnhancer;
 
     public CamelCatalogProcessor(CamelCatalog camelCatalog, ObjectMapper jsonMapper,
                                  CamelYamlDslSchemaProcessor schemaProcessor, CatalogRuntime runtime,
                                  CamelCatalogVersionLoader camelCatalogVersionLoader) {
         this.jsonMapper = jsonMapper;
+        this.schemaEnhancer = new CamelCatalogSchemaEnhancer(camelCatalog);
         this.camelCatalog = camelCatalog;
         this.schemaProcessor = schemaProcessor;
         this.runtime = runtime;
@@ -122,6 +125,8 @@ public class CamelCatalogProcessor {
             catalogTree.set("propertiesSchema", dataFormatSchema);
             // setting required property to all the dataformats schema
             setRequiredToPropertiesSchema(dataFormatSchema, catalogTree);
+            // Sanitize default values to ensure they match their declared types
+            schemaEnhancer.fixDefaultValueTypesFromCamelSchema(dataFormatSchema);
             answer.set(dataFormatName, catalogTree);
         }
         StringWriter writer = new StringWriter();
@@ -165,6 +170,8 @@ public class CamelCatalogProcessor {
             catalogTree.set("propertiesSchema", languageSchema);
             // setting required property to all the languages schema
             setRequiredToPropertiesSchema(languageSchema, catalogTree);
+            // Sanitize default values to ensure they match their declared types
+            schemaEnhancer.fixDefaultValueTypesFromCamelSchema(languageSchema);
             answer.set(languageName, catalogTree);
         }
         StringWriter writer = new StringWriter();
@@ -251,4 +258,5 @@ public class CamelCatalogProcessor {
         }
         catalogModel.withObject("/propertiesSchema").set("required", jsonMapper.valueToTree(required));
     }
+
 }

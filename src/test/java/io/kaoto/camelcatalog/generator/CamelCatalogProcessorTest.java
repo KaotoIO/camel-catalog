@@ -421,4 +421,72 @@ class CamelCatalogProcessorTest {
         assertEquals("Generate UUID", simpleFunction.get("displayName").asText(),
                 "Function name should be 'Generate UUID'");
     }
+
+    @Test
+    void testLanguageCatalogDefaultValuesAreProperlySanitized() {
+        // Test that boolean default values are proper booleans, not strings
+        // This verifies the fix for Camel 4.15 where default values were incorrectly typed as strings
+        for (var languageEntry : languageCatalog.properties()) {
+            var languageName = languageEntry.getKey();
+            var languageNode = languageEntry.getValue();
+            var propertiesSchema = languageNode.withObject("/propertiesSchema");
+
+            if (propertiesSchema.has("properties")) {
+                var properties = propertiesSchema.withObject("/properties");
+                for (var propertyEntry : properties.properties()) {
+                    var propertyName = propertyEntry.getKey();
+                    var property = propertyEntry.getValue();
+
+                    if (property.has("type") && property.has("default")) {
+                        var type = property.get("type").asText();
+                        var defaultValue = property.get("default");
+
+                        if ("boolean".equals(type)) {
+                            assertTrue(defaultValue.isBoolean(),
+                                String.format("Language '%s' property '%s' has boolean type but string default value: %s",
+                                    languageName, propertyName, defaultValue));
+                        } else if ("number".equals(type) || "integer".equals(type)) {
+                            assertTrue(defaultValue.isNumber(),
+                                String.format("Language '%s' property '%s' has %s type but non-numeric default value: %s",
+                                    languageName, propertyName, type, defaultValue));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    void testDataFormatCatalogDefaultValuesAreProperlySanitized() {
+        // Test that boolean and number default values are proper types, not strings
+        // This verifies the fix for Camel 4.15 where default values were incorrectly typed as strings
+        for (var dataFormatEntry : dataFormatCatalog.properties()) {
+            var dataFormatName = dataFormatEntry.getKey();
+            var dataFormatNode = dataFormatEntry.getValue();
+            var propertiesSchema = dataFormatNode.withObject("/propertiesSchema");
+
+            if (propertiesSchema.has("properties")) {
+                var properties = propertiesSchema.withObject("/properties");
+                for (var propertyEntry : properties.properties()) {
+                    var propertyName = propertyEntry.getKey();
+                    var property = propertyEntry.getValue();
+
+                    if (property.has("type") && property.has("default")) {
+                        var type = property.get("type").asText();
+                        var defaultValue = property.get("default");
+
+                        if ("boolean".equals(type)) {
+                            assertTrue(defaultValue.isBoolean(),
+                                String.format("DataFormat '%s' property '%s' has boolean type but string default value: %s",
+                                    dataFormatName, propertyName, defaultValue));
+                        } else if ("number".equals(type) || "integer".equals(type)) {
+                            assertTrue(defaultValue.isNumber(),
+                                String.format("DataFormat '%s' property '%s' has %s type but non-numeric default value: %s",
+                                    dataFormatName, propertyName, type, defaultValue));
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

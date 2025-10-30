@@ -38,6 +38,38 @@ public class CamelCatalogSchemaEnhancer {
     }
 
     /**
+     * Fix default values in the JSON schema that are incorrectly typed as strings
+     * This is a workaround for upstream Camel issue where default values are provided as strings
+     * regardless of the property type (e.g., "false" instead of false for booleans)
+     * See https://github.com/apache/camel/pull/19753
+     *
+     * @param schemaNode the JSON schema node to fix default values in
+     */
+    public void fixDefaultValueTypesFromCamelSchema(ObjectNode schemaNode) {
+        // Process properties at the root level
+        if (schemaNode.has("properties")) {
+            ObjectNode properties = (ObjectNode) schemaNode.get("properties");
+            properties.fields().forEachRemaining(entry -> {
+                ObjectNode propertyNode = (ObjectNode) entry.getValue();
+                fixDefaultValueInProperty(propertyNode);
+            });
+        }
+
+        // Process definitions recursively
+        if (schemaNode.has("definitions")) {
+            ObjectNode definitions = (ObjectNode) schemaNode.get("definitions");
+            definitions.fields().forEachRemaining(entry -> {
+                ObjectNode definitionNode = (ObjectNode) entry.getValue();
+                fixDefaultValueTypesFromCamelSchema(definitionNode);
+            });
+        }
+
+        // Process anyOf/oneOf arrays
+        fixDefaultValueInArrayFields(schemaNode, "anyOf");
+        fixDefaultValueInArrayFields(schemaNode, "oneOf");
+    }
+
+    /**
      * Fill the required properties of the model in the schema if they are not already present
      *
      * @param modelKind the kind of the Camel model
@@ -178,7 +210,7 @@ public class CamelCatalogSchemaEnhancer {
         addDefaultInfo(modelOption, propertyNode);
     }
 
-    private void addTitleAndDescription(BaseOptionModel modelOption, ObjectNode propertyNode) {
+    void addTitleAndDescription(BaseOptionModel modelOption, ObjectNode propertyNode) {
         var displayName = modelOption.getDisplayName();
         if (!propertyNode.has("title") && displayName != null) {
             propertyNode.put("title", displayName);
@@ -222,38 +254,6 @@ public class CamelCatalogSchemaEnhancer {
         if (!modelNode.has("type")) {
             modelNode.put("type", "object");
         }
-    }
-
-    /**
-     * Fix default values in the JSON schema that are incorrectly typed as strings
-     * This is a workaround for upstream Camel issue where default values are provided as strings
-     * regardless of the property type (e.g., "false" instead of false for booleans)
-     * See https://github.com/apache/camel/pull/19753
-     *
-     * @param schemaNode the JSON schema node to fix default values in
-     */
-    void fixDefaultValueTypesFromCamelSchema(ObjectNode schemaNode) {
-        // Process properties at the root level
-        if (schemaNode.has("properties")) {
-            ObjectNode properties = (ObjectNode) schemaNode.get("properties");
-            properties.fields().forEachRemaining(entry -> {
-                ObjectNode propertyNode = (ObjectNode) entry.getValue();
-                fixDefaultValueInProperty(propertyNode);
-            });
-        }
-
-        // Process definitions recursively
-        if (schemaNode.has("definitions")) {
-            ObjectNode definitions = (ObjectNode) schemaNode.get("definitions");
-            definitions.fields().forEachRemaining(entry -> {
-                ObjectNode definitionNode = (ObjectNode) entry.getValue();
-                fixDefaultValueTypesFromCamelSchema(definitionNode);
-            });
-        }
-
-        // Process anyOf/oneOf arrays
-        fixDefaultValueInArrayFields(schemaNode, "anyOf");
-        fixDefaultValueInArrayFields(schemaNode, "oneOf");
     }
 
     /**
