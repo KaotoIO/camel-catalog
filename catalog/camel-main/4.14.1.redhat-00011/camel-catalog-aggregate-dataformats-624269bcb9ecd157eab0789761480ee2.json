@@ -73,7 +73,8 @@
         "usingIterator" : {
           "type" : "boolean",
           "title" : "Using Iterator",
-          "description" : "If the asn1 file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode."
+          "description" : "If the asn1 file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode.",
+          "default" : false
         }
       },
       "title" : "ASN.1 File",
@@ -418,7 +419,8 @@
         "useDefaultObjectMapper" : {
           "type" : "boolean",
           "title" : "Use Default Object Mapper",
-          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry."
+          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry.",
+          "default" : true
         },
         "unmarshalType" : {
           "type" : "string",
@@ -438,7 +440,8 @@
         "allowJmsType" : {
           "type" : "boolean",
           "title" : "Allow Jms Type",
-          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
+          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to.",
+          "default" : false
         },
         "collectionType" : {
           "type" : "string",
@@ -448,7 +451,8 @@
         "useList" : {
           "type" : "boolean",
           "title" : "Use List",
-          "description" : "To unmarshal to a List of Map or a List of Pojo."
+          "description" : "To unmarshal to a List of Map or a List of Pojo.",
+          "default" : false
         },
         "moduleClassNames" : {
           "type" : "string",
@@ -473,7 +477,8 @@
         "allowUnmarshallType" : {
           "type" : "boolean",
           "title" : "Allow Unmarshall Type",
-          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
+          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used.",
+          "default" : false
         },
         "timezone" : {
           "type" : "string",
@@ -483,12 +488,14 @@
         "autoDiscoverObjectMapper" : {
           "type" : "boolean",
           "title" : "Auto Discover Object Mapper",
-          "description" : "If set to true then Jackson will lookup for an objectMapper into the registry"
+          "description" : "If set to true then Jackson will lookup for an objectMapper into the registry",
+          "default" : false
         },
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         },
         "schemaResolver" : {
           "type" : "string",
@@ -498,7 +505,8 @@
         "autoDiscoverSchemaResolver" : {
           "type" : "boolean",
           "title" : "Auto Discover Schema Resolver",
-          "description" : "When not disabled, the SchemaResolver will be looked up into the registry"
+          "description" : "When not disabled, the SchemaResolver will be looked up into the registry",
+          "default" : true
         }
       },
       "title" : "Avro",
@@ -721,7 +729,8 @@
         "urlSafe" : {
           "type" : "boolean",
           "title" : "Url Safe",
-          "description" : "Instead of emitting '' and '/' we emit '-' and '_' respectively. urlSafe is only applied to encode operations. Decoding seamlessly handles both modes. Is by default false."
+          "description" : "Instead of emitting '' and '/' we emit '-' and '_' respectively. urlSafe is only applied to encode operations. Decoding seamlessly handles both modes. Is by default false.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -892,17 +901,20 @@
         "ignoreUnidentifiedRecords" : {
           "type" : "boolean",
           "title" : "Ignore Unidentified Records",
-          "description" : "Whether to ignore unidentified records."
+          "description" : "Whether to ignore unidentified records.",
+          "default" : false
         },
         "ignoreUnexpectedRecords" : {
           "type" : "boolean",
           "title" : "Ignore Unexpected Records",
-          "description" : "Whether to ignore unexpected records."
+          "description" : "Whether to ignore unexpected records.",
+          "default" : false
         },
         "ignoreInvalidRecords" : {
           "type" : "boolean",
           "title" : "Ignore Invalid Records",
-          "description" : "Whether to ignore invalid records."
+          "description" : "Whether to ignore invalid records.",
+          "default" : false
         },
         "encoding" : {
           "type" : "string",
@@ -917,7 +929,8 @@
         "unmarshalSingleObject" : {
           "type" : "boolean",
           "title" : "Unmarshal Single Object",
-          "description" : "This options controls whether to unmarshal as a list of objects or as a single object only. The former is the default mode, and the latter is only intended in special use-cases where beanio maps the Camel message to a single POJO bean."
+          "description" : "This options controls whether to unmarshal as a list of objects or as a single object only. The former is the default mode, and the latter is only intended in special use-cases where beanio maps the Camel message to a single POJO bean.",
+          "default" : false
         }
       },
       "required" : [ "mapping", "streamName" ]
@@ -1032,7 +1045,8 @@
         "allowEmptyStream" : {
           "type" : "boolean",
           "title" : "Allow Empty Stream",
-          "description" : "Whether to allow empty streams in the unmarshal process. If true, no exception will be thrown when a body without records is provided."
+          "description" : "Whether to allow empty streams in the unmarshal process. If true, no exception will be thrown when a body without records is provided.",
+          "default" : false
         },
         "classType" : {
           "type" : "string",
@@ -1058,7 +1072,8 @@
         "unwrapSingleInstance" : {
           "type" : "boolean",
           "title" : "Unwrap Single Instance",
-          "description" : "When unmarshalling should a single instance be unwrapped and returned instead of wrapped in a java.util.List."
+          "description" : "When unmarshalling should a single instance be unwrapped and returned instead of wrapped in a java.util.List.",
+          "default" : true
         }
       },
       "required" : [ "type" ]
@@ -1251,7 +1266,8 @@
         "useDefaultObjectMapper" : {
           "type" : "boolean",
           "title" : "Use Default Object Mapper",
-          "description" : "Whether to lookup and use default Jackson CBOR ObjectMapper from the registry."
+          "description" : "Whether to lookup and use default Jackson CBOR ObjectMapper from the registry.",
+          "default" : true
         },
         "unmarshalType" : {
           "type" : "string",
@@ -1266,22 +1282,26 @@
         "useList" : {
           "type" : "boolean",
           "title" : "Use List",
-          "description" : "To unmarshal to a List of Map or a List of Pojo."
+          "description" : "To unmarshal to a List of Map or a List of Pojo.",
+          "default" : false
         },
         "allowUnmarshallType" : {
           "type" : "boolean",
           "title" : "Allow Unmarshall Type",
-          "description" : "If enabled then Jackson CBOR is allowed to attempt to use the CamelCBORUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
+          "description" : "If enabled then Jackson CBOR is allowed to attempt to use the CamelCBORUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used.",
+          "default" : false
         },
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "To enable pretty printing output nicely formatted. Is by default false."
+          "description" : "To enable pretty printing output nicely formatted. Is by default false.",
+          "default" : false
         },
         "allowJmsType" : {
           "type" : "boolean",
           "title" : "Allow Jms Type",
-          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
+          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to.",
+          "default" : false
         },
         "enableFeatures" : {
           "type" : "string",
@@ -1503,12 +1523,14 @@
         "shouldAppendHMAC" : {
           "type" : "boolean",
           "title" : "Should Append HMAC",
-          "description" : "Flag indicating that a Message Authentication Code should be calculated and appended to the encrypted data."
+          "description" : "Flag indicating that a Message Authentication Code should be calculated and appended to the encrypted data.",
+          "default" : true
         },
         "inline" : {
           "type" : "boolean",
           "title" : "Inline",
-          "description" : "Flag indicating that the configured IV should be inlined into the encrypted data stream. Is by default false."
+          "description" : "Flag indicating that the configured IV should be inlined into the encrypted data stream. Is by default false.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -1976,7 +1998,8 @@
         "commentMarkerDisabled" : {
           "type" : "boolean",
           "title" : "Comment Marker Disabled",
-          "description" : "Disables the comment marker of the reference format."
+          "description" : "Disables the comment marker of the reference format.",
+          "default" : false
         },
         "commentMarker" : {
           "type" : "string",
@@ -1991,7 +2014,8 @@
         "escapeDisabled" : {
           "type" : "boolean",
           "title" : "Escape Disabled",
-          "description" : "Use for disabling using escape character"
+          "description" : "Use for disabling using escape character",
+          "default" : false
         },
         "escape" : {
           "type" : "string",
@@ -2001,7 +2025,8 @@
         "headerDisabled" : {
           "type" : "boolean",
           "title" : "Header Disabled",
-          "description" : "Use for disabling headers"
+          "description" : "Use for disabling headers",
+          "default" : false
         },
         "header" : {
           "type" : "array",
@@ -2014,22 +2039,26 @@
         "allowMissingColumnNames" : {
           "type" : "boolean",
           "title" : "Allow Missing Column Names",
-          "description" : "Whether to allow missing column names."
+          "description" : "Whether to allow missing column names.",
+          "default" : false
         },
         "ignoreEmptyLines" : {
           "type" : "boolean",
           "title" : "Ignore Empty Lines",
-          "description" : "Whether to ignore empty lines."
+          "description" : "Whether to ignore empty lines.",
+          "default" : false
         },
         "ignoreSurroundingSpaces" : {
           "type" : "boolean",
           "title" : "Ignore Surrounding Spaces",
-          "description" : "Whether to ignore surrounding spaces"
+          "description" : "Whether to ignore surrounding spaces",
+          "default" : false
         },
         "nullStringDisabled" : {
           "type" : "boolean",
           "title" : "Null String Disabled",
-          "description" : "Used to disable null strings"
+          "description" : "Used to disable null strings",
+          "default" : false
         },
         "nullString" : {
           "type" : "string",
@@ -2039,7 +2068,8 @@
         "quoteDisabled" : {
           "type" : "boolean",
           "title" : "Quote Disabled",
-          "description" : "Used to disable quotes"
+          "description" : "Used to disable quotes",
+          "default" : false
         },
         "quote" : {
           "type" : "string",
@@ -2059,7 +2089,8 @@
         "skipHeaderRecord" : {
           "type" : "boolean",
           "title" : "Skip Header Record",
-          "description" : "Whether to skip the header record in the output"
+          "description" : "Whether to skip the header record in the output",
+          "default" : false
         },
         "quoteMode" : {
           "type" : "string",
@@ -2070,17 +2101,20 @@
         "ignoreHeaderCase" : {
           "type" : "boolean",
           "title" : "Ignore Header Case",
-          "description" : "Sets whether or not to ignore case when accessing header names."
+          "description" : "Sets whether or not to ignore case when accessing header names.",
+          "default" : false
         },
         "trim" : {
           "type" : "boolean",
           "title" : "Trim",
-          "description" : "Sets whether or not to trim leading and trailing blanks."
+          "description" : "Sets whether or not to trim leading and trailing blanks.",
+          "default" : false
         },
         "trailingDelimiter" : {
           "type" : "boolean",
           "title" : "Trailing Delimiter",
-          "description" : "Sets whether or not to add a trailing delimiter."
+          "description" : "Sets whether or not to add a trailing delimiter.",
+          "default" : false
         },
         "marshallerFactoryRef" : {
           "type" : "string",
@@ -2090,17 +2124,20 @@
         "lazyLoad" : {
           "type" : "boolean",
           "title" : "Lazy Load",
-          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at one."
+          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at one.",
+          "default" : false
         },
         "useMaps" : {
           "type" : "boolean",
           "title" : "Use Maps",
-          "description" : "Whether the unmarshalling should produce maps (HashMap)for the lines values instead of lists. It requires to have header (either defined or collected)."
+          "description" : "Whether the unmarshalling should produce maps (HashMap)for the lines values instead of lists. It requires to have header (either defined or collected).",
+          "default" : false
         },
         "useOrderedMaps" : {
           "type" : "boolean",
           "title" : "Use Ordered Maps",
-          "description" : "Whether the unmarshalling should produce ordered maps (LinkedHashMap) for the lines values instead of lists. It requires to have header (either defined or collected)."
+          "description" : "Whether the unmarshalling should produce ordered maps (LinkedHashMap) for the lines values instead of lists. It requires to have header (either defined or collected).",
+          "default" : false
         },
         "recordConverterRef" : {
           "type" : "string",
@@ -2110,7 +2147,8 @@
         "captureHeaderRecord" : {
           "type" : "boolean",
           "title" : "Capture Header Record",
-          "description" : "Whether the unmarshalling should capture the header record and store it in the message header"
+          "description" : "Whether the unmarshalling should capture the header record and store it in the message header",
+          "default" : false
         }
       },
       "title" : "CSV",
@@ -2180,6 +2218,107 @@
       "required" : [ "ref" ]
     }
   },
+  "dfdl" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "dfdl",
+      "title" : "DFDL",
+      "description" : "Transforms fixed format data such as EDI message from/to XML using a Data Format Description Language (DFDL).",
+      "deprecated" : false,
+      "firstVersion" : "4.11.0",
+      "label" : "dataformat,transformation",
+      "javaType" : "org.apache.camel.model.dataformat.DfdlDataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "schemaUri" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Schema Uri",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The path to the DFDL schema file."
+      },
+      "rootElement" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Root Element",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The root element name of the schema to use. If not specified, the first root element in the schema will be used."
+      },
+      "rootNamespace" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Root Namespace",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The root namespace of the schema to use."
+      }
+    },
+    "propertiesSchema" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "schemaUri" : {
+          "type" : "string",
+          "title" : "Schema Uri",
+          "description" : "The path to the DFDL schema file."
+        },
+        "rootElement" : {
+          "type" : "string",
+          "title" : "Root Element",
+          "description" : "The root element name of the schema to use. If not specified, the first root element in the schema will be used."
+        },
+        "rootNamespace" : {
+          "type" : "string",
+          "title" : "Root Namespace",
+          "description" : "The root namespace of the schema to use."
+        }
+      },
+      "title" : "DFDL",
+      "description" : "Transforms fixed format data such as EDI message from/to XML using a Data Format Description Language (DFDL).",
+      "required" : [ "schemaUri" ]
+    }
+  },
   "fhirJson" : {
     "model" : {
       "kind" : "model",
@@ -2188,7 +2327,7 @@
       "description" : "Marshall and unmarshall FHIR objects to/from JSON.",
       "deprecated" : false,
       "firstVersion" : "2.21.0",
-      "label" : "dataformat,transformation,hl7,json",
+      "label" : "dataformat,transformation,health,json",
       "javaType" : "org.apache.camel.model.dataformat.FhirJsonDataFormat",
       "supportLevel" : "Stable",
       "abstract" : false,
@@ -2495,7 +2634,8 @@
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "Sets the pretty print flag, meaning that the parser will encode resources with human-readable spacing and newlines between elements instead of condensing output as much as possible."
+          "description" : "Sets the pretty print flag, meaning that the parser will encode resources with human-readable spacing and newlines between elements instead of condensing output as much as possible.",
+          "default" : false
         },
         "parserErrorHandler" : {
           "type" : "string",
@@ -2525,12 +2665,14 @@
         "omitResourceId" : {
           "type" : "boolean",
           "title" : "Omit Resource Id",
-          "description" : "If set to true (default is false) the ID of any resources being encoded will not be included in the output. Note that this does not apply to contained resources, only to root resources. In other words, if this is set to true, contained resources will still have local IDs but the outer/containing ID will not have an ID."
+          "description" : "If set to true (default is false) the ID of any resources being encoded will not be included in the output. Note that this does not apply to contained resources, only to root resources. In other words, if this is set to true, contained resources will still have local IDs but the outer/containing ID will not have an ID.",
+          "default" : false
         },
         "encodeElementsAppliesToChildResourcesOnly" : {
           "type" : "boolean",
           "title" : "Encode Elements Applies To Child Resources Only",
-          "description" : "If set to true (default is false), the values supplied to setEncodeElements(Set) will not be applied to the root resource (typically a Bundle), but will be applied to any sub-resources contained within it (i.e. search result resources in that bundle)"
+          "description" : "If set to true (default is false), the values supplied to setEncodeElements(Set) will not be applied to the root resource (typically a Bundle), but will be applied to any sub-resources contained within it (i.e. search result resources in that bundle)",
+          "default" : false
         },
         "encodeElements" : {
           "type" : "string",
@@ -2545,22 +2687,26 @@
         "stripVersionsFromReferences" : {
           "type" : "boolean",
           "title" : "Strip Versions From References",
-          "description" : "If set to true (which is the default), resource references containing a version will have the version removed when the resource is encoded. This is generally good behaviour because in most situations, references from one resource to another should be to the resource by ID, not by ID and version. In some cases though, it may be desirable to preserve the version in resource links. In that case, this value should be set to false. This method provides the ability to globally disable reference encoding. If finer-grained control is needed, use setDontStripVersionsFromReferencesAtPaths(List)"
+          "description" : "If set to true (which is the default), resource references containing a version will have the version removed when the resource is encoded. This is generally good behaviour because in most situations, references from one resource to another should be to the resource by ID, not by ID and version. In some cases though, it may be desirable to preserve the version in resource links. In that case, this value should be set to false. This method provides the ability to globally disable reference encoding. If finer-grained control is needed, use setDontStripVersionsFromReferencesAtPaths(List)",
+          "default" : false
         },
         "overrideResourceIdWithBundleEntryFullUrl" : {
           "type" : "boolean",
           "title" : "Override Resource Id With Bundle Entry Full Url",
-          "description" : "If set to true (which is the default), the Bundle.entry.fullUrl will override the Bundle.entry.resource's resource id if the fullUrl is defined. This behavior happens when parsing the source data into a Bundle object. Set this to false if this is not the desired behavior (e.g. the client code wishes to perform additional validation checks between the fullUrl and the resource id)."
+          "description" : "If set to true (which is the default), the Bundle.entry.fullUrl will override the Bundle.entry.resource's resource id if the fullUrl is defined. This behavior happens when parsing the source data into a Bundle object. Set this to false if this is not the desired behavior (e.g. the client code wishes to perform additional validation checks between the fullUrl and the resource id).",
+          "default" : false
         },
         "summaryMode" : {
           "type" : "boolean",
           "title" : "Summary Mode",
-          "description" : "If set to true (default is false) only elements marked by the FHIR specification as being summary elements will be included."
+          "description" : "If set to true (default is false) only elements marked by the FHIR specification as being summary elements will be included.",
+          "default" : false
         },
         "suppressNarratives" : {
           "type" : "boolean",
           "title" : "Suppress Narratives",
-          "description" : "If set to true (default is false), narratives will not be included in the encoded values."
+          "description" : "If set to true (default is false), narratives will not be included in the encoded values.",
+          "default" : false
         },
         "dontStripVersionsFromReferencesAtPaths" : {
           "type" : "string",
@@ -2570,7 +2716,8 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -2584,7 +2731,7 @@
       "description" : "Marshall and unmarshall FHIR objects to/from XML.",
       "deprecated" : false,
       "firstVersion" : "2.21.0",
-      "label" : "dataformat,transformation,hl7,xml",
+      "label" : "dataformat,transformation,health,xml",
       "javaType" : "org.apache.camel.model.dataformat.FhirXmlDataFormat",
       "supportLevel" : "Stable",
       "abstract" : false,
@@ -2891,7 +3038,8 @@
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "Sets the pretty print flag, meaning that the parser will encode resources with human-readable spacing and newlines between elements instead of condensing output as much as possible."
+          "description" : "Sets the pretty print flag, meaning that the parser will encode resources with human-readable spacing and newlines between elements instead of condensing output as much as possible.",
+          "default" : false
         },
         "parserErrorHandler" : {
           "type" : "string",
@@ -2921,12 +3069,14 @@
         "omitResourceId" : {
           "type" : "boolean",
           "title" : "Omit Resource Id",
-          "description" : "If set to true (default is false) the ID of any resources being encoded will not be included in the output. Note that this does not apply to contained resources, only to root resources. In other words, if this is set to true, contained resources will still have local IDs but the outer/containing ID will not have an ID."
+          "description" : "If set to true (default is false) the ID of any resources being encoded will not be included in the output. Note that this does not apply to contained resources, only to root resources. In other words, if this is set to true, contained resources will still have local IDs but the outer/containing ID will not have an ID.",
+          "default" : false
         },
         "encodeElementsAppliesToChildResourcesOnly" : {
           "type" : "boolean",
           "title" : "Encode Elements Applies To Child Resources Only",
-          "description" : "If set to true (default is false), the values supplied to setEncodeElements(Set) will not be applied to the root resource (typically a Bundle), but will be applied to any sub-resources contained within it (i.e. search result resources in that bundle)"
+          "description" : "If set to true (default is false), the values supplied to setEncodeElements(Set) will not be applied to the root resource (typically a Bundle), but will be applied to any sub-resources contained within it (i.e. search result resources in that bundle)",
+          "default" : false
         },
         "encodeElements" : {
           "type" : "string",
@@ -2941,22 +3091,26 @@
         "stripVersionsFromReferences" : {
           "type" : "boolean",
           "title" : "Strip Versions From References",
-          "description" : "If set to true (which is the default), resource references containing a version will have the version removed when the resource is encoded. This is generally good behaviour because in most situations, references from one resource to another should be to the resource by ID, not by ID and version. In some cases though, it may be desirable to preserve the version in resource links. In that case, this value should be set to false. This method provides the ability to globally disable reference encoding. If finer-grained control is needed, use setDontStripVersionsFromReferencesAtPaths(List)"
+          "description" : "If set to true (which is the default), resource references containing a version will have the version removed when the resource is encoded. This is generally good behaviour because in most situations, references from one resource to another should be to the resource by ID, not by ID and version. In some cases though, it may be desirable to preserve the version in resource links. In that case, this value should be set to false. This method provides the ability to globally disable reference encoding. If finer-grained control is needed, use setDontStripVersionsFromReferencesAtPaths(List)",
+          "default" : false
         },
         "overrideResourceIdWithBundleEntryFullUrl" : {
           "type" : "boolean",
           "title" : "Override Resource Id With Bundle Entry Full Url",
-          "description" : "If set to true (which is the default), the Bundle.entry.fullUrl will override the Bundle.entry.resource's resource id if the fullUrl is defined. This behavior happens when parsing the source data into a Bundle object. Set this to false if this is not the desired behavior (e.g. the client code wishes to perform additional validation checks between the fullUrl and the resource id)."
+          "description" : "If set to true (which is the default), the Bundle.entry.fullUrl will override the Bundle.entry.resource's resource id if the fullUrl is defined. This behavior happens when parsing the source data into a Bundle object. Set this to false if this is not the desired behavior (e.g. the client code wishes to perform additional validation checks between the fullUrl and the resource id).",
+          "default" : false
         },
         "summaryMode" : {
           "type" : "boolean",
           "title" : "Summary Mode",
-          "description" : "If set to true (default is false) only elements marked by the FHIR specification as being summary elements will be included."
+          "description" : "If set to true (default is false) only elements marked by the FHIR specification as being summary elements will be included.",
+          "default" : false
         },
         "suppressNarratives" : {
           "type" : "boolean",
           "title" : "Suppress Narratives",
-          "description" : "If set to true (default is false), narratives will not be included in the encoded values."
+          "description" : "If set to true (default is false), narratives will not be included in the encoded values.",
+          "default" : false
         },
         "dontStripVersionsFromReferencesAtPaths" : {
           "type" : "string",
@@ -2966,7 +3120,8 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -3132,7 +3287,8 @@
         "fixed" : {
           "type" : "boolean",
           "title" : "Fixed",
-          "description" : "Delimited or fixed. Is by default false = delimited"
+          "description" : "Delimited or fixed. Is by default false = delimited",
+          "default" : false
         },
         "delimiter" : {
           "type" : "string",
@@ -3143,17 +3299,20 @@
         "ignoreFirstRecord" : {
           "type" : "boolean",
           "title" : "Ignore First Record",
-          "description" : "Whether the first line is ignored for delimited files (for the column headers). Is by default true."
+          "description" : "Whether the first line is ignored for delimited files (for the column headers). Is by default true.",
+          "default" : true
         },
         "allowShortLines" : {
           "type" : "boolean",
           "title" : "Allow Short Lines",
-          "description" : "Allows for lines to be shorter than expected and ignores the extra characters"
+          "description" : "Allows for lines to be shorter than expected and ignores the extra characters",
+          "default" : false
         },
         "ignoreExtraColumns" : {
           "type" : "boolean",
           "title" : "Ignore Extra Columns",
-          "description" : "Allows for lines to be longer than expected and ignores the extra characters."
+          "description" : "Allows for lines to be longer than expected and ignores the extra characters.",
+          "default" : false
         },
         "textQualifier" : {
           "type" : "string",
@@ -3164,6 +3323,132 @@
           "type" : "string",
           "title" : "Parser Factory Ref",
           "description" : "References to a custom parser factory to lookup in the registry"
+        }
+      },
+      "required" : [ ]
+    }
+  },
+  "fory" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "fory",
+      "title" : "Fory",
+      "description" : "Serialize and deserialize messages using Apache Fory",
+      "deprecated" : false,
+      "firstVersion" : "4.9.0",
+      "label" : "dataformat,transformation",
+      "javaType" : "org.apache.camel.model.dataformat.ForyDataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "unmarshalType" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Unmarshal Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Class of the java type to use when unmarshalling"
+      },
+      "requireClassRegistration" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Require Class Registration",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to require register classes"
+      },
+      "threadSafe" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Thread Safe",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to use the threadsafe Fory"
+      },
+      "allowAutoWiredFory" : {
+        "index" : 4,
+        "kind" : "attribute",
+        "displayName" : "Allow Auto Wired Fory",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to auto-discover Fory from the registry"
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "Fory",
+      "description" : "Serialize and deserialize messages using Apache Fory",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "unmarshalType" : {
+          "type" : "string",
+          "title" : "Unmarshal Type",
+          "description" : "Class of the java type to use when unmarshalling"
+        },
+        "requireClassRegistration" : {
+          "type" : "boolean",
+          "title" : "Require Class Registration",
+          "description" : "Whether to require register classes",
+          "default" : true
+        },
+        "threadSafe" : {
+          "type" : "boolean",
+          "title" : "Thread Safe",
+          "description" : "Whether to use the threadsafe Fory",
+          "default" : true
+        },
+        "allowAutoWiredFory" : {
+          "type" : "boolean",
+          "title" : "Allow Auto Wired Fory",
+          "description" : "Whether to auto-discover Fory from the registry",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -3273,17 +3558,20 @@
         "flattened" : {
           "type" : "boolean",
           "title" : "Flattened",
-          "description" : "Turns on flattened mode. In flattened mode the exception is thrown when there are multiple pattern matches with same key."
+          "description" : "Turns on flattened mode. In flattened mode the exception is thrown when there are multiple pattern matches with same key.",
+          "default" : false
         },
         "allowMultipleMatchesPerLine" : {
           "type" : "boolean",
           "title" : "Allow Multiple Matches Per Line",
-          "description" : "If false, every line of input is matched for pattern only once. Otherwise the line can be scanned multiple times when non-terminal pattern is used."
+          "description" : "If false, every line of input is matched for pattern only once. Otherwise the line can be scanned multiple times when non-terminal pattern is used.",
+          "default" : true
         },
         "namedOnly" : {
           "type" : "boolean",
           "title" : "Named Only",
-          "description" : "Whether to capture named expressions only or not (i.e. %{IP:ip} but not ${IP})"
+          "description" : "Whether to capture named expressions only or not (i.e. %{IP:ip} but not ${IP})",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -3342,7 +3630,7 @@
       "description" : "Marshal and unmarshal HL7 (Health Care) model objects using the HL7 MLLP codec.",
       "deprecated" : false,
       "firstVersion" : "2.0.0",
-      "label" : "dataformat,transformation,hl7",
+      "label" : "dataformat,transformation,health",
       "javaType" : "org.apache.camel.model.dataformat.HL7DataFormat",
       "supportLevel" : "Stable",
       "abstract" : false,
@@ -3392,7 +3680,8 @@
         "validate" : {
           "type" : "boolean",
           "title" : "Validate",
-          "description" : "Whether to validate the HL7 message Is by default true."
+          "description" : "Whether to validate the HL7 message Is by default true.",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -3456,7 +3745,112 @@
         "validating" : {
           "type" : "boolean",
           "title" : "Validating",
-          "description" : "Whether to validate."
+          "description" : "Whether to validate.",
+          "default" : false
+        }
+      },
+      "required" : [ ]
+    }
+  },
+  "iso8583" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "iso8583",
+      "title" : "ISO-8583",
+      "description" : "Create, edit and read ISO-8583 messages.",
+      "deprecated" : false,
+      "firstVersion" : "4.14.0",
+      "label" : "dataformat,transformation,finance",
+      "javaType" : "org.apache.camel.model.dataformat.Iso8583DataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "configFile" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Config File",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : "j8583-config.xml",
+        "description" : "The j8583 configuration file to load from classpath"
+      },
+      "isoType" : {
+        "index" : 2,
+        "kind" : "attribute",
+        "displayName" : "Iso Type",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The default ISO-Type to use"
+      },
+      "allowAutoWiredMessageFormat" : {
+        "index" : 3,
+        "kind" : "attribute",
+        "displayName" : "Allow Auto Wired Message Format",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : true,
+        "description" : "Whether to auto-discover com.solab.iso8583.MessageFactory from the registry"
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "ISO-8583",
+      "description" : "Create, edit and read ISO-8583 messages.",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "configFile" : {
+          "type" : "string",
+          "title" : "Config File",
+          "description" : "The j8583 configuration file to load from classpath",
+          "default" : "j8583-config.xml"
+        },
+        "isoType" : {
+          "type" : "string",
+          "title" : "Iso Type",
+          "description" : "The default ISO-Type to use"
+        },
+        "allowAutoWiredMessageFormat" : {
+          "type" : "boolean",
+          "title" : "Allow Auto Wired Message Format",
+          "description" : "Whether to auto-discover com.solab.iso8583.MessageFactory from the registry",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -3711,6 +4105,20 @@
         "secret" : false,
         "defaultValue" : true,
         "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+      },
+      "maxStringLength" : {
+        "index" : 17,
+        "kind" : "attribute",
+        "displayName" : "Max String Length",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "integer",
+        "javaType" : "java.lang.Integer",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid."
       }
     },
     "propertiesSchema" : {
@@ -3732,7 +4140,8 @@
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "To enable pretty printing output nicely formatted. Is by default false."
+          "description" : "To enable pretty printing output nicely formatted. Is by default false.",
+          "default" : false
         },
         "unmarshalType" : {
           "type" : "string",
@@ -3742,7 +4151,8 @@
         "allowUnmarshallType" : {
           "type" : "boolean",
           "title" : "Allow Unmarshall Type",
-          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
+          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used.",
+          "default" : false
         },
         "jsonView" : {
           "type" : "string",
@@ -3757,7 +4167,8 @@
         "allowJmsType" : {
           "type" : "boolean",
           "title" : "Allow Jms Type",
-          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
+          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to.",
+          "default" : false
         },
         "collectionType" : {
           "type" : "string",
@@ -3767,7 +4178,8 @@
         "useList" : {
           "type" : "boolean",
           "title" : "Use List",
-          "description" : "To unmarshal to a List of Map or a List of Pojo."
+          "description" : "To unmarshal to a List of Map or a List of Pojo.",
+          "default" : false
         },
         "timezone" : {
           "type" : "string",
@@ -3777,7 +4189,8 @@
         "enableJaxbAnnotationModule" : {
           "type" : "boolean",
           "title" : "Enable Jaxb Annotation Module",
-          "description" : "Whether to enable the JAXB annotations module when using jackson. When enabled then JAXB annotations can be used by Jackson."
+          "description" : "Whether to enable the JAXB annotations module when using jackson. When enabled then JAXB annotations can be used by Jackson.",
+          "default" : false
         },
         "moduleClassNames" : {
           "type" : "string",
@@ -3802,7 +4215,13 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
+        },
+        "maxStringLength" : {
+          "type" : "number",
+          "title" : "Max String Length",
+          "description" : "Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid."
         }
       },
       "required" : [ ]
@@ -4140,7 +4559,8 @@
         "contextPathIsClassName" : {
           "type" : "boolean",
           "title" : "Context Path Is Class Name",
-          "description" : "This can be set to true to mark that the contextPath is referring to a classname and not a package name."
+          "description" : "This can be set to true to mark that the contextPath is referring to a classname and not a package name.",
+          "default" : false
         },
         "schema" : {
           "type" : "string",
@@ -4157,27 +4577,32 @@
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "To enable pretty printing output nicely formatted. Is by default false."
+          "description" : "To enable pretty printing output nicely formatted. Is by default false.",
+          "default" : true
         },
         "objectFactory" : {
           "type" : "boolean",
           "title" : "Object Factory",
-          "description" : "Whether to allow using ObjectFactory classes to create the POJO classes during marshalling. This only applies to POJO classes that has not been annotated with JAXB and providing jaxb.index descriptor files."
+          "description" : "Whether to allow using ObjectFactory classes to create the POJO classes during marshalling. This only applies to POJO classes that has not been annotated with JAXB and providing jaxb.index descriptor files.",
+          "default" : true
         },
         "ignoreJAXBElement" : {
           "type" : "boolean",
           "title" : "Ignore JAXBElement",
-          "description" : "Whether to ignore JAXBElement elements - only needed to be set to false in very special use-cases."
+          "description" : "Whether to ignore JAXBElement elements - only needed to be set to false in very special use-cases.",
+          "default" : true
         },
         "mustBeJAXBElement" : {
           "type" : "boolean",
           "title" : "Must Be JAXBElement",
-          "description" : "Whether marhsalling must be java objects with JAXB annotations. And if not then it fails. This option can be set to false to relax that, such as when the data is already in XML format."
+          "description" : "Whether marhsalling must be java objects with JAXB annotations. And if not then it fails. This option can be set to false to relax that, such as when the data is already in XML format.",
+          "default" : false
         },
         "filterNonXmlChars" : {
           "type" : "boolean",
           "title" : "Filter Non Xml Chars",
-          "description" : "To ignore non xml characheters and replace them with an empty space."
+          "description" : "To ignore non xml characheters and replace them with an empty space.",
+          "default" : false
         },
         "encoding" : {
           "type" : "string",
@@ -4187,7 +4612,8 @@
         "fragment" : {
           "type" : "boolean",
           "title" : "Fragment",
-          "description" : "To turn on marshalling XML fragment trees. By default JAXB looks for XmlRootElement annotation on given class to operate on whole XML tree. This is useful but not always - sometimes generated code does not have XmlRootElement annotation, sometimes you need unmarshall only part of tree. In that case you can use partial unmarshalling. To enable this behaviours you need set property partClass. Camel will pass this class to JAXB's unmarshaler."
+          "description" : "To turn on marshalling XML fragment trees. By default JAXB looks for XmlRootElement annotation on given class to operate on whole XML tree. This is useful but not always - sometimes generated code does not have XmlRootElement annotation, sometimes you need unmarshall only part of tree. In that case you can use partial unmarshalling. To enable this behaviours you need set property partClass. Camel will pass this class to JAXB's unmarshaler.",
+          "default" : false
         },
         "partClass" : {
           "type" : "string",
@@ -4227,7 +4653,8 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         },
         "accessExternalSchemaProtocols" : {
           "type" : "string",
@@ -4337,8 +4764,22 @@
         "defaultValue" : "Jackson",
         "description" : "Which json library to use."
       },
-      "unmarshalType" : {
+      "combineUnicodeSurrogates" : {
         "index" : 6,
+        "kind" : "attribute",
+        "displayName" : "Combine Unicode Surrogates",
+        "group" : "common",
+        "required" : false,
+        "type" : "boolean",
+        "javaType" : "java.lang.Boolean",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "defaultValue" : false,
+        "description" : "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese."
+      },
+      "unmarshalType" : {
+        "index" : 7,
         "kind" : "attribute",
         "displayName" : "Unmarshal Type",
         "group" : "common",
@@ -4351,7 +4792,7 @@
         "description" : "Class name of the java type to use when unmarshalling"
       },
       "jsonView" : {
-        "index" : 7,
+        "index" : 8,
         "kind" : "attribute",
         "displayName" : "Json View",
         "group" : "advanced",
@@ -4365,7 +4806,7 @@
         "description" : "When marshalling a POJO to JSON you might want to exclude certain fields from the JSON output. With Jackson you can use JSON views to accomplish this. This option is to refer to the class which has JsonView annotations"
       },
       "include" : {
-        "index" : 8,
+        "index" : 9,
         "kind" : "attribute",
         "displayName" : "Include",
         "group" : "advanced",
@@ -4379,7 +4820,7 @@
         "description" : "If you want to marshal a pojo to JSON, and the pojo has some fields with null values. And you want to skip these null values, you can set this option to NON_NULL"
       },
       "allowJmsType" : {
-        "index" : 9,
+        "index" : 10,
         "kind" : "attribute",
         "displayName" : "Allow Jms Type",
         "group" : "advanced",
@@ -4394,7 +4835,7 @@
         "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
       },
       "collectionType" : {
-        "index" : 10,
+        "index" : 11,
         "kind" : "attribute",
         "displayName" : "Collection Type",
         "group" : "advanced",
@@ -4408,7 +4849,7 @@
         "description" : "Refers to a custom collection type to lookup in the registry to use. This option should rarely be used, but allows using different collection types than java.util.Collection based as default."
       },
       "useList" : {
-        "index" : 11,
+        "index" : 12,
         "kind" : "attribute",
         "displayName" : "Use List",
         "group" : "common",
@@ -4422,7 +4863,7 @@
         "description" : "To unmarshal to a List of Map or a List of Pojo."
       },
       "moduleClassNames" : {
-        "index" : 12,
+        "index" : 13,
         "kind" : "attribute",
         "displayName" : "Module Class Names",
         "group" : "advanced",
@@ -4436,7 +4877,7 @@
         "description" : "To use custom Jackson modules com.fasterxml.jackson.databind.Module specified as a String with FQN class names. Multiple classes can be separated by comma."
       },
       "moduleRefs" : {
-        "index" : 13,
+        "index" : 14,
         "kind" : "attribute",
         "displayName" : "Module Refs",
         "group" : "advanced",
@@ -4450,7 +4891,7 @@
         "description" : "To use custom Jackson modules referred from the Camel registry. Multiple modules can be separated by comma."
       },
       "enableFeatures" : {
-        "index" : 14,
+        "index" : 15,
         "kind" : "attribute",
         "displayName" : "Enable Features",
         "group" : "advanced",
@@ -4464,7 +4905,7 @@
         "description" : "Set of features to enable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from com.fasterxml.jackson.databind.SerializationFeature, com.fasterxml.jackson.databind.DeserializationFeature, or com.fasterxml.jackson.databind.MapperFeature Multiple features can be separated by comma"
       },
       "disableFeatures" : {
-        "index" : 15,
+        "index" : 16,
         "kind" : "attribute",
         "displayName" : "Disable Features",
         "group" : "advanced",
@@ -4478,7 +4919,7 @@
         "description" : "Set of features to disable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from com.fasterxml.jackson.databind.SerializationFeature, com.fasterxml.jackson.databind.DeserializationFeature, or com.fasterxml.jackson.databind.MapperFeature Multiple features can be separated by comma"
       },
       "allowUnmarshallType" : {
-        "index" : 16,
+        "index" : 17,
         "kind" : "attribute",
         "displayName" : "Allow Unmarshall Type",
         "group" : "common",
@@ -4492,7 +4933,7 @@
         "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
       },
       "timezone" : {
-        "index" : 17,
+        "index" : 18,
         "kind" : "attribute",
         "displayName" : "Timezone",
         "group" : "advanced",
@@ -4506,7 +4947,7 @@
         "description" : "If set then Jackson will use the Timezone when marshalling/unmarshalling. This option will have no effect on the others Json DataFormat, like gson and fastjson."
       },
       "schemaResolver" : {
-        "index" : 18,
+        "index" : 19,
         "kind" : "attribute",
         "displayName" : "Schema Resolver",
         "group" : "advanced",
@@ -4520,7 +4961,7 @@
         "description" : "Optional schema resolver used to lookup schemas for the data in transit."
       },
       "autoDiscoverSchemaResolver" : {
-        "index" : 19,
+        "index" : 20,
         "kind" : "attribute",
         "displayName" : "Auto Discover Schema Resolver",
         "group" : "advanced",
@@ -4535,7 +4976,7 @@
         "description" : "When not disabled, the SchemaResolver will be looked up into the registry"
       },
       "namingStrategy" : {
-        "index" : 20,
+        "index" : 21,
         "kind" : "attribute",
         "displayName" : "Naming Strategy",
         "group" : "common",
@@ -4548,7 +4989,7 @@
         "description" : "If set then Jackson will use the the defined Property Naming Strategy.Possible values are: LOWER_CAMEL_CASE, LOWER_DOT_CASE, LOWER_CASE, KEBAB_CASE, SNAKE_CASE and UPPER_CAMEL_CASE"
       },
       "contentTypeHeader" : {
-        "index" : 21,
+        "index" : 22,
         "kind" : "attribute",
         "displayName" : "Content Type Header",
         "group" : "common",
@@ -4562,7 +5003,7 @@
         "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
       },
       "dateFormatPattern" : {
-        "index" : 22,
+        "index" : 23,
         "kind" : "attribute",
         "displayName" : "Date Format Pattern",
         "group" : "common",
@@ -4573,6 +5014,20 @@
         "autowired" : false,
         "secret" : false,
         "description" : "To configure the date format while marshall or unmarshall Date fields in JSON using Gson"
+      },
+      "maxStringLength" : {
+        "index" : 24,
+        "kind" : "attribute",
+        "displayName" : "Max String Length",
+        "group" : "advanced",
+        "label" : "advanced",
+        "required" : false,
+        "type" : "integer",
+        "javaType" : "java.lang.Integer",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Jackson. Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid."
       }
     },
     "propertiesSchema" : {
@@ -4584,32 +5039,43 @@
         "allowJmsType" : {
           "type" : "boolean",
           "title" : "Allow Jms Type",
-          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
+          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to.",
+          "default" : false
         },
         "allowUnmarshallType" : {
           "type" : "boolean",
           "title" : "Allow Unmarshall Type",
-          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
+          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used.",
+          "default" : false
         },
         "autoDiscoverObjectMapper" : {
           "type" : "boolean",
           "title" : "Auto Discover Object Mapper",
-          "description" : "If set to true then Jackson will look for an objectMapper to use from the registry"
+          "description" : "If set to true then Jackson will look for an objectMapper to use from the registry",
+          "default" : false
         },
         "autoDiscoverSchemaResolver" : {
           "type" : "boolean",
           "title" : "Auto Discover Schema Resolver",
-          "description" : "When not disabled, the SchemaResolver will be looked up into the registry"
+          "description" : "When not disabled, the SchemaResolver will be looked up into the registry",
+          "default" : true
         },
         "collectionType" : {
           "type" : "string",
           "title" : "Collection Type",
           "description" : "Refers to a custom collection type to lookup in the registry to use. This option should rarely be used, but allows using different collection types than java.util.Collection based as default."
         },
+        "combineUnicodeSurrogates" : {
+          "type" : "boolean",
+          "title" : "Combine Unicode Surrogates",
+          "description" : "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese.",
+          "default" : false
+        },
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         },
         "dateFormatPattern" : {
           "type" : "string",
@@ -4648,6 +5114,11 @@
           "default" : "Jackson",
           "enum" : [ "Fastjson", "Gson", "Jackson", "Jsonb" ]
         },
+        "maxStringLength" : {
+          "type" : "number",
+          "title" : "Max String Length",
+          "description" : "Jackson. Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid."
+        },
         "moduleClassNames" : {
           "type" : "string",
           "title" : "Module Class Names",
@@ -4671,7 +5142,8 @@
         "prettyPrint" : {
           "type" : "boolean",
           "title" : "Pretty Print",
-          "description" : "To enable pretty printing output nicely formatted. Is by default false."
+          "description" : "To enable pretty printing output nicely formatted. Is by default false.",
+          "default" : false
         },
         "schemaResolver" : {
           "type" : "string",
@@ -4691,12 +5163,14 @@
         "useDefaultObjectMapper" : {
           "type" : "boolean",
           "title" : "Use Default Object Mapper",
-          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry."
+          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry.",
+          "default" : true
         },
         "useList" : {
           "type" : "boolean",
           "title" : "Use List",
-          "description" : "To unmarshal to a List of Map or a List of Pojo."
+          "description" : "To unmarshal to a List of Map or a List of Pojo.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -4841,7 +5315,8 @@
         "usingParallelCompression" : {
           "type" : "boolean",
           "title" : "Using Parallel Compression",
-          "description" : "Enable encoding (compress) using multiple processing cores."
+          "description" : "Enable encoding (compress) using multiple processing cores.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -4966,12 +5441,14 @@
         "multipartWithoutAttachment" : {
           "type" : "boolean",
           "title" : "Multipart Without Attachment",
-          "description" : "Defines whether a message without attachment is also marshaled into a MIME Multipart (with only one body part). Default is false."
+          "description" : "Defines whether a message without attachment is also marshaled into a MIME Multipart (with only one body part). Default is false.",
+          "default" : false
         },
         "headersInline" : {
           "type" : "boolean",
           "title" : "Headers Inline",
-          "description" : "Defines whether the MIME-Multipart headers are part of the message body (true) or are set as Camel headers (false). Default is false."
+          "description" : "Defines whether the MIME-Multipart headers are part of the message body (true) or are set as Camel headers (false). Default is false.",
+          "default" : false
         },
         "includeHeaders" : {
           "type" : "string",
@@ -4981,7 +5458,8 @@
         "binaryContent" : {
           "type" : "boolean",
           "title" : "Binary Content",
-          "description" : "Defines whether the content of binary parts in the MIME multipart is binary (true) or Base-64 encoded (false) Default is false."
+          "description" : "Defines whether the content of binary parts in the MIME multipart is binary (true) or Base-64 encoded (false) Default is false.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -5083,7 +5561,8 @@
         "lazyLoad" : {
           "type" : "boolean",
           "title" : "Lazy Load",
-          "description" : "Whether the unmarshalling should produce an iterator of records or read all the records at once."
+          "description" : "Whether the unmarshalling should produce an iterator of records or read all the records at once.",
+          "default" : false
         }
       },
       "title" : "Parquet File",
@@ -5354,12 +5833,14 @@
         "armored" : {
           "type" : "boolean",
           "title" : "Armored",
-          "description" : "This option will cause PGP to base64 encode the encrypted text, making it available for copy/paste, etc."
+          "description" : "This option will cause PGP to base64 encode the encrypted text, making it available for copy/paste, etc.",
+          "default" : false
         },
         "integrity" : {
           "type" : "boolean",
           "title" : "Integrity",
-          "description" : "Adds an integrity check/sign into the encryption file. The default value is true."
+          "description" : "Adds an integrity check/sign into the encryption file. The default value is true.",
+          "default" : true
         },
         "provider" : {
           "type" : "string",
@@ -5733,12 +6214,14 @@
         "useDefaultObjectMapper" : {
           "type" : "boolean",
           "title" : "Use Default Object Mapper",
-          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry."
+          "description" : "Whether to lookup and use default Jackson ObjectMapper from the registry.",
+          "default" : true
         },
         "autoDiscoverObjectMapper" : {
           "type" : "boolean",
           "title" : "Auto Discover Object Mapper",
-          "description" : "If set to true then Jackson will lookup for an objectMapper into the registry"
+          "description" : "If set to true then Jackson will lookup for an objectMapper into the registry",
+          "default" : false
         },
         "library" : {
           "type" : "string",
@@ -5765,7 +6248,8 @@
         "allowJmsType" : {
           "type" : "boolean",
           "title" : "Allow Jms Type",
-          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to."
+          "description" : "Used for JMS users to allow the JMSType header from the JMS spec to specify a FQN classname to use to unmarshal to.",
+          "default" : false
         },
         "collectionType" : {
           "type" : "string",
@@ -5775,7 +6259,8 @@
         "useList" : {
           "type" : "boolean",
           "title" : "Use List",
-          "description" : "To unmarshal to a List of Map or a List of Pojo."
+          "description" : "To unmarshal to a List of Map or a List of Pojo.",
+          "default" : false
         },
         "moduleClassNames" : {
           "type" : "string",
@@ -5800,7 +6285,8 @@
         "allowUnmarshallType" : {
           "type" : "boolean",
           "title" : "Allow Unmarshall Type",
-          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used."
+          "description" : "If enabled then Jackson is allowed to attempt to use the CamelJacksonUnmarshalType header during the unmarshalling. This should only be enabled when desired to be used.",
+          "default" : false
         },
         "timezone" : {
           "type" : "string",
@@ -5815,7 +6301,8 @@
         "autoDiscoverSchemaResolver" : {
           "type" : "boolean",
           "title" : "Auto Discover Schema Resolver",
-          "description" : "When not disabled, the SchemaResolver will be looked up into the registry"
+          "description" : "When not disabled, the SchemaResolver will be looked up into the registry",
+          "default" : true
         },
         "contentTypeFormat" : {
           "type" : "string",
@@ -5827,7 +6314,8 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         }
       },
       "title" : "Protobuf",
@@ -5878,6 +6366,69 @@
         }
       },
       "required" : [ ]
+    }
+  },
+  "smooks" : {
+    "model" : {
+      "kind" : "model",
+      "name" : "smooks",
+      "title" : "Smooks",
+      "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+      "deprecated" : false,
+      "firstVersion" : "4.9.0",
+      "label" : "dataformat,transformation",
+      "javaType" : "org.apache.camel.model.dataformat.SmooksDataFormat",
+      "supportLevel" : "Stable",
+      "abstract" : false,
+      "input" : false,
+      "output" : false
+    },
+    "properties" : {
+      "id" : {
+        "index" : 0,
+        "kind" : "attribute",
+        "displayName" : "Id",
+        "group" : "common",
+        "required" : false,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "The id of this node"
+      },
+      "smooksConfig" : {
+        "index" : 1,
+        "kind" : "attribute",
+        "displayName" : "Smooks Config",
+        "group" : "common",
+        "required" : true,
+        "type" : "string",
+        "javaType" : "java.lang.String",
+        "deprecated" : false,
+        "autowired" : false,
+        "secret" : false,
+        "description" : "Path to the Smooks configuration file."
+      }
+    },
+    "propertiesSchema" : {
+      "title" : "Smooks",
+      "description" : "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "title" : "Id",
+          "description" : "The id of this node"
+        },
+        "smooksConfig" : {
+          "type" : "string",
+          "title" : "Smooks Config",
+          "description" : "Path to the Smooks configuration file."
+        }
+      },
+      "required" : [ "smooksConfig" ]
     }
   },
   "soap" : {
@@ -6047,7 +6598,7 @@
       "description" : "Encode and decode SWIFT MT messages.",
       "deprecated" : false,
       "firstVersion" : "3.20.0",
-      "label" : "dataformat,transformation,swift",
+      "label" : "dataformat,transformation,finance",
       "javaType" : "org.apache.camel.model.dataformat.SwiftMtDataFormat",
       "supportLevel" : "Stable",
       "abstract" : false,
@@ -6096,7 +6647,8 @@
         "writeInJson" : {
           "type" : "boolean",
           "title" : "Write In Json",
-          "description" : "The flag indicating that messages must be marshalled in a JSON format."
+          "description" : "The flag indicating that messages must be marshalled in a JSON format.",
+          "default" : false
         }
       },
       "title" : "SWIFT MT",
@@ -6112,7 +6664,7 @@
       "description" : "Encode and decode SWIFT MX messages.",
       "deprecated" : false,
       "firstVersion" : "3.20.0",
-      "label" : "dataformat,transformation,swift",
+      "label" : "dataformat,transformation,finance",
       "javaType" : "org.apache.camel.model.dataformat.SwiftMxDataFormat",
       "supportLevel" : "Stable",
       "abstract" : false,
@@ -6210,7 +6762,8 @@
         "writeInJson" : {
           "type" : "boolean",
           "title" : "Write In Json",
-          "description" : "The flag indicating that messages must be marshalled in a JSON format."
+          "description" : "The flag indicating that messages must be marshalled in a JSON format.",
+          "default" : false
         },
         "readMessageId" : {
           "type" : "string",
@@ -6372,17 +6925,20 @@
         "usingIterator" : {
           "type" : "boolean",
           "title" : "Using Iterator",
-          "description" : "If the tar file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode."
+          "description" : "If the tar file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode.",
+          "default" : false
         },
         "allowEmptyDirectory" : {
           "type" : "boolean",
           "title" : "Allow Empty Directory",
-          "description" : "If the tar file has more than one entry, setting this option to true, allows to get the iterator even if the directory is empty"
+          "description" : "If the tar file has more than one entry, setting this option to true, allows to get the iterator even if the directory is empty",
+          "default" : false
         },
         "preservePathElements" : {
           "type" : "boolean",
           "title" : "Preserve Path Elements",
-          "description" : "If the file name contains path elements, setting this option to true, allows the path to be maintained in the tar file."
+          "description" : "If the file name contains path elements, setting this option to true, allows the path to be maintained in the tar file.",
+          "default" : false
         },
         "maxDecompressedSize" : {
           "type" : "number",
@@ -6490,7 +7046,8 @@
         "contentTypeHeader" : {
           "type" : "boolean",
           "title" : "Content Type Header",
-          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON"
+          "description" : "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
+          "default" : true
         }
       },
       "title" : "Thrift",
@@ -6578,7 +7135,8 @@
         "omitXmlDeclaration" : {
           "type" : "boolean",
           "title" : "Omit Xml Declaration",
-          "description" : "When returning a String, do we omit the XML declaration in the top."
+          "description" : "When returning a String, do we omit the XML declaration in the top.",
+          "default" : false
         }
       },
       "required" : [ ]
@@ -6876,7 +7434,8 @@
         "quoteAllFields" : {
           "type" : "boolean",
           "title" : "Quote All Fields",
-          "description" : "Whether or not all values must be quoted when writing them."
+          "description" : "Whether or not all values must be quoted when writing them.",
+          "default" : false
         },
         "quote" : {
           "type" : "string",
@@ -6898,27 +7457,32 @@
         "skipEmptyLines" : {
           "type" : "boolean",
           "title" : "Skip Empty Lines",
-          "description" : "Whether or not the empty lines must be ignored. The default value is true"
+          "description" : "Whether or not the empty lines must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreTrailingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Trailing Whitespaces",
-          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreLeadingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Leading Whitespaces",
-          "description" : "Whether or not the leading white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the leading white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "headersDisabled" : {
           "type" : "boolean",
           "title" : "Headers Disabled",
-          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false"
+          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false",
+          "default" : false
         },
         "headerExtractionEnabled" : {
           "type" : "boolean",
           "title" : "Header Extraction Enabled",
-          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false"
+          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false",
+          "default" : false
         },
         "numberOfRecordsToRead" : {
           "type" : "number",
@@ -6949,12 +7513,14 @@
         "lazyLoad" : {
           "type" : "boolean",
           "title" : "Lazy Load",
-          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false"
+          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
+          "default" : false
         },
         "asMap" : {
           "type" : "boolean",
           "title" : "As Map",
-          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false"
+          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false",
+          "default" : false
         },
         "univocityHeader" : {
           "type" : "array",
@@ -7260,12 +7826,14 @@
         "skipTrailingCharsUntilNewline" : {
           "type" : "boolean",
           "title" : "Skip Trailing Chars Until Newline",
-          "description" : "Whether or not the trailing characters until new line must be ignored. The default value is false"
+          "description" : "Whether or not the trailing characters until new line must be ignored. The default value is false",
+          "default" : false
         },
         "recordEndsOnNewline" : {
           "type" : "boolean",
           "title" : "Record Ends On Newline",
-          "description" : "Whether or not the record ends on new line. The default value is false"
+          "description" : "Whether or not the record ends on new line. The default value is false",
+          "default" : false
         },
         "nullValue" : {
           "type" : "string",
@@ -7275,27 +7843,32 @@
         "skipEmptyLines" : {
           "type" : "boolean",
           "title" : "Skip Empty Lines",
-          "description" : "Whether or not the empty lines must be ignored. The default value is true"
+          "description" : "Whether or not the empty lines must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreTrailingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Trailing Whitespaces",
-          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreLeadingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Leading Whitespaces",
-          "description" : "Whether or not the leading white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the leading white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "headersDisabled" : {
           "type" : "boolean",
           "title" : "Headers Disabled",
-          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false"
+          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false",
+          "default" : false
         },
         "headerExtractionEnabled" : {
           "type" : "boolean",
           "title" : "Header Extraction Enabled",
-          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false"
+          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false",
+          "default" : false
         },
         "numberOfRecordsToRead" : {
           "type" : "number",
@@ -7326,12 +7899,14 @@
         "lazyLoad" : {
           "type" : "boolean",
           "title" : "Lazy Load",
-          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false"
+          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
+          "default" : false
         },
         "asMap" : {
           "type" : "boolean",
           "title" : "As Map",
-          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false"
+          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false",
+          "default" : false
         },
         "univocityHeader" : {
           "type" : "array",
@@ -7617,27 +8192,32 @@
         "skipEmptyLines" : {
           "type" : "boolean",
           "title" : "Skip Empty Lines",
-          "description" : "Whether or not the empty lines must be ignored. The default value is true"
+          "description" : "Whether or not the empty lines must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreTrailingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Trailing Whitespaces",
-          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the trailing white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "ignoreLeadingWhitespaces" : {
           "type" : "boolean",
           "title" : "Ignore Leading Whitespaces",
-          "description" : "Whether or not the leading white spaces must be ignored. The default value is true"
+          "description" : "Whether or not the leading white spaces must be ignored. The default value is true",
+          "default" : true
         },
         "headersDisabled" : {
           "type" : "boolean",
           "title" : "Headers Disabled",
-          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false"
+          "description" : "Whether or not the headers are disabled. When defined, this option explicitly sets the headers as null which indicates that there is no header. The default value is false",
+          "default" : false
         },
         "headerExtractionEnabled" : {
           "type" : "boolean",
           "title" : "Header Extraction Enabled",
-          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false"
+          "description" : "Whether or not the header must be read in the first line of the test document. The default value is false",
+          "default" : false
         },
         "numberOfRecordsToRead" : {
           "type" : "number",
@@ -7668,12 +8248,14 @@
         "lazyLoad" : {
           "type" : "boolean",
           "title" : "Lazy Load",
-          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false"
+          "description" : "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
+          "default" : false
         },
         "asMap" : {
           "type" : "boolean",
           "title" : "As Map",
-          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false"
+          "description" : "Whether the unmarshalling should produce maps for the lines values instead of lists. It requires to have header (either defined or collected). The default value is false",
+          "default" : false
         },
         "univocityHeader" : {
           "type" : "array",
@@ -7939,7 +8521,8 @@
         "secureTagContents" : {
           "type" : "boolean",
           "title" : "Secure Tag Contents",
-          "description" : "A boolean value to specify whether the XML Element is to be encrypted or the contents of the XML Element. false = Element Level. true = Element Content Level."
+          "description" : "A boolean value to specify whether the XML Element is to be encrypted or the contents of the XML Element. false = Element Level. true = Element Content Level.",
+          "default" : false
         },
         "keyCipherAlgorithm" : {
           "type" : "string",
@@ -7980,7 +8563,8 @@
         "addKeyValueForEncryptedKey" : {
           "type" : "boolean",
           "title" : "Add Key Value For Encrypted Key",
-          "description" : "Whether to add the public key used to encrypt the session key as a KeyValue in the EncryptedKey structure or not."
+          "description" : "Whether to add the public key used to encrypt the session key as a KeyValue in the EncryptedKey structure or not.",
+          "default" : true
         }
       },
       "required" : [ ]
@@ -8194,12 +8778,14 @@
         "allowAnyType" : {
           "type" : "boolean",
           "title" : "Allow Any Type",
-          "description" : "Allow any class to be un-marshaled"
+          "description" : "Allow any class to be un-marshaled",
+          "default" : false
         },
         "allowRecursiveKeys" : {
           "type" : "boolean",
           "title" : "Allow Recursive Keys",
-          "description" : "Set whether recursive keys are allowed."
+          "description" : "Set whether recursive keys are allowed.",
+          "default" : false
         },
         "constructor" : {
           "type" : "string",
@@ -8232,7 +8818,8 @@
         "prettyFlow" : {
           "type" : "boolean",
           "title" : "Pretty Flow",
-          "description" : "Force the emitter to produce a pretty YAML document when using the flow style."
+          "description" : "Force the emitter to produce a pretty YAML document when using the flow style.",
+          "default" : false
         },
         "representer" : {
           "type" : "string",
@@ -8260,7 +8847,8 @@
         "useApplicationContextClassLoader" : {
           "type" : "boolean",
           "title" : "Use Application Context Class Loader",
-          "description" : "Use ApplicationContextClassLoader as custom ClassLoader"
+          "description" : "Use ApplicationContextClassLoader as custom ClassLoader",
+          "default" : true
         }
       },
       "definitions" : {
@@ -8453,17 +9041,20 @@
         "usingIterator" : {
           "type" : "boolean",
           "title" : "Using Iterator",
-          "description" : "If the zip file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode."
+          "description" : "If the zip file has more than one entry, the setting this option to true, allows working with the splitter EIP, to split the data using an iterator in a streaming mode.",
+          "default" : false
         },
         "allowEmptyDirectory" : {
           "type" : "boolean",
           "title" : "Allow Empty Directory",
-          "description" : "If the zip file has more than one entry, setting this option to true, allows to get the iterator even if the directory is empty"
+          "description" : "If the zip file has more than one entry, setting this option to true, allows to get the iterator even if the directory is empty",
+          "default" : false
         },
         "preservePathElements" : {
           "type" : "boolean",
           "title" : "Preserve Path Elements",
-          "description" : "If the file name contains path elements, setting this option to true, allows the path to be maintained in the zip file."
+          "description" : "If the file name contains path elements, setting this option to true, allows the path to be maintained in the zip file.",
+          "default" : false
         },
         "maxDecompressedSize" : {
           "type" : "number",

@@ -122,6 +122,70 @@
     }
   },
   "simple" : {
+    "attachment(key)" : {
+      "name" : "attachment(key)",
+      "displayName" : "Attachment",
+      "description" : "The DataHandler for the given attachment.",
+      "returnType" : "jakarta.activation.DataHandler",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachmentContent" : {
+      "name" : "attachmentContent",
+      "displayName" : "Attachment Content",
+      "description" : "The content of the attachment",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachmentContentAs(type)" : {
+      "name" : "attachmentContentAs(type)",
+      "displayName" : "Attachment Content As",
+      "description" : "The content of the attachment, converted to the given type.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachmentContentAsText" : {
+      "name" : "attachmentContentAsText",
+      "displayName" : "Attachment Content As Text",
+      "description" : "The content of the attachment as text (ie String).",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachmentHeader(key,name)" : {
+      "name" : "attachmentHeader(key,name)",
+      "displayName" : "Attachment Header",
+      "description" : "The attachment header with the given name.",
+      "returnType" : "String",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachmentHeader(key,name,type)" : {
+      "name" : "attachmentHeader(key,name,type)",
+      "displayName" : "Attachment Header",
+      "description" : "The attachment header with the given name, converted to the given type.",
+      "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachments" : {
+      "name" : "attachments",
+      "displayName" : "Attachments",
+      "description" : "All the attachments as a Map<String,DataHandler.",
+      "returnType" : "java.util.Map",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "attachments.size" : {
+      "name" : "attachments.size",
+      "displayName" : "Attachments",
+      "description" : "The number of attachments. Is 0 if there are no attachments.",
+      "returnType" : "int",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
     "bean(name.method)" : {
       "name" : "bean(name.method)",
       "displayName" : "Call Java Bean",
@@ -197,7 +261,7 @@
     "empty(type)" : {
       "name" : "empty(type)",
       "displayName" : "Create Empty Object",
-      "description" : "Creates a new empty object (decided by type). Use `string` to create an empty String. Use `list` to create an empty `java.util.ArrayList`. Use `map` to create an empty `java.util.HashMap`.",
+      "description" : "Creates a new empty object (decided by type). Use `string` to create an empty String. Use `list` to create an empty `java.util.ArrayList`. Use `map` to create an empty `java.util.LinkedHashMap`.",
       "returnType" : "Object",
       "returnCollection" : false,
       "arguments" : [ ]
@@ -346,11 +410,27 @@
       "returnCollection" : false,
       "arguments" : [ ]
     },
+    "list(val...)" : {
+      "name" : "list(val...)",
+      "displayName" : "Create List of values",
+      "description" : "The list function creates an ArrayList with the given set of values.",
+      "returnType" : "java.util.ArrayList",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
     "mandatoryBodyAs(type)" : {
       "name" : "mandatoryBodyAs(type)",
       "displayName" : "Mandatory Body As",
       "description" : "Converts the message body to the given type (classname). If the body is null then the function will fail with an exception",
       "returnType" : "Object",
+      "returnCollection" : false,
+      "arguments" : [ ]
+    },
+    "map(key1,value1,...)" : {
+      "name" : "map(key1,value1,...)",
+      "displayName" : "Create Map of pairs",
+      "description" : "The map function creates a LinkedHashMap with the given set of pairs.",
+      "returnType" : "java.util.LinkedHashMap",
       "returnCollection" : false,
       "arguments" : [ ]
     },
