@@ -53,5 +53,5 @@
     "typescript-eslint": "^8.5.0"
   },
   "gitHead": "3ec2b87ef6f7f26feb89a5d976f5463d55c43959",
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.12.0"
 }
