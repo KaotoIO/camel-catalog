@@ -195,7 +195,7 @@ class EIPGeneratorTest {
         var processorsMap = eipGenerator.generate();
 
         var setHeaderNode = processorsMap.get("setHeader");
-        List<String> expectedKeys = List.of("id", "description", "disabled", "name", "expression");
+        List<String> expectedKeys = List.of("id", "note", "description", "disabled", "name", "expression");
         List<String> actualKeys = setHeaderNode.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
 

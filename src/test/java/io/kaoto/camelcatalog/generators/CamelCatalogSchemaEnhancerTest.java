@@ -271,7 +271,7 @@ class CamelCatalogSchemaEnhancerTest {
         assertTrue(choiceNode.has("properties"));
         List<String> actualKeys = choiceNode.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
-        assertEquals(List.of("id", "description", "disabled", "when", "otherwise", "precondition"), actualKeys);
+        assertEquals(List.of("id", "note", "description", "disabled", "when", "otherwise", "precondition"), actualKeys);
     }
 
     @Test
@@ -287,7 +287,7 @@ class CamelCatalogSchemaEnhancerTest {
         assertTrue(choiceNode.has("properties"));
         List<String> actualKeys = choiceNode.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
-        assertEquals(List.of("id", "description", "disabled", "when", "otherwise", "precondition"), actualKeys);
+        assertEquals(List.of("id", "note", "description", "disabled", "when", "otherwise", "precondition"), actualKeys);
     }
 
     @Test

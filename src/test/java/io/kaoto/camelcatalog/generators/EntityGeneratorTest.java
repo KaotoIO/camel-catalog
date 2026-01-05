@@ -167,7 +167,7 @@ class EntityGeneratorTest {
         var entitiesMap = entityGenerator.generate();
 
         var setHeaderNode = entitiesMap.get("onCompletion");
-        List<String> expectedKeys = List.of("id", "description", "disabled", "mode", "onCompleteOnly",
+        List<String> expectedKeys = List.of("id", "note", "description", "disabled", "mode", "onCompleteOnly",
                 "onFailureOnly", "parallelProcessing", "executorService", "useOriginalMessage", "onWhen", "outputs");
         List<String> actualKeys = setHeaderNode.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
