@@ -28,7 +28,7 @@
     "build:catalog": "node ./scripts/build-catalogs.mjs",
     "build:default:catalog": "yarn run build:mvn; yarn run build:catalog",
     "build:ts": "node ./scripts/json-schema-to-typescript.mjs",
-    "build:copy-catalog": "copyfiles -u 2 ./dist/camel-catalog/**/* catalog/",
+    "build:copy-catalog": "node ./scripts/copy-catalog.mjs",
     "lint": "yarn eslint \"scripts/*.mjs\"",
     "lint:fix": "yarn lint --fix",
     "clean": "yarn rimraf ./dist ./catalog",
