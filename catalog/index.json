@@ -109,10 +109,10 @@
 			"fileName" : "camel-springboot/4.4.0.redhat-00039/index-1d12e1fac541106b510cd978b7202314.json"
 		},
 		{
-			"name" : "Citrus 4.9.2",
-			"version" : "4.9.2",
+			"name" : "Citrus 4.9.3",
+			"version" : "4.9.3",
 			"runtime" : "Citrus",
-			"fileName" : "citrus/4.9.2/index.json"
+			"fileName" : "citrus/4.9.3/index.json"
 		}
 	],
 	"version" : 3,
