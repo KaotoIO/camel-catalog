@@ -9,13 +9,13 @@
     },
     "defaultProperties" : {
       "type" : "object",
+      "title" : "DefaultProperties",
+      "description" : "Sets default properties",
       "additionalProperties" : {
         "type" : "string",
         "title" : "DefaultProperties",
         "description" : "Sets default properties"
-      },
-      "title" : "DefaultProperties",
-      "description" : "Sets default properties"
+      }
     },
     "engine" : {
       "type" : "string",
@@ -93,6 +93,7 @@
             "description" : "The test source type."
           }
         },
+        "additionalProperties" : false,
         "title" : "TestSources",
         "description" : "List of test sources to run. A test source represents a source code file in one of the supported languages (.java, .xml, .groovy, .yaml, .feature)"
       }
@@ -114,5 +115,6 @@
       "description" : "Set custom working directory. File system based test engines may use this directory to read files from."
     }
   },
-  "required" : [ "engine", "port" ]
+  "required" : [ "engine", "port" ],
+  "additionalProperties" : false
 }

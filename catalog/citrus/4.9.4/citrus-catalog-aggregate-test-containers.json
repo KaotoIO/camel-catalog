@@ -1,6 +1,7 @@
 {
   "assert": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "assert",
     "title": "Assert",
     "description": "Assert exception test action.",
@@ -37,11 +38,12 @@
       },
       "required": [
         "when"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "async": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "async",
     "title": "Async",
     "description": "Async test action.",
@@ -92,11 +94,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "catch": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "catch",
     "title": "Catch",
     "description": "Catch exception test action.",
@@ -128,11 +131,12 @@
       },
       "required": [
         "when"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "conditional": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "conditional",
     "title": "Conditional",
     "description": "Conditional test action.",
@@ -165,11 +169,12 @@
       "required": [
         "actions",
         "when"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "doFinally": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "doFinally",
     "title": "DoFinally",
     "description": "Runs test actions after the test.",
@@ -196,11 +201,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "iterate": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "iterate",
     "title": "Iterate",
     "description": "Iterate test action.",
@@ -253,11 +259,12 @@
       "required": [
         "actions",
         "condition"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "parallel": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "parallel",
     "title": "Parallel",
     "description": "Parallel test action.",
@@ -284,11 +291,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "repeat": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "repeat",
     "title": "Repeat",
     "description": "Repeat test action.",
@@ -333,11 +341,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "repeatOnError": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "repeatOnError",
     "title": "RepeatOnError",
     "description": "Repeat on error test action.",
@@ -387,11 +396,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "sequential": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "sequential",
     "title": "Sequential",
     "description": "Sequential test action.",
@@ -418,11 +428,12 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "soap-assertFault": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "soap-assertFault",
     "group": "soap",
     "title": "AssertFault",
@@ -431,178 +442,6 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "properties": {
-        "attachments": {
-          "title": "Attachments",
-          "description": "List of SOAP attachments for this message.",
-          "$comment": "group:advanced",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "charset": {
-                "type": "string",
-                "title": "Charset",
-                "description": "The SOAP attachment charset.",
-                "$comment": "group:advanced"
-              },
-              "content": {
-                "type": "string",
-                "title": "Content",
-                "description": "The SOAP attachment content."
-              },
-              "contentId": {
-                "type": "string",
-                "title": "ContentId",
-                "description": "The SOAP attachment content id."
-              },
-              "contentType": {
-                "type": "string",
-                "title": "ContentType",
-                "description": "The SOAP attachment content type"
-              },
-              "resource": {
-                "type": "string",
-                "title": "Resource",
-                "description": "The SOAP attachment content loaded from a file resource."
-              }
-            },
-            "title": "Attachments",
-            "description": "List of SOAP attachments for this message.",
-            "$comment": "group:advanced"
-          }
-        },
-        "body": {
-          "type": "object",
-          "properties": {
-            "data": {
-            },
-            "resource": {
-            },
-            "script": {
-            }
-          },
-          "anyOf": [
-            {
-              "oneOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "string",
-                      "title": "Data",
-                      "description": "The message body content."
-                    }
-                  },
-                  "required": [
-                    "data"
-                  ]
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "resource": {
-                      "type": "object",
-                      "properties": {
-                        "charset": {
-                          "type": "string",
-                          "title": "Charset",
-                          "$comment": "group:advanced"
-                        },
-                        "file": {
-                          "type": "string",
-                          "title": "File"
-                        }
-                      },
-                      "title": "Resource",
-                      "description": "The message body loaded from a file resource."
-                    }
-                  },
-                  "required": [
-                    "resource"
-                  ]
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "script": {
-                      "type": "object",
-                      "properties": {
-                        "charset": {
-                          "type": "string",
-                          "title": "Charset",
-                          "description": "The charset used to load the file resource.",
-                          "$comment": "group:advanced"
-                        },
-                        "content": {
-                          "type": "string",
-                          "title": "Content",
-                          "description": "The script content."
-                        },
-                        "file": {
-                          "type": "string",
-                          "title": "File",
-                          "description": "The script content loaded as a file resource."
-                        },
-                        "type": {
-                          "type": "string",
-                          "title": "Type",
-                          "description": "The script type.",
-                          "default": "groovy"
-                        }
-                      },
-                      "title": "Script",
-                      "description": "The message body set via script."
-                    }
-                  },
-                  "required": [
-                    "script"
-                  ]
-                }
-              ]
-            }
-          ],
-          "title": "Body",
-          "description": "The message body."
-        },
-        "contentType": {
-          "type": "string",
-          "title": "ContentType",
-          "description": "The SOAP response content type."
-        },
-        "dataDictionary": {
-          "type": "string",
-          "title": "DataDictionary",
-          "description": "Sets a data dictionary that transforms message content before it is being processed.",
-          "$comment": "group:dictionary"
-        },
-        "expression": {
-          "title": "Expression",
-          "description": "List of path expressions to evaluate on the message content before processing the message.",
-          "$comment": "group:advanced",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "path": {
-                "type": "string",
-                "title": "Path",
-                "description": "The path expression to evaluate."
-              },
-              "value": {
-                "type": "string",
-                "title": "Value",
-                "description": "The expected expression result value."
-              }
-            },
-            "required": [
-              "path",
-              "value"
-            ],
-            "title": "Expression",
-            "description": "List of path expressions to evaluate on the message content before processing the message.",
-            "$comment": "group:advanced"
-          }
-        },
         "faultActor": {
           "type": "string",
           "title": "FaultActor",
@@ -633,6 +472,7 @@
                 "description": "The SOAP fault detail loaded from a file resource."
               }
             },
+            "additionalProperties": false,
             "title": "FaultDetails",
             "description": "The SOAP fault details.",
             "$comment": "group:advanced"
@@ -643,152 +483,10 @@
           "title": "FaultString",
           "description": "The SOAP fault string."
         },
-        "headerIgnoreCase": {
-          "type": "string",
-          "title": "HeaderIgnoreCase",
-          "description": "When enabled the header case is not verified.",
-          "$comment": "group:advanced"
-        },
-        "headers": {
-          "title": "Headers",
-          "description": "The message headers.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "data": {
-              },
-              "name": {
-                "type": "string",
-                "title": "Name",
-                "description": "The message header name."
-              },
-              "resource": {
-              },
-              "type": {
-                "type": "string",
-                "title": "Type",
-                "description": "The message header type to create typed message headers.",
-                "$comment": "group:advanced"
-              },
-              "value": {
-              }
-            },
-            "anyOf": [
-              {
-                "oneOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "string",
-                        "title": "Value",
-                        "description": "The message header value."
-                      }
-                    },
-                    "required": [
-                      "value"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "resource": {
-                        "type": "object",
-                        "properties": {
-                          "charset": {
-                            "type": "string",
-                            "title": "Charset",
-                            "description": "Optional file resource charset used to read the file content.",
-                            "$comment": "group:advanced"
-                          },
-                          "file": {
-                            "type": "string",
-                            "title": "File",
-                            "description": "The file resource path."
-                          }
-                        },
-                        "required": [
-                          "file"
-                        ],
-                        "title": "Resource",
-                        "description": "The header data loaded from a file resource."
-                      }
-                    },
-                    "required": [
-                      "resource"
-                    ]
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "string",
-                        "title": "Data",
-                        "description": "The message header value as inline data."
-                      }
-                    },
-                    "required": [
-                      "data"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "title": "Headers",
-            "description": "The message headers."
-          }
-        },
-        "name": {
-          "type": "string",
-          "title": "Name",
-          "description": "The message name. Named messages may be referenced in subsequent test steps."
-        },
-        "reasonPhrase": {
-          "type": "string",
-          "title": "ReasonPhrase",
-          "description": "The SOAP response reason phrase.",
-          "$comment": "group:advanced"
-        },
-        "schema": {
-          "type": "string",
-          "title": "Schema",
-          "description": "The reference to a schema in the bean registry that should be used for validation.",
-          "$comment": "group:schema"
-        },
-        "schemaRepository": {
-          "type": "string",
-          "title": "SchemaRepository",
-          "description": "The schema repository holding the schema.",
-          "$comment": "group:schema"
-        },
-        "schemaValidation": {
-          "type": "boolean",
-          "title": "SchemaValidation",
-          "description": "Enables the schema validation.",
-          "$comment": "group:schema"
-        },
-        "status": {
-          "type": "string",
-          "title": "Status",
-          "description": "The SOAP response status."
-        },
-        "type": {
-          "type": "string",
-          "title": "Type",
-          "description": "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
-          "$comment": "group:advanced"
-        },
         "validator": {
           "type": "string",
           "title": "Validator",
           "description": "Explicit message validator.",
-          "$comment": "group:advanced"
-        },
-        "version": {
-          "type": "string",
-          "title": "Version",
-          "description": "The SOAP version.",
           "$comment": "group:advanced"
         },
         "when": {
@@ -799,11 +497,12 @@
       },
       "required": [
         "when"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "timer": {
     "kind": "testContainer",
+    "version": "4.9.4",
     "name": "timer",
     "title": "Timer",
     "description": "Timer test action.",
@@ -867,7 +566,7 @@
       },
       "required": [
         "actions"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   }
 }

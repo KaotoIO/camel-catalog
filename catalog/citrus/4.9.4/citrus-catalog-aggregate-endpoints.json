@@ -1,6 +1,7 @@
 {
   "kubernetes-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "kubernetes-client",
     "group": "kubernetes",
     "title": "KubernetesClient",
@@ -72,11 +73,12 @@
           "description": "Sets the Kubernetes client version.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "context-messageStore": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "context-messageStore",
     "group": "context",
     "title": "ContextMessageStore",
@@ -99,11 +101,12 @@
           "title": "Timeout",
           "description": "The timeout when receiving messages from the message store."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kafka-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "kafka-synchronous",
     "group": "kafka",
     "title": "KafkaSynchronous",
@@ -215,11 +218,12 @@
           "description": "Sets the fully qualified value serializer type class name.",
           "$comment": "group:serialize"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "scp-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "scp-server",
     "group": "scp",
     "title": "ScpServer",
@@ -313,13 +317,13 @@
         },
         "sessionConfigs": {
           "type": "object",
+          "title": "SessionConfigs",
+          "description": "The session configuration.",
           "additionalProperties": {
             "type": "string",
             "title": "SessionConfigs",
             "description": "The session configuration."
-          },
-          "title": "SessionConfigs",
-          "description": "The session configuration."
+          }
         },
         "strictHostChecking": {
           "type": "boolean",
@@ -343,11 +347,12 @@
           "title": "UserHomePath",
           "description": "Sets the user home path directory."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "direct-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "direct-synchronous",
     "group": "direct",
     "title": "DirectSynchronous",
@@ -386,11 +391,12 @@
           "title": "Timeout",
           "description": "The timeout when receiving messages from the queue."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "docker-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "docker-client",
     "group": "docker",
     "title": "DockerClient",
@@ -454,11 +460,12 @@
           "title": "Version",
           "description": "The Docker client version."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kafka-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "kafka-asynchronous",
     "group": "kafka",
     "title": "KafkaAsynchronous",
@@ -570,11 +577,12 @@
           "description": "Sets the fully qualified value serializer type class name.",
           "$comment": "group:serialize"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "k8s-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "k8s-client",
     "group": "k8s",
     "title": "K8sClient",
@@ -646,11 +654,12 @@
           "description": "Sets the Kubernetes client version.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "mail-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "mail-client",
     "group": "mail",
     "title": "MailClient",
@@ -713,11 +722,12 @@
           "description": "The client user name.",
           "$comment": "group:security"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "http-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "http-client",
     "group": "http",
     "title": "HttpClient",
@@ -886,11 +896,12 @@
           "description": "The Http request timeout while waiting for a response",
           "default": "5000"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "ssh-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "ssh-client",
     "group": "ssh",
     "title": "SshClient",
@@ -903,11 +914,12 @@
           "title": "Name",
           "description": "The name of the endpoint"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "websocket-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "websocket-client",
     "group": "websocket",
     "title": "WebsocketClient",
@@ -949,11 +961,12 @@
           "description": "The Http request timeout while waiting for a response",
           "default": "5000"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "channel-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "channel-asynchronous",
     "group": "channel",
     "title": "ChannelAsynchronous",
@@ -1007,11 +1020,12 @@
           "description": "When enabled the endpoint uses object messages.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "soap-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "soap-server",
     "group": "soap",
     "title": "SoapServer",
@@ -1178,11 +1192,12 @@
           "description": "Sets the server timeout while waiting for incoming requests.",
           "default": "5000"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "channel-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "channel-synchronous",
     "group": "channel",
     "title": "ChannelSynchronous",
@@ -1248,11 +1263,12 @@
           "description": "When enabled the endpoint uses object messages.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "sftp-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "sftp-server",
     "group": "sftp",
     "title": "SftpServer",
@@ -1346,13 +1362,13 @@
         },
         "sessionConfigs": {
           "type": "object",
+          "title": "SessionConfigs",
+          "description": "The session configuration.",
           "additionalProperties": {
             "type": "string",
             "title": "SessionConfigs",
             "description": "The session configuration."
-          },
-          "title": "SessionConfigs",
-          "description": "The session configuration."
+          }
         },
         "strictHostChecking": {
           "type": "boolean",
@@ -1376,11 +1392,12 @@
           "title": "UserHomePath",
           "description": "Sets the user home path directory."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "ftp-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "ftp-server",
     "group": "ftp",
     "title": "FtpServer",
@@ -1508,11 +1525,12 @@
           "description": "Loads user manage properties from a file resource.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-inOut": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "camel-inOut",
     "group": "camel",
     "title": "CamelInOut",
@@ -1557,11 +1575,12 @@
           "title": "Timeout",
           "description": "The endpoint timeout when waiting for messages."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "vertx-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "vertx-asynchronous",
     "group": "vertx",
     "title": "VertxAsynchronous",
@@ -1617,11 +1636,12 @@
           "description": "Sets a custom Vert.x factory.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "ftp-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "ftp-client",
     "group": "ftp",
     "title": "FtpClient",
@@ -1692,11 +1712,12 @@
           "description": "Sets the user name.",
           "$comment": "group:security"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "camel-asynchronous",
     "group": "camel",
     "title": "CamelAsynchronous",
@@ -1730,11 +1751,12 @@
           "title": "Timeout",
           "description": "The endpoint timeout when waiting for messages."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "scp-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "scp-client",
     "group": "scp",
     "title": "ScpClient",
@@ -1830,11 +1852,12 @@
           "description": "Sets the user name.",
           "$comment": "group:security"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "vertx-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "vertx-synchronous",
     "group": "vertx",
     "title": "VertxSynchronous",
@@ -1896,11 +1919,12 @@
           "description": "Sets a custom Vert.x factory.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "jms-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "jms-synchronous",
     "group": "jms",
     "title": "JmsSynchronous",
@@ -1987,11 +2011,12 @@
           "description": "When enabled the endpoint uses object messages.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-inOnly": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "camel-inOnly",
     "group": "camel",
     "title": "CamelInOnly",
@@ -2025,11 +2050,12 @@
           "title": "Timeout",
           "description": "The endpoint timeout when waiting for messages."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "direct-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "direct-asynchronous",
     "group": "direct",
     "title": "DirectAsynchronous",
@@ -2057,11 +2083,12 @@
           "title": "Timeout",
           "description": "The timeout when receiving messages from the queue."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-synchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "camel-synchronous",
     "group": "camel",
     "title": "CamelSynchronous",
@@ -2106,11 +2133,12 @@
           "title": "Timeout",
           "description": "The endpoint timeout when waiting for messages."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "soap-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "soap-client",
     "group": "soap",
     "title": "SoapClient",
@@ -2209,11 +2237,12 @@
           "description": "Sets custom web service template reference.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "jms-asynchronous": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "jms-asynchronous",
     "group": "jms",
     "title": "JmsAsynchronous",
@@ -2302,11 +2331,12 @@
           "description": "When enabled the endpoint uses object messages.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "sftp-client": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "sftp-client",
     "group": "sftp",
     "title": "SftpClient",
@@ -2392,13 +2422,13 @@
         },
         "sessionConfigs": {
           "type": "object",
+          "title": "SessionConfigs",
+          "description": "The session configuration.",
           "additionalProperties": {
             "type": "string",
             "title": "SessionConfigs",
             "description": "The session configuration."
-          },
-          "title": "SessionConfigs",
-          "description": "The session configuration."
+          }
         },
         "strictHostChecking": {
           "type": "boolean",
@@ -2417,11 +2447,12 @@
           "description": "Sets the user name.",
           "$comment": "group:security"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-browser": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "selenium-browser",
     "group": "selenium",
     "title": "SeleniumBrowser",
@@ -2490,22 +2521,29 @@
           "description": "Sets a custom web driver as a bean reference.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
-  "http-server": {
+  "mail-server": {
     "kind": "testEndpoint",
-    "name": "http-server",
-    "group": "http",
-    "title": "HttpServer",
+    "version": "4.9.4",
+    "name": "mail-server",
+    "group": "mail",
+    "title": "MailServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "properties": {
-        "authentication": {
-          "type": "string",
-          "title": "Authentication",
-          "description": "Use given authentication mechanism for all request paths.",
+        "authRequired": {
+          "type": "boolean",
+          "title": "AuthRequired",
+          "description": "When enabled users must authenticate with the server.",
+          "$comment": "group:security"
+        },
+        "autoAccept": {
+          "type": "boolean",
+          "title": "AutoAccept",
+          "description": "When enabled server will auto accept client connections.",
           "$comment": "group:security"
         },
         "autoStart": {
@@ -2513,129 +2551,10 @@
           "title": "AutoStart",
           "description": "When enabled the server is automatically started after creation."
         },
-        "binaryMediaTypes": {
-          "title": "BinaryMediaTypes",
-          "description": "List of supported media types on this server.",
-          "$comment": "group:advanced",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "title": "BinaryMediaTypes",
-            "description": "List of supported media types on this server.",
-            "$comment": "group:advanced"
-          }
-        },
-        "connector": {
-          "type": "string",
-          "title": "Connector",
-          "description": "Add a connector to this server.",
-          "$comment": "group:servlet"
-        },
-        "connectors": {
-          "title": "Connectors",
-          "description": "Sets a list of connectors for this server.",
-          "$comment": "group:servlet",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "title": "Connectors",
-            "description": "Sets a list of connectors for this server.",
-            "$comment": "group:servlet"
-          }
-        },
-        "contextConfigLocation": {
-          "type": "string",
-          "title": "ContextConfigLocation",
-          "description": "Sets the Spring context configuration loaded for this Http server.",
-          "$comment": "group:advanced"
-        },
-        "contextPath": {
-          "type": "string",
-          "title": "ContextPath",
-          "description": "Sets the context path on this server.",
-          "$comment": "group:servlet"
-        },
         "debugLogging": {
           "type": "boolean",
           "title": "DebugLogging",
           "description": "When enabled the server prints debug logging output.",
-          "$comment": "group:advanced"
-        },
-        "defaultStatus": {
-          "type": "string",
-          "enum": [
-            "CONTINUE",
-            "SWITCHING_PROTOCOLS",
-            "PROCESSING",
-            "EARLY_HINTS",
-            "CHECKPOINT",
-            "OK",
-            "CREATED",
-            "ACCEPTED",
-            "NON_AUTHORITATIVE_INFORMATION",
-            "NO_CONTENT",
-            "RESET_CONTENT",
-            "PARTIAL_CONTENT",
-            "MULTI_STATUS",
-            "ALREADY_REPORTED",
-            "IM_USED",
-            "MULTIPLE_CHOICES",
-            "MOVED_PERMANENTLY",
-            "FOUND",
-            "MOVED_TEMPORARILY",
-            "SEE_OTHER",
-            "NOT_MODIFIED",
-            "USE_PROXY",
-            "TEMPORARY_REDIRECT",
-            "PERMANENT_REDIRECT",
-            "BAD_REQUEST",
-            "UNAUTHORIZED",
-            "PAYMENT_REQUIRED",
-            "FORBIDDEN",
-            "NOT_FOUND",
-            "METHOD_NOT_ALLOWED",
-            "NOT_ACCEPTABLE",
-            "PROXY_AUTHENTICATION_REQUIRED",
-            "REQUEST_TIMEOUT",
-            "CONFLICT",
-            "GONE",
-            "LENGTH_REQUIRED",
-            "PRECONDITION_FAILED",
-            "PAYLOAD_TOO_LARGE",
-            "REQUEST_ENTITY_TOO_LARGE",
-            "URI_TOO_LONG",
-            "REQUEST_URI_TOO_LONG",
-            "UNSUPPORTED_MEDIA_TYPE",
-            "REQUESTED_RANGE_NOT_SATISFIABLE",
-            "EXPECTATION_FAILED",
-            "I_AM_A_TEAPOT",
-            "INSUFFICIENT_SPACE_ON_RESOURCE",
-            "METHOD_FAILURE",
-            "DESTINATION_LOCKED",
-            "UNPROCESSABLE_ENTITY",
-            "LOCKED",
-            "FAILED_DEPENDENCY",
-            "TOO_EARLY",
-            "UPGRADE_REQUIRED",
-            "PRECONDITION_REQUIRED",
-            "TOO_MANY_REQUESTS",
-            "REQUEST_HEADER_FIELDS_TOO_LARGE",
-            "UNAVAILABLE_FOR_LEGAL_REASONS",
-            "INTERNAL_SERVER_ERROR",
-            "NOT_IMPLEMENTED",
-            "BAD_GATEWAY",
-            "SERVICE_UNAVAILABLE",
-            "GATEWAY_TIMEOUT",
-            "HTTP_VERSION_NOT_SUPPORTED",
-            "VARIANT_ALSO_NEGOTIATES",
-            "INSUFFICIENT_STORAGE",
-            "LOOP_DETECTED",
-            "BANDWIDTH_LIMIT_EXCEEDED",
-            "NOT_EXTENDED",
-            "NETWORK_AUTHENTICATION_REQUIRED"
-          ],
-          "title": "DefaultStatus",
-          "description": "Sets the default status returned by the server.",
           "$comment": "group:advanced"
         },
         "endpointAdapter": {
@@ -2644,64 +2563,34 @@
           "description": "Sets a custom endpoint adapter to handle requests.",
           "$comment": "group:advanced"
         },
-        "filterMappings": {
+        "javaMailProperties": {
           "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "title": "FilterMappings",
-            "description": "Filter mapping used on this server.",
-            "$comment": "group:filter"
-          },
-          "title": "FilterMappings",
-          "description": "Filter mapping used on this server.",
-          "$comment": "group:filter"
-        },
-        "filters": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "title": "Filters",
-            "description": "Map of Http filters used on this server.",
-            "$comment": "group:filter"
-          },
-          "title": "Filters",
-          "description": "Map of Http filters used on this server.",
-          "$comment": "group:filter"
-        },
-        "handleAttributeHeaders": {
-          "type": "boolean",
-          "title": "HandleAttributeHeaders",
-          "description": "When enabled the server handles attribute headers.",
+          "title": "JavaMailProperties",
+          "description": "Custom properties passed to the java mail implementation.",
           "$comment": "group:advanced"
         },
-        "handleCookies": {
-          "type": "boolean",
-          "title": "HandleCookies",
-          "description": "When enabled the server handles cookies.",
-          "$comment": "group:advanced"
-        },
-        "interceptor": {
-          "type": "string",
-          "title": "Interceptor",
-          "description": "Sets a handler interceptor.",
-          "$comment": "group:intercept"
-        },
-        "interceptors": {
-          "title": "Interceptors",
-          "description": "Sets the list of handler interceptor bean references.",
-          "$comment": "group:intercept",
+        "knownUsers": {
+          "title": "KnownUsers",
+          "description": "Sets a list of known users that will be accepted when establishing a connection.",
+          "$comment": "group:security",
           "type": "array",
           "items": {
             "type": "string",
-            "title": "Interceptors",
-            "description": "Sets the list of handler interceptor bean references.",
-            "$comment": "group:intercept"
+            "title": "KnownUsers",
+            "description": "Sets a list of known users that will be accepted when establishing a connection.",
+            "$comment": "group:security"
           }
+        },
+        "marshaller": {
+          "type": "string",
+          "title": "Marshaller",
+          "description": "Sets a custom mail message marshaller.",
+          "$comment": "group:advanced"
         },
         "messageConverter": {
           "type": "string",
           "title": "MessageConverter",
-          "description": "Sets the Http message converter bean reference.",
+          "description": "Sets custom message converter.",
           "$comment": "group:advanced"
         },
         "name": {
@@ -2712,85 +2601,32 @@
         "port": {
           "type": "integer",
           "title": "Port",
-          "description": "The Http server port."
+          "description": "The mail server port."
         },
-        "removeSemicolonPathContent": {
+        "smtp": {
+          "type": "string",
+          "title": "Smtp",
+          "description": "Sets the SMTP implementation.",
+          "$comment": "group:advanced"
+        },
+        "splitMultipart": {
           "type": "boolean",
-          "title": "RemoveSemicolonPathContent",
-          "description": "When enabled the server removes semicolon path content from headers.",
+          "title": "SplitMultipart",
+          "description": "When enabled the server splits multipart messages into individual parts.",
           "$comment": "group:advanced"
-        },
-        "resourceBase": {
-          "type": "string",
-          "title": "ResourceBase",
-          "description": "The server resource base path where resources get loaded from.",
-          "$comment": "group:advanced"
-        },
-        "responseCacheSize": {
-          "type": "integer",
-          "title": "ResponseCacheSize",
-          "description": "Sets the response cache size.",
-          "$comment": "group:advanced"
-        },
-        "rootParentContext": {
-          "type": "boolean",
-          "title": "RootParentContext",
-          "description": "When enabled the server uses the root Spring application context.",
-          "$comment": "group:advanced"
-        },
-        "securePort": {
-          "type": "integer",
-          "title": "SecurePort",
-          "description": "The secured port.",
-          "$comment": "group:security"
-        },
-        "securedConnection": {
-          "type": "string",
-          "title": "SecuredConnection",
-          "description": "Secure the connections on given secured port with given security mechanism.",
-          "$comment": "group:security"
-        },
-        "securityHandler": {
-          "type": "string",
-          "title": "SecurityHandler",
-          "description": "Sets the security handler as a bean reference.",
-          "$comment": "group:security"
-        },
-        "serServletHandler": {
-          "type": "string",
-          "title": "SerServletHandler",
-          "description": "Sets a custom servlet handler as a bean reference.",
-          "$comment": "group:servlet"
-        },
-        "servletMappingPath": {
-          "type": "string",
-          "title": "ServletMappingPath",
-          "description": "Sets the servlet mapping path.",
-          "$comment": "group:servlet"
-        },
-        "servletName": {
-          "type": "string",
-          "title": "ServletName",
-          "description": "Sets the servlet name.",
-          "$comment": "group:servlet"
         },
         "timeout": {
           "type": "integer",
           "title": "Timeout",
-          "description": "Sets the server timeout while waiting for incoming requests.",
+          "description": "The server timeout.",
           "default": "5000"
-        },
-        "useDefaultFilters": {
-          "type": "boolean",
-          "title": "UseDefaultFilters",
-          "description": "When enabled the server uses the default set of Http servlet filters.",
-          "$comment": "group:filter"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "websocket-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "websocket-server",
     "group": "websocket",
     "title": "WebsocketServer",
@@ -2942,26 +2778,26 @@
         },
         "filterMappings": {
           "type": "object",
+          "title": "FilterMappings",
+          "description": "Filter mapping used on this server.",
           "additionalProperties": {
             "type": "string",
             "title": "FilterMappings",
             "description": "Filter mapping used on this server.",
             "$comment": "group:filter"
           },
-          "title": "FilterMappings",
-          "description": "Filter mapping used on this server.",
           "$comment": "group:filter"
         },
         "filters": {
           "type": "object",
+          "title": "Filters",
+          "description": "Map of Http filters used on this server.",
           "additionalProperties": {
             "type": "string",
             "title": "Filters",
             "description": "Map of Http filters used on this server.",
             "$comment": "group:filter"
           },
-          "title": "Filters",
-          "description": "Map of Http filters used on this server.",
           "$comment": "group:filter"
         },
         "handleAttributeHeaders": {
@@ -3092,11 +2928,309 @@
             "description": "Sets the list of web sockets for this server."
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
+  },
+  "http-server": {
+    "kind": "testEndpoint",
+    "version": "4.9.4",
+    "name": "http-server",
+    "group": "http",
+    "title": "HttpServer",
+    "propertiesSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "authentication": {
+          "type": "string",
+          "title": "Authentication",
+          "description": "Use given authentication mechanism for all request paths.",
+          "$comment": "group:security"
+        },
+        "autoStart": {
+          "type": "boolean",
+          "title": "AutoStart",
+          "description": "When enabled the server is automatically started after creation."
+        },
+        "binaryMediaTypes": {
+          "title": "BinaryMediaTypes",
+          "description": "List of supported media types on this server.",
+          "$comment": "group:advanced",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "title": "BinaryMediaTypes",
+            "description": "List of supported media types on this server.",
+            "$comment": "group:advanced"
+          }
+        },
+        "connector": {
+          "type": "string",
+          "title": "Connector",
+          "description": "Add a connector to this server.",
+          "$comment": "group:servlet"
+        },
+        "connectors": {
+          "title": "Connectors",
+          "description": "Sets a list of connectors for this server.",
+          "$comment": "group:servlet",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "title": "Connectors",
+            "description": "Sets a list of connectors for this server.",
+            "$comment": "group:servlet"
+          }
+        },
+        "contextConfigLocation": {
+          "type": "string",
+          "title": "ContextConfigLocation",
+          "description": "Sets the Spring context configuration loaded for this Http server.",
+          "$comment": "group:advanced"
+        },
+        "contextPath": {
+          "type": "string",
+          "title": "ContextPath",
+          "description": "Sets the context path on this server.",
+          "$comment": "group:servlet"
+        },
+        "debugLogging": {
+          "type": "boolean",
+          "title": "DebugLogging",
+          "description": "When enabled the server prints debug logging output.",
+          "$comment": "group:advanced"
+        },
+        "defaultStatus": {
+          "type": "string",
+          "enum": [
+            "CONTINUE",
+            "SWITCHING_PROTOCOLS",
+            "PROCESSING",
+            "EARLY_HINTS",
+            "CHECKPOINT",
+            "OK",
+            "CREATED",
+            "ACCEPTED",
+            "NON_AUTHORITATIVE_INFORMATION",
+            "NO_CONTENT",
+            "RESET_CONTENT",
+            "PARTIAL_CONTENT",
+            "MULTI_STATUS",
+            "ALREADY_REPORTED",
+            "IM_USED",
+            "MULTIPLE_CHOICES",
+            "MOVED_PERMANENTLY",
+            "FOUND",
+            "MOVED_TEMPORARILY",
+            "SEE_OTHER",
+            "NOT_MODIFIED",
+            "USE_PROXY",
+            "TEMPORARY_REDIRECT",
+            "PERMANENT_REDIRECT",
+            "BAD_REQUEST",
+            "UNAUTHORIZED",
+            "PAYMENT_REQUIRED",
+            "FORBIDDEN",
+            "NOT_FOUND",
+            "METHOD_NOT_ALLOWED",
+            "NOT_ACCEPTABLE",
+            "PROXY_AUTHENTICATION_REQUIRED",
+            "REQUEST_TIMEOUT",
+            "CONFLICT",
+            "GONE",
+            "LENGTH_REQUIRED",
+            "PRECONDITION_FAILED",
+            "PAYLOAD_TOO_LARGE",
+            "REQUEST_ENTITY_TOO_LARGE",
+            "URI_TOO_LONG",
+            "REQUEST_URI_TOO_LONG",
+            "UNSUPPORTED_MEDIA_TYPE",
+            "REQUESTED_RANGE_NOT_SATISFIABLE",
+            "EXPECTATION_FAILED",
+            "I_AM_A_TEAPOT",
+            "INSUFFICIENT_SPACE_ON_RESOURCE",
+            "METHOD_FAILURE",
+            "DESTINATION_LOCKED",
+            "UNPROCESSABLE_ENTITY",
+            "LOCKED",
+            "FAILED_DEPENDENCY",
+            "TOO_EARLY",
+            "UPGRADE_REQUIRED",
+            "PRECONDITION_REQUIRED",
+            "TOO_MANY_REQUESTS",
+            "REQUEST_HEADER_FIELDS_TOO_LARGE",
+            "UNAVAILABLE_FOR_LEGAL_REASONS",
+            "INTERNAL_SERVER_ERROR",
+            "NOT_IMPLEMENTED",
+            "BAD_GATEWAY",
+            "SERVICE_UNAVAILABLE",
+            "GATEWAY_TIMEOUT",
+            "HTTP_VERSION_NOT_SUPPORTED",
+            "VARIANT_ALSO_NEGOTIATES",
+            "INSUFFICIENT_STORAGE",
+            "LOOP_DETECTED",
+            "BANDWIDTH_LIMIT_EXCEEDED",
+            "NOT_EXTENDED",
+            "NETWORK_AUTHENTICATION_REQUIRED"
+          ],
+          "title": "DefaultStatus",
+          "description": "Sets the default status returned by the server.",
+          "$comment": "group:advanced"
+        },
+        "endpointAdapter": {
+          "type": "string",
+          "title": "EndpointAdapter",
+          "description": "Sets a custom endpoint adapter to handle requests.",
+          "$comment": "group:advanced"
+        },
+        "filterMappings": {
+          "type": "object",
+          "title": "FilterMappings",
+          "description": "Filter mapping used on this server.",
+          "additionalProperties": {
+            "type": "string",
+            "title": "FilterMappings",
+            "description": "Filter mapping used on this server.",
+            "$comment": "group:filter"
+          },
+          "$comment": "group:filter"
+        },
+        "filters": {
+          "type": "object",
+          "title": "Filters",
+          "description": "Map of Http filters used on this server.",
+          "additionalProperties": {
+            "type": "string",
+            "title": "Filters",
+            "description": "Map of Http filters used on this server.",
+            "$comment": "group:filter"
+          },
+          "$comment": "group:filter"
+        },
+        "handleAttributeHeaders": {
+          "type": "boolean",
+          "title": "HandleAttributeHeaders",
+          "description": "When enabled the server handles attribute headers.",
+          "$comment": "group:advanced"
+        },
+        "handleCookies": {
+          "type": "boolean",
+          "title": "HandleCookies",
+          "description": "When enabled the server handles cookies.",
+          "$comment": "group:advanced"
+        },
+        "interceptor": {
+          "type": "string",
+          "title": "Interceptor",
+          "description": "Sets a handler interceptor.",
+          "$comment": "group:intercept"
+        },
+        "interceptors": {
+          "title": "Interceptors",
+          "description": "Sets the list of handler interceptor bean references.",
+          "$comment": "group:intercept",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "title": "Interceptors",
+            "description": "Sets the list of handler interceptor bean references.",
+            "$comment": "group:intercept"
+          }
+        },
+        "messageConverter": {
+          "type": "string",
+          "title": "MessageConverter",
+          "description": "Sets the Http message converter bean reference.",
+          "$comment": "group:advanced"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the endpoint"
+        },
+        "port": {
+          "type": "integer",
+          "title": "Port",
+          "description": "The Http server port."
+        },
+        "removeSemicolonPathContent": {
+          "type": "boolean",
+          "title": "RemoveSemicolonPathContent",
+          "description": "When enabled the server removes semicolon path content from headers.",
+          "$comment": "group:advanced"
+        },
+        "resourceBase": {
+          "type": "string",
+          "title": "ResourceBase",
+          "description": "The server resource base path where resources get loaded from.",
+          "$comment": "group:advanced"
+        },
+        "responseCacheSize": {
+          "type": "integer",
+          "title": "ResponseCacheSize",
+          "description": "Sets the response cache size.",
+          "$comment": "group:advanced"
+        },
+        "rootParentContext": {
+          "type": "boolean",
+          "title": "RootParentContext",
+          "description": "When enabled the server uses the root Spring application context.",
+          "$comment": "group:advanced"
+        },
+        "securePort": {
+          "type": "integer",
+          "title": "SecurePort",
+          "description": "The secured port.",
+          "$comment": "group:security"
+        },
+        "securedConnection": {
+          "type": "string",
+          "title": "SecuredConnection",
+          "description": "Secure the connections on given secured port with given security mechanism.",
+          "$comment": "group:security"
+        },
+        "securityHandler": {
+          "type": "string",
+          "title": "SecurityHandler",
+          "description": "Sets the security handler as a bean reference.",
+          "$comment": "group:security"
+        },
+        "serServletHandler": {
+          "type": "string",
+          "title": "SerServletHandler",
+          "description": "Sets a custom servlet handler as a bean reference.",
+          "$comment": "group:servlet"
+        },
+        "servletMappingPath": {
+          "type": "string",
+          "title": "ServletMappingPath",
+          "description": "Sets the servlet mapping path.",
+          "$comment": "group:servlet"
+        },
+        "servletName": {
+          "type": "string",
+          "title": "ServletName",
+          "description": "Sets the servlet name.",
+          "$comment": "group:servlet"
+        },
+        "timeout": {
+          "type": "integer",
+          "title": "Timeout",
+          "description": "Sets the server timeout while waiting for incoming requests.",
+          "default": "5000"
+        },
+        "useDefaultFilters": {
+          "type": "boolean",
+          "title": "UseDefaultFilters",
+          "description": "When enabled the server uses the default set of Http servlet filters.",
+          "$comment": "group:filter"
+        }
+      },
+      "additionalProperties": false    }
   },
   "ssh-server": {
     "kind": "testEndpoint",
+    "version": "4.9.4",
     "name": "ssh-server",
     "group": "ssh",
     "title": "SshServer",
@@ -3132,106 +3266,7 @@
           "description": "The server timeout.",
           "default": "5000"
         }
-      }
-    }
-  },
-  "mail-server": {
-    "kind": "testEndpoint",
-    "name": "mail-server",
-    "group": "mail",
-    "title": "MailServer",
-    "propertiesSchema": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "properties": {
-        "authRequired": {
-          "type": "boolean",
-          "title": "AuthRequired",
-          "description": "When enabled users must authenticate with the server.",
-          "$comment": "group:security"
-        },
-        "autoAccept": {
-          "type": "boolean",
-          "title": "AutoAccept",
-          "description": "When enabled server will auto accept client connections.",
-          "$comment": "group:security"
-        },
-        "autoStart": {
-          "type": "boolean",
-          "title": "AutoStart",
-          "description": "When enabled the server is automatically started after creation."
-        },
-        "debugLogging": {
-          "type": "boolean",
-          "title": "DebugLogging",
-          "description": "When enabled the server prints debug logging output.",
-          "$comment": "group:advanced"
-        },
-        "endpointAdapter": {
-          "type": "string",
-          "title": "EndpointAdapter",
-          "description": "Sets a custom endpoint adapter to handle requests.",
-          "$comment": "group:advanced"
-        },
-        "javaMailProperties": {
-          "type": "object",
-          "title": "JavaMailProperties",
-          "description": "Custom properties passed to the java mail implementation.",
-          "$comment": "group:advanced"
-        },
-        "knownUsers": {
-          "title": "KnownUsers",
-          "description": "Sets a list of known users that will be accepted when establishing a connection.",
-          "$comment": "group:security",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "title": "KnownUsers",
-            "description": "Sets a list of known users that will be accepted when establishing a connection.",
-            "$comment": "group:security"
-          }
-        },
-        "marshaller": {
-          "type": "string",
-          "title": "Marshaller",
-          "description": "Sets a custom mail message marshaller.",
-          "$comment": "group:advanced"
-        },
-        "messageConverter": {
-          "type": "string",
-          "title": "MessageConverter",
-          "description": "Sets custom message converter.",
-          "$comment": "group:advanced"
-        },
-        "name": {
-          "type": "string",
-          "title": "Name",
-          "description": "The name of the endpoint"
-        },
-        "port": {
-          "type": "integer",
-          "title": "Port",
-          "description": "The mail server port."
-        },
-        "smtp": {
-          "type": "string",
-          "title": "Smtp",
-          "description": "Sets the SMTP implementation.",
-          "$comment": "group:advanced"
-        },
-        "splitMultipart": {
-          "type": "boolean",
-          "title": "SplitMultipart",
-          "description": "When enabled the server splits multipart messages into individual parts.",
-          "$comment": "group:advanced"
-        },
-        "timeout": {
-          "type": "integer",
-          "title": "Timeout",
-          "description": "The server timeout.",
-          "default": "5000"
-        }
-      }
-    }
+      },
+      "additionalProperties": false    }
   }
 }

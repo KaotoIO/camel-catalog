@@ -1,16 +1,18 @@
 {
   "isUUIDv4": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "isUUIDv4",
     "group": "citrus",
     "title": "IsUUIDv4",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "dateRange": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "dateRange",
     "group": "citrus",
     "title": "DateRange",
@@ -38,11 +40,12 @@
       "required": [
         "dateFrom",
         "dateTo"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "lowerThan": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "lowerThan",
     "group": "citrus",
     "title": "LowerThan",
@@ -58,11 +61,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "matchesDatePattern": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "matchesDatePattern",
     "group": "citrus",
     "title": "MatchesDatePattern",
@@ -78,11 +82,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "isWeekday": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "isWeekday",
     "group": "citrus",
     "title": "IsWeekday",
@@ -113,21 +118,23 @@
       },
       "required": [
         "weekday"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "empty": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "empty",
     "group": "citrus",
     "title": "Empty",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "trim": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "trim",
     "group": "citrus",
     "title": "Trim",
@@ -143,11 +150,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "ignoreNewLine": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "ignoreNewLine",
     "group": "citrus",
     "title": "IgnoreNewLine",
@@ -163,31 +171,34 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "isNumber": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "isNumber",
     "group": "citrus",
     "title": "IsNumber",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "ignore": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "ignore",
     "group": "citrus",
     "title": "Ignore",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "equalsIgnoreCase": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "equalsIgnoreCase",
     "group": "citrus",
     "title": "EqualsIgnoreCase",
@@ -203,11 +214,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "hasLength": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "hasLength",
     "group": "citrus",
     "title": "HasLength",
@@ -223,11 +235,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "greaterThan": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "greaterThan",
     "group": "citrus",
     "title": "GreaterThan",
@@ -243,21 +256,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "notNull": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "notNull",
     "group": "citrus",
     "title": "NotNull",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "matchesXml": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "matchesXml",
     "group": "citrus",
     "title": "MatchesXml",
@@ -273,11 +288,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "containsIgnoreCase": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "containsIgnoreCase",
     "group": "citrus",
     "title": "ContainsIgnoreCase",
@@ -293,11 +309,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "trimAllWhitespaces": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "trimAllWhitespaces",
     "group": "citrus",
     "title": "TrimAllWhitespaces",
@@ -313,11 +330,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "assertThat": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "assertThat",
     "group": "citrus",
     "title": "AssertThat",
@@ -338,11 +356,12 @@
       },
       "required": [
         "expression"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "matches": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "matches",
     "group": "citrus",
     "title": "Matches",
@@ -358,11 +377,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "contains": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "contains",
     "group": "citrus",
     "title": "Contains",
@@ -378,21 +398,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "null": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "null",
     "group": "citrus",
     "title": "Null",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "endsWith": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "endsWith",
     "group": "citrus",
     "title": "EndsWith",
@@ -408,11 +430,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "variable": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "variable",
     "group": "citrus",
     "title": "Variable",
@@ -428,21 +451,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "notEmpty": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "notEmpty",
     "group": "citrus",
     "title": "NotEmpty",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "startsWith": {
     "kind": "testValidationMatcher",
+    "version": "4.9.4",
     "name": "startsWith",
     "group": "citrus",
     "title": "StartsWith",
@@ -458,7 +483,7 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   }
 }

@@ -1,6 +1,7 @@
 {
   "average": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "average",
     "group": "citrus",
     "title": "Average",
@@ -21,11 +22,12 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "cdataSection": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "cdataSection",
     "group": "citrus",
     "title": "CdataSection",
@@ -41,21 +43,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "unixTimestamp": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "unixTimestamp",
     "group": "citrus",
     "title": "UnixTimestamp",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "randomString": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomString",
     "group": "citrus",
     "title": "RandomString",
@@ -86,11 +90,12 @@
       },
       "required": [
         "length"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "resolveExternalServiceUrl": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "resolveExternalServiceUrl",
     "group": "citrus",
     "title": "ResolveExternalServiceUrl",
@@ -111,11 +116,12 @@
       },
       "required": [
         "serviceName"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "urlDecode": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "urlDecode",
     "group": "citrus",
     "title": "UrlDecode",
@@ -137,21 +143,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "localHostAddress": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "localHostAddress",
     "group": "citrus",
     "title": "LocalHostAddress",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "currentDate": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "currentDate",
     "group": "citrus",
     "title": "CurrentDate",
@@ -174,11 +182,12 @@
           "title": "TimeZone",
           "description": "The time zone."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "sum": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "sum",
     "group": "citrus",
     "title": "Sum",
@@ -199,11 +208,12 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "urlEncode": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "urlEncode",
     "group": "citrus",
     "title": "UrlEncode",
@@ -225,11 +235,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "substring": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "substring",
     "group": "citrus",
     "title": "Substring",
@@ -256,11 +267,12 @@
       "required": [
         "beginIndex",
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "translate": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "translate",
     "group": "citrus",
     "title": "Translate",
@@ -288,11 +300,12 @@
         "regex",
         "replacement",
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "escapeJson": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "escapeJson",
     "group": "citrus",
     "title": "EscapeJson",
@@ -308,11 +321,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "digestAuthHeader": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "digestAuthHeader",
     "group": "citrus",
     "title": "DigestAuthHeader",
@@ -370,11 +384,12 @@
         "realm",
         "uri",
         "username"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "xpath": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "xpath",
     "group": "citrus",
     "title": "Xpath",
@@ -395,11 +410,12 @@
       },
       "required": [
         "source"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "resolveServiceUrl": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "resolveServiceUrl",
     "group": "citrus",
     "title": "ResolveServiceUrl",
@@ -426,11 +442,12 @@
       "required": [
         "serviceName",
         "servicePort"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "lowerCase": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "lowerCase",
     "group": "citrus",
     "title": "LowerCase",
@@ -446,11 +463,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "randomNumber": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomNumber",
     "group": "citrus",
     "title": "RandomNumber",
@@ -471,11 +489,12 @@
       },
       "required": [
         "length"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "changeDate": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "changeDate",
     "group": "citrus",
     "title": "ChangeDate",
@@ -501,11 +520,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "randomEnumValue": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomEnumValue",
     "group": "citrus",
     "title": "RandomEnumValue",
@@ -526,11 +546,12 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "escapeXml": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "escapeXml",
     "group": "citrus",
     "title": "EscapeXml",
@@ -546,11 +567,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "substringAfter": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "substringAfter",
     "group": "citrus",
     "title": "SubstringAfter",
@@ -572,21 +594,23 @@
       "required": [
         "searchString",
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "randomUUID": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomUUID",
     "group": "citrus",
     "title": "RandomUUID",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "jsonPatch": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "jsonPatch",
     "group": "citrus",
     "title": "JsonPatch",
@@ -621,6 +645,7 @@
               "operation",
               "path"
             ],
+            "additionalProperties": false,
             "title": "Operations",
             "description": "List of JSON Patch operations (add, remove, replace, move, copy) applied to the source JSON."
           }
@@ -634,11 +659,12 @@
       "required": [
         "operations",
         "source"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "floor": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "floor",
     "group": "citrus",
     "title": "Floor",
@@ -654,11 +680,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "stringLength": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "stringLength",
     "group": "citrus",
     "title": "StringLength",
@@ -674,11 +701,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "encodeBase64": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "encodeBase64",
     "group": "citrus",
     "title": "EncodeBase64",
@@ -700,11 +728,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "ceiling": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "ceiling",
     "group": "citrus",
     "title": "Ceiling",
@@ -720,21 +749,23 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "randomNumberGenerator": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomNumberGenerator",
     "group": "citrus",
     "title": "RandomNumberGenerator",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "systemProperty": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "systemProperty",
     "group": "citrus",
     "title": "SystemProperty",
@@ -755,11 +786,12 @@
       },
       "required": [
         "propertyName"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "jsonPath": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "jsonPath",
     "group": "citrus",
     "title": "JsonPath",
@@ -780,11 +812,12 @@
       },
       "required": [
         "source"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "concat": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "concat",
     "group": "citrus",
     "title": "Concat",
@@ -805,11 +838,12 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "message": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "message",
     "group": "citrus",
     "title": "Message",
@@ -825,11 +859,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "round": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "round",
     "group": "citrus",
     "title": "Round",
@@ -845,11 +880,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "decodeBase64": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "decodeBase64",
     "group": "citrus",
     "title": "DecodeBase64",
@@ -871,11 +907,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "serviceClusterIp": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "serviceClusterIp",
     "group": "citrus",
     "title": "ServiceClusterIp",
@@ -896,11 +933,12 @@
       },
       "required": [
         "serviceName"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "randomPattern": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "randomPattern",
     "group": "citrus",
     "title": "RandomPattern",
@@ -916,11 +954,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "upperCase": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "upperCase",
     "group": "citrus",
     "title": "UpperCase",
@@ -936,11 +975,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "absolute": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "absolute",
     "group": "citrus",
     "title": "Absolute",
@@ -956,11 +996,12 @@
       },
       "required": [
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "readFile": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "readFile",
     "group": "citrus",
     "title": "ReadFile",
@@ -987,11 +1028,12 @@
       },
       "required": [
         "filePath"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "maximum": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "maximum",
     "group": "citrus",
     "title": "Maximum",
@@ -1012,11 +1054,12 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "substringBefore": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "substringBefore",
     "group": "citrus",
     "title": "SubstringBefore",
@@ -1038,11 +1081,12 @@
       "required": [
         "searchString",
         "value"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "minimum": {
     "kind": "testFunction",
+    "version": "4.9.4",
     "name": "minimum",
     "group": "citrus",
     "title": "Minimum",
@@ -1063,7 +1107,7 @@
       },
       "required": [
         "values"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   }
 }

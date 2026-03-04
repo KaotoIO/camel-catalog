@@ -30,7 +30,8 @@
           "title" : "Resource",
           "description" : "The SOAP attachment content loaded from a file resource."
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "AutoFillType" : {
       "type" : "string",
@@ -43,6 +44,7 @@
         "resource" : { },
         "script" : { }
       },
+      "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
           "type" : "object",
@@ -70,6 +72,7 @@
                   "title" : "File"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Resource",
               "description" : "The message body loaded from a file resource."
             }
@@ -104,6 +107,7 @@
                   "default" : "groovy"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Script",
               "description" : "The message body set via script."
             }
@@ -151,6 +155,7 @@
               "title" : "Value"
             }
           },
+          "additionalProperties" : false,
           "title" : "Property"
         },
         "tagName" : {
@@ -161,7 +166,8 @@
           "type" : "string",
           "title" : "Xpath"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "ErrorHandlingStrategy" : {
       "type" : "string",
@@ -181,7 +187,8 @@
           "description" : "The expected expression result value."
         }
       },
-      "required" : [ "path", "value" ]
+      "required" : [ "path", "value" ],
+      "additionalProperties" : false
     },
     "Extract" : {
       "type" : "object",
@@ -211,6 +218,7 @@
               }
             },
             "required" : [ "variable" ],
+            "additionalProperties" : false,
             "title" : "Body",
             "description" : "Extract elements from the message body into test variables."
           }
@@ -234,11 +242,13 @@
               }
             },
             "required" : [ "name", "variable" ],
+            "additionalProperties" : false,
             "title" : "Header",
             "description" : "Extract elements from the message header into test variables."
           }
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "Header" : {
       "type" : "object",
@@ -258,6 +268,7 @@
         },
         "value" : { }
       },
+      "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
           "type" : "object",
@@ -288,6 +299,7 @@
                 }
               },
               "required" : [ "file" ],
+              "additionalProperties" : false,
               "title" : "Resource",
               "description" : "The header data loaded from a file resource."
             }
@@ -393,6 +405,7 @@
               }
             },
             "required" : [ "name", "value" ],
+            "additionalProperties" : false,
             "title" : "Parameters",
             "description" : "List of Http query parameters.",
             "$comment" : "group:advanced"
@@ -433,7 +446,8 @@
           "description" : "Http version.",
           "$comment" : "group:advanced"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "HttpResponse" : {
       "type" : "object",
@@ -537,7 +551,8 @@
           "description" : "Http version.",
           "$comment" : "group:advanced"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "HttpStatus" : {
       "type" : "string",
@@ -554,7 +569,8 @@
           "type" : "string",
           "title" : "Value"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "Message" : {
       "type" : "object",
@@ -636,7 +652,8 @@
           "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
           "$comment" : "group:advanced"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "RequestMethod" : {
       "type" : "string",
@@ -665,7 +682,8 @@
           "type" : "string",
           "title" : "Value"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "Selector" : {
       "type" : "object",
@@ -690,6 +708,7 @@
               }
             },
             "required" : [ "name", "value" ],
+            "additionalProperties" : false,
             "title" : "Element",
             "description" : "List of elements to build the selector expression.",
             "$comment" : "group:advanced"
@@ -700,7 +719,8 @@
           "title" : "Value",
           "description" : "Selector expression value."
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "SoapFaultDetail" : {
       "type" : "object",
@@ -715,7 +735,8 @@
           "title" : "Resource",
           "description" : "The SOAP fault detail loaded from a file resource."
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "SoapRequest" : {
       "type" : "object",
@@ -845,7 +866,8 @@
           "description" : "The SOAP version.",
           "$comment" : "group:advanced"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "SoapResponse" : {
       "type" : "object",
@@ -964,7 +986,8 @@
           "description" : "The SOAP version.",
           "$comment" : "group:advanced"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "SwitchWindow" : {
       "type" : "object",
@@ -977,7 +1000,8 @@
           "type" : "string",
           "title" : "Window"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "TestActionBuilder_Object_" : {
       "type" : "object"
@@ -999,6 +1023,7 @@
               "description" : "The reference to the test action in the bean registry."
             }
           },
+          "additionalProperties" : false,
           "title" : "Action",
           "description" : "Generic test action."
         },
@@ -1017,6 +1042,7 @@
                   "title" : "Url"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Connect"
             },
             "name" : {
@@ -1051,12 +1077,15 @@
                       "title" : "File"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Source"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Run"
             }
           },
+          "additionalProperties" : false,
           "title" : "Agent",
           "description" : "Agent service test actions."
         },
@@ -1092,6 +1121,7 @@
                   "title" : "Targets"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Execute",
               "description" : "The build target to call."
             },
@@ -1111,6 +1141,7 @@
                     "title" : "Value"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Properties",
                 "description" : "Ant build properties."
               }
@@ -1121,6 +1152,7 @@
               "description" : "Adds a build property file."
             }
           },
+          "additionalProperties" : false,
           "title" : "Ant",
           "description" : "Ant run test action."
         },
@@ -1156,12 +1188,14 @@
                   }
                 },
                 "required" : [ "name", "value" ],
+                "additionalProperties" : false,
                 "title" : "Parameters",
                 "description" : "Template parameters, passed to the template as test variables."
               }
             }
           },
           "required" : [ "name" ],
+          "additionalProperties" : false,
           "title" : "ApplyTemplate",
           "description" : "Apply template test action."
         },
@@ -1199,6 +1233,7 @@
             }
           },
           "required" : [ "when" ],
+          "additionalProperties" : false,
           "title" : "Assert",
           "description" : "Assert exception test action."
         },
@@ -1256,6 +1291,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "Async",
           "description" : "Async test action."
         },
@@ -1300,6 +1336,7 @@
                       "description" : "The language name."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Language",
                   "description" : "Runs another Camel language expression."
                 },
@@ -1319,6 +1356,7 @@
                   "description" : "Runs a simple expression"
                 }
               },
+              "additionalProperties" : false,
               "title" : "ControlBus",
               "description" : "Connects with the Camel control bus to run operations."
             },
@@ -1341,6 +1379,7 @@
                   "description" : "The script that defines the Camel component."
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateComponent",
               "description" : "Create components in the Camel registry."
             },
@@ -1359,6 +1398,7 @@
                   "description" : "The name of the Camel context."
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateContext",
               "description" : "Create a new Camel context."
             },
@@ -1388,6 +1428,7 @@
                   "$comment" : "group:advanced"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateRoutes",
               "description" : "Create a new Camel route in the context."
             },
@@ -1431,6 +1472,7 @@
                       "description" : "The Camel infra service name."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Run",
                   "description" : "Runs a Camel infra service."
                 },
@@ -1448,10 +1490,12 @@
                       "description" : "The Camel infra service name."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Stop",
                   "description" : "Stops a Camel infra service."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Infra",
               "description" : "Manage Camel infra services."
             },
@@ -1558,6 +1602,7 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Receive",
                       "description" : "Receives a message from a Camel JBang integration."
                     },
@@ -1590,6 +1635,7 @@
                               "description" : "The message body content loaded from a file resource."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Body",
                           "description" : "The message body."
                         },
@@ -1601,13 +1647,13 @@
                         },
                         "headers" : {
                           "type" : "object",
+                          "title" : "Headers",
+                          "description" : "The message headers.",
                           "additionalProperties" : {
                             "type" : "string",
                             "title" : "Headers",
                             "description" : "The message headers."
-                          },
-                          "title" : "Headers",
-                          "description" : "The message headers."
+                          }
                         },
                         "integration" : {
                           "type" : "string",
@@ -1632,10 +1678,12 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Send",
                       "description" : "Sends a message to Camel JBang integration."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Cmd",
                   "description" : "Camel JBang cmd operations."
                 },
@@ -1708,11 +1756,13 @@
                                   }
                                 },
                                 "required" : [ "name", "value" ],
+                                "additionalProperties" : false,
                                 "title" : "Variables",
                                 "description" : "List of environment variables."
                               }
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Environment",
                           "description" : "Environment variables set for the Camel JBang process.",
                           "$comment" : "group:advanced"
@@ -1754,16 +1804,19 @@
                                   }
                                 },
                                 "required" : [ "name", "value" ],
+                                "additionalProperties" : false,
                                 "title" : "Properties",
                                 "description" : "List of system properties."
                               }
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "SystemProperties",
                           "description" : "System properties set for the Camel JBang process.",
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Integration",
                       "description" : "The Camel integration."
                     },
@@ -1799,6 +1852,7 @@
                       "$comment" : "group:advanced"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Custom",
                   "description" : "Runs a Camel integration with customized parameters."
                 },
@@ -1833,6 +1887,7 @@
                               "description" : "The Camel integration name."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Integration",
                           "description" : "The Camel integration to delete."
                         },
@@ -1849,6 +1904,7 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Delete",
                       "description" : "Deletes a Camel integration from Kubernetes."
                     },
@@ -1928,6 +1984,7 @@
                               "description" : "The integration source code."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Integration",
                           "description" : "The Camel integration name."
                         },
@@ -1973,6 +2030,7 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Run",
                       "description" : "Runs a Camel integration on Kubernetes."
                     },
@@ -2033,10 +2091,12 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Verify",
                       "description" : "Verify the status and log messages for a Camel integration run on Kubernetes."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Kubernetes",
                   "description" : "Camel Kubernetes plugin related operations."
                 },
@@ -2065,10 +2125,12 @@
                         }
                       },
                       "required" : [ "name" ],
+                      "additionalProperties" : false,
                       "title" : "Add",
                       "description" : "Adds a plugin to the Camel Jbang installation."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Plugin",
                   "description" : "Manage Camel JBang plugins."
                 },
@@ -2131,11 +2193,13 @@
                                   }
                                 },
                                 "required" : [ "name", "value" ],
+                                "additionalProperties" : false,
                                 "title" : "Variables",
                                 "description" : "List of environment variables."
                               }
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Environment",
                           "description" : "Environment variables set for the Camel JBang process.",
                           "$comment" : "group:advanced"
@@ -2182,16 +2246,19 @@
                                   }
                                 },
                                 "required" : [ "name", "value" ],
+                                "additionalProperties" : false,
                                 "title" : "Properties",
                                 "description" : "List of system properties."
                               }
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "SystemProperties",
                           "description" : "System properties set for the Camel JBang process.",
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Integration",
                       "description" : "The Camel integration."
                     },
@@ -2227,6 +2294,7 @@
                       "$comment" : "group:advanced"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Run",
                   "description" : "Runs a Camel integration."
                 },
@@ -2239,6 +2307,7 @@
                       "description" : "Camel integration name"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Stop",
                   "description" : "Stops a Camel integration."
                 },
@@ -2290,10 +2359,12 @@
                       "$comment" : "group:advanced"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Verify",
                   "description" : "Verify the Camel integration status and log messages."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Jbang",
               "description" : "Connect with Camel JBang to run commands."
             },
@@ -2311,6 +2382,7 @@
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "RemoveRoutes",
               "description" : "Remove given Camel routes."
             },
@@ -2323,6 +2395,7 @@
                   "description" : "The Camel context name."
                 }
               },
+              "additionalProperties" : false,
               "title" : "StartContext",
               "description" : "Starts the given Camel context."
             },
@@ -2340,6 +2413,7 @@
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "StartRoutes",
               "description" : "Start existing Camel routes in the context."
             },
@@ -2352,6 +2426,7 @@
                   "description" : "The Camel context name."
                 }
               },
+              "additionalProperties" : false,
               "title" : "StopContext",
               "description" : "Stops the given Camel context."
             },
@@ -2369,10 +2444,12 @@
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "StopRoutes",
               "description" : "Stop given Camel routes."
             }
           },
+          "additionalProperties" : false,
           "title" : "Camel",
           "description" : "Test actions related to Apache Camel."
         },
@@ -2405,6 +2482,7 @@
             }
           },
           "required" : [ "when" ],
+          "additionalProperties" : false,
           "title" : "Catch",
           "description" : "Catch exception test action."
         },
@@ -2437,6 +2515,7 @@
             }
           },
           "required" : [ "actions", "when" ],
+          "additionalProperties" : false,
           "title" : "Conditional",
           "description" : "Conditional test action."
         },
@@ -2468,14 +2547,14 @@
             },
             "properties" : {
               "type" : "object",
+              "title" : "Properties",
+              "description" : "List of properties for this endpoint.",
               "additionalProperties" : {
                 "type" : "string",
                 "title" : "Properties",
                 "description" : "List of properties for this endpoint.",
                 "$comment" : "group:generic"
               },
-              "title" : "Properties",
-              "description" : "List of properties for this endpoint.",
               "$comment" : "group:generic"
             },
             "scp" : { },
@@ -2497,6 +2576,7 @@
             "vertx" : { },
             "webSocket" : { }
           },
+          "additionalProperties" : false,
           "anyOf" : [ {
             "oneOf" : [ {
               "type" : "object",
@@ -2507,6 +2587,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -2668,6 +2749,7 @@
                               "default" : "5000"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the Http client endpoint."
                         }
@@ -2755,26 +2837,26 @@
                             },
                             "filterMappings" : {
                               "type" : "object",
+                              "title" : "FilterMappings",
+                              "description" : "Filter mapping used on this server.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "FilterMappings",
                                 "description" : "Filter mapping used on this server.",
                                 "$comment" : "group:filter"
                               },
-                              "title" : "FilterMappings",
-                              "description" : "Filter mapping used on this server.",
                               "$comment" : "group:filter"
                             },
                             "filters" : {
                               "type" : "object",
+                              "title" : "Filters",
+                              "description" : "Map of Http filters used on this server.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "Filters",
                                 "description" : "Map of Http filters used on this server.",
                                 "$comment" : "group:filter"
                               },
-                              "title" : "Filters",
-                              "description" : "Map of Http filters used on this server.",
                               "$comment" : "group:filter"
                             },
                             "handleAttributeHeaders" : {
@@ -2896,6 +2978,7 @@
                               "$comment" : "group:filter"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the Http server endpoint."
                         }
@@ -2917,6 +3000,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -3015,6 +3099,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the SOAP WebService client endpoint."
                         }
@@ -3186,6 +3271,7 @@
                               "default" : "5000"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the SOAP WebService server endpoint."
                         }
@@ -3207,6 +3293,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -3249,6 +3336,7 @@
                               "default" : "5000"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the WebSocket client endpoint."
                         }
@@ -3336,26 +3424,26 @@
                             },
                             "filterMappings" : {
                               "type" : "object",
+                              "title" : "FilterMappings",
+                              "description" : "Filter mapping used on this server.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "FilterMappings",
                                 "description" : "Filter mapping used on this server.",
                                 "$comment" : "group:filter"
                               },
-                              "title" : "FilterMappings",
-                              "description" : "Filter mapping used on this server.",
                               "$comment" : "group:filter"
                             },
                             "filters" : {
                               "type" : "object",
+                              "title" : "Filters",
+                              "description" : "Map of Http filters used on this server.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "Filters",
                                 "description" : "Map of Http filters used on this server.",
                                 "$comment" : "group:filter"
                               },
-                              "title" : "Filters",
-                              "description" : "Map of Http filters used on this server.",
                               "$comment" : "group:filter"
                             },
                             "handleAttributeHeaders" : {
@@ -3487,6 +3575,7 @@
                               }
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the WebSocket server endpoint."
                         }
@@ -3524,10 +3613,12 @@
                           "description" : "The timeout when receiving messages from the message store."
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "MessageStore",
                       "description" : "Sets a message store endpoint ."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Context",
                   "description" : "Context endpoint."
                 }
@@ -3542,6 +3633,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -3605,6 +3697,7 @@
                               "$comment" : "group:security"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the mail client endpoint."
                         }
@@ -3704,6 +3797,7 @@
                               "default" : "5000"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the mail server endpoint."
                         }
@@ -3725,6 +3819,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -3795,6 +3890,7 @@
                               "$comment" : "group:security"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the ftp client endpoint."
                         }
@@ -3926,6 +4022,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the ftp server endpoint."
                         }
@@ -3947,6 +4044,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -4031,13 +4129,13 @@
                             },
                             "sessionConfigs" : {
                               "type" : "object",
+                              "title" : "SessionConfigs",
+                              "description" : "The session configuration.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "SessionConfigs",
                                 "description" : "The session configuration."
-                              },
-                              "title" : "SessionConfigs",
-                              "description" : "The session configuration."
+                              }
                             },
                             "strictHostChecking" : {
                               "type" : "boolean",
@@ -4057,6 +4155,7 @@
                               "$comment" : "group:security"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the sftp client endpoint."
                         }
@@ -4154,13 +4253,13 @@
                             },
                             "sessionConfigs" : {
                               "type" : "object",
+                              "title" : "SessionConfigs",
+                              "description" : "The session configuration.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "SessionConfigs",
                                 "description" : "The session configuration."
-                              },
-                              "title" : "SessionConfigs",
-                              "description" : "The session configuration."
+                              }
                             },
                             "strictHostChecking" : {
                               "type" : "boolean",
@@ -4185,6 +4284,7 @@
                               "description" : "Sets the user home path directory."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the sftp server endpoint."
                         }
@@ -4206,6 +4306,7 @@
                     "client" : { },
                     "server" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -4301,6 +4402,7 @@
                               "$comment" : "group:security"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Client",
                           "description" : "Sets the scp client endpoint."
                         }
@@ -4398,13 +4500,13 @@
                             },
                             "sessionConfigs" : {
                               "type" : "object",
+                              "title" : "SessionConfigs",
+                              "description" : "The session configuration.",
                               "additionalProperties" : {
                                 "type" : "string",
                                 "title" : "SessionConfigs",
                                 "description" : "The session configuration."
-                              },
-                              "title" : "SessionConfigs",
-                              "description" : "The session configuration."
+                              }
                             },
                             "strictHostChecking" : {
                               "type" : "boolean",
@@ -4429,6 +4531,7 @@
                               "description" : "Sets the user home path directory."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Server",
                           "description" : "Sets the sftp server endpoint."
                         }
@@ -4507,10 +4610,12 @@
                           "description" : "The Docker client version."
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Client",
                       "description" : "Sets the Docker client endpoint."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Docker",
                   "description" : "Docker client"
                 }
@@ -4590,10 +4695,12 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Client",
                       "description" : "Sets the Kubernetes client endpoint."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Kubernetes",
                   "description" : "Kubernetes client"
                 }
@@ -4608,6 +4715,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -4697,6 +4805,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the Jms endpoint."
                         }
@@ -4788,6 +4897,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous Jms endpoint."
                         }
@@ -4809,6 +4919,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -4865,6 +4976,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the Vert.x endpoint."
                         }
@@ -4931,6 +5043,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous Vert.x endpoint."
                         }
@@ -4952,6 +5065,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -4980,6 +5094,7 @@
                               "description" : "The timeout when receiving messages from the queue."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the direct endpoint."
                         }
@@ -5023,6 +5138,7 @@
                               "description" : "The timeout when receiving messages from the queue."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous direct endpoint."
                         }
@@ -5044,6 +5160,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -5156,6 +5273,7 @@
                               "$comment" : "group:serialize"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the Kafka endpoint."
                         }
@@ -5272,6 +5390,7 @@
                               "$comment" : "group:serialize"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous Kafka endpoint."
                         }
@@ -5293,6 +5412,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -5327,6 +5447,7 @@
                               "description" : "The endpoint timeout when waiting for messages."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the Camel endpoint."
                         }
@@ -5376,6 +5497,7 @@
                               "description" : "The endpoint timeout when waiting for messages."
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous Camel endpoint."
                         }
@@ -5397,6 +5519,7 @@
                     "asynchronous" : { },
                     "synchronous" : { }
                   },
+                  "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
                       "type" : "object",
@@ -5451,6 +5574,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Asynchronous",
                           "description" : "Sets the Spring message channel endpoint."
                         }
@@ -5521,6 +5645,7 @@
                               "$comment" : "group:advanced"
                             }
                           },
+                          "additionalProperties" : false,
                           "title" : "Synchronous",
                           "description" : "Sets the synchronous Spring message channel endpoint."
                         }
@@ -5604,10 +5729,12 @@
                           "$comment" : "group:advanced"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "Browser",
                       "description" : "Sets the Selenium browser endpoint."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Selenium",
                   "description" : "Selenium endpoint."
                 }
@@ -5659,6 +5786,7 @@
                         "description" : "The script content."
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Script",
                     "description" : "Script to build the variable value.",
                     "$comment" : "group:advanced"
@@ -5670,12 +5798,14 @@
                   }
                 },
                 "required" : [ "name" ],
+                "additionalProperties" : false,
                 "title" : "Variables",
                 "description" : "List of test variables."
               }
             }
           },
           "required" : [ "variables" ],
+          "additionalProperties" : false,
           "title" : "CreateVariables",
           "description" : "Create variables test action."
         },
@@ -5699,6 +5829,7 @@
               "description" : "Time to sleep in seconds."
             }
           },
+          "additionalProperties" : false,
           "title" : "Delay",
           "description" : "Delay test action."
         },
@@ -5726,6 +5857,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "DoFinally",
           "description" : "Runs test actions after the test."
         },
@@ -5745,6 +5877,7 @@
             }
           },
           "required" : [ "message" ],
+          "additionalProperties" : false,
           "title" : "Echo",
           "description" : "Echo test action."
         },
@@ -5785,6 +5918,7 @@
                       }
                     },
                     "required" : [ "name", "value" ],
+                    "additionalProperties" : false,
                     "title" : "Elements",
                     "description" : "Selector elements building the selector expression.",
                     "$comment" : "group:advanced"
@@ -5796,6 +5930,7 @@
                   "description" : "Selector expression value."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Selector",
               "description" : "Message selector to selectively consume messages.",
               "$comment" : "group:advanced"
@@ -5807,6 +5942,7 @@
             }
           },
           "required" : [ "endpoint" ],
+          "additionalProperties" : false,
           "title" : "ExpectTimeout",
           "description" : "Expect timeout test action."
         },
@@ -5825,6 +5961,7 @@
               "description" : "Error message describing the failure."
             }
           },
+          "additionalProperties" : false,
           "title" : "Fail",
           "description" : "Fail test action."
         },
@@ -5870,6 +6007,7 @@
             }
           },
           "required" : [ "script" ],
+          "additionalProperties" : false,
           "title" : "Groovy",
           "description" : "Groovy test action."
         },
@@ -5970,6 +6108,7 @@
                   "$comment" : "group:advanced"
                 }
               },
+              "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
                   "type" : "object",
@@ -6164,6 +6303,7 @@
                   "$comment" : "group:advanced"
                 }
               },
+              "additionalProperties" : false,
               "title" : "ReceiveResponse",
               "description" : "Receive an Http response as a client."
             },
@@ -6199,6 +6339,7 @@
                   "$comment" : "group:advanced"
                 }
               },
+              "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
                   "type" : "object",
@@ -6336,6 +6477,7 @@
                   } ]
                 }
               },
+              "additionalProperties" : false,
               "title" : "SendResponse",
               "description" : "Send an Http response as a server."
             },
@@ -6345,6 +6487,7 @@
               "description" : "The Http server."
             }
           },
+          "additionalProperties" : false,
           "title" : "Http",
           "description" : "Http related test actions."
         },
@@ -6397,6 +6540,7 @@
             }
           },
           "required" : [ "actions", "condition" ],
+          "additionalProperties" : false,
           "title" : "Iterate",
           "description" : "Iterate test action."
         },
@@ -6423,6 +6567,7 @@
                   }
                 },
                 "required" : [ "name", "value" ],
+                "additionalProperties" : false,
                 "title" : "Args"
               }
             },
@@ -6476,10 +6621,12 @@
                   }
                 },
                 "required" : [ "name", "value" ],
+                "additionalProperties" : false,
                 "title" : "SystemProperties"
               }
             }
           },
+          "additionalProperties" : false,
           "title" : "Jbang",
           "description" : "JBang test actions."
         },
@@ -6512,6 +6659,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateBroker"
             },
             "createChannel" : {
@@ -6522,6 +6670,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateChannel"
             },
             "createSubscription" : {
@@ -6540,6 +6689,7 @@
                   "title" : "Service"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateSubscription"
             },
             "createTrigger" : {
@@ -6571,10 +6721,12 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Attributes"
                       }
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Filter"
                 },
                 "name" : {
@@ -6586,6 +6738,7 @@
                   "title" : "Service"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateTrigger"
             },
             "deleteBroker" : {
@@ -6596,6 +6749,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteBroker"
             },
             "deleteChannel" : {
@@ -6606,6 +6760,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteChannel"
             },
             "deleteResource" : {
@@ -6624,6 +6779,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteResource"
             },
             "deleteSubscription" : {
@@ -6634,6 +6790,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteSubscription"
             },
             "deleteTrigger" : {
@@ -6644,6 +6801,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteTrigger"
             },
             "description" : {
@@ -6681,6 +6839,7 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Attributes"
                       }
                     },
@@ -6689,6 +6848,7 @@
                       "title" : "Data"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Event"
                 },
                 "port" : {
@@ -6704,6 +6864,7 @@
                   "title" : "Timeout"
                 }
               },
+              "additionalProperties" : false,
               "title" : "ReceiveEvent"
             },
             "sendEvent" : {
@@ -6731,6 +6892,7 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Attributes"
                       }
                     },
@@ -6739,6 +6901,7 @@
                       "title" : "Data"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Event"
                 },
                 "fork" : {
@@ -6750,6 +6913,7 @@
                   "title" : "Timeout"
                 }
               },
+              "additionalProperties" : false,
               "title" : "SendEvent"
             },
             "verifyBroker" : {
@@ -6760,9 +6924,11 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "VerifyBroker"
             }
           },
+          "additionalProperties" : false,
           "title" : "Knative",
           "description" : "Knative test actions."
         },
@@ -6820,6 +6986,7 @@
                       "title" : "WaitForRunningState"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Connect"
                 },
                 "disconnect" : {
@@ -6830,9 +6997,11 @@
                       "title" : "Name"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Disconnect"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Agent"
             },
             "autoRemove" : {
@@ -6870,10 +7039,12 @@
                       "description" : "The exposed service port used to connect to."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Service",
                   "description" : "Connects to this Kubernetes service."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Connect"
             },
             "connectService" : {
@@ -6900,6 +7071,7 @@
                   "description" : "The exposed service port used to connect to."
                 }
               },
+              "additionalProperties" : false,
               "title" : "ConnectService"
             },
             "createAnnotations" : {
@@ -6920,6 +7092,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Annotations"
                   }
                 },
@@ -6932,6 +7105,7 @@
                   "title" : "Type"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateAnnotations"
             },
             "createConfigMap" : {
@@ -6960,10 +7134,12 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Properties"
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateConfigMap"
             },
             "createCustomResource" : {
@@ -6998,6 +7174,7 @@
                   "title" : "Version"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateCustomResource"
             },
             "createLabels" : {
@@ -7018,6 +7195,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Labels"
                   }
                 },
@@ -7030,6 +7208,7 @@
                   "title" : "Type"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateLabels"
             },
             "createResource" : {
@@ -7044,6 +7223,7 @@
                   "title" : "File"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateResource"
             },
             "createSecret" : {
@@ -7072,10 +7252,12 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Properties"
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateSecret"
             },
             "createService" : {
@@ -7104,6 +7286,7 @@
                         "title" : "TargetPort"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Ports"
                   }
                 },
@@ -7129,10 +7312,12 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Labels"
                       }
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Selector"
                 },
                 "server" : {
@@ -7140,6 +7325,7 @@
                   "title" : "Server"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CreateService"
             },
             "deleteConfigMap" : {
@@ -7150,6 +7336,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteConfigMap"
             },
             "deleteCustomResource" : {
@@ -7180,6 +7367,7 @@
                   "title" : "Version"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteCustomResource"
             },
             "deleteResource" : {
@@ -7194,6 +7382,7 @@
                   "title" : "File"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteResource"
             },
             "deleteSecret" : {
@@ -7204,6 +7393,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteSecret"
             },
             "deleteService" : {
@@ -7214,6 +7404,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DeleteService"
             },
             "description" : {
@@ -7233,9 +7424,11 @@
                       "title" : "Name"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Service"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Disconnect"
             },
             "disconnectService" : {
@@ -7250,6 +7443,7 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "DisconnectService"
             },
             "namespace" : {
@@ -7300,6 +7494,7 @@
                   "title" : "Version"
                 }
               },
+              "additionalProperties" : false,
               "title" : "VerifyCustomResource"
             },
             "verifyPod" : {
@@ -7328,6 +7523,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Labels"
                   }
                 },
@@ -7352,6 +7548,7 @@
                   "title" : "PrintLogs"
                 }
               },
+              "additionalProperties" : false,
               "title" : "VerifyPod"
             },
             "watchPodLogs" : {
@@ -7376,6 +7573,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Labels"
                   }
                 },
@@ -7388,9 +7586,11 @@
                   "title" : "Timeout"
                 }
               },
+              "additionalProperties" : false,
               "title" : "WatchPodLogs"
             }
           },
+          "additionalProperties" : false,
           "title" : "Kubernetes",
           "description" : "Kubernetes test actions."
         },
@@ -7407,11 +7607,13 @@
                 }
               },
               "required" : [ "file" ],
+              "additionalProperties" : false,
               "title" : "Properties",
               "description" : "The properties source."
             }
           },
           "required" : [ "properties" ],
+          "additionalProperties" : false,
           "title" : "Load",
           "description" : "Load properties test action."
         },
@@ -7507,6 +7709,7 @@
                 }
               },
               "required" : [ "operation" ],
+              "additionalProperties" : false,
               "title" : "ReceiveRequest",
               "description" : "Receives a client request as a server."
             },
@@ -7584,6 +7787,7 @@
                 }
               },
               "required" : [ "operation" ],
+              "additionalProperties" : false,
               "title" : "ReceiveResponse",
               "description" : "Receives a response as a client."
             },
@@ -7633,6 +7837,7 @@
                 }
               },
               "required" : [ "operation" ],
+              "additionalProperties" : false,
               "title" : "SendRequest",
               "description" : "Send a request as a client."
             },
@@ -7675,6 +7880,7 @@
                 }
               },
               "required" : [ "operation" ],
+              "additionalProperties" : false,
               "title" : "SendResponse",
               "description" : "Sends a response as a server."
             },
@@ -7690,6 +7896,7 @@
             }
           },
           "required" : [ "specification" ],
+          "additionalProperties" : false,
           "title" : "Openapi",
           "description" : "OpenAPI related test actions."
         },
@@ -7717,6 +7924,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "Parallel",
           "description" : "Parallel test action."
         },
@@ -7756,6 +7964,7 @@
                     "title" : "Statement"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Statements"
               }
             },
@@ -7775,10 +7984,12 @@
                   "title" : "Timeout"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Transaction"
             }
           },
           "required" : [ "statements" ],
+          "additionalProperties" : false,
           "title" : "Plsql",
           "description" : "PLSQL test actions."
         },
@@ -7798,6 +8009,7 @@
             }
           },
           "required" : [ "message" ],
+          "additionalProperties" : false,
           "title" : "Print",
           "description" : "Print test action."
         },
@@ -7827,6 +8039,7 @@
                     "description" : "Reference to the endpoint in the bean registry."
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Endpoints",
                 "description" : "List of endpoints to purge."
               }
@@ -7859,6 +8072,7 @@
                       }
                     },
                     "required" : [ "name", "value" ],
+                    "additionalProperties" : false,
                     "title" : "Elements",
                     "description" : "Select on given elements."
                   }
@@ -7869,6 +8083,7 @@
                   "description" : "Selector expression value."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Selector",
               "description" : "Message selector to find matching messages that should be purged.",
               "$comment" : "group:advanced"
@@ -7885,6 +8100,7 @@
               "description" : "Timeout when reading messages from the endpoint."
             }
           },
+          "additionalProperties" : false,
           "title" : "Purge",
           "description" : "Purge test action."
         },
@@ -7935,6 +8151,7 @@
             }
           },
           "required" : [ "connectionFactory" ],
+          "additionalProperties" : false,
           "title" : "PurgeQueues",
           "description" : "Purge JMS queue test action."
         },
@@ -7993,6 +8210,7 @@
                   }
                 },
                 "required" : [ "path" ],
+                "additionalProperties" : false,
                 "title" : "Ignore",
                 "description" : "List of expressions to identify message elements that should be ignored during validation.",
                 "$comment" : "group:ignore"
@@ -8026,6 +8244,7 @@
                   }
                 },
                 "required" : [ "prefix", "value" ],
+                "additionalProperties" : false,
                 "title" : "Namespace",
                 "description" : "Optional XML namespace to validate.",
                 "$comment" : "group:xml"
@@ -8078,6 +8297,7 @@
             }
           },
           "required" : [ "endpoint", "message" ],
+          "additionalProperties" : false,
           "title" : "Receive",
           "description" : "Receive message test action."
         },
@@ -8123,6 +8343,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "Repeat",
           "description" : "Repeat test action."
         },
@@ -8173,6 +8394,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "RepeatOnError",
           "description" : "Repeat on error test action."
         },
@@ -8200,6 +8422,7 @@
                   "title" : "Text"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Alert"
             },
             "browser" : {
@@ -8221,10 +8444,12 @@
                   } ]
                 }
               },
+              "additionalProperties" : false,
               "title" : "CheckInput"
             },
             "clearCache" : {
               "type" : "object",
+              "additionalProperties" : false,
               "title" : "ClearCache"
             },
             "click" : {
@@ -8238,6 +8463,7 @@
                   } ]
                 }
               },
+              "additionalProperties" : false,
               "title" : "Click"
             },
             "closeWindow" : {
@@ -8252,6 +8478,7 @@
                   "title" : "Window"
                 }
               },
+              "additionalProperties" : false,
               "title" : "CloseWindow"
             },
             "description" : {
@@ -8283,6 +8510,7 @@
                   }
                 }
               },
+              "additionalProperties" : false,
               "title" : "DropdownSelect"
             },
             "fillForm" : {
@@ -8303,6 +8531,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Fields"
                   }
                 },
@@ -8315,6 +8544,7 @@
                   "title" : "Submit"
                 }
               },
+              "additionalProperties" : false,
               "title" : "FillForm"
             },
             "find" : {
@@ -8345,6 +8575,7 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Attributes"
                       }
                     },
@@ -8371,6 +8602,7 @@
                             "title" : "Value"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Styles"
                       }
                     },
@@ -8383,9 +8615,11 @@
                       "title" : "Text"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Validate"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Find"
             },
             "focusWindow" : {
@@ -8403,6 +8637,7 @@
                   "title" : "FileName"
                 }
               },
+              "additionalProperties" : false,
               "title" : "GetStoredFile"
             },
             "hover" : {
@@ -8416,6 +8651,7 @@
                   } ]
                 }
               },
+              "additionalProperties" : false,
               "title" : "Hover"
             },
             "javaScript" : {
@@ -8448,6 +8684,7 @@
                   "title" : "Script"
                 }
               },
+              "additionalProperties" : false,
               "title" : "JavaScript"
             },
             "navigate" : {
@@ -8458,6 +8695,7 @@
                   "title" : "Page"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Navigate"
             },
             "openWindow" : {
@@ -8472,6 +8710,7 @@
                   "title" : "Window"
                 }
               },
+              "additionalProperties" : false,
               "title" : "OpenWindow"
             },
             "page" : {
@@ -8510,6 +8749,7 @@
                   "title" : "Validator"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Page"
             },
             "screenshot" : {
@@ -8520,6 +8760,7 @@
                   "title" : "OutputDir"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Screenshot"
             },
             "setInput" : {
@@ -8537,6 +8778,7 @@
                   "title" : "Value"
                 }
               },
+              "additionalProperties" : false,
               "title" : "SetInput"
             },
             "start" : {
@@ -8551,6 +8793,7 @@
                   "title" : "Browser"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Start"
             },
             "stop" : {
@@ -8561,6 +8804,7 @@
                   "title" : "Browser"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Stop"
             },
             "storeFile" : {
@@ -8571,6 +8815,7 @@
                   "title" : "FilePath"
                 }
               },
+              "additionalProperties" : false,
               "title" : "StoreFile"
             },
             "switchWindow" : {
@@ -8603,9 +8848,11 @@
                   "title" : "Until"
                 }
               },
+              "additionalProperties" : false,
               "title" : "WaitUntil"
             }
           },
+          "additionalProperties" : false,
           "title" : "Selenium",
           "description" : "Selenium test actions."
         },
@@ -8652,6 +8899,7 @@
             }
           },
           "required" : [ "endpoint" ],
+          "additionalProperties" : false,
           "title" : "Send",
           "description" : "Send message test action."
         },
@@ -8679,6 +8927,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "Sequential",
           "description" : "Sequential test action."
         },
@@ -8702,6 +8951,7 @@
               "description" : "Time to sleep in seconds."
             }
           },
+          "additionalProperties" : false,
           "title" : "Sleep",
           "description" : "Sleep test action."
         },
@@ -8716,55 +8966,6 @@
             "assertFault" : {
               "type" : "object",
               "properties" : {
-                "attachments" : {
-                  "title" : "Attachments",
-                  "description" : "List of SOAP attachments for this message.",
-                  "$comment" : "group:advanced",
-                  "type" : "array",
-                  "items" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/Attachment"
-                    }, {
-                      "title" : "Attachments",
-                      "description" : "List of SOAP attachments for this message.",
-                      "$comment" : "group:advanced"
-                    } ]
-                  }
-                },
-                "body" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/Body"
-                  }, {
-                    "title" : "Body",
-                    "description" : "The message body."
-                  } ]
-                },
-                "contentType" : {
-                  "type" : "string",
-                  "title" : "ContentType",
-                  "description" : "The SOAP response content type."
-                },
-                "dataDictionary" : {
-                  "type" : "string",
-                  "title" : "DataDictionary",
-                  "description" : "Sets a data dictionary that transforms message content before it is being processed.",
-                  "$comment" : "group:dictionary"
-                },
-                "expression" : {
-                  "title" : "Expression",
-                  "description" : "List of path expressions to evaluate on the message content before processing the message.",
-                  "$comment" : "group:advanced",
-                  "type" : "array",
-                  "items" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/Expression"
-                    }, {
-                      "title" : "Expression",
-                      "description" : "List of path expressions to evaluate on the message content before processing the message.",
-                      "$comment" : "group:advanced"
-                    } ]
-                  }
-                },
                 "faultActor" : {
                   "type" : "string",
                   "title" : "FaultActor",
@@ -8796,75 +8997,10 @@
                   "title" : "FaultString",
                   "description" : "The SOAP fault string."
                 },
-                "headerIgnoreCase" : {
-                  "type" : "string",
-                  "title" : "HeaderIgnoreCase",
-                  "description" : "When enabled the header case is not verified.",
-                  "$comment" : "group:advanced"
-                },
-                "headers" : {
-                  "title" : "Headers",
-                  "description" : "The message headers.",
-                  "type" : "array",
-                  "items" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/Header"
-                    }, {
-                      "title" : "Headers",
-                      "description" : "The message headers."
-                    } ]
-                  }
-                },
-                "name" : {
-                  "type" : "string",
-                  "title" : "Name",
-                  "description" : "The message name. Named messages may be referenced in subsequent test steps."
-                },
-                "reasonPhrase" : {
-                  "type" : "string",
-                  "title" : "ReasonPhrase",
-                  "description" : "The SOAP response reason phrase.",
-                  "$comment" : "group:advanced"
-                },
-                "schema" : {
-                  "type" : "string",
-                  "title" : "Schema",
-                  "description" : "The reference to a schema in the bean registry that should be used for validation.",
-                  "$comment" : "group:schema"
-                },
-                "schemaRepository" : {
-                  "type" : "string",
-                  "title" : "SchemaRepository",
-                  "description" : "The schema repository holding the schema.",
-                  "$comment" : "group:schema"
-                },
-                "schemaValidation" : {
-                  "type" : "boolean",
-                  "title" : "SchemaValidation",
-                  "description" : "Enables the schema validation.",
-                  "$comment" : "group:schema"
-                },
-                "status" : {
-                  "type" : "string",
-                  "title" : "Status",
-                  "description" : "The SOAP response status."
-                },
-                "type" : {
-                  "type" : "string",
-                  "title" : "Type",
-                  "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
-                  "$comment" : "group:advanced"
-                },
                 "validator" : {
                   "type" : "string",
                   "title" : "Validator",
                   "description" : "Explicit message validator.",
-                  "$comment" : "group:advanced"
-                },
-                "version" : {
-                  "type" : "string",
-                  "title" : "Version",
-                  "description" : "The SOAP version.",
                   "$comment" : "group:advanced"
                 },
                 "when" : {
@@ -8877,6 +9013,7 @@
                 }
               },
               "required" : [ "when" ],
+              "additionalProperties" : false,
               "title" : "AssertFault",
               "description" : "Expects a SOAP fault response as a client."
             },
@@ -8963,6 +9100,7 @@
                 }
               },
               "required" : [ "message" ],
+              "additionalProperties" : false,
               "title" : "ReceiveRequest",
               "description" : "Receives a SOAP request as a server."
             },
@@ -9051,6 +9189,7 @@
                 }
               },
               "required" : [ "message" ],
+              "additionalProperties" : false,
               "title" : "ReceiveResponse",
               "description" : "Receives a SOAP response as a client."
             },
@@ -9215,11 +9354,13 @@
                       "$comment" : "group:advanced"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Message",
                   "description" : "The SOAP fault response message to send."
                 }
               },
               "required" : [ "message" ],
+              "additionalProperties" : false,
               "title" : "SendFault",
               "description" : "Sends a SOAP fault response as a server"
             },
@@ -9256,6 +9397,7 @@
                 }
               },
               "required" : [ "message" ],
+              "additionalProperties" : false,
               "title" : "SendRequest",
               "description" : "Sends a SOAP request as a client."
             },
@@ -9281,6 +9423,7 @@
                 }
               },
               "required" : [ "message" ],
+              "additionalProperties" : false,
               "title" : "SendResponse",
               "description" : "Sends a SOAP response as a server."
             },
@@ -9290,6 +9433,7 @@
               "description" : "Sets the SOAP Http server."
             }
           },
+          "additionalProperties" : false,
           "title" : "Soap",
           "description" : "SOAP Web Services related test actions."
         },
@@ -9321,6 +9465,7 @@
                     "title" : "Variable"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Extract"
               }
             },
@@ -9343,6 +9488,7 @@
                     "title" : "Statement"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Statements"
               }
             },
@@ -9362,6 +9508,7 @@
                   "title" : "Timeout"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Transaction"
             },
             "validate" : {
@@ -9394,6 +9541,7 @@
                         "title" : "Value"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Script"
                   },
                   "value" : {
@@ -9409,11 +9557,13 @@
                     }
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Validate"
               }
             }
           },
           "required" : [ "statements" ],
+          "additionalProperties" : false,
           "title" : "Sql",
           "description" : "SQL test actions."
         },
@@ -9435,10 +9585,12 @@
                     "title" : "Name"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Servers"
               }
             }
           },
+          "additionalProperties" : false,
           "title" : "Start",
           "description" : "Start server test action."
         },
@@ -9460,10 +9612,12 @@
                     "title" : "Name"
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Servers"
               }
             }
           },
+          "additionalProperties" : false,
           "title" : "Stop",
           "description" : "Stop server test action."
         },
@@ -9487,6 +9641,7 @@
               "description" : "Suffix added to the value test variable."
             }
           },
+          "additionalProperties" : false,
           "title" : "StopTime",
           "description" : "Stop time test action."
         },
@@ -9506,6 +9661,7 @@
             }
           },
           "required" : [ "id" ],
+          "additionalProperties" : false,
           "title" : "StopTimer",
           "description" : "Stop timer test action."
         },
@@ -9529,6 +9685,7 @@
                     }
                   },
                   "required" : [ "name" ],
+                  "additionalProperties" : false,
                   "title" : "Down"
                 },
                 "up" : {
@@ -9568,9 +9725,11 @@
                                 "title" : "Url"
                               }
                             },
+                            "additionalProperties" : false,
                             "title" : "WaitFor"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "ExposedServices"
                       }
                     },
@@ -9587,9 +9746,11 @@
                       "title" : "StartUpTimeout"
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Up"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Compose"
             },
             "description" : {
@@ -9685,6 +9846,7 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Container"
                 },
                 "kafka" : {
@@ -9783,6 +9945,7 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Kafka"
                 },
                 "localstack" : {
@@ -9840,11 +10003,11 @@
                     },
                     "options" : {
                       "type" : "object",
+                      "title" : "Options",
                       "additionalProperties" : {
                         "type" : "string",
                         "title" : "Options"
-                      },
-                      "title" : "Options"
+                      }
                     },
                     "portBindings" : {
                       "title" : "PortBindings",
@@ -9893,6 +10056,7 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Localstack"
                 },
                 "mongodb" : {
@@ -9983,6 +10147,7 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Mongodb"
                 },
                 "postgresql" : {
@@ -10039,6 +10204,7 @@
                           "title" : "Value"
                         }
                       },
+                      "additionalProperties" : false,
                       "title" : "InitScript"
                     },
                     "labels" : {
@@ -10103,6 +10269,7 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Postgresql"
                 },
                 "redpanda" : {
@@ -10193,9 +10360,11 @@
                       } ]
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Redpanda"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Start"
             },
             "stop" : {
@@ -10206,9 +10375,11 @@
                   "title" : "Name"
                 }
               },
+              "additionalProperties" : false,
               "title" : "Stop"
             }
           },
+          "additionalProperties" : false,
           "title" : "Testcontainers",
           "description" : "Testcontainers test actions."
         },
@@ -10273,6 +10444,7 @@
             }
           },
           "required" : [ "actions" ],
+          "additionalProperties" : false,
           "title" : "Timer",
           "description" : "Timer test action."
         },
@@ -10297,11 +10469,13 @@
                   }
                 },
                 "required" : [ "name" ],
+                "additionalProperties" : false,
                 "title" : "Variables",
                 "description" : "Test variable names to include."
               }
             }
           },
+          "additionalProperties" : false,
           "title" : "Trace",
           "description" : "Trace variables test action."
         },
@@ -10339,6 +10513,7 @@
                   "description" : "XML document as inline data."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Source",
               "description" : "The XML document to transform"
             },
@@ -10367,11 +10542,13 @@
                   "description" : "The XSLT document as inline data."
                 }
               },
+              "additionalProperties" : false,
               "title" : "Xslt",
               "description" : "The XSLT document performing the transformation."
             }
           },
           "required" : [ "xslt" ],
+          "additionalProperties" : false,
           "title" : "Transform",
           "description" : "Transform test action."
         },
@@ -10399,6 +10576,7 @@
               "description" : "Time to wait for the condition to become satisfied."
             }
           },
+          "additionalProperties" : false,
           "anyOf" : [ {
             "oneOf" : [ {
               "type" : "object",
@@ -10412,6 +10590,7 @@
                       "description" : "Message name in the message store."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Message",
                   "description" : "Wait for given message to exist in message store."
                 }
@@ -10444,6 +10623,7 @@
                       "description" : "Http request URL."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "Http",
                   "description" : "Wait for given Http endpoint to return a proper response code."
                 }
@@ -10461,6 +10641,7 @@
                       "description" : "File path to evaluate."
                     }
                   },
+                  "additionalProperties" : false,
                   "title" : "File",
                   "description" : "Wait for given file path to exist."
                 }
@@ -10509,6 +10690,7 @@
               }
             },
             "required" : [ "expression", "value" ],
+            "additionalProperties" : false,
             "title" : "JsonPath",
             "description" : "JsonPath validation expression.",
             "$comment" : "group:jsonPath"
@@ -10534,6 +10716,7 @@
               }
             },
             "required" : [ "prefix", "value" ],
+            "additionalProperties" : false,
             "title" : "Namespace",
             "description" : "List of expected namespaces.",
             "$comment" : "group:xml"
@@ -10576,6 +10759,7 @@
               "default" : "groovy"
             }
           },
+          "additionalProperties" : false,
           "title" : "Script",
           "description" : "Script that builds the expected validate value.",
           "$comment" : "group:script"
@@ -10611,12 +10795,14 @@
               }
             },
             "required" : [ "expression", "value" ],
+            "additionalProperties" : false,
             "title" : "Xpath",
             "description" : "Xpath validation expression.",
             "$comment" : "group:xml"
           }
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "Variable" : {
       "type" : "object",
@@ -10629,7 +10815,8 @@
           "type" : "string",
           "title" : "Value"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "VolumeMount" : {
       "type" : "object",
@@ -10642,7 +10829,8 @@
           "type" : "string",
           "title" : "MountPath"
         }
-      }
+      },
+      "additionalProperties" : false
     },
     "WaitFor" : {
       "type" : "object",
@@ -10659,7 +10847,8 @@
           "type" : "string",
           "title" : "Url"
         }
-      }
+      },
+      "additionalProperties" : false
     }
   },
   "type" : "object",
@@ -10718,14 +10907,14 @@
           },
           "properties" : {
             "type" : "object",
+            "title" : "Properties",
+            "description" : "The endpoint properties.",
             "additionalProperties" : {
               "type" : "string",
               "title" : "Properties",
               "description" : "The endpoint properties.",
               "$comment" : "group:generic"
             },
-            "title" : "Properties",
-            "description" : "The endpoint properties.",
             "$comment" : "group:generic"
           },
           "scp" : { },
@@ -10741,6 +10930,7 @@
           "vertx" : { },
           "webSocket" : { }
         },
+        "additionalProperties" : false,
         "anyOf" : [ {
           "oneOf" : [ {
             "type" : "object",
@@ -10751,6 +10941,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -10912,6 +11103,7 @@
                             "default" : "5000"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the Http client endpoint."
                       }
@@ -10999,26 +11191,26 @@
                           },
                           "filterMappings" : {
                             "type" : "object",
+                            "title" : "FilterMappings",
+                            "description" : "Filter mapping used on this server.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "FilterMappings",
                               "description" : "Filter mapping used on this server.",
                               "$comment" : "group:filter"
                             },
-                            "title" : "FilterMappings",
-                            "description" : "Filter mapping used on this server.",
                             "$comment" : "group:filter"
                           },
                           "filters" : {
                             "type" : "object",
+                            "title" : "Filters",
+                            "description" : "Map of Http filters used on this server.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "Filters",
                               "description" : "Map of Http filters used on this server.",
                               "$comment" : "group:filter"
                             },
-                            "title" : "Filters",
-                            "description" : "Map of Http filters used on this server.",
                             "$comment" : "group:filter"
                           },
                           "handleAttributeHeaders" : {
@@ -11140,6 +11332,7 @@
                             "$comment" : "group:filter"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the Http server endpoint."
                       }
@@ -11161,6 +11354,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -11259,6 +11453,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the SOAP WebService client endpoint."
                       }
@@ -11430,6 +11625,7 @@
                             "default" : "5000"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the SOAP WebService server endpoint."
                       }
@@ -11451,6 +11647,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -11493,6 +11690,7 @@
                             "default" : "5000"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the WebSocket client endpoint."
                       }
@@ -11580,26 +11778,26 @@
                           },
                           "filterMappings" : {
                             "type" : "object",
+                            "title" : "FilterMappings",
+                            "description" : "Filter mapping used on this server.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "FilterMappings",
                               "description" : "Filter mapping used on this server.",
                               "$comment" : "group:filter"
                             },
-                            "title" : "FilterMappings",
-                            "description" : "Filter mapping used on this server.",
                             "$comment" : "group:filter"
                           },
                           "filters" : {
                             "type" : "object",
+                            "title" : "Filters",
+                            "description" : "Map of Http filters used on this server.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "Filters",
                               "description" : "Map of Http filters used on this server.",
                               "$comment" : "group:filter"
                             },
-                            "title" : "Filters",
-                            "description" : "Map of Http filters used on this server.",
                             "$comment" : "group:filter"
                           },
                           "handleAttributeHeaders" : {
@@ -11731,6 +11929,7 @@
                             }
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the WebSocket server endpoint."
                       }
@@ -11768,10 +11967,12 @@
                         "description" : "The timeout when receiving messages from the message store."
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "MessageStore",
                     "description" : "Sets a message store endpoint ."
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Context",
                 "description" : "Context endpoint."
               }
@@ -11786,6 +11987,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -11849,6 +12051,7 @@
                             "$comment" : "group:security"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the mail client endpoint."
                       }
@@ -11948,6 +12151,7 @@
                             "default" : "5000"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the mail server endpoint."
                       }
@@ -11969,6 +12173,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -12039,6 +12244,7 @@
                             "$comment" : "group:security"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the ftp client endpoint."
                       }
@@ -12170,6 +12376,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the ftp server endpoint."
                       }
@@ -12191,6 +12398,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -12275,13 +12483,13 @@
                           },
                           "sessionConfigs" : {
                             "type" : "object",
+                            "title" : "SessionConfigs",
+                            "description" : "The session configuration.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "SessionConfigs",
                               "description" : "The session configuration."
-                            },
-                            "title" : "SessionConfigs",
-                            "description" : "The session configuration."
+                            }
                           },
                           "strictHostChecking" : {
                             "type" : "boolean",
@@ -12301,6 +12509,7 @@
                             "$comment" : "group:security"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the sftp client endpoint."
                       }
@@ -12398,13 +12607,13 @@
                           },
                           "sessionConfigs" : {
                             "type" : "object",
+                            "title" : "SessionConfigs",
+                            "description" : "The session configuration.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "SessionConfigs",
                               "description" : "The session configuration."
-                            },
-                            "title" : "SessionConfigs",
-                            "description" : "The session configuration."
+                            }
                           },
                           "strictHostChecking" : {
                             "type" : "boolean",
@@ -12429,6 +12638,7 @@
                             "description" : "Sets the user home path directory."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the sftp server endpoint."
                       }
@@ -12450,6 +12660,7 @@
                   "client" : { },
                   "server" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -12545,6 +12756,7 @@
                             "$comment" : "group:security"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Client",
                         "description" : "Sets the scp client endpoint."
                       }
@@ -12642,13 +12854,13 @@
                           },
                           "sessionConfigs" : {
                             "type" : "object",
+                            "title" : "SessionConfigs",
+                            "description" : "The session configuration.",
                             "additionalProperties" : {
                               "type" : "string",
                               "title" : "SessionConfigs",
                               "description" : "The session configuration."
-                            },
-                            "title" : "SessionConfigs",
-                            "description" : "The session configuration."
+                            }
                           },
                           "strictHostChecking" : {
                             "type" : "boolean",
@@ -12673,6 +12885,7 @@
                             "description" : "Sets the user home path directory."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Server",
                         "description" : "Sets the sftp server endpoint."
                       }
@@ -12751,10 +12964,12 @@
                         "description" : "The Docker client version."
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Client",
                     "description" : "Sets the Docker client endpoint."
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Docker",
                 "description" : "Docker client"
               }
@@ -12834,10 +13049,12 @@
                         "$comment" : "group:advanced"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Client",
                     "description" : "Sets the Kubernetes client endpoint."
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Kubernetes",
                 "description" : "Kubernetes client"
               }
@@ -12852,6 +13069,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -12941,6 +13159,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the Jms endpoint."
                       }
@@ -13032,6 +13251,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous Jms endpoint."
                       }
@@ -13053,6 +13273,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -13109,6 +13330,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the Vert.x endpoint."
                       }
@@ -13175,6 +13397,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous Vert.x endpoint."
                       }
@@ -13196,6 +13419,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -13224,6 +13448,7 @@
                             "description" : "The timeout when receiving messages from the queue."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the direct endpoint."
                       }
@@ -13267,6 +13492,7 @@
                             "description" : "The timeout when receiving messages from the queue."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous direct endpoint."
                       }
@@ -13288,6 +13514,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -13400,6 +13627,7 @@
                             "$comment" : "group:serialize"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the Kafka endpoint."
                       }
@@ -13516,6 +13744,7 @@
                             "$comment" : "group:serialize"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous Kafka endpoint."
                       }
@@ -13537,6 +13766,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -13571,6 +13801,7 @@
                             "description" : "The endpoint timeout when waiting for messages."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the Camel endpoint."
                       }
@@ -13620,6 +13851,7 @@
                             "description" : "The endpoint timeout when waiting for messages."
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous Camel endpoint."
                       }
@@ -13641,6 +13873,7 @@
                   "asynchronous" : { },
                   "synchronous" : { }
                 },
+                "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
                     "type" : "object",
@@ -13695,6 +13928,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Asynchronous",
                         "description" : "Sets the Spring message channel endpoint."
                       }
@@ -13765,6 +13999,7 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "additionalProperties" : false,
                         "title" : "Synchronous",
                         "description" : "Sets the synchronous Spring message channel endpoint."
                       }
@@ -13848,10 +14083,12 @@
                         "$comment" : "group:advanced"
                       }
                     },
+                    "additionalProperties" : false,
                     "title" : "Browser",
                     "description" : "Sets the Selenium browser endpoint."
                   }
                 },
+                "additionalProperties" : false,
                 "title" : "Selenium",
                 "description" : "Selenium endpoint."
               }
@@ -13929,6 +14166,7 @@
                 "default" : "groovy"
               }
             },
+            "additionalProperties" : false,
             "title" : "Script",
             "description" : "Script that sets the test variable value.",
             "$comment" : "group:script"
@@ -13940,10 +14178,12 @@
           }
         },
         "required" : [ "name" ],
+        "additionalProperties" : false,
         "title" : "Variables",
         "description" : "The test variables."
       }
     }
   },
-  "required" : [ "name" ]
+  "required" : [ "name" ],
+  "additionalProperties" : false
 }

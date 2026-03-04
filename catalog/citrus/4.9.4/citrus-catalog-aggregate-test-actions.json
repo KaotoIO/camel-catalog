@@ -1,6 +1,7 @@
 {
   "action": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "action",
     "title": "Action",
     "description": "Generic test action.",
@@ -18,11 +19,12 @@
           "title": "Reference",
           "description": "The reference to the test action in the bean registry."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "agent": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "agent",
     "title": "Agent",
     "description": "Agent service test actions.",
@@ -34,11 +36,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "agent-connect": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "agent-connect",
     "group": "agent",
     "title": "Connect",
@@ -54,11 +57,12 @@
           "type": "string",
           "title": "Url"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "agent-run": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "agent-run",
     "group": "agent",
     "title": "Run",
@@ -88,13 +92,15 @@
               "title": "File"
             }
           },
+          "additionalProperties": false,
           "title": "Source"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "ant": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "ant",
     "title": "Ant",
     "description": "Ant run test action.",
@@ -131,6 +137,7 @@
               "title": "Targets"
             }
           },
+          "additionalProperties": false,
           "title": "Execute",
           "description": "The build target to call."
         },
@@ -150,6 +157,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Properties",
             "description": "Ant build properties."
           }
@@ -159,11 +167,12 @@
           "title": "PropertyFile",
           "description": "Adds a build property file."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "applyTemplate": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "applyTemplate",
     "title": "ApplyTemplate",
     "description": "Apply template test action.",
@@ -203,6 +212,7 @@
               "name",
               "value"
             ],
+            "additionalProperties": false,
             "title": "Parameters",
             "description": "Template parameters, passed to the template as test variables."
           }
@@ -210,11 +220,12 @@
       },
       "required": [
         "name"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "camel": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel",
     "title": "Camel",
     "description": "Test actions related to Apache Camel.",
@@ -238,11 +249,12 @@
           "description": "Test action description printed when the action is executed.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-controlBus": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-controlBus",
     "group": "camel",
     "title": "ControlBus",
@@ -276,6 +288,7 @@
               "description": "The language name."
             }
           },
+          "additionalProperties": false,
           "title": "Language",
           "description": "Runs another Camel language expression."
         },
@@ -294,11 +307,12 @@
           "title": "Simple",
           "description": "Runs a simple expression"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-createComponent": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-createComponent",
     "group": "camel",
     "title": "CreateComponent",
@@ -322,11 +336,12 @@
           "title": "Script",
           "description": "The script that defines the Camel component."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-createContext": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-createContext",
     "group": "camel",
     "title": "CreateContext",
@@ -346,11 +361,12 @@
           "title": "Name",
           "description": "The name of the Camel context."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-createRoutes": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-createRoutes",
     "group": "camel",
     "title": "CreateRoutes",
@@ -381,22 +397,24 @@
           "description": "Camel route context to load multiple routes.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-infra": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel-infra",
     "group": "camel",
     "title": "Infra",
     "description": "Manage Camel infra services.",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "camel-infra-run": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-infra-run",
     "group": "camel-infra",
     "title": "Run",
@@ -432,11 +450,12 @@
           "title": "Service",
           "description": "The Camel infra service name."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-infra-stop": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-infra-stop",
     "group": "camel-infra",
     "title": "Stop",
@@ -455,11 +474,12 @@
           "title": "Service",
           "description": "The Camel infra service name."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel-jbang",
     "group": "camel",
     "title": "Jbang",
@@ -478,22 +498,24 @@
           "title": "KameletsVersion",
           "description": "The Kamelets version."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-cmd": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel-jbang-cmd",
     "group": "camel-jbang",
     "title": "Cmd",
     "description": "Camel JBang cmd operations.",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "camel-jbang-cmd-receive": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-cmd-receive",
     "group": "camel-jbang-cmd",
     "title": "Receive",
@@ -590,11 +612,12 @@
           "description": "Camel endpoint URI to send message to.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-cmd-send": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-cmd-send",
     "group": "camel-jbang-cmd",
     "title": "Send",
@@ -629,6 +652,7 @@
               "description": "The message body content loaded from a file resource."
             }
           },
+          "additionalProperties": false,
           "title": "Body",
           "description": "The message body."
         },
@@ -640,13 +664,13 @@
         },
         "headers": {
           "type": "object",
+          "title": "Headers",
+          "description": "The message headers.",
           "additionalProperties": {
             "type": "string",
             "title": "Headers",
             "description": "The message headers."
-          },
-          "title": "Headers",
-          "description": "The message headers."
+          }
         },
         "integration": {
           "type": "string",
@@ -670,11 +694,12 @@
           "description": "Camel endpoint URI to send message to.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-custom": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-custom",
     "group": "camel-jbang",
     "title": "Custom",
@@ -752,11 +777,13 @@
                       "name",
                       "value"
                     ],
+                    "additionalProperties": false,
                     "title": "Variables",
                     "description": "List of environment variables."
                   }
                 }
               },
+              "additionalProperties": false,
               "title": "Environment",
               "description": "Environment variables set for the Camel JBang process.",
               "$comment": "group:advanced"
@@ -801,16 +828,19 @@
                       "name",
                       "value"
                     ],
+                    "additionalProperties": false,
                     "title": "Properties",
                     "description": "List of system properties."
                   }
                 }
               },
+              "additionalProperties": false,
               "title": "SystemProperties",
               "description": "System properties set for the Camel JBang process.",
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Integration",
           "description": "The Camel integration."
         },
@@ -845,22 +875,24 @@
           "description": "Custom working directory for the Camel JBang process.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-kubernetes": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel-jbang-kubernetes",
     "group": "camel-jbang",
     "title": "Kubernetes",
     "description": "Camel Kubernetes plugin related operations.",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "camel-jbang-kubernetes-delete": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-kubernetes-delete",
     "group": "camel-jbang-kubernetes",
     "title": "Delete",
@@ -889,6 +921,7 @@
               "description": "The Camel integration name."
             }
           },
+          "additionalProperties": false,
           "title": "Integration",
           "description": "The Camel integration to delete."
         },
@@ -904,11 +937,12 @@
           "description": "The working directory that contains the Kubernetes manifest.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-kubernetes-run": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-kubernetes-run",
     "group": "camel-jbang-kubernetes",
     "title": "Run",
@@ -990,6 +1024,7 @@
               "description": "The integration source code."
             }
           },
+          "additionalProperties": false,
           "title": "Integration",
           "description": "The Camel integration name."
         },
@@ -1034,11 +1069,12 @@
           "default": "true",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-kubernetes-verify": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-kubernetes-verify",
     "group": "camel-jbang-kubernetes",
     "title": "Verify",
@@ -1100,22 +1136,24 @@
           "description": "When enabled the Camel integration log output is added to the test log output.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-plugin": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "camel-jbang-plugin",
     "group": "camel-jbang",
     "title": "Plugin",
     "description": "Manage Camel JBang plugins.",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "camel-jbang-plugin-add": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-plugin-add",
     "group": "camel-jbang-plugin",
     "title": "Add",
@@ -1144,11 +1182,12 @@
       },
       "required": [
         "name"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "camel-jbang-run": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-run",
     "group": "camel-jbang",
     "title": "Run",
@@ -1216,11 +1255,13 @@
                       "name",
                       "value"
                     ],
+                    "additionalProperties": false,
                     "title": "Variables",
                     "description": "List of environment variables."
                   }
                 }
               },
+              "additionalProperties": false,
               "title": "Environment",
               "description": "Environment variables set for the Camel JBang process.",
               "$comment": "group:advanced"
@@ -1270,16 +1311,19 @@
                       "name",
                       "value"
                     ],
+                    "additionalProperties": false,
                     "title": "Properties",
                     "description": "List of system properties."
                   }
                 }
               },
+              "additionalProperties": false,
               "title": "SystemProperties",
               "description": "System properties set for the Camel JBang process.",
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Integration",
           "description": "The Camel integration."
         },
@@ -1314,11 +1358,12 @@
           "default": "true",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-stop": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-stop",
     "group": "camel-jbang",
     "title": "Stop",
@@ -1332,11 +1377,12 @@
           "title": "Integration",
           "description": "Camel integration name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-jbang-verify": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-jbang-verify",
     "group": "camel-jbang",
     "title": "Verify",
@@ -1389,11 +1435,12 @@
           "default": "true",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-removeRoutes": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-removeRoutes",
     "group": "camel",
     "title": "RemoveRoutes",
@@ -1412,11 +1459,12 @@
             "description": "The Camel route ids to remove."
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-startContext": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-startContext",
     "group": "camel",
     "title": "StartContext",
@@ -1430,11 +1478,12 @@
           "title": "Name",
           "description": "The Camel context name."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-startRoutes": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-startRoutes",
     "group": "camel",
     "title": "StartRoutes",
@@ -1453,11 +1502,12 @@
             "description": "The Camel route ids to start."
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-stopContext": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-stopContext",
     "group": "camel",
     "title": "StopContext",
@@ -1471,11 +1521,12 @@
           "title": "Name",
           "description": "The Camel context name."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "camel-stopRoutes": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "camel-stopRoutes",
     "group": "camel",
     "title": "StopRoutes",
@@ -1494,11 +1545,12 @@
             "description": "The Camel route ids to stop."
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "createEndpoint": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "createEndpoint",
     "title": "CreateEndpoint",
     "description": "Create endpoints test action.",
@@ -1542,14 +1594,14 @@
         },
         "properties": {
           "type": "object",
+          "title": "Properties",
+          "description": "List of properties for this endpoint.",
           "additionalProperties": {
             "type": "string",
             "title": "Properties",
             "description": "List of properties for this endpoint.",
             "$comment": "group:generic"
           },
-          "title": "Properties",
-          "description": "List of properties for this endpoint.",
           "$comment": "group:generic"
         },
         "scp": {
@@ -1577,6 +1629,7 @@
         "webSocket": {
         }
       },
+      "additionalProperties": false,
       "anyOf": [
         {
           "oneOf": [
@@ -1591,6 +1644,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -1762,6 +1816,7 @@
                                   "default": "5000"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the Http client endpoint."
                             }
@@ -1917,26 +1972,26 @@
                                 },
                                 "filterMappings": {
                                   "type": "object",
+                                  "title": "FilterMappings",
+                                  "description": "Filter mapping used on this server.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "FilterMappings",
                                     "description": "Filter mapping used on this server.",
                                     "$comment": "group:filter"
                                   },
-                                  "title": "FilterMappings",
-                                  "description": "Filter mapping used on this server.",
                                   "$comment": "group:filter"
                                 },
                                 "filters": {
                                   "type": "object",
+                                  "title": "Filters",
+                                  "description": "Map of Http filters used on this server.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "Filters",
                                     "description": "Map of Http filters used on this server.",
                                     "$comment": "group:filter"
                                   },
-                                  "title": "Filters",
-                                  "description": "Map of Http filters used on this server.",
                                   "$comment": "group:filter"
                                 },
                                 "handleAttributeHeaders": {
@@ -2058,6 +2113,7 @@
                                   "$comment": "group:filter"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the Http server endpoint."
                             }
@@ -2082,6 +2138,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -2183,6 +2240,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the SOAP WebService client endpoint."
                             }
@@ -2354,6 +2412,7 @@
                                   "default": "5000"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the SOAP WebService server endpoint."
                             }
@@ -2378,6 +2437,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -2422,6 +2482,7 @@
                                   "default": "5000"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the WebSocket client endpoint."
                             }
@@ -2577,26 +2638,26 @@
                                 },
                                 "filterMappings": {
                                   "type": "object",
+                                  "title": "FilterMappings",
+                                  "description": "Filter mapping used on this server.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "FilterMappings",
                                     "description": "Filter mapping used on this server.",
                                     "$comment": "group:filter"
                                   },
-                                  "title": "FilterMappings",
-                                  "description": "Filter mapping used on this server.",
                                   "$comment": "group:filter"
                                 },
                                 "filters": {
                                   "type": "object",
+                                  "title": "Filters",
+                                  "description": "Map of Http filters used on this server.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "Filters",
                                     "description": "Map of Http filters used on this server.",
                                     "$comment": "group:filter"
                                   },
-                                  "title": "Filters",
-                                  "description": "Map of Http filters used on this server.",
                                   "$comment": "group:filter"
                                 },
                                 "handleAttributeHeaders": {
@@ -2728,6 +2789,7 @@
                                   }
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the WebSocket server endpoint."
                             }
@@ -2766,10 +2828,12 @@
                           "description": "The timeout when receiving messages from the message store."
                         }
                       },
+                      "additionalProperties": false,
                       "title": "MessageStore",
                       "description": "Sets a message store endpoint ."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Context",
                   "description": "Context endpoint."
                 }
@@ -2786,6 +2850,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -2851,6 +2916,7 @@
                                   "$comment": "group:security"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the mail client endpoint."
                             }
@@ -2950,6 +3016,7 @@
                                   "default": "5000"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the mail server endpoint."
                             }
@@ -2974,6 +3041,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -3047,6 +3115,7 @@
                                   "$comment": "group:security"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the ftp client endpoint."
                             }
@@ -3179,6 +3248,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the ftp server endpoint."
                             }
@@ -3203,6 +3273,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -3290,13 +3361,13 @@
                                 },
                                 "sessionConfigs": {
                                   "type": "object",
+                                  "title": "SessionConfigs",
+                                  "description": "The session configuration.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "SessionConfigs",
                                     "description": "The session configuration."
-                                  },
-                                  "title": "SessionConfigs",
-                                  "description": "The session configuration."
+                                  }
                                 },
                                 "strictHostChecking": {
                                   "type": "boolean",
@@ -3316,6 +3387,7 @@
                                   "$comment": "group:security"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the sftp client endpoint."
                             }
@@ -3413,13 +3485,13 @@
                                 },
                                 "sessionConfigs": {
                                   "type": "object",
+                                  "title": "SessionConfigs",
+                                  "description": "The session configuration.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "SessionConfigs",
                                     "description": "The session configuration."
-                                  },
-                                  "title": "SessionConfigs",
-                                  "description": "The session configuration."
+                                  }
                                 },
                                 "strictHostChecking": {
                                   "type": "boolean",
@@ -3444,6 +3516,7 @@
                                   "description": "Sets the user home path directory."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the sftp server endpoint."
                             }
@@ -3468,6 +3541,7 @@
                     "server": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -3566,6 +3640,7 @@
                                   "$comment": "group:security"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Client",
                               "description": "Sets the scp client endpoint."
                             }
@@ -3663,13 +3738,13 @@
                                 },
                                 "sessionConfigs": {
                                   "type": "object",
+                                  "title": "SessionConfigs",
+                                  "description": "The session configuration.",
                                   "additionalProperties": {
                                     "type": "string",
                                     "title": "SessionConfigs",
                                     "description": "The session configuration."
-                                  },
-                                  "title": "SessionConfigs",
-                                  "description": "The session configuration."
+                                  }
                                 },
                                 "strictHostChecking": {
                                   "type": "boolean",
@@ -3694,6 +3769,7 @@
                                   "description": "Sets the user home path directory."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Server",
                               "description": "Sets the sftp server endpoint."
                             }
@@ -3773,10 +3849,12 @@
                           "description": "The Docker client version."
                         }
                       },
+                      "additionalProperties": false,
                       "title": "Client",
                       "description": "Sets the Docker client endpoint."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Docker",
                   "description": "Docker client"
                 }
@@ -3856,10 +3934,12 @@
                           "$comment": "group:advanced"
                         }
                       },
+                      "additionalProperties": false,
                       "title": "Client",
                       "description": "Sets the Kubernetes client endpoint."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Kubernetes",
                   "description": "Kubernetes client"
                 }
@@ -3876,6 +3956,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -3967,6 +4048,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the Jms endpoint."
                             }
@@ -4058,6 +4140,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous Jms endpoint."
                             }
@@ -4082,6 +4165,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -4140,6 +4224,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the Vert.x endpoint."
                             }
@@ -4206,6 +4291,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous Vert.x endpoint."
                             }
@@ -4230,6 +4316,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -4260,6 +4347,7 @@
                                   "description": "The timeout when receiving messages from the queue."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the direct endpoint."
                             }
@@ -4303,6 +4391,7 @@
                                   "description": "The timeout when receiving messages from the queue."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous direct endpoint."
                             }
@@ -4327,6 +4416,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -4441,6 +4531,7 @@
                                   "$comment": "group:serialize"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the Kafka endpoint."
                             }
@@ -4557,6 +4648,7 @@
                                   "$comment": "group:serialize"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous Kafka endpoint."
                             }
@@ -4581,6 +4673,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -4617,6 +4710,7 @@
                                   "description": "The endpoint timeout when waiting for messages."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the Camel endpoint."
                             }
@@ -4666,6 +4760,7 @@
                                   "description": "The endpoint timeout when waiting for messages."
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous Camel endpoint."
                             }
@@ -4690,6 +4785,7 @@
                     "synchronous": {
                     }
                   },
+                  "additionalProperties": false,
                   "anyOf": [
                     {
                       "oneOf": [
@@ -4746,6 +4842,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Asynchronous",
                               "description": "Sets the Spring message channel endpoint."
                             }
@@ -4816,6 +4913,7 @@
                                   "$comment": "group:advanced"
                                 }
                               },
+                              "additionalProperties": false,
                               "title": "Synchronous",
                               "description": "Sets the synchronous Spring message channel endpoint."
                             }
@@ -4900,10 +4998,12 @@
                           "$comment": "group:advanced"
                         }
                       },
+                      "additionalProperties": false,
                       "title": "Browser",
                       "description": "Sets the Selenium browser endpoint."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Selenium",
                   "description": "Selenium endpoint."
                 }
@@ -4916,6 +5016,7 @@
   },
   "createVariables": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "createVariables",
     "title": "CreateVariables",
     "description": "Create variables test action.",
@@ -4961,6 +5062,7 @@
                     "description": "The script content."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script to build the variable value.",
                 "$comment": "group:advanced"
@@ -4974,6 +5076,7 @@
             "required": [
               "name"
             ],
+            "additionalProperties": false,
             "title": "Variables",
             "description": "List of test variables."
           }
@@ -4981,11 +5084,12 @@
       },
       "required": [
         "variables"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "delay": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "delay",
     "title": "Delay",
     "description": "Delay test action.",
@@ -5009,11 +5113,12 @@
           "title": "Seconds",
           "description": "Time to sleep in seconds."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "echo": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "echo",
     "title": "Echo",
     "description": "Echo test action.",
@@ -5035,11 +5140,12 @@
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "expectTimeout": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "expectTimeout",
     "title": "ExpectTimeout",
     "description": "Expect timeout test action.",
@@ -5084,6 +5190,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Elements",
                 "description": "Selector elements building the selector expression.",
                 "$comment": "group:advanced"
@@ -5095,6 +5202,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to selectively consume messages.",
           "$comment": "group:advanced"
@@ -5107,11 +5215,12 @@
       },
       "required": [
         "endpoint"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "fail": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "fail",
     "title": "Fail",
     "description": "Fail test action.",
@@ -5130,11 +5239,12 @@
           "title": "Message",
           "description": "Error message describing the failure."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "groovy": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "groovy",
     "title": "Groovy",
     "description": "Groovy test action.",
@@ -5171,6 +5281,7 @@
               "title": "Value"
             }
           },
+          "additionalProperties": false,
           "title": "Beans",
           "description": "Script that creates beans in the bean registry.",
           "$comment": "group:advanced"
@@ -5205,6 +5316,7 @@
               "title": "Value"
             }
           },
+          "additionalProperties": false,
           "title": "Endpoints",
           "description": "Script that creates endpoints.",
           "$comment": "group:advanced"
@@ -5233,17 +5345,19 @@
               "title": "Value"
             }
           },
+          "additionalProperties": false,
           "title": "Script",
           "description": "The Groovy script to execute."
         }
       },
       "required": [
         "script"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "http": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "http",
     "title": "Http",
     "description": "Http related test actions.",
@@ -5272,11 +5386,12 @@
           "title": "Server",
           "description": "The Http server."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "http-receiveRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "http-receiveRequest",
     "group": "http",
     "title": "ReceiveRequest",
@@ -5331,6 +5446,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -5357,11 +5473,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -5410,6 +5528,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -5421,6 +5540,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector expression to selectively consume messages.",
           "$comment": "group:advanced"
@@ -5460,6 +5580,7 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "JsonPath",
                   "description": "JsonPath validation expression.",
                   "$comment": "group:jsonPath"
@@ -5488,6 +5609,7 @@
                     "prefix",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Namespace",
                   "description": "List of expected namespaces.",
                   "$comment": "group:xml"
@@ -5530,6 +5652,7 @@
                     "default": "groovy"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script that builds the expected validate value.",
                 "$comment": "group:script"
@@ -5568,12 +5691,14 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Xpath",
                   "description": "Xpath validation expression.",
                   "$comment": "group:xml"
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validate",
             "description": "Validate expressions."
           }
@@ -5591,6 +5716,7 @@
           "$comment": "group:advanced"
         }
       },
+      "additionalProperties": false,
       "anyOf": [
         {
           "oneOf": [
@@ -5616,6 +5742,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -5645,6 +5772,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -5679,6 +5807,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -5724,6 +5853,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -5760,6 +5890,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -5794,6 +5925,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -5844,6 +5976,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -5885,6 +6018,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "GET",
                   "description": "Http GET request"
                 }
@@ -5912,6 +6046,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -5941,6 +6076,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -5975,6 +6111,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -6020,6 +6157,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -6056,6 +6194,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -6090,6 +6229,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -6140,6 +6280,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -6181,6 +6322,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "POST",
                   "description": "Http POST request"
                 }
@@ -6208,6 +6350,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -6237,6 +6380,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -6271,6 +6415,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -6316,6 +6461,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -6352,6 +6498,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -6386,6 +6533,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -6436,6 +6584,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -6477,6 +6626,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "PUT",
                   "description": "Http PUT request"
                 }
@@ -6511,6 +6661,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -6540,6 +6691,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -6574,6 +6726,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -6619,6 +6772,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -6655,6 +6809,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -6689,6 +6844,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -6739,6 +6895,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -6780,6 +6937,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "DELETE",
                   "description": "Http DELETE request"
                 }
@@ -6807,6 +6965,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -6836,6 +6995,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -6870,6 +7030,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -6915,6 +7076,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -6951,6 +7113,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -6985,6 +7148,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -7035,6 +7199,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -7076,6 +7241,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "HEAD",
                   "description": "Http HEAD request"
                 }
@@ -7103,6 +7269,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -7132,6 +7299,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -7166,6 +7334,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -7211,6 +7380,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -7247,6 +7417,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -7281,6 +7452,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -7331,6 +7503,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -7372,6 +7545,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "OPTIONS",
                   "description": "Http OPTIONS request"
                 }
@@ -7399,6 +7573,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -7428,6 +7603,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -7462,6 +7638,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -7507,6 +7684,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -7543,6 +7721,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -7577,6 +7756,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -7627,6 +7807,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -7668,6 +7849,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "PATCH",
                   "description": "Http PATCH request"
                 }
@@ -7695,6 +7877,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -7724,6 +7907,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -7758,6 +7942,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -7803,6 +7988,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -7839,6 +8025,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -7873,6 +8060,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -7923,6 +8111,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -7964,6 +8153,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "TRACE",
                   "description": "Http TRACE request"
                 }
@@ -7976,6 +8166,7 @@
   },
   "http-receiveResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "http-receiveResponse",
     "group": "http",
     "title": "ReceiveResponse",
@@ -8014,6 +8205,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -8040,11 +8232,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -8074,6 +8268,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -8103,6 +8298,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -8137,6 +8333,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -8182,6 +8379,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -8218,6 +8416,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -8252,6 +8451,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -8321,6 +8521,7 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Response",
           "description": "The expected Http response."
         },
@@ -8356,6 +8557,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -8367,6 +8569,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to selectively consume the Http response.",
           "$comment": "group:advanced"
@@ -8406,6 +8609,7 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "JsonPath",
                   "description": "JsonPath validation expression.",
                   "$comment": "group:jsonPath"
@@ -8434,6 +8638,7 @@
                     "prefix",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Namespace",
                   "description": "List of expected namespaces.",
                   "$comment": "group:xml"
@@ -8476,6 +8681,7 @@
                     "default": "groovy"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script that builds the expected validate value.",
                 "$comment": "group:script"
@@ -8514,12 +8720,14 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Xpath",
                   "description": "Xpath validation expression.",
                   "$comment": "group:xml"
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validate",
             "description": "Validate expressions."
           }
@@ -8536,11 +8744,12 @@
           "description": "List of message validators used to validate the message.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "http-sendRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "http-sendRequest",
     "group": "http",
     "title": "SendRequest",
@@ -8595,6 +8804,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -8621,11 +8831,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -8642,6 +8854,7 @@
           "$comment": "group:advanced"
         }
       },
+      "additionalProperties": false,
       "anyOf": [
         {
           "oneOf": [
@@ -8667,6 +8880,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -8696,6 +8910,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -8730,6 +8945,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -8775,6 +8991,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -8811,6 +9028,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -8845,6 +9063,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -8895,6 +9114,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -8936,6 +9156,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "GET",
                   "description": "Http GET request"
                 }
@@ -8963,6 +9184,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -8992,6 +9214,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -9026,6 +9249,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -9071,6 +9295,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -9107,6 +9332,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -9141,6 +9367,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -9191,6 +9418,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -9232,6 +9460,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "POST",
                   "description": "Http POST request"
                 }
@@ -9259,6 +9488,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -9288,6 +9518,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -9322,6 +9553,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -9367,6 +9599,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -9403,6 +9636,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -9437,6 +9671,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -9487,6 +9722,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -9528,6 +9764,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "PUT",
                   "description": "Http PUT request"
                 }
@@ -9562,6 +9799,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -9591,6 +9829,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -9625,6 +9864,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -9670,6 +9910,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -9706,6 +9947,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -9740,6 +9982,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -9790,6 +10033,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -9831,6 +10075,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "DELETE",
                   "description": "Http DELETE request"
                 }
@@ -9858,6 +10103,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -9887,6 +10133,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -9921,6 +10168,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -9966,6 +10214,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -10002,6 +10251,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -10036,6 +10286,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -10086,6 +10337,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -10127,6 +10379,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "HEAD",
                   "description": "Http HEAD request"
                 }
@@ -10154,6 +10407,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -10183,6 +10437,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -10217,6 +10472,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -10262,6 +10518,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -10298,6 +10555,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -10332,6 +10590,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -10382,6 +10641,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -10423,6 +10683,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "OPTIONS",
                   "description": "Http OPTIONS request"
                 }
@@ -10450,6 +10711,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -10479,6 +10741,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -10513,6 +10776,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -10558,6 +10822,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -10594,6 +10859,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -10628,6 +10894,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -10678,6 +10945,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -10719,6 +10987,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "PATCH",
                   "description": "Http PATCH request"
                 }
@@ -10746,6 +11015,7 @@
                         "script": {
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "oneOf": [
@@ -10775,6 +11045,7 @@
                                       "title": "File"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Resource",
                                   "description": "The message body loaded from a file resource."
                                 }
@@ -10809,6 +11080,7 @@
                                       "default": "groovy"
                                     }
                                   },
+                                  "additionalProperties": false,
                                   "title": "Script",
                                   "description": "The message body set via script."
                                 }
@@ -10854,6 +11126,7 @@
                           "path",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Expression",
                         "description": "List of path expressions to evaluate on the message content before processing the message.",
                         "$comment": "group:advanced"
@@ -10890,6 +11163,7 @@
                           "value": {
                           }
                         },
+                        "additionalProperties": false,
                         "anyOf": [
                           {
                             "oneOf": [
@@ -10924,6 +11198,7 @@
                                     "required": [
                                       "file"
                                     ],
+                                    "additionalProperties": false,
                                     "title": "Resource",
                                     "description": "The header data loaded from a file resource."
                                   }
@@ -10974,6 +11249,7 @@
                           "name",
                           "value"
                         ],
+                        "additionalProperties": false,
                         "title": "Parameters",
                         "description": "List of Http query parameters.",
                         "$comment": "group:advanced"
@@ -11015,6 +11291,7 @@
                       "$comment": "group:advanced"
                     }
                   },
+                  "additionalProperties": false,
                   "title": "TRACE",
                   "description": "Http TRACE request"
                 }
@@ -11027,6 +11304,7 @@
   },
   "http-sendResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "http-sendResponse",
     "group": "http",
     "title": "SendResponse",
@@ -11065,6 +11343,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -11091,11 +11370,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -11113,6 +11394,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -11142,6 +11424,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -11176,6 +11459,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -11221,6 +11505,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -11257,6 +11542,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -11291,6 +11577,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -11360,14 +11647,16 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Response",
           "description": "Http response message."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "jbang": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "jbang",
     "title": "Jbang",
     "description": "JBang test actions.",
@@ -11398,6 +11687,7 @@
               "name",
               "value"
             ],
+            "additionalProperties": false,
             "title": "Args"
           }
         },
@@ -11454,14 +11744,16 @@
               "name",
               "value"
             ],
+            "additionalProperties": false,
             "title": "SystemProperties"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "knative",
     "title": "Knative",
     "description": "Knative test actions.",
@@ -11505,11 +11797,12 @@
           "type": "string",
           "title": "Namespace"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-createBroker": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-createBroker",
     "group": "knative",
     "title": "CreateBroker",
@@ -11521,11 +11814,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-createChannel": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-createChannel",
     "group": "knative",
     "title": "CreateChannel",
@@ -11537,11 +11831,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-createSubscription": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-createSubscription",
     "group": "knative",
     "title": "CreateSubscription",
@@ -11561,11 +11856,12 @@
           "type": "string",
           "title": "Service"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-createTrigger": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-createTrigger",
     "group": "knative",
     "title": "CreateTrigger",
@@ -11599,10 +11895,12 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attributes"
               }
             }
           },
+          "additionalProperties": false,
           "title": "Filter"
         },
         "name": {
@@ -11613,11 +11911,12 @@
           "type": "string",
           "title": "Service"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-deleteBroker": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-deleteBroker",
     "group": "knative",
     "title": "DeleteBroker",
@@ -11629,11 +11928,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-deleteChannel": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-deleteChannel",
     "group": "knative",
     "title": "DeleteChannel",
@@ -11645,11 +11945,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-deleteResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-deleteResource",
     "group": "knative",
     "title": "DeleteResource",
@@ -11669,11 +11970,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-deleteSubscription": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-deleteSubscription",
     "group": "knative",
     "title": "DeleteSubscription",
@@ -11685,11 +11987,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-deleteTrigger": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-deleteTrigger",
     "group": "knative",
     "title": "DeleteTrigger",
@@ -11701,11 +12004,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-receiveEvent": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-receiveEvent",
     "group": "knative",
     "title": "ReceiveEvent",
@@ -11731,6 +12035,7 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attributes"
               }
             },
@@ -11739,6 +12044,7 @@
               "title": "Data"
             }
           },
+          "additionalProperties": false,
           "title": "Event"
         },
         "port": {
@@ -11753,11 +12059,12 @@
           "type": "integer",
           "title": "Timeout"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-sendEvent": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-sendEvent",
     "group": "knative",
     "title": "SendEvent",
@@ -11787,6 +12094,7 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attributes"
               }
             },
@@ -11795,6 +12103,7 @@
               "title": "Data"
             }
           },
+          "additionalProperties": false,
           "title": "Event"
         },
         "fork": {
@@ -11805,11 +12114,12 @@
           "type": "integer",
           "title": "Timeout"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "knative-verifyBroker": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "knative-verifyBroker",
     "group": "knative",
     "title": "VerifyBroker",
@@ -11821,11 +12131,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "kubernetes",
     "title": "Kubernetes",
     "description": "Kubernetes test actions.",
@@ -11856,11 +12167,12 @@
           "type": "string",
           "title": "Namespace"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-agent": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-agent",
     "group": "kubernetes",
     "title": "Agent",
@@ -11911,6 +12223,7 @@
               "title": "WaitForRunningState"
             }
           },
+          "additionalProperties": false,
           "title": "Connect"
         },
         "disconnect": {
@@ -11921,13 +12234,15 @@
               "title": "Name"
             }
           },
+          "additionalProperties": false,
           "title": "Disconnect"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-connect": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-connect",
     "group": "kubernetes",
     "title": "Connect",
@@ -11959,14 +12274,16 @@
               "description": "The exposed service port used to connect to."
             }
           },
+          "additionalProperties": false,
           "title": "Service",
           "description": "Connects to this Kubernetes service."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-connectService": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-connectService",
     "group": "kubernetes",
     "title": "ConnectService",
@@ -11994,11 +12311,12 @@
           "title": "Port",
           "description": "The exposed service port used to connect to."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createAnnotations": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createAnnotations",
     "group": "kubernetes",
     "title": "CreateAnnotations",
@@ -12021,6 +12339,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Annotations"
           }
         },
@@ -12032,11 +12351,12 @@
           "type": "string",
           "title": "Type"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createConfigMap": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createConfigMap",
     "group": "kubernetes",
     "title": "CreateConfigMap",
@@ -12067,14 +12387,16 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Properties"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createCustomResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createCustomResource",
     "group": "kubernetes",
     "title": "CreateCustomResource",
@@ -12110,11 +12432,12 @@
           "type": "string",
           "title": "Version"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createLabels": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createLabels",
     "group": "kubernetes",
     "title": "CreateLabels",
@@ -12137,6 +12460,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -12148,11 +12472,12 @@
           "type": "string",
           "title": "Type"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createResource",
     "group": "kubernetes",
     "title": "CreateResource",
@@ -12168,11 +12493,12 @@
           "type": "string",
           "title": "File"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createSecret": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createSecret",
     "group": "kubernetes",
     "title": "CreateSecret",
@@ -12203,14 +12529,16 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Properties"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-createService": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-createService",
     "group": "kubernetes",
     "title": "CreateService",
@@ -12241,6 +12569,7 @@
                 "title": "TargetPort"
               }
             },
+            "additionalProperties": false,
             "title": "Ports"
           }
         },
@@ -12266,21 +12595,24 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Labels"
               }
             }
           },
+          "additionalProperties": false,
           "title": "Selector"
         },
         "server": {
           "type": "string",
           "title": "Server"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-deleteConfigMap": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-deleteConfigMap",
     "group": "kubernetes",
     "title": "DeleteConfigMap",
@@ -12292,11 +12624,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-deleteCustomResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-deleteCustomResource",
     "group": "kubernetes",
     "title": "DeleteCustomResource",
@@ -12328,11 +12661,12 @@
           "type": "string",
           "title": "Version"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-deleteResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-deleteResource",
     "group": "kubernetes",
     "title": "DeleteResource",
@@ -12348,11 +12682,12 @@
           "type": "string",
           "title": "File"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-deleteSecret": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-deleteSecret",
     "group": "kubernetes",
     "title": "DeleteSecret",
@@ -12364,11 +12699,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-deleteService": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-deleteService",
     "group": "kubernetes",
     "title": "DeleteService",
@@ -12380,11 +12716,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-disconnect": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-disconnect",
     "group": "kubernetes",
     "title": "Disconnect",
@@ -12400,13 +12737,15 @@
               "title": "Name"
             }
           },
+          "additionalProperties": false,
           "title": "Service"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-disconnectService": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-disconnectService",
     "group": "kubernetes",
     "title": "DisconnectService",
@@ -12422,11 +12761,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-verifyCustomResource": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-verifyCustomResource",
     "group": "kubernetes",
     "title": "VerifyCustomResource",
@@ -12474,11 +12814,12 @@
           "type": "string",
           "title": "Version"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-verifyPod": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-verifyPod",
     "group": "kubernetes",
     "title": "VerifyPod",
@@ -12509,6 +12850,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -12532,11 +12874,12 @@
           "type": "boolean",
           "title": "PrintLogs"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "kubernetes-watchPodLogs": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "kubernetes-watchPodLogs",
     "group": "kubernetes",
     "title": "WatchPodLogs",
@@ -12563,6 +12906,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -12574,11 +12918,12 @@
           "type": "string",
           "title": "Timeout"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "load": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "load",
     "title": "Load",
     "description": "Load properties test action.",
@@ -12598,17 +12943,19 @@
           "required": [
             "file"
           ],
+          "additionalProperties": false,
           "title": "Properties",
           "description": "The properties source."
         }
       },
       "required": [
         "properties"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "openapi": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "openapi",
     "title": "Openapi",
     "description": "OpenAPI related test actions.",
@@ -12645,11 +12992,12 @@
       },
       "required": [
         "specification"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "openapi-receiveRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "openapi-receiveRequest",
     "group": "openapi",
     "title": "ReceiveRequest",
@@ -12688,6 +13036,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -12714,11 +13063,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -12787,6 +13138,7 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "JsonPath",
                   "description": "JsonPath validation expression.",
                   "$comment": "group:jsonPath"
@@ -12815,6 +13167,7 @@
                     "prefix",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Namespace",
                   "description": "List of expected namespaces.",
                   "$comment": "group:xml"
@@ -12857,6 +13210,7 @@
                     "default": "groovy"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script that builds the expected validate value.",
                 "$comment": "group:script"
@@ -12895,12 +13249,14 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Xpath",
                   "description": "Xpath validation expression.",
                   "$comment": "group:xml"
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validates",
             "description": "Additional message validation expressions."
           }
@@ -12920,11 +13276,12 @@
       },
       "required": [
         "operation"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "openapi-receiveResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "openapi-receiveResponse",
     "group": "openapi",
     "title": "ReceiveResponse",
@@ -12963,6 +13320,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -12989,11 +13347,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -13053,6 +13413,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -13064,6 +13425,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to selectively consume messages.",
           "$comment": "group:advanced"
@@ -13093,11 +13455,12 @@
       },
       "required": [
         "operation"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "openapi-sendRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "openapi-sendRequest",
     "group": "openapi",
     "title": "SendRequest",
@@ -13146,6 +13509,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -13172,11 +13536,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables before the request is sent.",
           "$comment": "group:advanced"
@@ -13208,11 +13574,12 @@
       },
       "required": [
         "operation"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "openapi-sendResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "openapi-sendResponse",
     "group": "openapi",
     "title": "SendResponse",
@@ -13261,6 +13628,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -13287,11 +13655,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -13316,11 +13686,12 @@
       },
       "required": [
         "operation"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "plsql": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "plsql",
     "title": "Plsql",
     "description": "PLSQL test actions.",
@@ -13361,6 +13732,7 @@
                 "title": "Statement"
               }
             },
+            "additionalProperties": false,
             "title": "Statements"
           }
         },
@@ -13380,16 +13752,18 @@
               "title": "Timeout"
             }
           },
+          "additionalProperties": false,
           "title": "Transaction"
         }
       },
       "required": [
         "statements"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "print": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "print",
     "title": "Print",
     "description": "Print test action.",
@@ -13411,11 +13785,12 @@
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "purge": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "purge",
     "title": "Purge",
     "description": "Purge test action.",
@@ -13446,6 +13821,7 @@
                 "description": "Reference to the endpoint in the bean registry."
               }
             },
+            "additionalProperties": false,
             "title": "Endpoints",
             "description": "List of endpoints to purge."
           }
@@ -13481,6 +13857,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Elements",
                 "description": "Select on given elements."
               }
@@ -13491,6 +13868,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to find matching messages that should be purged.",
           "$comment": "group:advanced"
@@ -13506,11 +13884,12 @@
           "title": "Timeout",
           "description": "Timeout when reading messages from the endpoint."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "purgeQueues": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "purgeQueues",
     "title": "PurgeQueues",
     "description": "Purge JMS queue test action.",
@@ -13563,11 +13942,12 @@
       },
       "required": [
         "connectionFactory"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "receive": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "receive",
     "title": "Receive",
     "description": "Receive message test action.",
@@ -13621,6 +14001,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -13647,11 +14028,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables after the message validation.",
           "$comment": "group:extract"
@@ -13685,6 +14068,7 @@
             "required": [
               "path"
             ],
+            "additionalProperties": false,
             "title": "Ignore",
             "description": "List of expressions to identify message elements that should be ignored during validation.",
             "$comment": "group:ignore"
@@ -13703,6 +14087,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -13732,6 +14117,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -13766,6 +14152,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -13806,6 +14193,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -13842,6 +14230,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -13876,6 +14265,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -13928,6 +14318,7 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The expected message used to validate."
         },
@@ -13954,6 +14345,7 @@
               "prefix",
               "value"
             ],
+            "additionalProperties": false,
             "title": "Namespace",
             "description": "Optional XML namespace to validate.",
             "$comment": "group:xml"
@@ -13991,6 +14383,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -14002,6 +14395,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector used to selectively receive a message.",
           "$comment": "group:selector"
@@ -14041,6 +14435,7 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "JsonPath",
                   "description": "JsonPath validation expression.",
                   "$comment": "group:jsonPath"
@@ -14069,6 +14464,7 @@
                     "prefix",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Namespace",
                   "description": "List of expected namespaces.",
                   "$comment": "group:xml"
@@ -14111,6 +14507,7 @@
                     "default": "groovy"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script that builds the expected validate value.",
                 "$comment": "group:script"
@@ -14149,12 +14546,14 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Xpath",
                   "description": "Xpath validation expression.",
                   "$comment": "group:xml"
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validate",
             "description": "Validation expressions evaluated on the message."
           }
@@ -14175,11 +14574,12 @@
       "required": [
         "endpoint",
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "selenium": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "selenium",
     "title": "Selenium",
     "description": "Selenium test actions.",
@@ -14202,11 +14602,12 @@
           "description": "Test action description printed when the action is executed.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-alert": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-alert",
     "group": "selenium",
     "title": "Alert",
@@ -14226,11 +14627,12 @@
           "type": "string",
           "title": "Text"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-checkInput": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-checkInput",
     "group": "selenium",
     "title": "CheckInput",
@@ -14281,6 +14683,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14292,23 +14695,26 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-clearCache": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-clearCache",
     "group": "selenium",
     "title": "ClearCache",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "selenium-click": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-click",
     "group": "selenium",
     "title": "Click",
@@ -14355,6 +14761,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14366,13 +14773,15 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-closeWindow": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-closeWindow",
     "group": "selenium",
     "title": "CloseWindow",
@@ -14388,11 +14797,12 @@
           "type": "string",
           "title": "Window"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-dropdownSelect": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-dropdownSelect",
     "group": "selenium",
     "title": "DropdownSelect",
@@ -14439,6 +14849,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14450,6 +14861,7 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         },
         "option": {
@@ -14464,11 +14876,12 @@
             "title": "Options"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-fillForm": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-fillForm",
     "group": "selenium",
     "title": "FillForm",
@@ -14491,6 +14904,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Fields"
           }
         },
@@ -14502,11 +14916,12 @@
           "type": "string",
           "title": "Submit"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-find": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-find",
     "group": "selenium",
     "title": "Find",
@@ -14553,6 +14968,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14564,6 +14980,7 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         },
         "validate": {
@@ -14584,6 +15001,7 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attributes"
               }
             },
@@ -14610,6 +15028,7 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Styles"
               }
             },
@@ -14622,13 +15041,15 @@
               "title": "Text"
             }
           },
+          "additionalProperties": false,
           "title": "Validate"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-focusWindow": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-focusWindow",
     "group": "selenium",
     "title": "FocusWindow",
@@ -14644,11 +15065,12 @@
           "type": "string",
           "title": "Window"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-getStoredFile": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-getStoredFile",
     "group": "selenium",
     "title": "GetStoredFile",
@@ -14660,11 +15082,12 @@
           "type": "string",
           "title": "FileName"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-hover": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-hover",
     "group": "selenium",
     "title": "Hover",
@@ -14711,6 +15134,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14722,13 +15146,15 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-javaScript": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-javaScript",
     "group": "selenium",
     "title": "JavaScript",
@@ -14762,11 +15188,12 @@
           "type": "string",
           "title": "Script"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-navigate": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-navigate",
     "group": "selenium",
     "title": "Navigate",
@@ -14778,11 +15205,12 @@
           "type": "string",
           "title": "Page"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-openWindow": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-openWindow",
     "group": "selenium",
     "title": "OpenWindow",
@@ -14798,11 +15226,12 @@
           "type": "string",
           "title": "Window"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-page": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-page",
     "group": "selenium",
     "title": "Page",
@@ -14842,11 +15271,12 @@
           "type": "string",
           "title": "Validator"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-screenshot": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-screenshot",
     "group": "selenium",
     "title": "Screenshot",
@@ -14858,11 +15288,12 @@
           "type": "string",
           "title": "OutputDir"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-setInput": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-setInput",
     "group": "selenium",
     "title": "SetInput",
@@ -14909,6 +15340,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -14920,17 +15352,19 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         },
         "value": {
           "type": "string",
           "title": "Value"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-start": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-start",
     "group": "selenium",
     "title": "Start",
@@ -14946,11 +15380,12 @@
           "type": "string",
           "title": "Browser"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-stop": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-stop",
     "group": "selenium",
     "title": "Stop",
@@ -14962,11 +15397,12 @@
           "type": "string",
           "title": "Browser"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-storeFile": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-storeFile",
     "group": "selenium",
     "title": "StoreFile",
@@ -14978,11 +15414,12 @@
           "type": "string",
           "title": "FilePath"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-switchWindow": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-switchWindow",
     "group": "selenium",
     "title": "SwitchWindow",
@@ -14998,11 +15435,12 @@
           "type": "string",
           "title": "Window"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "selenium-waitUntil": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "selenium-waitUntil",
     "group": "selenium",
     "title": "WaitUntil",
@@ -15053,6 +15491,7 @@
                   "title": "Value"
                 }
               },
+              "additionalProperties": false,
               "title": "Property"
             },
             "tagName": {
@@ -15064,6 +15503,7 @@
               "title": "Xpath"
             }
           },
+          "additionalProperties": false,
           "title": "Element"
         },
         "timeout": {
@@ -15074,11 +15514,12 @@
           "type": "string",
           "title": "Until"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "send": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "send",
     "title": "Send",
     "description": "Send message test action.",
@@ -15132,6 +15573,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -15158,11 +15600,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables before the message is sent.",
           "$comment": "group:extract"
@@ -15185,6 +15629,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -15214,6 +15659,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -15248,6 +15694,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -15288,6 +15735,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -15324,6 +15772,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -15358,6 +15807,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -15410,17 +15860,19 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The message to send."
         }
       },
       "required": [
         "endpoint"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "sleep": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "sleep",
     "title": "Sleep",
     "description": "Sleep test action.",
@@ -15444,11 +15896,12 @@
           "title": "Seconds",
           "description": "Time to sleep in seconds."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "soap": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "soap",
     "title": "Soap",
     "description": "SOAP Web Services related test actions.",
@@ -15477,11 +15930,12 @@
           "title": "Server",
           "description": "Sets the SOAP Http server."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "soap-receiveRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "soap-receiveRequest",
     "group": "soap",
     "title": "ReceiveRequest",
@@ -15526,6 +15980,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -15552,11 +16007,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -15617,6 +16074,7 @@
                     "description": "The SOAP attachment content loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attachments",
                 "description": "List of SOAP attachments for this message.",
                 "$comment": "group:advanced"
@@ -15632,6 +16090,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -15661,6 +16120,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -15695,6 +16155,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -15740,6 +16201,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -15776,6 +16238,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -15810,6 +16273,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -15884,6 +16348,7 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The expected SOAP request message."
         },
@@ -15919,6 +16384,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -15930,6 +16396,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to selectively consume messages.",
           "$comment": "group:advanced"
@@ -15954,11 +16421,12 @@
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "soap-receiveResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "soap-receiveResponse",
     "group": "soap",
     "title": "ReceiveResponse",
@@ -16003,6 +16471,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -16029,11 +16498,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -16088,6 +16559,7 @@
                     "description": "The SOAP attachment content loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attachments",
                 "description": "List of SOAP attachments for this message.",
                 "$comment": "group:advanced"
@@ -16103,6 +16575,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -16132,6 +16605,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -16166,6 +16640,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -16211,6 +16686,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -16247,6 +16723,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -16281,6 +16758,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -16350,6 +16828,7 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The expected SOAP response message."
         },
@@ -16385,6 +16864,7 @@
                   "name",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Element",
                 "description": "List of elements to build the selector expression.",
                 "$comment": "group:advanced"
@@ -16396,6 +16876,7 @@
               "description": "Selector expression value."
             }
           },
+          "additionalProperties": false,
           "title": "Selector",
           "description": "Message selector to selectively consume messages.",
           "$comment": "group:advanced"
@@ -16435,6 +16916,7 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "JsonPath",
                   "description": "JsonPath validation expression.",
                   "$comment": "group:jsonPath"
@@ -16463,6 +16945,7 @@
                     "prefix",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Namespace",
                   "description": "List of expected namespaces.",
                   "$comment": "group:xml"
@@ -16505,6 +16988,7 @@
                     "default": "groovy"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script",
                 "description": "Script that builds the expected validate value.",
                 "$comment": "group:script"
@@ -16543,12 +17027,14 @@
                     "expression",
                     "value"
                   ],
+                  "additionalProperties": false,
                   "title": "Xpath",
                   "description": "Xpath validation expression.",
                   "$comment": "group:xml"
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validate",
             "description": "Message validation expressions."
           }
@@ -16568,11 +17054,12 @@
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "soap-sendFault": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "soap-sendFault",
     "group": "soap",
     "title": "SendFault",
@@ -16611,6 +17098,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -16637,11 +17125,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -16684,6 +17174,7 @@
                     "description": "The SOAP attachment content loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attachments",
                 "description": "List of SOAP attachments for this message.",
                 "$comment": "group:advanced"
@@ -16699,6 +17190,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -16728,6 +17220,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -16762,6 +17255,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -16807,6 +17301,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -16842,6 +17337,7 @@
                     "description": "The SOAP fault detail loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "FaultDetails",
                 "description": "The SOAP fault details.",
                 "$comment": "group:advanced"
@@ -16883,6 +17379,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -16917,6 +17414,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -16986,17 +17484,19 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The SOAP fault response message to send."
         }
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "soap-sendRequest": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "soap-sendRequest",
     "group": "soap",
     "title": "SendRequest",
@@ -17035,6 +17535,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -17061,11 +17562,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -17119,6 +17622,7 @@
                     "description": "The SOAP attachment content loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attachments",
                 "description": "List of SOAP attachments for this message.",
                 "$comment": "group:advanced"
@@ -17134,6 +17638,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -17163,6 +17668,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -17197,6 +17703,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -17242,6 +17749,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -17278,6 +17786,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -17312,6 +17821,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -17386,6 +17896,7 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The SOAP request message."
         },
@@ -17398,11 +17909,12 @@
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "soap-sendResponse": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "soap-sendResponse",
     "group": "soap",
     "title": "SendResponse",
@@ -17441,6 +17953,7 @@
                 "required": [
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Body",
                 "description": "Extract elements from the message body into test variables."
               }
@@ -17467,11 +17980,13 @@
                   "name",
                   "variable"
                 ],
+                "additionalProperties": false,
                 "title": "Header",
                 "description": "Extract elements from the message header into test variables."
               }
             }
           },
+          "additionalProperties": false,
           "title": "Extract",
           "description": "Extract message content to test variables.",
           "$comment": "group:advanced"
@@ -17514,6 +18029,7 @@
                     "description": "The SOAP attachment content loaded from a file resource."
                   }
                 },
+                "additionalProperties": false,
                 "title": "Attachments",
                 "description": "List of SOAP attachments for this message.",
                 "$comment": "group:advanced"
@@ -17529,6 +18045,7 @@
                 "script": {
                 }
               },
+              "additionalProperties": false,
               "anyOf": [
                 {
                   "oneOf": [
@@ -17558,6 +18075,7 @@
                               "title": "File"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Resource",
                           "description": "The message body loaded from a file resource."
                         }
@@ -17592,6 +18110,7 @@
                               "default": "groovy"
                             }
                           },
+                          "additionalProperties": false,
                           "title": "Script",
                           "description": "The message body set via script."
                         }
@@ -17637,6 +18156,7 @@
                   "path",
                   "value"
                 ],
+                "additionalProperties": false,
                 "title": "Expression",
                 "description": "List of path expressions to evaluate on the message content before processing the message.",
                 "$comment": "group:advanced"
@@ -17673,6 +18193,7 @@
                   "value": {
                   }
                 },
+                "additionalProperties": false,
                 "anyOf": [
                   {
                     "oneOf": [
@@ -17707,6 +18228,7 @@
                             "required": [
                               "file"
                             ],
+                            "additionalProperties": false,
                             "title": "Resource",
                             "description": "The header data loaded from a file resource."
                           }
@@ -17776,17 +18298,19 @@
               "$comment": "group:advanced"
             }
           },
+          "additionalProperties": false,
           "title": "Message",
           "description": "The SOAP response message to send."
         }
       },
       "required": [
         "message"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "sql": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "sql",
     "title": "Sql",
     "description": "SQL test actions.",
@@ -17819,6 +18343,7 @@
                 "title": "Variable"
               }
             },
+            "additionalProperties": false,
             "title": "Extract"
           }
         },
@@ -17841,6 +18366,7 @@
                 "title": "Statement"
               }
             },
+            "additionalProperties": false,
             "title": "Statements"
           }
         },
@@ -17860,6 +18386,7 @@
               "title": "Timeout"
             }
           },
+          "additionalProperties": false,
           "title": "Transaction"
         },
         "validate": {
@@ -17892,6 +18419,7 @@
                     "title": "Value"
                   }
                 },
+                "additionalProperties": false,
                 "title": "Script"
               },
               "value": {
@@ -17907,17 +18435,19 @@
                 }
               }
             },
+            "additionalProperties": false,
             "title": "Validate"
           }
         }
       },
       "required": [
         "statements"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "start": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "start",
     "title": "Start",
     "description": "Start server test action.",
@@ -17940,14 +18470,16 @@
                 "title": "Name"
               }
             },
+            "additionalProperties": false,
             "title": "Servers"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "stop": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "stop",
     "title": "Stop",
     "description": "Stop server test action.",
@@ -17970,14 +18502,16 @@
                 "title": "Name"
               }
             },
+            "additionalProperties": false,
             "title": "Servers"
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "stopTime": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "stopTime",
     "title": "StopTime",
     "description": "Stop time test action.",
@@ -18001,11 +18535,12 @@
           "title": "Suffix",
           "description": "Suffix added to the value test variable."
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "stopTimer": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "stopTimer",
     "title": "StopTimer",
     "description": "Stop timer test action.",
@@ -18027,11 +18562,12 @@
       },
       "required": [
         "id"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "testcontainers": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "testcontainers",
     "title": "Testcontainers",
     "description": "Testcontainers test actions.",
@@ -18050,21 +18586,23 @@
           "description": "Test action description printed when the action is executed.",
           "$comment": "group:advanced"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-compose": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "testcontainers-compose",
     "group": "testcontainers",
     "title": "Compose",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "testcontainers-compose-down": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-compose-down",
     "group": "testcontainers-compose",
     "title": "Down",
@@ -18079,11 +18617,12 @@
       },
       "required": [
         "name"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "testcontainers-compose-up": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-compose-up",
     "group": "testcontainers-compose",
     "title": "Up",
@@ -18125,9 +18664,11 @@
                     "title": "Url"
                   }
                 },
+                "additionalProperties": false,
                 "title": "WaitFor"
               }
             },
+            "additionalProperties": false,
             "title": "ExposedServices"
           }
         },
@@ -18143,21 +18684,23 @@
           "type": "integer",
           "title": "StartUpTimeout"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start": {
     "kind": "testActionGroup",
+    "version": "4.9.4",
     "name": "testcontainers-start",
     "group": "testcontainers",
     "title": "Start",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object"
-    }
+      "type": "object",
+      "additionalProperties": false    }
   },
   "testcontainers-start-container": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-container",
     "group": "testcontainers-start",
     "title": "Container",
@@ -18188,6 +18731,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18218,6 +18762,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18256,6 +18801,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18275,13 +18821,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start-kafka": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-kafka",
     "group": "testcontainers-start",
     "title": "Kafka",
@@ -18312,6 +18860,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18346,6 +18895,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18392,6 +18942,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18411,13 +18962,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start-localstack": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-localstack",
     "group": "testcontainers-start",
     "title": "Localstack",
@@ -18452,6 +19005,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18482,6 +19036,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18491,11 +19046,11 @@
         },
         "options": {
           "type": "object",
+          "title": "Options",
           "additionalProperties": {
             "type": "string",
             "title": "Options"
-          },
-          "title": "Options"
+          }
         },
         "portBindings": {
           "title": "PortBindings",
@@ -18540,6 +19095,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18559,13 +19115,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start-mongodb": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-mongodb",
     "group": "testcontainers-start",
     "title": "Mongodb",
@@ -18596,6 +19154,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18626,6 +19185,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18668,6 +19228,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18687,13 +19248,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start-postgresql": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-postgresql",
     "group": "testcontainers-start",
     "title": "Postgresql",
@@ -18732,6 +19295,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18759,6 +19323,7 @@
               "title": "Value"
             }
           },
+          "additionalProperties": false,
           "title": "InitScript"
         },
         "labels": {
@@ -18776,6 +19341,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18826,6 +19392,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18845,13 +19412,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-start-redpanda": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-start-redpanda",
     "group": "testcontainers-start",
     "title": "Redpanda",
@@ -18882,6 +19451,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Env"
           }
         },
@@ -18912,6 +19482,7 @@
                 "title": "Value"
               }
             },
+            "additionalProperties": false,
             "title": "Labels"
           }
         },
@@ -18954,6 +19525,7 @@
                 "title": "MountPath"
               }
             },
+            "additionalProperties": false,
             "title": "VolumeMounts"
           }
         },
@@ -18973,13 +19545,15 @@
               "title": "Url"
             }
           },
+          "additionalProperties": false,
           "title": "WaitFor"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "testcontainers-stop": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "testcontainers-stop",
     "group": "testcontainers",
     "title": "Stop",
@@ -18991,11 +19565,12 @@
           "type": "string",
           "title": "Name"
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "trace": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "trace",
     "title": "Trace",
     "description": "Trace variables test action.",
@@ -19023,15 +19598,17 @@
             "required": [
               "name"
             ],
+            "additionalProperties": false,
             "title": "Variables",
             "description": "Test variable names to include."
           }
         }
-      }
-    }
+      },
+      "additionalProperties": false    }
   },
   "transform": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "transform",
     "title": "Transform",
     "description": "Transform test action.",
@@ -19070,6 +19647,7 @@
               "description": "XML document as inline data."
             }
           },
+          "additionalProperties": false,
           "title": "Source",
           "description": "The XML document to transform"
         },
@@ -19098,17 +19676,19 @@
               "description": "The XSLT document as inline data."
             }
           },
+          "additionalProperties": false,
           "title": "Xslt",
           "description": "The XSLT document performing the transformation."
         }
       },
       "required": [
         "xslt"
-      ]
-    }
+      ],
+      "additionalProperties": false    }
   },
   "waitFor": {
     "kind": "testAction",
+    "version": "4.9.4",
     "name": "waitFor",
     "title": "WaitFor",
     "description": "Wait for test action.",
@@ -19141,6 +19721,7 @@
           "description": "Time to wait for the condition to become satisfied."
         }
       },
+      "additionalProperties": false,
       "anyOf": [
         {
           "oneOf": [
@@ -19156,6 +19737,7 @@
                       "description": "Message name in the message store."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Message",
                   "description": "Wait for given message to exist in message store."
                 }
@@ -19188,6 +19770,7 @@
                       "description": "Http request URL."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "Http",
                   "description": "Wait for given Http endpoint to return a proper response code."
                 }
@@ -19205,6 +19788,7 @@
                       "description": "File path to evaluate."
                     }
                   },
+                  "additionalProperties": false,
                   "title": "File",
                   "description": "Wait for given file path to exist."
                 }
