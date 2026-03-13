@@ -83,7 +83,6 @@ public class CamelYAMLSchemaReader {
 
         var resolvedNode = getResolvedNode(processorNodeRef);
         return this.processNodeSchemaObject(processorName, resolvedNode);
-
     }
 
     private ObjectNode processNodeSchemaObject(String processorName, ObjectNode schemaNode) {

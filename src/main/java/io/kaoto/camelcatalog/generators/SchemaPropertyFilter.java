@@ -38,18 +38,13 @@ public class SchemaPropertyFilter {
             Map.entry("split", List.of("steps")),
             Map.entry("step", List.of("steps")),
             Map.entry("whenSkipSendToEndpoint", List.of("steps")),
-            Map.entry("get", List.of("to")),
-            Map.entry("post", List.of("to")),
-            Map.entry("put", List.of("to")),
-            Map.entry("delete", List.of("to")),
-            Map.entry("head", List.of("to")),
-            Map.entry("patch", List.of("to")),
             Map.entry("from", List.of("steps")),
             Map.entry("intercept", List.of("steps")),
             Map.entry("interceptFrom", List.of("steps")),
             Map.entry("interceptSendToEndpoint", List.of("steps")),
             Map.entry("onCompletion", List.of("steps")),
-            Map.entry("onException", List.of("steps"))
+            Map.entry("onException", List.of("steps")),
+            Map.entry("rest", List.of("get", "post", "put", "delete", "head", "patch"))
         );
       }
 

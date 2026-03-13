@@ -441,4 +441,17 @@ class EntityGeneratorTest {
             }
         }
     }
+
+    @Test
+    void shouldRemoveVerbsFromRestDefinitions() {
+        var entitiesMap = entityGenerator.generate();
+
+        var restDefinitions = entitiesMap.get("rest");
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("get"));
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("post"));
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("put"));
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("delete"));
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("patch"));
+        assertFalse(restDefinitions.withObjectProperty("propertiesSchema").has("head"));
+    }
 }

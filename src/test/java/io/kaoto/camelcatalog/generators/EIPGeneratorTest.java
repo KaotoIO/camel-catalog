@@ -187,7 +187,7 @@ class EIPGeneratorTest {
 
         var deleteNode = processorsMap.get("delete");
 
-        assertFalse(deleteNode.withObject("propertiesSchema").has("required"));
+        assertTrue(deleteNode.withObject("propertiesSchema").has("required"));
     }
 
     @Test
@@ -468,5 +468,19 @@ class EIPGeneratorTest {
                 }
             }
         }
+    }
+
+    @Test
+    void shouldKeepToPropertyForRestVerbs() {
+        var processorsMap = eipGenerator.generate();
+
+        var restVerbs = List.of("get", "post", "put", "delete", "head", "patch");
+
+        restVerbs.forEach(verb -> {
+            var verbDefinition =
+                    processorsMap.get(verb).withObject("propertiesSchema").withObjectProperty("properties");
+
+            assertTrue(verbDefinition.has("to"));
+        });
     }
 }
