@@ -12,9 +12,9 @@
 <h2 align="center">Kaoto - The Integration Designer for <a href="https://camel.apache.org">Apache Camel</a></h2>
 
 <p align="center">
-  <a href="https://kaoto.io/docs/installation">Documentation</a> | 
-  <a href="https://kaoto.io/workshop/">Workshops</a> | 
-  <a href="https://kaoto.io/contribute/">Contribute</a> | 
+  <a href="https://kaoto.io/docs/installation">Documentation</a> |
+  <a href="https://kaoto.io/workshop/">Workshops</a> |
+  <a href="https://kaoto.io/contribute/">Contribute</a> |
   <a href="https://camel.zulipchat.com/#narrow/stream/441302-kaoto">Chat</a>
 </p>
 
@@ -32,11 +32,9 @@ To build the Camel Catalog and the supporting schemas, run:
 ```sh
 yarn workspace @kaoto/camel-catalog run build
 ```
-or 
+or
 ```sh
 yarn install
 ```
 
 _Optional: You can update the Camel version in the `pom.xml` file and then run the build command again._
-
-// TODO
