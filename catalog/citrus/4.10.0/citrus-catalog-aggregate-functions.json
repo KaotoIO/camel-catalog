@@ -1,9 +1,10 @@
 {
   "average": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "average",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Average",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -27,9 +28,10 @@
   },
   "cdataSection": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "cdataSection",
     "group": "citrus",
+    "module": "citrus-validation-xml",
     "title": "CdataSection",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -48,9 +50,10 @@
   },
   "unixTimestamp": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "unixTimestamp",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "UnixTimestamp",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -59,9 +62,10 @@
   },
   "randomString": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomString",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomString",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -95,9 +99,10 @@
   },
   "resolveExternalServiceUrl": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "resolveExternalServiceUrl",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ResolveExternalServiceUrl",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -121,9 +126,10 @@
   },
   "urlDecode": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "urlDecode",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "UrlDecode",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -148,9 +154,10 @@
   },
   "localHostAddress": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "localHostAddress",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "LocalHostAddress",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -159,9 +166,10 @@
   },
   "currentDate": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "currentDate",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "CurrentDate",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -187,9 +195,10 @@
   },
   "sum": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sum",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Sum",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -213,9 +222,10 @@
   },
   "urlEncode": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "urlEncode",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "UrlEncode",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -240,9 +250,10 @@
   },
   "substring": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "substring",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Substring",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -272,9 +283,10 @@
   },
   "translate": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "translate",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Translate",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -305,9 +317,10 @@
   },
   "escapeJson": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "escapeJson",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "EscapeJson",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -326,9 +339,10 @@
   },
   "digestAuthHeader": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "digestAuthHeader",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "DigestAuthHeader",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -389,9 +403,10 @@
   },
   "xpath": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "xpath",
     "group": "citrus",
+    "module": "citrus-validation-xml",
     "title": "Xpath",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -415,9 +430,10 @@
   },
   "resolveServiceUrl": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "resolveServiceUrl",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ResolveServiceUrl",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -447,9 +463,10 @@
   },
   "lowerCase": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "lowerCase",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "LowerCase",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -468,9 +485,10 @@
   },
   "randomNumber": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomNumber",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomNumber",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -494,9 +512,10 @@
   },
   "changeDate": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "changeDate",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ChangeDate",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -525,9 +544,10 @@
   },
   "randomEnumValue": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomEnumValue",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomEnumValue",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -551,9 +571,10 @@
   },
   "escapeXml": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "escapeXml",
     "group": "citrus",
+    "module": "citrus-validation-xml",
     "title": "EscapeXml",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -572,9 +593,10 @@
   },
   "substringAfter": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "substringAfter",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "SubstringAfter",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -599,9 +621,10 @@
   },
   "randomUUID": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomUUID",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomUUID",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -610,9 +633,10 @@
   },
   "jsonPatch": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "jsonPatch",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "JsonPatch",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -664,9 +688,10 @@
   },
   "floor": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "floor",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Floor",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -685,9 +710,10 @@
   },
   "stringLength": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "stringLength",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "StringLength",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -706,9 +732,10 @@
   },
   "encodeBase64": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "encodeBase64",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "EncodeBase64",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -733,9 +760,10 @@
   },
   "ceiling": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ceiling",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Ceiling",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -754,9 +782,10 @@
   },
   "randomNumberGenerator": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomNumberGenerator",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomNumberGenerator",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -765,9 +794,10 @@
   },
   "systemProperty": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "systemProperty",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "SystemProperty",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -791,9 +821,10 @@
   },
   "jsonPath": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "jsonPath",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "JsonPath",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -817,9 +848,10 @@
   },
   "concat": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "concat",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Concat",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -843,9 +875,10 @@
   },
   "message": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "message",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Message",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -864,9 +897,10 @@
   },
   "round": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "round",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Round",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -885,9 +919,10 @@
   },
   "decodeBase64": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "decodeBase64",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "DecodeBase64",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -912,9 +947,10 @@
   },
   "serviceClusterIp": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "serviceClusterIp",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ServiceClusterIp",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -938,9 +974,10 @@
   },
   "randomPattern": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "randomPattern",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "RandomPattern",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -959,9 +996,10 @@
   },
   "upperCase": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "upperCase",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "UpperCase",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -980,9 +1018,10 @@
   },
   "absolute": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "absolute",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Absolute",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1001,9 +1040,10 @@
   },
   "readFile": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "readFile",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ReadFile",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1033,9 +1073,10 @@
   },
   "maximum": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "maximum",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Maximum",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1059,9 +1100,10 @@
   },
   "substringBefore": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "substringBefore",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "SubstringBefore",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1086,9 +1128,10 @@
   },
   "minimum": {
     "kind": "testFunction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "minimum",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Minimum",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",

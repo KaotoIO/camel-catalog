@@ -17,6 +17,16 @@
         "description" : "Sets default properties"
       }
     },
+    "dependencies" : {
+      "title" : "Dependencies",
+      "description" : "Set of additional Maven dependencies that should be loaded with the agent.",
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "title" : "Dependencies",
+        "description" : "Set of additional Maven dependencies that should be loaded with the agent."
+      }
+    },
     "engine" : {
       "type" : "string",
       "title" : "Engine",
@@ -32,6 +42,27 @@
         "title" : "Includes",
         "description" : "Test name patterns that specify which tests to include in the test run. Used when scanning packages for tests."
       }
+    },
+    "inspectCode" : {
+      "type" : "boolean",
+      "title" : "InspectCode",
+      "description" : "When enabled the source code gets analyzed for required modules and dependencies that are added to the classpath."
+    },
+    "modules" : {
+      "title" : "Modules",
+      "description" : "Set of additional Citrus modules that should be loaded with the agent.",
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "title" : "Modules",
+        "description" : "Set of additional Citrus modules that should be loaded with the agent."
+      }
+    },
+    "offline" : {
+      "type" : "boolean",
+      "title" : "Offline",
+      "description" : "When enabled there will be no attempts to resolve Maven artifacts via internet connection.",
+      "default" : "true"
     },
     "packages" : {
       "title" : "Packages",

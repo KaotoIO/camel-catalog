@@ -1,9 +1,10 @@
 {
   "kubernetes-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-client",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "KubernetesClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -78,9 +79,10 @@
   },
   "context-messageStore": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "context-messageStore",
     "group": "context",
+    "module": "citrus-base",
     "title": "ContextMessageStore",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -106,9 +108,10 @@
   },
   "kafka-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kafka-synchronous",
     "group": "kafka",
+    "module": "citrus-kafka",
     "title": "KafkaSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -223,9 +226,10 @@
   },
   "scp-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "scp-server",
     "group": "scp",
+    "module": "citrus-ftp",
     "title": "ScpServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -352,9 +356,10 @@
   },
   "direct-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "direct-synchronous",
     "group": "direct",
+    "module": "citrus-base",
     "title": "DirectSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -396,9 +401,10 @@
   },
   "docker-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "docker-client",
     "group": "docker",
+    "module": "citrus-docker",
     "title": "DockerClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -465,9 +471,10 @@
   },
   "kafka-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kafka-asynchronous",
     "group": "kafka",
+    "module": "citrus-kafka",
     "title": "KafkaAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -582,9 +589,10 @@
   },
   "k8s-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "k8s-client",
     "group": "k8s",
+    "module": "citrus-kubernetes",
     "title": "K8sClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -659,9 +667,10 @@
   },
   "mail-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "mail-client",
     "group": "mail",
+    "module": "citrus-mail",
     "title": "MailClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -727,9 +736,10 @@
   },
   "http-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-client",
     "group": "http",
+    "module": "citrus-http",
     "title": "HttpClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -901,9 +911,10 @@
   },
   "ssh-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ssh-client",
     "group": "ssh",
+    "module": "citrus-ssh",
     "title": "SshClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -919,9 +930,10 @@
   },
   "websocket-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "websocket-client",
     "group": "websocket",
+    "module": "citrus-websocket",
     "title": "WebsocketClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -966,9 +978,10 @@
   },
   "channel-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "channel-asynchronous",
     "group": "channel",
+    "module": "citrus-spring-integration",
     "title": "ChannelAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1025,9 +1038,10 @@
   },
   "soap-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-server",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "SoapServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1197,9 +1211,10 @@
   },
   "channel-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "channel-synchronous",
     "group": "channel",
+    "module": "citrus-spring-integration",
     "title": "ChannelSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1268,9 +1283,10 @@
   },
   "sftp-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sftp-server",
     "group": "sftp",
+    "module": "citrus-ftp",
     "title": "SftpServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1397,9 +1413,10 @@
   },
   "ftp-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ftp-server",
     "group": "ftp",
+    "module": "citrus-ftp",
     "title": "FtpServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1530,9 +1547,10 @@
   },
   "camel-inOut": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-inOut",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CamelInOut",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1580,9 +1598,10 @@
   },
   "vertx-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "vertx-asynchronous",
     "group": "vertx",
+    "module": "citrus-vertx",
     "title": "VertxAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1641,9 +1660,10 @@
   },
   "ftp-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ftp-client",
     "group": "ftp",
+    "module": "citrus-ftp",
     "title": "FtpClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1717,9 +1737,10 @@
   },
   "camel-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-asynchronous",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CamelAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1756,9 +1777,10 @@
   },
   "scp-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "scp-client",
     "group": "scp",
+    "module": "citrus-ftp",
     "title": "ScpClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1857,9 +1879,10 @@
   },
   "vertx-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "vertx-synchronous",
     "group": "vertx",
+    "module": "citrus-vertx",
     "title": "VertxSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1924,9 +1947,10 @@
   },
   "jms-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "jms-synchronous",
     "group": "jms",
+    "module": "citrus-jms",
     "title": "JmsSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2016,9 +2040,10 @@
   },
   "camel-inOnly": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-inOnly",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CamelInOnly",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2055,9 +2080,10 @@
   },
   "direct-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "direct-asynchronous",
     "group": "direct",
+    "module": "citrus-base",
     "title": "DirectAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2088,9 +2114,10 @@
   },
   "camel-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-synchronous",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CamelSynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2138,9 +2165,10 @@
   },
   "soap-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-client",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "SoapClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2242,9 +2270,10 @@
   },
   "jms-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "jms-asynchronous",
     "group": "jms",
+    "module": "citrus-jms",
     "title": "JmsAsynchronous",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2336,9 +2365,10 @@
   },
   "sftp-client": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sftp-client",
     "group": "sftp",
+    "module": "citrus-ftp",
     "title": "SftpClient",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2452,9 +2482,10 @@
   },
   "selenium-browser": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-browser",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "SeleniumBrowser",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2526,9 +2557,10 @@
   },
   "mail-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "mail-server",
     "group": "mail",
+    "module": "citrus-mail",
     "title": "MailServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2626,9 +2658,10 @@
   },
   "websocket-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "websocket-server",
     "group": "websocket",
+    "module": "citrus-websocket",
     "title": "WebsocketServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2933,9 +2966,10 @@
   },
   "http-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-server",
     "group": "http",
+    "module": "citrus-http",
     "title": "HttpServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -3230,9 +3264,10 @@
   },
   "ssh-server": {
     "kind": "testEndpoint",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ssh-server",
     "group": "ssh",
+    "module": "citrus-ssh",
     "title": "SshServer",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",

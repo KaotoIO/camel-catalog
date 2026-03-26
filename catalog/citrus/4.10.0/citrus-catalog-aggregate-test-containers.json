@@ -1,7 +1,7 @@
 {
   "assert": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "assert",
     "title": "Assert",
     "description": "Assert exception test action.",
@@ -43,7 +43,7 @@
   },
   "async": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "async",
     "title": "Async",
     "description": "Async test action.",
@@ -99,7 +99,7 @@
   },
   "catch": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "catch",
     "title": "Catch",
     "description": "Catch exception test action.",
@@ -136,7 +136,7 @@
   },
   "conditional": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "conditional",
     "title": "Conditional",
     "description": "Conditional test action.",
@@ -174,7 +174,7 @@
   },
   "doFinally": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "doFinally",
     "title": "DoFinally",
     "description": "Runs test actions after the test.",
@@ -206,7 +206,7 @@
   },
   "iterate": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "iterate",
     "title": "Iterate",
     "description": "Iterate test action.",
@@ -264,7 +264,7 @@
   },
   "parallel": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "parallel",
     "title": "Parallel",
     "description": "Parallel test action.",
@@ -296,7 +296,7 @@
   },
   "repeat": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "repeat",
     "title": "Repeat",
     "description": "Repeat test action.",
@@ -346,7 +346,7 @@
   },
   "repeatOnError": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "repeatOnError",
     "title": "RepeatOnError",
     "description": "Repeat on error test action.",
@@ -401,7 +401,7 @@
   },
   "sequential": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sequential",
     "title": "Sequential",
     "description": "Sequential test action.",
@@ -433,9 +433,10 @@
   },
   "soap-assertFault": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-assertFault",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "AssertFault",
     "description": "Expects a SOAP fault response as a client.",
     "propertiesSchema": {
@@ -502,7 +503,7 @@
   },
   "timer": {
     "kind": "testContainer",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "timer",
     "title": "Timer",
     "description": "Timer test action.",

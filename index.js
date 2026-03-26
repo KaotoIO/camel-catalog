@@ -39,7 +39,7 @@ const CATALOGS = {
     '4.4.0.redhat-00039',
   ],
   // https://repo1.maven.org/maven2/org/citrusframework/citrus-catalog-schema/
-  Citrus: ['4.9.4'],
+  Citrus: ['4.10.0'],
 };
 
 const KAMELETS_VERSION = '4.18.0';

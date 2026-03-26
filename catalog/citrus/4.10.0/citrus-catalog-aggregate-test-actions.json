@@ -1,7 +1,7 @@
 {
   "action": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "action",
     "title": "Action",
     "description": "Generic test action.",
@@ -24,8 +24,9 @@
   },
   "agent": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "agent",
+    "module": "citrus-agent-connector",
     "title": "Agent",
     "description": "Agent service test actions.",
     "propertiesSchema": {
@@ -41,9 +42,10 @@
   },
   "agent-connect": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "agent-connect",
     "group": "agent",
+    "module": "citrus-agent-connector",
     "title": "Connect",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -62,9 +64,10 @@
   },
   "agent-run": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "agent-run",
     "group": "agent",
+    "module": "citrus-agent-connector",
     "title": "Run",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -100,7 +103,7 @@
   },
   "ant": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ant",
     "title": "Ant",
     "description": "Ant run test action.",
@@ -172,7 +175,7 @@
   },
   "applyTemplate": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "applyTemplate",
     "title": "ApplyTemplate",
     "description": "Apply template test action.",
@@ -225,8 +228,9 @@
   },
   "camel": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel",
+    "module": "citrus-camel",
     "title": "Camel",
     "description": "Test actions related to Apache Camel.",
     "propertiesSchema": {
@@ -254,9 +258,10 @@
   },
   "camel-controlBus": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-controlBus",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "ControlBus",
     "description": "Connects with the Camel control bus to run operations.",
     "propertiesSchema": {
@@ -312,9 +317,10 @@
   },
   "camel-createComponent": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-createComponent",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CreateComponent",
     "description": "Create components in the Camel registry.",
     "propertiesSchema": {
@@ -341,9 +347,10 @@
   },
   "camel-createContext": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-createContext",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CreateContext",
     "description": "Create a new Camel context.",
     "propertiesSchema": {
@@ -366,9 +373,10 @@
   },
   "camel-createRoutes": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-createRoutes",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "CreateRoutes",
     "description": "Create a new Camel route in the context.",
     "propertiesSchema": {
@@ -402,9 +410,10 @@
   },
   "camel-infra": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-infra",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "Infra",
     "description": "Manage Camel infra services.",
     "propertiesSchema": {
@@ -414,7 +423,7 @@
   },
   "camel-infra-run": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-infra-run",
     "group": "camel-infra",
     "title": "Run",
@@ -455,7 +464,7 @@
   },
   "camel-infra-stop": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-infra-stop",
     "group": "camel-infra",
     "title": "Stop",
@@ -479,9 +488,10 @@
   },
   "camel-jbang": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "Jbang",
     "description": "Connect with Camel JBang to run commands.",
     "propertiesSchema": {
@@ -503,7 +513,7 @@
   },
   "camel-jbang-cmd": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-cmd",
     "group": "camel-jbang",
     "title": "Cmd",
@@ -515,7 +525,7 @@
   },
   "camel-jbang-cmd-receive": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-cmd-receive",
     "group": "camel-jbang-cmd",
     "title": "Receive",
@@ -617,7 +627,7 @@
   },
   "camel-jbang-cmd-send": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-cmd-send",
     "group": "camel-jbang-cmd",
     "title": "Send",
@@ -672,6 +682,12 @@
             "description": "The message headers."
           }
         },
+        "infra": {
+          "type": "string",
+          "title": "Infra",
+          "description": "Optional Camel infrastructure service to connect to.",
+          "$comment": "group:advanced"
+        },
         "integration": {
           "type": "string",
           "title": "Integration",
@@ -699,7 +715,7 @@
   },
   "camel-jbang-custom": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-custom",
     "group": "camel-jbang",
     "title": "Custom",
@@ -880,7 +896,7 @@
   },
   "camel-jbang-kubernetes": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-kubernetes",
     "group": "camel-jbang",
     "title": "Kubernetes",
@@ -892,7 +908,7 @@
   },
   "camel-jbang-kubernetes-delete": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-kubernetes-delete",
     "group": "camel-jbang-kubernetes",
     "title": "Delete",
@@ -942,7 +958,7 @@
   },
   "camel-jbang-kubernetes-run": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-kubernetes-run",
     "group": "camel-jbang-kubernetes",
     "title": "Run",
@@ -1074,7 +1090,7 @@
   },
   "camel-jbang-kubernetes-verify": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-kubernetes-verify",
     "group": "camel-jbang-kubernetes",
     "title": "Verify",
@@ -1141,7 +1157,7 @@
   },
   "camel-jbang-plugin": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-plugin",
     "group": "camel-jbang",
     "title": "Plugin",
@@ -1153,7 +1169,7 @@
   },
   "camel-jbang-plugin-add": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-plugin-add",
     "group": "camel-jbang-plugin",
     "title": "Add",
@@ -1187,7 +1203,7 @@
   },
   "camel-jbang-run": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-run",
     "group": "camel-jbang",
     "title": "Run",
@@ -1363,7 +1379,7 @@
   },
   "camel-jbang-stop": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-stop",
     "group": "camel-jbang",
     "title": "Stop",
@@ -1382,7 +1398,7 @@
   },
   "camel-jbang-verify": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-jbang-verify",
     "group": "camel-jbang",
     "title": "Verify",
@@ -1440,9 +1456,10 @@
   },
   "camel-removeRoutes": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-removeRoutes",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "RemoveRoutes",
     "description": "Remove given Camel routes.",
     "propertiesSchema": {
@@ -1464,9 +1481,10 @@
   },
   "camel-startContext": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-startContext",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "StartContext",
     "description": "Starts the given Camel context.",
     "propertiesSchema": {
@@ -1483,9 +1501,10 @@
   },
   "camel-startRoutes": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-startRoutes",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "StartRoutes",
     "description": "Start existing Camel routes in the context.",
     "propertiesSchema": {
@@ -1507,9 +1526,10 @@
   },
   "camel-stopContext": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-stopContext",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "StopContext",
     "description": "Stops the given Camel context.",
     "propertiesSchema": {
@@ -1526,9 +1546,10 @@
   },
   "camel-stopRoutes": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "camel-stopRoutes",
     "group": "camel",
+    "module": "citrus-camel",
     "title": "StopRoutes",
     "description": "Stop given Camel routes.",
     "propertiesSchema": {
@@ -1550,7 +1571,7 @@
   },
   "createEndpoint": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "createEndpoint",
     "title": "CreateEndpoint",
     "description": "Create endpoints test action.",
@@ -4150,7 +4171,7 @@
                     }
                   ],
                   "title": "JMS",
-                  "description": "JMS endpoint."
+                  "description": "JMS endpoint"
                 }
               }
             },
@@ -5016,7 +5037,7 @@
   },
   "createVariables": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "createVariables",
     "title": "CreateVariables",
     "description": "Create variables test action.",
@@ -5089,7 +5110,7 @@
   },
   "delay": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "delay",
     "title": "Delay",
     "description": "Delay test action.",
@@ -5118,7 +5139,7 @@
   },
   "echo": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "echo",
     "title": "Echo",
     "description": "Echo test action.",
@@ -5145,7 +5166,7 @@
   },
   "expectTimeout": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "expectTimeout",
     "title": "ExpectTimeout",
     "description": "Expect timeout test action.",
@@ -5220,7 +5241,7 @@
   },
   "fail": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "fail",
     "title": "Fail",
     "description": "Fail test action.",
@@ -5244,8 +5265,9 @@
   },
   "groovy": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "groovy",
+    "module": "citrus-groovy",
     "title": "Groovy",
     "description": "Groovy test action.",
     "propertiesSchema": {
@@ -5350,15 +5372,13 @@
           "description": "The Groovy script to execute."
         }
       },
-      "required": [
-        "script"
-      ],
       "additionalProperties": false    }
   },
   "http": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http",
+    "module": "citrus-http",
     "title": "Http",
     "description": "Http related test actions.",
     "propertiesSchema": {
@@ -5391,9 +5411,10 @@
   },
   "http-receiveRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-receiveRequest",
     "group": "http",
+    "module": "citrus-http",
     "title": "ReceiveRequest",
     "description": "Receive an Http request as a server.",
     "propertiesSchema": {
@@ -8166,9 +8187,10 @@
   },
   "http-receiveResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-receiveResponse",
     "group": "http",
+    "module": "citrus-http",
     "title": "ReceiveResponse",
     "description": "Receive an Http response as a client.",
     "propertiesSchema": {
@@ -8749,9 +8771,10 @@
   },
   "http-sendRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-sendRequest",
     "group": "http",
+    "module": "citrus-http",
     "title": "SendRequest",
     "description": "Send a Http request as a client.",
     "propertiesSchema": {
@@ -11304,9 +11327,10 @@
   },
   "http-sendResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "http-sendResponse",
     "group": "http",
+    "module": "citrus-http",
     "title": "SendResponse",
     "description": "Send an Http response as a server.",
     "propertiesSchema": {
@@ -11656,8 +11680,9 @@
   },
   "jbang": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "jbang",
+    "module": "citrus-jbang-connector",
     "title": "Jbang",
     "description": "JBang test actions.",
     "propertiesSchema": {
@@ -11753,8 +11778,9 @@
   },
   "knative": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative",
+    "module": "citrus-knative",
     "title": "Knative",
     "description": "Knative test actions.",
     "propertiesSchema": {
@@ -11802,9 +11828,10 @@
   },
   "knative-createBroker": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-createBroker",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "CreateBroker",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11819,9 +11846,10 @@
   },
   "knative-createChannel": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-createChannel",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "CreateChannel",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11836,9 +11864,10 @@
   },
   "knative-createSubscription": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-createSubscription",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "CreateSubscription",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11861,9 +11890,10 @@
   },
   "knative-createTrigger": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-createTrigger",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "CreateTrigger",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11916,9 +11946,10 @@
   },
   "knative-deleteBroker": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-deleteBroker",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "DeleteBroker",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11933,9 +11964,10 @@
   },
   "knative-deleteChannel": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-deleteChannel",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "DeleteChannel",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11950,9 +11982,10 @@
   },
   "knative-deleteResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-deleteResource",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "DeleteResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11975,9 +12008,10 @@
   },
   "knative-deleteSubscription": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-deleteSubscription",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "DeleteSubscription",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -11992,9 +12026,10 @@
   },
   "knative-deleteTrigger": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-deleteTrigger",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "DeleteTrigger",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12009,9 +12044,10 @@
   },
   "knative-receiveEvent": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-receiveEvent",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "ReceiveEvent",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12064,9 +12100,10 @@
   },
   "knative-sendEvent": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-sendEvent",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "SendEvent",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12119,9 +12156,10 @@
   },
   "knative-verifyBroker": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "knative-verifyBroker",
     "group": "knative",
+    "module": "citrus-knative",
     "title": "VerifyBroker",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12136,8 +12174,9 @@
   },
   "kubernetes": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "Kubernetes",
     "description": "Kubernetes test actions.",
     "propertiesSchema": {
@@ -12172,9 +12211,10 @@
   },
   "kubernetes-agent": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-agent",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "Agent",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12242,9 +12282,10 @@
   },
   "kubernetes-connect": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-connect",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "Connect",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12283,9 +12324,10 @@
   },
   "kubernetes-connectService": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-connectService",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "ConnectService",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12316,9 +12358,10 @@
   },
   "kubernetes-createAnnotations": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createAnnotations",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateAnnotations",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12356,9 +12399,10 @@
   },
   "kubernetes-createConfigMap": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createConfigMap",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateConfigMap",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12396,9 +12440,10 @@
   },
   "kubernetes-createCustomResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createCustomResource",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateCustomResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12437,9 +12482,10 @@
   },
   "kubernetes-createLabels": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createLabels",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateLabels",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12477,9 +12523,10 @@
   },
   "kubernetes-createResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createResource",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12498,9 +12545,10 @@
   },
   "kubernetes-createSecret": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createSecret",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateSecret",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12538,9 +12586,10 @@
   },
   "kubernetes-createService": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-createService",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "CreateService",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12612,9 +12661,10 @@
   },
   "kubernetes-deleteConfigMap": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-deleteConfigMap",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DeleteConfigMap",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12629,9 +12679,10 @@
   },
   "kubernetes-deleteCustomResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-deleteCustomResource",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DeleteCustomResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12666,9 +12717,10 @@
   },
   "kubernetes-deleteResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-deleteResource",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DeleteResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12687,9 +12739,10 @@
   },
   "kubernetes-deleteSecret": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-deleteSecret",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DeleteSecret",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12704,9 +12757,10 @@
   },
   "kubernetes-deleteService": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-deleteService",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DeleteService",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12721,9 +12775,10 @@
   },
   "kubernetes-disconnect": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-disconnect",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "Disconnect",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12745,9 +12800,10 @@
   },
   "kubernetes-disconnectService": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-disconnectService",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "DisconnectService",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12766,9 +12822,10 @@
   },
   "kubernetes-verifyCustomResource": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-verifyCustomResource",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "VerifyCustomResource",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12819,9 +12876,10 @@
   },
   "kubernetes-verifyPod": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-verifyPod",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "VerifyPod",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12879,9 +12937,10 @@
   },
   "kubernetes-watchPodLogs": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "kubernetes-watchPodLogs",
     "group": "kubernetes",
+    "module": "citrus-kubernetes",
     "title": "WatchPodLogs",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12923,7 +12982,7 @@
   },
   "load": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "load",
     "title": "Load",
     "description": "Load properties test action.",
@@ -12955,8 +13014,9 @@
   },
   "openapi": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "openapi",
+    "module": "citrus-openapi",
     "title": "Openapi",
     "description": "OpenAPI related test actions.",
     "propertiesSchema": {
@@ -12997,9 +13057,10 @@
   },
   "openapi-receiveRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "openapi-receiveRequest",
     "group": "openapi",
+    "module": "citrus-openapi",
     "title": "ReceiveRequest",
     "description": "Receives a client request as a server.",
     "propertiesSchema": {
@@ -13281,9 +13342,10 @@
   },
   "openapi-receiveResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "openapi-receiveResponse",
     "group": "openapi",
+    "module": "citrus-openapi",
     "title": "ReceiveResponse",
     "description": "Receives a response as a client.",
     "propertiesSchema": {
@@ -13460,9 +13522,10 @@
   },
   "openapi-sendRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "openapi-sendRequest",
     "group": "openapi",
+    "module": "citrus-openapi",
     "title": "SendRequest",
     "description": "Send a request as a client.",
     "propertiesSchema": {
@@ -13579,9 +13642,10 @@
   },
   "openapi-sendResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "openapi-sendResponse",
     "group": "openapi",
+    "module": "citrus-openapi",
     "title": "SendResponse",
     "description": "Sends a response as a server.",
     "propertiesSchema": {
@@ -13691,8 +13755,9 @@
   },
   "plsql": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "plsql",
+    "module": "citrus-sql",
     "title": "Plsql",
     "description": "PLSQL test actions.",
     "propertiesSchema": {
@@ -13763,7 +13828,7 @@
   },
   "print": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "print",
     "title": "Print",
     "description": "Print test action.",
@@ -13790,7 +13855,7 @@
   },
   "purge": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "purge",
     "title": "Purge",
     "description": "Purge test action.",
@@ -13889,8 +13954,9 @@
   },
   "purgeQueues": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "purgeQueues",
+    "module": "citrus-jms",
     "title": "PurgeQueues",
     "description": "Purge JMS queue test action.",
     "propertiesSchema": {
@@ -13947,7 +14013,7 @@
   },
   "receive": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "receive",
     "title": "Receive",
     "description": "Receive message test action.",
@@ -14579,8 +14645,9 @@
   },
   "selenium": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium",
+    "module": "citrus-selenium",
     "title": "Selenium",
     "description": "Selenium test actions.",
     "propertiesSchema": {
@@ -14607,9 +14674,10 @@
   },
   "selenium-alert": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-alert",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Alert",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14632,9 +14700,10 @@
   },
   "selenium-checkInput": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-checkInput",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "CheckInput",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14703,9 +14772,10 @@
   },
   "selenium-clearCache": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-clearCache",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "ClearCache",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14714,9 +14784,10 @@
   },
   "selenium-click": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-click",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Click",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14781,9 +14852,10 @@
   },
   "selenium-closeWindow": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-closeWindow",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "CloseWindow",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14802,9 +14874,10 @@
   },
   "selenium-dropdownSelect": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-dropdownSelect",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "DropdownSelect",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14881,9 +14954,10 @@
   },
   "selenium-fillForm": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-fillForm",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "FillForm",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -14921,9 +14995,10 @@
   },
   "selenium-find": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-find",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Find",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15049,9 +15124,10 @@
   },
   "selenium-focusWindow": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-focusWindow",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "FocusWindow",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15070,9 +15146,10 @@
   },
   "selenium-getStoredFile": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-getStoredFile",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "GetStoredFile",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15087,9 +15164,10 @@
   },
   "selenium-hover": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-hover",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Hover",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15154,9 +15232,10 @@
   },
   "selenium-javaScript": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-javaScript",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "JavaScript",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15193,9 +15272,10 @@
   },
   "selenium-navigate": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-navigate",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Navigate",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15210,9 +15290,10 @@
   },
   "selenium-openWindow": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-openWindow",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "OpenWindow",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15231,9 +15312,10 @@
   },
   "selenium-page": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-page",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Page",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15276,9 +15358,10 @@
   },
   "selenium-screenshot": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-screenshot",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Screenshot",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15293,9 +15376,10 @@
   },
   "selenium-setInput": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-setInput",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "SetInput",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15364,9 +15448,10 @@
   },
   "selenium-start": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-start",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Start",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15385,9 +15470,10 @@
   },
   "selenium-stop": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-stop",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "Stop",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15402,9 +15488,10 @@
   },
   "selenium-storeFile": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-storeFile",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "StoreFile",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15419,9 +15506,10 @@
   },
   "selenium-switchWindow": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-switchWindow",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "SwitchWindow",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15440,9 +15528,10 @@
   },
   "selenium-waitUntil": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "selenium-waitUntil",
     "group": "selenium",
+    "module": "citrus-selenium",
     "title": "WaitUntil",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -15519,7 +15608,7 @@
   },
   "send": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "send",
     "title": "Send",
     "description": "Send message test action.",
@@ -15872,7 +15961,7 @@
   },
   "sleep": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sleep",
     "title": "Sleep",
     "description": "Sleep test action.",
@@ -15901,8 +15990,9 @@
   },
   "soap": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap",
+    "module": "citrus-ws",
     "title": "Soap",
     "description": "SOAP Web Services related test actions.",
     "propertiesSchema": {
@@ -15935,9 +16025,10 @@
   },
   "soap-receiveRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-receiveRequest",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "ReceiveRequest",
     "description": "Receives a SOAP request as a server.",
     "propertiesSchema": {
@@ -16426,9 +16517,10 @@
   },
   "soap-receiveResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-receiveResponse",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "ReceiveResponse",
     "description": "Receives a SOAP response as a client.",
     "propertiesSchema": {
@@ -17059,9 +17151,10 @@
   },
   "soap-sendFault": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-sendFault",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "SendFault",
     "description": "Sends a SOAP fault response as a server",
     "propertiesSchema": {
@@ -17496,9 +17589,10 @@
   },
   "soap-sendRequest": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-sendRequest",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "SendRequest",
     "description": "Sends a SOAP request as a client.",
     "propertiesSchema": {
@@ -17914,9 +18008,10 @@
   },
   "soap-sendResponse": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "soap-sendResponse",
     "group": "soap",
+    "module": "citrus-ws",
     "title": "SendResponse",
     "description": "Sends a SOAP response as a server.",
     "propertiesSchema": {
@@ -18310,8 +18405,9 @@
   },
   "sql": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "sql",
+    "module": "citrus-sql",
     "title": "Sql",
     "description": "SQL test actions.",
     "propertiesSchema": {
@@ -18447,7 +18543,7 @@
   },
   "start": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "start",
     "title": "Start",
     "description": "Start server test action.",
@@ -18479,7 +18575,7 @@
   },
   "stop": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "stop",
     "title": "Stop",
     "description": "Stop server test action.",
@@ -18511,7 +18607,7 @@
   },
   "stopTime": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "stopTime",
     "title": "StopTime",
     "description": "Stop time test action.",
@@ -18540,7 +18636,7 @@
   },
   "stopTimer": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "stopTimer",
     "title": "StopTimer",
     "description": "Stop timer test action.",
@@ -18567,8 +18663,9 @@
   },
   "testcontainers": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers",
+    "module": "citrus-testcontainers",
     "title": "Testcontainers",
     "description": "Testcontainers test actions.",
     "propertiesSchema": {
@@ -18591,9 +18688,10 @@
   },
   "testcontainers-compose": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-compose",
     "group": "testcontainers",
+    "module": "citrus-testcontainers",
     "title": "Compose",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -18602,7 +18700,7 @@
   },
   "testcontainers-compose-down": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-compose-down",
     "group": "testcontainers-compose",
     "title": "Down",
@@ -18622,7 +18720,7 @@
   },
   "testcontainers-compose-up": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-compose-up",
     "group": "testcontainers-compose",
     "title": "Up",
@@ -18689,9 +18787,10 @@
   },
   "testcontainers-start": {
     "kind": "testActionGroup",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start",
     "group": "testcontainers",
+    "module": "citrus-testcontainers",
     "title": "Start",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -18700,7 +18799,7 @@
   },
   "testcontainers-start-container": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-container",
     "group": "testcontainers-start",
     "title": "Container",
@@ -18829,7 +18928,7 @@
   },
   "testcontainers-start-kafka": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-kafka",
     "group": "testcontainers-start",
     "title": "Kafka",
@@ -18970,7 +19069,7 @@
   },
   "testcontainers-start-localstack": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-localstack",
     "group": "testcontainers-start",
     "title": "Localstack",
@@ -19123,7 +19222,7 @@
   },
   "testcontainers-start-mongodb": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-mongodb",
     "group": "testcontainers-start",
     "title": "Mongodb",
@@ -19256,7 +19355,7 @@
   },
   "testcontainers-start-postgresql": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-postgresql",
     "group": "testcontainers-start",
     "title": "Postgresql",
@@ -19420,7 +19519,7 @@
   },
   "testcontainers-start-redpanda": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-start-redpanda",
     "group": "testcontainers-start",
     "title": "Redpanda",
@@ -19553,9 +19652,10 @@
   },
   "testcontainers-stop": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "testcontainers-stop",
     "group": "testcontainers",
+    "module": "citrus-testcontainers",
     "title": "Stop",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -19570,7 +19670,7 @@
   },
   "trace": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "trace",
     "title": "Trace",
     "description": "Trace variables test action.",
@@ -19608,7 +19708,7 @@
   },
   "transform": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "transform",
     "title": "Transform",
     "description": "Transform test action.",
@@ -19688,7 +19788,7 @@
   },
   "waitFor": {
     "kind": "testAction",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "waitFor",
     "title": "WaitFor",
     "description": "Wait for test action.",

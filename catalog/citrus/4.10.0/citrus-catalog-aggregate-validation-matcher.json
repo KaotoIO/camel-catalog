@@ -1,9 +1,10 @@
 {
   "isUUIDv4": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "isUUIDv4",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "IsUUIDv4",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -12,9 +13,10 @@
   },
   "dateRange": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "dateRange",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "DateRange",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -45,9 +47,10 @@
   },
   "lowerThan": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "lowerThan",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "LowerThan",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -66,9 +69,10 @@
   },
   "matchesDatePattern": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "matchesDatePattern",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "MatchesDatePattern",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -87,9 +91,10 @@
   },
   "isWeekday": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "isWeekday",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "IsWeekday",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -123,9 +128,10 @@
   },
   "empty": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "empty",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Empty",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -134,9 +140,10 @@
   },
   "trim": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "trim",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Trim",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -155,9 +162,10 @@
   },
   "ignoreNewLine": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ignoreNewLine",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "IgnoreNewLine",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -176,9 +184,10 @@
   },
   "isNumber": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "isNumber",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "IsNumber",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -187,9 +196,10 @@
   },
   "ignore": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "ignore",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Ignore",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -198,9 +208,10 @@
   },
   "equalsIgnoreCase": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "equalsIgnoreCase",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "EqualsIgnoreCase",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -219,9 +230,10 @@
   },
   "hasLength": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "hasLength",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "HasLength",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -240,9 +252,10 @@
   },
   "greaterThan": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "greaterThan",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "GreaterThan",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -261,9 +274,10 @@
   },
   "notNull": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "notNull",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "NotNull",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -272,9 +286,10 @@
   },
   "matchesXml": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "matchesXml",
     "group": "citrus",
+    "module": "citrus-validation-xml",
     "title": "MatchesXml",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -293,9 +308,10 @@
   },
   "containsIgnoreCase": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "containsIgnoreCase",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "ContainsIgnoreCase",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -314,9 +330,10 @@
   },
   "trimAllWhitespaces": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "trimAllWhitespaces",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "TrimAllWhitespaces",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -335,9 +352,10 @@
   },
   "assertThat": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "assertThat",
     "group": "citrus",
+    "module": "citrus-validation-hamcrest",
     "title": "AssertThat",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -361,9 +379,10 @@
   },
   "matches": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "matches",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Matches",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -382,9 +401,10 @@
   },
   "contains": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "contains",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Contains",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -403,9 +423,10 @@
   },
   "null": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "null",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Null",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -414,9 +435,10 @@
   },
   "endsWith": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "endsWith",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "EndsWith",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -435,9 +457,10 @@
   },
   "variable": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "variable",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "Variable",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -456,9 +479,10 @@
   },
   "notEmpty": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "notEmpty",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "NotEmpty",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -467,9 +491,10 @@
   },
   "startsWith": {
     "kind": "testValidationMatcher",
-    "version": "4.9.4",
+    "version": "4.10.0",
     "name": "startsWith",
     "group": "citrus",
+    "module": "citrus-base",
     "title": "StartsWith",
     "propertiesSchema": {
       "$schema": "http://json-schema.org/draft-07/schema#",

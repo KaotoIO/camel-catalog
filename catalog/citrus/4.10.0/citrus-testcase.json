@@ -1655,6 +1655,12 @@
                             "description" : "The message headers."
                           }
                         },
+                        "infra" : {
+                          "type" : "string",
+                          "title" : "Infra",
+                          "description" : "Optional Camel infrastructure service to connect to.",
+                          "$comment" : "group:advanced"
+                        },
                         "integration" : {
                           "type" : "string",
                           "title" : "Integration",
@@ -4906,7 +4912,7 @@
                     } ]
                   } ],
                   "title" : "JMS",
-                  "description" : "JMS endpoint."
+                  "description" : "JMS endpoint"
                 }
               },
               "required" : [ "jms" ]
@@ -6006,7 +6012,6 @@
               } ]
             }
           },
-          "required" : [ "script" ],
           "additionalProperties" : false,
           "title" : "Groovy",
           "description" : "Groovy test action."
@@ -13260,7 +13265,7 @@
                   } ]
                 } ],
                 "title" : "JMS",
-                "description" : "JMS endpoint."
+                "description" : "JMS endpoint"
               }
             },
             "required" : [ "jms" ]
