@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class CatalogDefinition {
     private String name;
     private String version;
+    private String executorVersion;
     private CatalogRuntime runtime;
     private final Map<String, CatalogDefinitionEntry> catalogs = new HashMap<>();
     private final Map<String, CatalogDefinitionEntry> schemas = new HashMap<>();
@@ -42,6 +43,14 @@ public class CatalogDefinition {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getExecutorVersion() {
+        return executorVersion;
+    }
+
+    public void setExecutorVersion(String executorVersion) {
+        this.executorVersion = executorVersion;
     }
 
     public CatalogRuntime getRuntime() {

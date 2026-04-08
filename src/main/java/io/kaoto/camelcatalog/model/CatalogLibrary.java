@@ -46,7 +46,8 @@ public class CatalogLibrary {
                 catalogDefinition.getName(),
                 catalogDefinition.getVersion(),
                 catalogDefinition.getRuntime().getLabel(),
-                catalogDefinition.getFileName());
+                catalogDefinition.getFileName(),
+                catalogDefinition.getExecutorVersion());
 
         definitions.add(entry);
     }

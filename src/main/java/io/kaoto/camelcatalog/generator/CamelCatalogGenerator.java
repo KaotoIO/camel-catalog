@@ -77,6 +77,11 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                     .setName("Camel " + camelCatalogVersionLoader.getRuntime().getLabel() + " " + camelCatalogVersion);
             catalogDefinition.setVersion(camelCatalogVersion);
             catalogDefinition.setRuntime(camelCatalogVersionLoader.getRuntime());
+            
+            // Resolve and set the camel-launcher version
+            CamelLauncherVersionResolver launcherResolver = new CamelLauncherVersionResolver();
+            String launcherVersion = launcherResolver.findLauncherVersion(camelCatalogVersion, camelCatalogVersionLoader.getRuntime());
+            catalogDefinition.setExecutorVersion(launcherVersion);
 
             String content = jsonMapper.writeValueAsString(catalogDefinition);
             String filename = String.format("%s-%s.json", "index",
