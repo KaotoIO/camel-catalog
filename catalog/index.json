@@ -113,6 +113,12 @@
 			"version" : "4.10.0",
 			"runtime" : "Citrus",
 			"fileName" : "citrus/4.10.0/index.json"
+		},
+		{
+			"name" : "Citrus 4.10.1",
+			"version" : "4.10.1",
+			"runtime" : "Citrus",
+			"fileName" : "citrus/4.10.1/index.json"
 		}
 	],
 	"version" : 3,
