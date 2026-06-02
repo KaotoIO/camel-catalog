@@ -13,6 +13,7 @@ import io.kaoto.camelcatalog.maven.KaotoMavenVersionManager;
 import io.kaoto.camelcatalog.maven.ResourceLoader;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
 
 /**
  * Citrus catalog generator loads citrus-catalog-schema.jar artifact with respective version from Maven central and reads all
@@ -24,6 +25,7 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
     private final File outputDirectory;
     private final KaotoMavenVersionManager kaotoMavenVersionManager;
     private final ResourceLoader resourceLoader;
+    private ResolvedVersions resolvedVersions;
 
     public CitrusCatalogGenerator(String catalogVersion, File outputDirectory, boolean verbose) {
         this.catalogVersion = catalogVersion;
@@ -34,6 +36,10 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
         this.kaotoMavenVersionManager.addMavenRepository("central", "https://repo1.maven.org/maven2/");
 
         this.resourceLoader = new ResourceLoader(kaotoMavenVersionManager, verbose);
+    }
+
+    public void setResolvedVersions(ResolvedVersions resolvedVersions) {
+        this.resolvedVersions = resolvedVersions;
     }
 
     @Override
@@ -51,6 +57,11 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
         catalogDefinition.setRuntime(CatalogRuntime.Citrus);
         catalogDefinition.setVersion(catalogVersion);
         catalogDefinition.setFileName("index.json");
+        if (resolvedVersions != null) {
+            catalogDefinition.setCamelCatalogVersion(resolvedVersions.camelCatalogVersion());
+            catalogDefinition.setRuntimeProviderVersion(resolvedVersions.runtimeProviderVersion());
+            catalogDefinition.setFrameworkVersion(resolvedVersions.frameworkVersion());
+        }
         return catalogDefinition;
     }
 

@@ -6,9 +6,13 @@ import io.kaoto.camelcatalog.beans.ConfigBean;
 import io.kaoto.camelcatalog.generator.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder;
+import io.kaoto.camelcatalog.maven.PomFetcher;
+import io.kaoto.camelcatalog.maven.RuntimeVersionResolver;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogLibrary;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
+import org.apache.camel.tooling.maven.MavenDownloaderImpl;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -31,36 +35,54 @@ public class GenerateCommand implements Runnable {
 
         CatalogLibrary library = new CatalogLibrary(3, configBean.getCatalogsName());
 
+        MavenDownloaderImpl downloader = new MavenDownloaderImpl();
+        downloader.build();
+        RuntimeVersionResolver versionResolver = new RuntimeVersionResolver(
+                PomFetcher.http(), downloader, configBean.getRepositories());
+
         FileUtils.deleteQuietly(configBean.getOutputFolder());
         File outputFolder = createSubFolder(configBean.getOutputFolder());
 
         configBean.getCatalogVersionSet()
                 .forEach(catalogCliArg -> {
+                    ResolvedVersions resolved = versionResolver.resolve(
+                            catalogCliArg.getRuntime(), catalogCliArg.getCatalogVersion());
+
+                    String downloadVersion = resolved.catalogDownloadVersion();
                     String runtimeFolderName = catalogCliArg.getRuntime().getRuntimeFolder();
                     File runtimeFolder = createSubFolder(outputFolder, runtimeFolderName);
-                    File catalogDefinitionFolder = createSubFolder(runtimeFolder, catalogCliArg.getCatalogVersion());
+                    File catalogDefinitionFolder = createSubFolder(runtimeFolder, downloadVersion);
 
                     LOGGER.info("-------------------------------------------\n");
-                    LOGGER.info("Generating catalog: " + catalogCliArg.getRuntime() + " "
-                            + catalogCliArg.getCatalogVersion());
+                    LOGGER.info("Generating catalog: " + catalogCliArg.getRuntime() + " input="
+                            + catalogCliArg.getCatalogVersion() + " -> camel=" + resolved.camelCatalogVersion()
+                            + " provider=" + resolved.runtimeProviderVersion()
+                            + " framework=" + resolved.frameworkVersion());
 
-                    var catalogGenerator = switch(catalogCliArg.getRuntime()) {
+                    var catalogGenerator = switch (catalogCliArg.getRuntime()) {
                         case Main, Quarkus, SpringBoot -> new CamelCatalogGeneratorBuilder()
-                                    .withRuntime(catalogCliArg.getRuntime())
-                                    .withCatalogVersion(catalogCliArg.getCatalogVersion())
-                                    .withKameletsVersion(configBean.getKameletsVersion())
-                                    .withCamelKCRDsVersion("2.3.1")
-                                    .withOutputDirectory(catalogDefinitionFolder)
-                                    .withVerbose(configBean.isVerbose())
-                                    .build();
+                                .withRuntime(catalogCliArg.getRuntime())
+                                .withCatalogVersion(downloadVersion)
+                                .withKameletsVersion(configBean.getKameletsVersion())
+                                .withCamelKCRDsVersion("2.3.1")
+                                .withOutputDirectory(catalogDefinitionFolder)
+                                .withVerbose(configBean.isVerbose())
+                                .withResolvedVersions(resolved)
+                                .build();
                         case Citrus -> new CitrusCatalogGeneratorBuilder()
-                                    .withCatalogVersion(catalogCliArg.getCatalogVersion())
-                                    .withOutputDirectory(catalogDefinitionFolder)
-                                    .withVerbose(configBean.isVerbose())
-                                    .build();
+                                .withCatalogVersion(downloadVersion)
+                                .withOutputDirectory(catalogDefinitionFolder)
+                                .withVerbose(configBean.isVerbose())
+                                .withResolvedVersions(resolved)
+                                .build();
                     };
 
                     CatalogDefinition catalogDefinition = catalogGenerator.generate();
+                    if (catalogDefinition == null) {
+                        throw new RuntimeException("Catalog generation returned no result for "
+                                + catalogCliArg.getRuntime() + " " + downloadVersion);
+                    }
+
                     File indexFile = catalogDefinitionFolder.toPath().resolve(catalogDefinition.getFileName()).toFile();
                     String relateIndexFile = outputFolder.toPath().relativize(indexFile.toPath()).toString().replace(File.separator, "/");
 

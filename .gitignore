@@ -148,3 +148,5 @@ storybook-static
 .vscode/settings.json
 target/
 dependency-reduced-pom.xml
+
+docs/superpowers

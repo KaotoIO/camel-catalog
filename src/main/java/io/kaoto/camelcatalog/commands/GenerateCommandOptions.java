@@ -46,7 +46,8 @@ public class GenerateCommandOptions {
                 .desc("Camel Main version. If not specified, it will use the generator installed version")
                 .hasArg().build();
         Option camelQuarkusVersionOption = Option.builder().argName("version").option("q").longOpt("quarkus")
-                .desc("Camel Extensions for Quarkus version").hasArg().build();
+                .desc("Quarkus platform version, e.g. 3.28.0 or 3.33.1.redhat-00006 "
+                        + "(groupId/repos inferred from the .redhat- suffix)").hasArg().build();
         Option camelSpringbootVersionOption = Option.builder().argName("version").option("s")
                 .longOpt("springboot")
                 .desc("Camel SpringBoot version").hasArg().build();
@@ -56,6 +57,9 @@ public class GenerateCommandOptions {
         Option verboseOption = Option.builder().argName("v").option("v").longOpt("verbose")
                 .desc("Be more verbose")
                 .build();
+        Option reposOption = Option.builder().argName("repos").longOpt("repos")
+                .desc("Comma-separated extra Maven repository URLs (corporate mirrors). "
+                        + "Added on top of the repositories inferred from each version.").hasArg().build();
 
         options.addOption(outputOption);
         options.addOption(catalogsNameOption);
@@ -65,12 +69,19 @@ public class GenerateCommandOptions {
         options.addOption(camelSpringbootVersionOption);
         options.addOption(citrusVersionOption);
         options.addOption(verboseOption);
+        options.addOption(reposOption);
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
         configBean.setOutputFolder(Util.getNormalizedFolder(cmd.getOptionValue(outputOption.getOpt())));
         configBean.setCatalogsName(cmd.getOptionValue(catalogsNameOption.getOpt()));
         configBean.setKameletsVersion(cmd.getOptionValue(kameletsVersionOption.getOpt()));
+
+        String reposValue = cmd.getOptionValue(reposOption.getLongOpt());
+        if (reposValue != null && !reposValue.isBlank()) {
+            configBean.setRepositories(java.util.Arrays.stream(reposValue.split(","))
+                    .map(String::trim).filter(s -> !s.isBlank()).toList());
+        }
 
         addRuntimeVersions(configBean, cmd, camelMainVersionOption, CatalogRuntime.Main);
         addRuntimeVersions(configBean, cmd, camelQuarkusVersionOption, CatalogRuntime.Quarkus);

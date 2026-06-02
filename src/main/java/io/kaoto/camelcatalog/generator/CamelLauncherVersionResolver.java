@@ -111,7 +111,7 @@ public class CamelLauncherVersionResolver {
      * @param quarkusVersion The Camel Quarkus version (e.g., "3.15.0" or "3.15.0.redhat-00010")
      * @return The internal Camel version, or null if resolution fails
      */
-    private String resolveCamelVersionFromQuarkusBom(String quarkusVersion) {
+    public String resolveCamelVersionFromQuarkusBom(String quarkusVersion) {
         try {
             VersionInfo versionInfo = parseVersion(quarkusVersion);
             String repository = versionInfo.isRedhat ? REDHAT_GA : MAVEN_CENTRAL;

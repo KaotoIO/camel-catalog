@@ -19,6 +19,7 @@ import java.io.File;
 
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
 
 /**
  * Collects the camel metadata files such as catalog and schema and
@@ -43,6 +44,7 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
     private String camelKCRDsVersion;
     private File outputDirectory;
     private boolean verbose = false;
+    private ResolvedVersions resolvedVersions;
 
     public CamelCatalogGeneratorBuilder withRuntime(CatalogRuntime runtime) {
         this.runtime = runtime;
@@ -74,6 +76,11 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
         return this;
     }
 
+    public CamelCatalogGeneratorBuilder withResolvedVersions(ResolvedVersions resolvedVersions) {
+        this.resolvedVersions = resolvedVersions;
+        return this;
+    }
+
     public CatalogRuntime getRuntime() {
         return runtime;
     }
@@ -88,6 +95,7 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
         catalogGenerator.setCamelCatalogVersion(catalogVersion);
         catalogGenerator.setKameletsVersion(kameletsVersion);
         catalogGenerator.setCamelKCRDsVersion(camelKCRDsVersion);
+        catalogGenerator.setResolvedVersions(resolvedVersions);
         return catalogGenerator;
     }
 

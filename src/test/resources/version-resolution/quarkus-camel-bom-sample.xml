@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.redhat.quarkus.platform</groupId>
+  <artifactId>quarkus-camel-bom</artifactId>
+  <version>3.33.1.redhat-00006</version>
+  <packaging>pom</packaging>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.camel.quarkus</groupId>
+        <artifactId>camel-quarkus-core</artifactId>
+        <version>3.33.0.redhat-00007</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel.quarkus</groupId>
+        <artifactId>camel-quarkus-catalog</artifactId>
+        <version>3.33.0.redhat-00007</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

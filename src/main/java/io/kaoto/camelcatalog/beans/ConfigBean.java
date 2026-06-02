@@ -1,7 +1,9 @@
 package io.kaoto.camelcatalog.beans;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import io.kaoto.camelcatalog.model.CatalogCliArgument;
@@ -12,6 +14,7 @@ public class ConfigBean {
     private Set<CatalogCliArgument> catalogVersionSet = new LinkedHashSet<>();
     private String kameletsVersion;
     private boolean verbose = false;
+    private List<String> repositories = new ArrayList<>();
 
     public ConfigBean() {
     }
@@ -54,5 +57,13 @@ public class ConfigBean {
 
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
+    }
+
+    public List<String> getRepositories() {
+        return repositories;
+    }
+
+    public void setRepositories(List<String> repositories) {
+        this.repositories = repositories == null ? new ArrayList<>() : repositories;
     }
 }

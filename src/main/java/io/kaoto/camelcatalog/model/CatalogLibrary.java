@@ -47,7 +47,10 @@ public class CatalogLibrary {
                 catalogDefinition.getVersion(),
                 catalogDefinition.getRuntime().getLabel(),
                 catalogDefinition.getFileName(),
-                catalogDefinition.getExecutorVersion());
+                catalogDefinition.getExecutorVersion(),
+                catalogDefinition.getCamelCatalogVersion(),
+                catalogDefinition.getRuntimeProviderVersion(),
+                catalogDefinition.getFrameworkVersion());
 
         definitions.add(entry);
     }

@@ -39,6 +39,13 @@ const generateCatalogs = () => {
     ...getVersionArguments(),
   ];
 
+  // optional corporate mirror(s); leave unset for the default (Maven Central + Red Hat GA inferred)
+  // eslint-disable-next-line no-undef
+  const EXTRA_REPOS = process.env.CATALOG_EXTRA_REPOS; // e.g. "https://nexus.corp/repo"
+  if (EXTRA_REPOS) {
+    args.push('--repos', EXTRA_REPOS);
+  }
+
   spawn('java', args, {
     stdio: 'inherit',
   });

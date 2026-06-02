@@ -24,6 +24,9 @@ public class CatalogDefinition {
     private String name;
     private String version;
     private String executorVersion;
+    private String camelCatalogVersion;
+    private String runtimeProviderVersion;
+    private String frameworkVersion;
     private CatalogRuntime runtime;
     private final Map<String, CatalogDefinitionEntry> catalogs = new HashMap<>();
     private final Map<String, CatalogDefinitionEntry> schemas = new HashMap<>();
@@ -51,6 +54,30 @@ public class CatalogDefinition {
 
     public void setExecutorVersion(String executorVersion) {
         this.executorVersion = executorVersion;
+    }
+
+    public String getCamelCatalogVersion() {
+        return camelCatalogVersion;
+    }
+
+    public void setCamelCatalogVersion(String camelCatalogVersion) {
+        this.camelCatalogVersion = camelCatalogVersion;
+    }
+
+    public String getRuntimeProviderVersion() {
+        return runtimeProviderVersion;
+    }
+
+    public void setRuntimeProviderVersion(String runtimeProviderVersion) {
+        this.runtimeProviderVersion = runtimeProviderVersion;
+    }
+
+    public String getFrameworkVersion() {
+        return frameworkVersion;
+    }
+
+    public void setFrameworkVersion(String frameworkVersion) {
+        this.frameworkVersion = frameworkVersion;
     }
 
     public CatalogRuntime getRuntime() {

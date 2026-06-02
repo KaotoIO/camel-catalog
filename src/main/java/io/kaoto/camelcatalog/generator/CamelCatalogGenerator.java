@@ -27,6 +27,7 @@ import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogDefinitionEntry;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -48,6 +49,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
     private String camelCatalogVersion;
     private String kameletsVersion;
     private String camelKCRDsVersion;
+    private ResolvedVersions resolvedVersions;
 
     CamelCatalogGenerator(CamelCatalogVersionLoader camelCatalogVersionLoader, File outputDirectory) {
         this.camelCatalogVersionLoader = camelCatalogVersionLoader;
@@ -82,6 +84,12 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             CamelLauncherVersionResolver launcherResolver = new CamelLauncherVersionResolver();
             String launcherVersion = launcherResolver.findLauncherVersion(camelCatalogVersion, camelCatalogVersionLoader.getRuntime());
             catalogDefinition.setExecutorVersion(launcherVersion);
+
+            if (resolvedVersions != null) {
+                catalogDefinition.setCamelCatalogVersion(resolvedVersions.camelCatalogVersion());
+                catalogDefinition.setRuntimeProviderVersion(resolvedVersions.runtimeProviderVersion());
+                catalogDefinition.setFrameworkVersion(resolvedVersions.frameworkVersion());
+            }
 
             String content = jsonMapper.writeValueAsString(catalogDefinition);
             String filename = String.format("%s-%s.json", "index",
@@ -122,6 +130,10 @@ public class CamelCatalogGenerator implements CatalogGenerator {
 
     public void setCamelKCRDsVersion(String camelKCRDsVersion) {
         this.camelKCRDsVersion = camelKCRDsVersion;
+    }
+
+    public void setResolvedVersions(ResolvedVersions resolvedVersions) {
+        this.resolvedVersions = resolvedVersions;
     }
 
     private CamelYamlDslSchemaProcessor processCamelSchema() {

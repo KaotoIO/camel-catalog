@@ -27,6 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class GenerateCommandTest {
@@ -43,6 +44,9 @@ class GenerateCommandTest {
         catalogDefinition.setName("test-camel-catalog");
         catalogDefinition.setVersion("4.8.0");
         catalogDefinition.setRuntime(CatalogRuntime.Main);
+        // Simulate what generate() stamps for a Main-runtime entry: camelCatalogVersion
+        // equals the catalog version; runtimeProviderVersion and frameworkVersion are null.
+        catalogDefinition.setCamelCatalogVersion("4.8.0");
 
         CatalogCliArgument catalogCliArg = new CatalogCliArgument();
         catalogCliArg.setRuntime(CatalogRuntime.Main);
@@ -65,6 +69,7 @@ class GenerateCommandTest {
             when(mockBuilder.withKameletsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
             when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
             when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
+            when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
 
             when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
             when(mockBuilder.build()).thenAnswer(invocation -> {
@@ -105,6 +110,7 @@ class GenerateCommandTest {
                     when(mockBuilder.withKameletsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
                     when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
                     when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
 
                     when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
                     when(mockBuilder.build()).thenAnswer(invocation -> {
@@ -139,6 +145,13 @@ class GenerateCommandTest {
             /* This path will be used to relatively load the subsequent files, it always needs to use `/` */
             String expectedFile = "camel-main/4.8.0/index.json";
             assertEquals(expectedFile, catalogLibraryEntry.fileName());
+
+            // For a Main-runtime entry the version triple stamped by generate() has
+            // camelCatalogVersion equal to the catalog version, while runtimeProviderVersion
+            // and frameworkVersion are null (Main has no separate runtime/framework artifact).
+            assertEquals("4.8.0", catalogDefinition.getCamelCatalogVersion());
+            assertNull(catalogDefinition.getRuntimeProviderVersion());
+            assertNull(catalogDefinition.getFrameworkVersion());
         }
     }
 }

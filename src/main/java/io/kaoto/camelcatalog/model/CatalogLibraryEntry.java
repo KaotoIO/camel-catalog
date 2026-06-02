@@ -15,4 +15,7 @@
  */
 package io.kaoto.camelcatalog.model;
 
-public record CatalogLibraryEntry(String name, String version, String runtime, String fileName, String executorVersion) {}
+public record CatalogLibraryEntry(String name, String version, String runtime, String fileName,
+        String executorVersion, String camelCatalogVersion, String runtimeProviderVersion,
+        String frameworkVersion) {
+}
