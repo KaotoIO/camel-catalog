@@ -2,7 +2,7 @@
 	"name" : "Camel Quarkus 3.33.0.redhat-00007",
 	"version" : "3.33.0.redhat-00007",
 	"executorVersion" : "4.18.1.redhat-00016",
-	"camelCatalogVersion" : "4.18.1",
+	"camelCatalogVersion" : "4.18.1.redhat-00020",
 	"runtimeProviderVersion" : "3.33.0.redhat-00007",
 	"frameworkVersion" : "3.33.1.redhat-00006",
 	"runtime" : "Quarkus",

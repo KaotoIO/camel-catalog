@@ -148,41 +148,65 @@ public class CamelLauncherVersionResolver {
     /**
      * Extracts the Apache Camel version from a Quarkus BOM POM content.
      * Parses the POM XML properly to find org.apache.camel dependencies regardless of element order.
+     *
+     * <p>Productized (Red Hat) Quarkus BOMs manage {@code org.apache.camel} artifacts at a mix of
+     * community ({@code 4.18.1}) and rebuilt ({@code 4.18.1.redhat-00020}) versions, so picking the
+     * first match is order-dependent and can yield the unqualified community version. We therefore
+     * prefer a {@code .redhat-} qualified version when any exists, falling back to a non-redhat
+     * version only when none is present (community BOMs).
      */
     private String extractCamelVersionFromPom(String pomContent) {
         try {
             // Parse POM XML using XmlMapper
             PomProject pom = xmlMapper.readValue(pomContent, PomProject.class);
-            
+
             // Check dependencyManagement section first (typical for BOMs)
-            if (pom.dependencyManagement != null && 
-                pom.dependencyManagement.dependencies != null &&
-                pom.dependencyManagement.dependencies.dependency != null) {
-                
-                for (PomDependency dep : pom.dependencyManagement.dependencies.dependency) {
-                    if ("org.apache.camel".equals(dep.groupId) && dep.version != null) {
-                        LOGGER.fine("Found Camel version in dependencyManagement: " + dep.version);
-                        return dep.version;
-                    }
+            if (pom.dependencyManagement != null && pom.dependencyManagement.dependencies != null) {
+                String version = selectCamelVersion(pom.dependencyManagement.dependencies.dependency);
+                if (version != null) {
+                    LOGGER.fine("Found Camel version in dependencyManagement: " + version);
+                    return version;
                 }
             }
-            
+
             // Fallback to regular dependencies section
-            if (pom.dependencies != null && pom.dependencies.dependency != null) {
-                for (PomDependency dep : pom.dependencies.dependency) {
-                    if ("org.apache.camel".equals(dep.groupId) && dep.version != null) {
-                        LOGGER.fine("Found Camel version in dependencies: " + dep.version);
-                        return dep.version;
-                    }
+            if (pom.dependencies != null) {
+                String version = selectCamelVersion(pom.dependencies.dependency);
+                if (version != null) {
+                    LOGGER.fine("Found Camel version in dependencies: " + version);
+                    return version;
                 }
             }
-            
+
             LOGGER.warning("No org.apache.camel dependency found in POM");
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Failed to extract Camel version from POM content", e);
         }
-        
+
         return null;
+    }
+
+    /**
+     * Selects the managed Apache Camel version from a list of dependencies, preferring a
+     * {@code .redhat-} qualified version (productized BOM) over an unqualified one. Returns
+     * {@code null} when no {@code org.apache.camel} dependency carries a version.
+     */
+    private String selectCamelVersion(List<PomDependency> dependencies) {
+        if (dependencies == null) {
+            return null;
+        }
+        String fallback = null;
+        for (PomDependency dep : dependencies) {
+            if ("org.apache.camel".equals(dep.groupId) && dep.version != null) {
+                if (dep.version.contains(".redhat-")) {
+                    return dep.version;
+                }
+                if (fallback == null) {
+                    fallback = dep.version;
+                }
+            }
+        }
+        return fallback;
     }
     
     /**
