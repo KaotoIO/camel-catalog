@@ -187,9 +187,22 @@ public class RuntimeVersionResolver {
         }
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            // Harden against XXE attacks
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
             dbf.setNamespaceAware(false);
-            Document doc = dbf.newDocumentBuilder()
-                    .parse(new ByteArrayInputStream(pomXml.getBytes(StandardCharsets.UTF_8)));
+            dbf.setXIncludeAware(false);
+            dbf.setExpandEntityReferences(false);
+            
+            var builder = dbf.newDocumentBuilder();
+            // Install no-op EntityResolver to reject external entity resolution
+            builder.setEntityResolver((publicId, systemId) -> {
+                throw new org.xml.sax.SAXException("External entity resolution is disabled");
+            });
+            
+            Document doc = builder.parse(new ByteArrayInputStream(pomXml.getBytes(StandardCharsets.UTF_8)));
             NodeList deps = doc.getElementsByTagName("dependency");
             for (int i = 0; i < deps.getLength(); i++) {
                 Element dep = (Element) deps.item(i);
