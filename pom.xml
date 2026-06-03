@@ -88,6 +88,11 @@
       <version>1.11.0</version>
     </dependency>
     <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-yaml-dsl</artifactId>
       <version>${version.camel}</version>
@@ -169,6 +174,9 @@
           <generateJaxrsApplicationInterface>true</generateJaxrsApplicationInterface>
           <classesFromAutomaticJaxrsApplication>true</classesFromAutomaticJaxrsApplication>
           <restNamespacing>perResource</restNamespacing>
+          <optionalAnnotations>
+            <optionalAnnotation>jakarta.annotation.Nullable</optionalAnnotation>
+          </optionalAnnotations>
 
           <outputFile>./dist/types/catalog-index.d.ts</outputFile>
           <classPatterns>

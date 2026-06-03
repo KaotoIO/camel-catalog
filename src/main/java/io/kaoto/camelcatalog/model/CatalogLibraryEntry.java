@@ -15,7 +15,9 @@
  */
 package io.kaoto.camelcatalog.model;
 
+import jakarta.annotation.Nullable;
+
 public record CatalogLibraryEntry(String name, String version, String runtime, String fileName,
-        String executorVersion, String camelCatalogVersion, String runtimeProviderVersion,
-        String frameworkVersion) {
+        @Nullable String executorVersion, @Nullable String camelCatalogVersion, @Nullable String runtimeProviderVersion,
+        @Nullable String frameworkVersion) {
 }

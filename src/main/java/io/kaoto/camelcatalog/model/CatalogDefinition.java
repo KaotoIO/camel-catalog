@@ -20,6 +20,8 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.annotation.Nullable;
+
 public class CatalogDefinition {
     private String name;
     private String version;
@@ -48,6 +50,7 @@ public class CatalogDefinition {
         this.version = version;
     }
 
+    @Nullable
     public String getExecutorVersion() {
         return executorVersion;
     }
@@ -56,6 +59,7 @@ public class CatalogDefinition {
         this.executorVersion = executorVersion;
     }
 
+    @Nullable
     public String getCamelCatalogVersion() {
         return camelCatalogVersion;
     }
@@ -64,6 +68,7 @@ public class CatalogDefinition {
         this.camelCatalogVersion = camelCatalogVersion;
     }
 
+    @Nullable
     public String getRuntimeProviderVersion() {
         return runtimeProviderVersion;
     }
@@ -72,6 +77,7 @@ public class CatalogDefinition {
         this.runtimeProviderVersion = runtimeProviderVersion;
     }
 
+    @Nullable
     public String getFrameworkVersion() {
         return frameworkVersion;
     }
