@@ -311,7 +311,7 @@ public class RuntimeVersionComparisonTest {
         // Load Camel 4.12.0 YAML DSL schema first
         CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader412.loadCamelCatalog("4.12.0");
-        boolean loaded412 = loader412.loadCamelYamlDsl("4.12.0");
+        boolean loaded412 = loader412.loadCamelYamlDsl("4.12.0", null);
         assertTrue(loaded412, "Failed to load YAML DSL for 4.12.0");
         String yamlDsl412 = loader412.getCamelYamlDslSchema();
         assertNotNull(yamlDsl412, "YAML DSL schema for 4.12.0 should not be null");
@@ -322,7 +322,7 @@ public class RuntimeVersionComparisonTest {
         // Load Camel 4.15.0 YAML DSL schema
         CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader415.loadCamelCatalog("4.15.0");
-        boolean loaded415 = loader415.loadCamelYamlDsl("4.15.0");
+        boolean loaded415 = loader415.loadCamelYamlDsl("4.15.0", null);
         assertTrue(loaded415, "Failed to load YAML DSL for 4.15.0");
         String yamlDsl415 = loader415.getCamelYamlDslSchema();
         assertNotNull(yamlDsl415, "YAML DSL schema for 4.15.0 should not be null");
@@ -395,7 +395,7 @@ public class RuntimeVersionComparisonTest {
     void testYamlDslSchemaLoads(String version) {
         CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader.loadCamelCatalog(version);
-        boolean loaded = loader.loadCamelYamlDsl(version);
+        boolean loaded = loader.loadCamelYamlDsl(version, null);
 
         assertTrue(loaded, "Failed to load YAML DSL schema for version " + version);
         assertNotNull(loader.getCamelYamlDslSchema(), "YAML DSL schema should not be null for version " + version);

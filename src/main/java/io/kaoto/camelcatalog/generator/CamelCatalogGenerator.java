@@ -65,7 +65,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
         camelCatalogVersionLoader.loadCamelKCRDs(camelKCRDsVersion);
         camelCatalogVersionLoader.loadLocalSchemas();
         camelCatalogVersionLoader.loadKaotoPatterns();
-        camelCatalogVersionLoader.loadCamelYamlDsl(camelCatalogVersion);
+        camelCatalogVersionLoader.loadCamelYamlDsl(camelCatalogVersion, resolvedVersions);
 
         var catalogDefinition = new CatalogDefinition();
         var yamlDslSchemaProcessor = processCamelSchema();

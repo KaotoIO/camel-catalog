@@ -110,7 +110,7 @@ public class CamelCatalogVersionLoaderTest {
     @Test
     void testGetYamlDslMavenCoordinatesMain() {
         MavenCoordinates coords = camelCatalogVersionLoader
-                .getYamlDslMavenCoordinates(CatalogRuntime.Main, "4.12.0");
+                .getYamlDslMavenCoordinates(CatalogRuntime.Main, "4.12.0", null);
         assertNotNull(coords);
         assertEquals("org.apache.camel", coords.getGroupId());
         assertEquals("camel-yaml-dsl", coords.getArtifactId());
@@ -120,17 +120,17 @@ public class CamelCatalogVersionLoaderTest {
     @Test
     void testGetYamlDslMavenCoordinatesQuarkus() {
         MavenCoordinates coords = camelCatalogVersionLoader
-                .getYamlDslMavenCoordinates(CatalogRuntime.Quarkus, "3.20.0");
+                .getYamlDslMavenCoordinates(CatalogRuntime.Quarkus, "3.20.0", null);
         assertNotNull(coords);
-        assertEquals("org.apache.camel.quarkus", coords.getGroupId());
-        assertEquals("camel-quarkus-yaml-dsl", coords.getArtifactId());
+        assertEquals("org.apache.camel", coords.getGroupId());
+        assertEquals("camel-yaml-dsl", coords.getArtifactId());
         assertEquals("3.20.0", coords.getVersion());
     }
 
     @Test
     void testGetYamlDslMavenCoordinatesSpringBoot() {
         MavenCoordinates coords = camelCatalogVersionLoader
-                .getYamlDslMavenCoordinates(CatalogRuntime.SpringBoot, "4.12.0");
+                .getYamlDslMavenCoordinates(CatalogRuntime.SpringBoot, "4.12.0", null);
         assertNotNull(coords);
         assertEquals("org.apache.camel.springboot", coords.getGroupId());
         assertEquals("camel-yaml-dsl-starter", coords.getArtifactId());

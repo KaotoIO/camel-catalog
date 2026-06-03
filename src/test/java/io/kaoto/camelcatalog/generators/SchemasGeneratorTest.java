@@ -39,7 +39,7 @@ class SchemasGeneratorTest {
     @BeforeEach
     void setUp() throws IOException {
         versionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
-        versionLoader.loadCamelYamlDsl("4.12.0");
+        versionLoader.loadCamelYamlDsl("4.12.0", null);
         versionLoader.loadCamelKCRDs("2.3.1");
         
         classLoader = versionLoader.getClassLoader();

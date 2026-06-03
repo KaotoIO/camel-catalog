@@ -18,6 +18,7 @@ package io.kaoto.camelcatalog.maven;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import io.kaoto.camelcatalog.model.Constants;
 import io.kaoto.camelcatalog.model.MavenCoordinates;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
 import org.apache.camel.catalog.DefaultRuntimeProvider;
@@ -127,8 +128,8 @@ public class CamelCatalogVersionLoader {
         return camelCatalog.getCatalogVersion() != null;
     }
 
-    public boolean loadCamelYamlDsl(String version) {
-        MavenCoordinates mavenCoordinates = getYamlDslMavenCoordinates(runtime, version);
+    public boolean loadCamelYamlDsl(String version, ResolvedVersions resolvedVersions) {
+        MavenCoordinates mavenCoordinates = getYamlDslMavenCoordinates(runtime, version, resolvedVersions);
         loadDependencyInClasspath(mavenCoordinates);
 
         // Use version-aware resource loading to ensure we load the correct camel-yaml-dsl.json
@@ -233,10 +234,14 @@ public class CamelCatalogVersionLoader {
         };
     }
 
-    MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version) {
+    MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version, ResolvedVersions resolvedVersions) {
         return switch (runtime) {
-            case Quarkus ->
-                    new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-yaml-dsl", version);
+            case Quarkus -> {
+                // For Quarkus, use the resolved Apache Camel version to load the core camel-yaml-dsl artifact
+                // instead of camel-quarkus-yaml-dsl, because the Quarkus variant doesn't contain the schema file.
+                String camelVersion = resolvedVersions != null ? resolvedVersions.camelCatalogVersion() : version;
+                yield new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, camelVersion);
+            }
             case SpringBoot ->
                     new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot", "camel-yaml-dsl-starter",
                             version);

@@ -62,7 +62,7 @@ class CamelCatalogProcessorTest {
         var openapiSpec = new String(openapiSpecIS.readAllBytes(), StandardCharsets.UTF_8);
         CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
         CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, true);
-        camelCatalogVersionLoader.loadCamelYamlDsl(catalog.getCatalogVersion());
+        camelCatalogVersionLoader.loadCamelYamlDsl(catalog.getCatalogVersion(), null);
         camelCatalogVersionLoader.loadKubernetesSchema();
         camelCatalogVersionLoader.loadLocalSchemas();
         camelCatalogVersionLoader.loadKaotoPatterns();

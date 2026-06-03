@@ -34,8 +34,30 @@ the generator as `--repos`); they are additive and never replace the inferred on
 ## Quarkus platform → camel-quarkus → Apache Camel
 
 A Quarkus platform version's `quarkus-camel-bom` pins the `camel-quarkus-catalog` version
-(the runtime provider), which in turn resolves to an Apache Camel version. The mappings
-below were verified against the registries:
+(the runtime provider), which in turn resolves to an Apache Camel version.
+
+### YAML DSL Schema Resolution for Quarkus
+
+The `camel-quarkus-yaml-dsl` artifact does not contain the `schema/camelYamlDsl.json` file
+directly — only Quarkus-specific metadata. However, it declares `camel-yaml-dsl` as a
+transitive dependency, which _does_ contain the schema.
+
+The generator loads this transitive dependency, but uses version-aware resource filtering
+(`KaotoMavenVersionManager.getResourceAsStream`) that only loads resources whose URL path
+contains the requested version. This means:
+
+- Requesting `camel-quarkus-yaml-dsl:3.33.0.redhat-00007` downloads both:
+  - `camel-quarkus-yaml-dsl-3.33.0.redhat-00007.jar` (no schema)
+  - `camel-yaml-dsl-4.18.1.redhat-00020.jar` (has schema) — transitive dependency
+- But the version filter looks for `3.33.0.redhat-00007` in the resource URL
+- The schema is in a JAR with `4.18.1.redhat-00020` in its path → **filtered out**
+
+To work around this, `CamelCatalogVersionLoader.getYamlDslMavenCoordinates()` uses the
+_resolved Apache Camel version_ (from `ResolvedVersions.camelCatalogVersion()`) to load
+the core `camel-yaml-dsl` artifact directly instead of the Quarkus variant. This ensures
+the version filter matches and the schema is found.
+
+The mappings below were verified against the registries:
 
 | Platform version (input)  | camel-quarkus (provider) | Apache Camel          |
 |---------------------------|--------------------------|-----------------------|
@@ -51,6 +73,11 @@ To re-verify a row, open that platform's `quarkus-camel-bom` POM inside the matc
 registry directory listed below and read the managed
 `org.apache.camel.quarkus:camel-quarkus-catalog` version — e.g.
 <https://repo1.maven.org/maven2/io/quarkus/platform/quarkus-camel-bom/3.35.4/quarkus-camel-bom-3.35.4.pom>.
+
+**Verification links for YAML DSL resolution:**
+- Quarkus YAML DSL POM (shows transitive dependency): <https://repo1.maven.org/maven2/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.1/camel-quarkus-yaml-dsl-3.33.1.pom>
+- Quarkus YAML DSL JAR (no schema inside): <https://repo1.maven.org/maven2/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.1/camel-quarkus-yaml-dsl-3.33.1.jar>
+- Core Camel YAML DSL JAR (schema is here): <https://repo1.maven.org/maven2/org/apache/camel/camel-yaml-dsl/4.18.2/camel-yaml-dsl-4.18.2.jar>
 
 ## Listing available versions
 
