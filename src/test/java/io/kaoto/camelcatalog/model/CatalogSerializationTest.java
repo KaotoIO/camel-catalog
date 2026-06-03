@@ -30,12 +30,14 @@ class CatalogSerializationTest {
         def.setName("Camel Quarkus 3.33.0.redhat-00007");
         def.setRuntime(CatalogRuntime.Quarkus);
         def.setVersion("3.33.0.redhat-00007");
+        def.setCliVersion("4.20.0");
         def.setCamelCatalogVersion("4.18.1.redhat-00020");
         def.setRuntimeProviderVersion("3.33.0.redhat-00007");
         def.setFrameworkVersion("3.33.1.redhat-00006");
 
         String json = mapper.writeValueAsString(def);
 
+        assertTrue(json.contains("\"cliVersion\":\"4.20.0\""), json);
         assertTrue(json.contains("\"camelCatalogVersion\":\"4.18.1.redhat-00020\""), json);
         assertTrue(json.contains("\"runtimeProviderVersion\":\"3.33.0.redhat-00007\""), json);
         assertTrue(json.contains("\"frameworkVersion\":\"3.33.1.redhat-00006\""), json);
@@ -49,6 +51,7 @@ class CatalogSerializationTest {
         def.setVersion("3.33.0.redhat-00007");
         def.setFileName("camel-quarkus/3.33.0.redhat-00007/index-abc.json");
         def.setExecutorVersion("4.18.1.redhat-00020");
+        def.setCliVersion("4.20.0");
         def.setCamelCatalogVersion("4.18.1.redhat-00020");
         def.setRuntimeProviderVersion("3.33.0.redhat-00007");
         def.setFrameworkVersion("3.33.1.redhat-00006");
@@ -61,5 +64,6 @@ class CatalogSerializationTest {
         assertTrue(json.contains("\"camelCatalogVersion\":\"4.18.1.redhat-00020\""), json);
         assertTrue(json.contains("\"runtimeProviderVersion\":\"3.33.0.redhat-00007\""), json);
         assertTrue(json.contains("\"frameworkVersion\":\"3.33.1.redhat-00006\""), json);
+        assertTrue(json.contains("\"cliVersion\":\"4.20.0\""), json);
     }
 }

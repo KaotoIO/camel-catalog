@@ -48,6 +48,7 @@ public class CatalogLibrary {
                 catalogDefinition.getRuntime().getLabel(),
                 catalogDefinition.getFileName(),
                 catalogDefinition.getExecutorVersion(),
+                catalogDefinition.getCliVersion(),
                 catalogDefinition.getCamelCatalogVersion(),
                 catalogDefinition.getRuntimeProviderVersion(),
                 catalogDefinition.getFrameworkVersion());

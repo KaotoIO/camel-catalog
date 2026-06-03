@@ -85,6 +85,10 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             String launcherVersion = launcherResolver.findLauncherVersion(camelCatalogVersion, camelCatalogVersionLoader.getRuntime());
             catalogDefinition.setExecutorVersion(launcherVersion);
 
+            // Resolve and set the Camel JBang CLI version
+            CamelCliVersionResolver cliResolver = new CamelCliVersionResolver();
+            catalogDefinition.setCliVersion(cliResolver.resolve(camelCatalogVersion, camelCatalogVersionLoader.getRuntime()));
+
             if (resolvedVersions != null) {
                 catalogDefinition.setCamelCatalogVersion(resolvedVersions.camelCatalogVersion());
                 catalogDefinition.setRuntimeProviderVersion(resolvedVersions.runtimeProviderVersion());

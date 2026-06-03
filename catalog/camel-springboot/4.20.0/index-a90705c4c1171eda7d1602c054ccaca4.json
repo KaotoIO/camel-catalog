@@ -1,35 +1,36 @@
 {
-	"name" : "Camel Spring Boot 4.10.7.redhat-00013",
-	"version" : "4.10.7.redhat-00013",
-	"executorVersion" : null,
-	"camelCatalogVersion" : "4.10.7.redhat-00013",
-	"runtimeProviderVersion" : "4.10.7.redhat-00013",
-	"frameworkVersion" : "3.4.10",
+	"name" : "Camel Spring Boot 4.20.0",
+	"version" : "4.20.0",
+	"executorVersion" : "4.20.0",
+	"cliVersion" : "4.20.0",
+	"camelCatalogVersion" : "4.20.0",
+	"runtimeProviderVersion" : "4.20.0",
+	"frameworkVersion" : "4.0.5",
 	"runtime" : "SpringBoot",
 	"catalogs" : {
 		"components" : {
 			"name" : "components",
 			"description" : "Aggregated Camel catalog for components",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-components-b119f77f3cc0ed6d1d3b1cafc369bf52.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-components-4c2d06c3d2513bf824fe1c260f3cf583.json"
 		},
 		"dataformats" : {
 			"name" : "dataformats",
 			"description" : "Aggregated Camel catalog for dataformats",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-dataformats-923161d516c0fbb5b9aae314a248d925.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-dataformats-83f31afe869387fcd24a09d7a9f4ed9b.json"
 		},
 		"entities" : {
 			"name" : "entities",
 			"description" : "Aggregated Camel catalog for entities",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-entities-6c9b6ccdd708030009640ab9446726e.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-entities-ff4c93f0cc23e24f14eec0ab739f94a.json"
 		},
 		"functions" : {
 			"name" : "functions",
 			"description" : "Aggregated Camel catalog for functions",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-functions-3d499c0b6d9017961a13a62476484c2d.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-functions-33371bfc0e8a3255b8779ad42f4175d5.json"
 		},
 		"kameletBoundaries" : {
 			"name" : "kameletBoundaries",
@@ -46,26 +47,26 @@
 		"languages" : {
 			"name" : "languages",
 			"description" : "Aggregated Camel catalog for languages",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-languages-c00d1455b7629d447abe444cec1bc351.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-languages-9e8d2694b60e4c13a711a4da42c44449.json"
 		},
 		"loadbalancers" : {
 			"name" : "loadbalancers",
 			"description" : "Aggregated Camel catalog for loadbalancers",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-loadbalancers-9be3608b17adcfe0750fbed44072ac5d.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-loadbalancers-74bc0facb9d3914ff469b043a36e0645.json"
 		},
 		"models" : {
 			"name" : "models",
 			"description" : "Aggregated Camel catalog for models",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-models-52796d37c1fce88496d8c06a2af45e95.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-models-3d3b84ee59d8c7d68359110a48e42fdd.json"
 		},
 		"patterns" : {
 			"name" : "patterns",
 			"description" : "Aggregated Camel catalog for patterns",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-catalog-aggregate-patterns-feec03425bb7c51e231cf447b4f16baa.json"
+			"version" : "4.20.0",
+			"file" : "camel-catalog-aggregate-patterns-ffd221de81d064b228f623febe6851ca.json"
 		}
 	},
 	"schemas" : {
@@ -96,14 +97,14 @@
 		"camel-xml-io" : {
 			"name" : "camel-xml-io",
 			"description" : "Camel XSD schema for camel-xml-io",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camel-xml-io-20fbe14d49bc0f7b742159a45a3913a1.xsd"
+			"version" : "4.20.0",
+			"file" : "camel-xml-io-6b7f717bbfa2795d0582858cefd3a36c.xsd"
 		},
 		"camelYamlDsl" : {
 			"name" : "camelYamlDsl",
 			"description" : "Camel YAML DSL JSON schema",
-			"version" : "4.10.7.redhat-00013",
-			"file" : "camelYamlDsl-6bea227594f74c4c01799a43b8e53a04.json"
+			"version" : "4.20.0",
+			"file" : "camelYamlDsl-192f0d4386c4f618027bbf57ae5b72dd.json"
 		}
 	}
 }

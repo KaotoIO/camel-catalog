@@ -26,6 +26,7 @@ public class CatalogDefinition {
     private String name;
     private String version;
     private String executorVersion;
+    private String cliVersion;
     private String camelCatalogVersion;
     private String runtimeProviderVersion;
     private String frameworkVersion;
@@ -57,6 +58,15 @@ public class CatalogDefinition {
 
     public void setExecutorVersion(String executorVersion) {
         this.executorVersion = executorVersion;
+    }
+
+    @Nullable
+    public String getCliVersion() {
+        return cliVersion;
+    }
+
+    public void setCliVersion(String cliVersion) {
+        this.cliVersion = cliVersion;
     }
 
     @Nullable

@@ -1,35 +1,36 @@
 {
-	"name" : "Camel Spring Boot 4.10.9",
-	"version" : "4.10.9",
-	"executorVersion" : null,
-	"camelCatalogVersion" : "4.10.9",
-	"runtimeProviderVersion" : "4.10.9",
-	"frameworkVersion" : "3.4.13",
-	"runtime" : "SpringBoot",
+	"name" : "Camel Main 4.18.1.redhat-00019",
+	"version" : "4.18.1.redhat-00019",
+	"executorVersion" : "4.18.1.redhat-00016",
+	"cliVersion" : "4.20.0",
+	"camelCatalogVersion" : "4.18.1.redhat-00019",
+	"runtimeProviderVersion" : null,
+	"frameworkVersion" : null,
+	"runtime" : "Main",
 	"catalogs" : {
 		"components" : {
 			"name" : "components",
 			"description" : "Aggregated Camel catalog for components",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-components-4322ea960fc16ed6d3d8c350f36c9ca6.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-components-3e3161560324d13d7aa8b8cacd6a9390.json"
 		},
 		"dataformats" : {
 			"name" : "dataformats",
 			"description" : "Aggregated Camel catalog for dataformats",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-dataformats-43cc71a2c959d761f5d023ab0456e866.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-dataformats-69c36c3c5aaf808116278f0f1912e849.json"
 		},
 		"entities" : {
 			"name" : "entities",
 			"description" : "Aggregated Camel catalog for entities",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-entities-c3fa235d704f452ebc333757da4652d0.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-entities-3d4e11258257e3e9c87de60a9f8fa6c3.json"
 		},
 		"functions" : {
 			"name" : "functions",
 			"description" : "Aggregated Camel catalog for functions",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-functions-3d499c0b6d9017961a13a62476484c2d.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-functions-4a260fb6a2ded1e12f5dacb13bd2b769.json"
 		},
 		"kameletBoundaries" : {
 			"name" : "kameletBoundaries",
@@ -46,26 +47,26 @@
 		"languages" : {
 			"name" : "languages",
 			"description" : "Aggregated Camel catalog for languages",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-languages-206454f8743c5fe82b248374e3e1d3ac.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-languages-9f33dea46b633997ba16a24c96f61c7a.json"
 		},
 		"loadbalancers" : {
 			"name" : "loadbalancers",
 			"description" : "Aggregated Camel catalog for loadbalancers",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-loadbalancers-9be3608b17adcfe0750fbed44072ac5d.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-loadbalancers-a9ab9ac490fb8bcebfff2af6f6ac00cc.json"
 		},
 		"models" : {
 			"name" : "models",
 			"description" : "Aggregated Camel catalog for models",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-models-e5f8073bff8a17526db30e725cb4035c.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-models-890a7935f154c1a55e12d24405b416e4.json"
 		},
 		"patterns" : {
 			"name" : "patterns",
 			"description" : "Aggregated Camel catalog for patterns",
-			"version" : "4.10.9",
-			"file" : "camel-catalog-aggregate-patterns-7163fd26fc2a0356b5be071326e653ff.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-catalog-aggregate-patterns-a1cb07d2ae08976a57b16ee055ea0f73.json"
 		}
 	},
 	"schemas" : {
@@ -96,14 +97,14 @@
 		"camel-xml-io" : {
 			"name" : "camel-xml-io",
 			"description" : "Camel XSD schema for camel-xml-io",
-			"version" : "4.10.9",
-			"file" : "camel-xml-io-20fbe14d49bc0f7b742159a45a3913a1.xsd"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camel-xml-io-d172de1b1fb1e8ee87a56723458bbc0d.xsd"
 		},
 		"camelYamlDsl" : {
 			"name" : "camelYamlDsl",
 			"description" : "Camel YAML DSL JSON schema",
-			"version" : "4.10.9",
-			"file" : "camelYamlDsl-6bea227594f74c4c01799a43b8e53a04.json"
+			"version" : "4.18.1.redhat-00019",
+			"file" : "camelYamlDsl-50d4afe62113560677212a24f49131d0.json"
 		}
 	}
 }

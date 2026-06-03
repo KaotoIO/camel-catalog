@@ -1,35 +1,36 @@
 {
-	"name" : "Camel Quarkus 3.27.4",
-	"version" : "3.27.4",
-	"executorVersion" : "4.14.7",
-	"camelCatalogVersion" : "4.14.7",
-	"runtimeProviderVersion" : "3.27.4",
-	"frameworkVersion" : "3.27.4",
-	"runtime" : "Quarkus",
+	"name" : "Camel Spring Boot 4.18.2",
+	"version" : "4.18.2",
+	"executorVersion" : "4.18.2",
+	"cliVersion" : "4.18.2",
+	"camelCatalogVersion" : "4.18.2",
+	"runtimeProviderVersion" : "4.18.2",
+	"frameworkVersion" : "3.5.13",
+	"runtime" : "SpringBoot",
 	"catalogs" : {
 		"components" : {
 			"name" : "components",
 			"description" : "Aggregated Camel catalog for components",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-components-327f855c526e28b96a764680a898e2fa.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-components-1c364a3954b74182c4905a784b957b65.json"
 		},
 		"dataformats" : {
 			"name" : "dataformats",
 			"description" : "Aggregated Camel catalog for dataformats",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-dataformats-d035a265438907391b18bd90e0341825.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-dataformats-69c36c3c5aaf808116278f0f1912e849.json"
 		},
 		"entities" : {
 			"name" : "entities",
 			"description" : "Aggregated Camel catalog for entities",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-entities-378bd8f6b1342f4f4abfd0800759d802.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-entities-e7a5c0104ba36b4c7944fbd20d281bb1.json"
 		},
 		"functions" : {
 			"name" : "functions",
 			"description" : "Aggregated Camel catalog for functions",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-functions-e2c904de1aea289eef7351e61b2ca057.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-functions-4a260fb6a2ded1e12f5dacb13bd2b769.json"
 		},
 		"kameletBoundaries" : {
 			"name" : "kameletBoundaries",
@@ -46,26 +47,26 @@
 		"languages" : {
 			"name" : "languages",
 			"description" : "Aggregated Camel catalog for languages",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-languages-da6f9762b269655678e2eeabe4bdaa2e.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-languages-9f33dea46b633997ba16a24c96f61c7a.json"
 		},
 		"loadbalancers" : {
 			"name" : "loadbalancers",
 			"description" : "Aggregated Camel catalog for loadbalancers",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-loadbalancers-a988f5fd76d37533a44480dbe70a80ac.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-loadbalancers-a9ab9ac490fb8bcebfff2af6f6ac00cc.json"
 		},
 		"models" : {
 			"name" : "models",
 			"description" : "Aggregated Camel catalog for models",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-models-3726d26cedaec9d9cd3a723b0cb1e040.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-models-f93c72cfab0a7b404a6ac9e93815e621.json"
 		},
 		"patterns" : {
 			"name" : "patterns",
 			"description" : "Aggregated Camel catalog for patterns",
-			"version" : "3.27.4",
-			"file" : "camel-catalog-aggregate-patterns-22799b813e60997968aec2a17b5e92cd.json"
+			"version" : "4.18.2",
+			"file" : "camel-catalog-aggregate-patterns-41866d767fd5b48dd506bc52cd7c3cc4.json"
 		}
 	},
 	"schemas" : {
@@ -96,14 +97,14 @@
 		"camel-xml-io" : {
 			"name" : "camel-xml-io",
 			"description" : "Camel XSD schema for camel-xml-io",
-			"version" : "3.27.4",
-			"file" : "camel-xml-io-a3db115679d0c8f558c3a1be8e1ec45f.xsd"
+			"version" : "4.18.2",
+			"file" : "camel-xml-io-12f64011e559906c635876d4dc65fd06.xsd"
 		},
 		"camelYamlDsl" : {
 			"name" : "camelYamlDsl",
 			"description" : "Camel YAML DSL JSON schema",
-			"version" : "3.27.4",
-			"file" : "camelYamlDsl-825179103e169d242ad0aea215e86026.json"
+			"version" : "4.18.2",
+			"file" : "camelYamlDsl-74199461e76c2182234fed69b208d499.json"
 		}
 	}
 }
