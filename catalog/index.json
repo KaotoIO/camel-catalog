@@ -23,24 +23,24 @@
 			"frameworkVersion" : null
 		},
 		{
-			"name" : "Camel Main 4.14.7",
-			"version" : "4.14.7",
+			"name" : "Camel Main 4.14.5",
+			"version" : "4.14.5",
 			"runtime" : "Main",
-			"fileName" : "camel-main/4.14.7/index-ceb423c260a67a62658b938972f3b1e5.json",
-			"executorVersion" : "4.14.7",
+			"fileName" : "camel-main/4.14.5/index-f6589bed1ca84408d9d6f4ebb498d343.json",
+			"executorVersion" : "4.14.5",
 			"cliVersion" : "4.20.0",
-			"camelCatalogVersion" : "4.14.7",
+			"camelCatalogVersion" : "4.14.5",
 			"runtimeProviderVersion" : null,
 			"frameworkVersion" : null
 		},
 		{
-			"name" : "Camel Main 4.10.9",
-			"version" : "4.10.9",
+			"name" : "Camel Main 4.10.7",
+			"version" : "4.10.7",
 			"runtime" : "Main",
-			"fileName" : "camel-main/4.10.9/index-b6a84ad7849d0af89b0c10cf1735dded.json",
+			"fileName" : "camel-main/4.10.7/index-1753d3e4b29b20b623747f7a62fbb668.json",
 			"executorVersion" : null,
 			"cliVersion" : "4.20.0",
-			"camelCatalogVersion" : "4.10.9",
+			"camelCatalogVersion" : "4.10.7",
 			"runtimeProviderVersion" : null,
 			"frameworkVersion" : null
 		},
