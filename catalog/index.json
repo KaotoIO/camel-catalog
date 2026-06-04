@@ -56,17 +56,6 @@
 			"frameworkVersion" : null
 		},
 		{
-			"name" : "Camel Main 4.14.4.redhat-00008",
-			"version" : "4.14.4.redhat-00008",
-			"runtime" : "Main",
-			"fileName" : "camel-main/4.14.4.redhat-00008/index-a16075088be37971dc748e5c813fb5bd.json",
-			"executorVersion" : "4.14.4.redhat-00009",
-			"cliVersion" : "4.20.0",
-			"camelCatalogVersion" : "4.14.4.redhat-00008",
-			"runtimeProviderVersion" : null,
-			"frameworkVersion" : null
-		},
-		{
 			"name" : "Camel Main 4.10.7.redhat-00009",
 			"version" : "4.10.7.redhat-00009",
 			"runtime" : "Main",

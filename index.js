@@ -17,7 +17,7 @@ const CATALOGS = {
     '4.14.5',
     '4.10.7',
     '4.18.1.redhat-00019',
-    '4.14.4.redhat-00008',
+    // '4.14.4.redhat-00008', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '4.10.7.redhat-00009',
   ],
   Quarkus: [
