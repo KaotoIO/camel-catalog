@@ -25,9 +25,9 @@ const CATALOGS = {
     '3.33.2',
     '3.27.4',
     '3.20.6.1',
-    '3.33.1.redhat-00006',
+    '3.33.1.redhat-00006', // 4.18
     // '3.27.3.redhat-00003', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
-    '3.20.6.redhat-00004',
+    '3.20.6.redhat-00004', // 4.10
   ],
   SpringBoot: [
     '4.20.0',
