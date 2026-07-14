@@ -1,7 +1,7 @@
 {
 	"name" : "Camel Spring Boot 4.18.1.redhat-00014",
 	"version" : "4.18.1.redhat-00014",
-	"executorVersion" : "4.18.1.redhat-00016",
+	"executorVersion" : "4.18.1.redhat-00027",
 	"cliVersion" : "4.20.0",
 	"camelCatalogVersion" : "4.18.1.redhat-00014",
 	"runtimeProviderVersion" : "4.18.1.redhat-00014",
