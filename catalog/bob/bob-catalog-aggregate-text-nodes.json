@@ -1,0 +1,101 @@
+{
+	"text-node" : {
+		"component" : {
+			"kind" : "component",
+			"name" : "text-node",
+			"title" : "Text Node",
+			"description" : "Injects a block of free-form text into a mode's customInstructions. Drag this node onto the canvas, click it, and type the instruction text in the configuration panel.",
+			"deprecated" : false,
+			"firstVersion" : "1.0.0",
+			"label" : "bob,text,instruction",
+			"javaType" : "io.kaoto.bob.component.TextNodeComponent",
+			"supportLevel" : "Stable",
+			"groupId" : "io.kaoto.bob",
+			"artifactId" : "bob-text-node",
+			"version" : "1.0.0",
+			"scheme" : "text-node",
+			"extendsScheme" : "",
+			"syntax" : "text-node:id",
+			"async" : false,
+			"api" : false,
+			"consumerOnly" : false,
+			"producerOnly" : true,
+			"lenientProperties" : false,
+			"browsable" : false,
+			"remote" : false
+		},
+		"componentProperties" : {},
+		"properties" : {
+			"content" : {
+				"index" : 0,
+				"kind" : "path",
+				"displayName" : "Content",
+				"group" : "common",
+				"label" : "common",
+				"required" : true,
+				"type" : "string",
+				"javaType" : "java.lang.String",
+				"deprecated" : false,
+				"deprecationNote" : "",
+				"autowired" : false,
+				"secret" : false,
+				"description" : "The instruction text to inject into the mode's customInstructions. Supports markdown formatting and multi-line content."
+			},
+			"label" : {
+				"index" : 1,
+				"kind" : "parameter",
+				"displayName" : "Label",
+				"group" : "common",
+				"label" : "common",
+				"required" : false,
+				"type" : "string",
+				"javaType" : "java.lang.String",
+				"deprecated" : false,
+				"autowired" : false,
+				"secret" : false,
+				"description" : "Optional short label displayed on the canvas node (e.g. 'Step 1 — Read file'). Does not affect the injected content."
+			},
+			"order" : {
+				"index" : 2,
+				"kind" : "parameter",
+				"displayName" : "Order",
+				"group" : "advanced",
+				"label" : "advanced",
+				"required" : false,
+				"type" : "integer",
+				"javaType" : "java.lang.Integer",
+				"deprecated" : false,
+				"autowired" : false,
+				"secret" : false,
+				"description" : "Explicit position of this text block in the customInstructions sequence. Lower numbers appear first. Nodes without an order value are appended after ordered nodes."
+			}
+		},
+		"propertiesSchema" : {
+			"properties" : {
+				"content" : {
+					"title" : "Content",
+					"description" : "The instruction text to inject into the mode's customInstructions. Supports markdown formatting and multi-line content.",
+					"type" : "string",
+					"format" : "textarea",
+					"$comment" : "group:common"
+				},
+				"label" : {
+					"title" : "Label",
+					"description" : "Optional short label displayed on the canvas node (e.g. 'Step 1 — Read file'). Does not affect the injected content.",
+					"type" : "string",
+					"$comment" : "group:common"
+				},
+				"order" : {
+					"title" : "Order",
+					"description" : "Explicit position of this text block in the customInstructions sequence. Lower numbers appear first. Nodes without an order value are appended after ordered nodes.",
+					"type" : "integer",
+					"$comment" : "group:advanced"
+				}
+			},
+			"$schema" : "http://json-schema.org/draft-07/schema#",
+			"type" : "object",
+			"additionalProperties" : false,
+			"required" : [ "content" ]
+		}
+	}
+}
