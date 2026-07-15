@@ -67,9 +67,16 @@
 				"enum" : [
 					"read",
 					"edit",
-					"command",
+					"execute",
 					"mcp",
-					"browser"
+					"skill",
+					"todo",
+					"subtask",
+					"subagent",
+					"mode",
+					"command",
+					"browser",
+					"write"
 				],
 				"description" : "Tool permission groups this mode has access to. Controls which tools are available when the mode is active."
 			},
@@ -134,7 +141,7 @@
 						"enum" : [
 							"read",
 							"edit",
-							"execute",				
+							"execute",
 							"mcp",
 							"skill",
 							"todo",
