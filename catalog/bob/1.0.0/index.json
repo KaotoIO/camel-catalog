@@ -21,5 +21,13 @@
       "version" : "1.0.0",
       "file" : "bob-catalog-aggregate-components.json"
     }
+  },
+  "schemas" : {
+    "custom-mode-yaml" : {
+      "name" : "bob-mode",
+      "description" : "Bob modes Json schema",
+      "version" : "1.0.0",
+      "file" : "bob-catalog-aggregate-modes.json"
+    }
   }
 }
