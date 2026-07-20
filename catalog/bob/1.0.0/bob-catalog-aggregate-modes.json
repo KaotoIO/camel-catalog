@@ -44,10 +44,7 @@
               "todo",
               "subtask",
               "subagent",
-              "mode",
-              "command",
-              "browser",
-              "write"
+              "mode"
             ]
           },
           "default" : [ "read" ],
