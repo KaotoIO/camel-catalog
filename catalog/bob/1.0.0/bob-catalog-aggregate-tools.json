@@ -19,6 +19,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -68,6 +69,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -87,6 +89,7 @@
         },
         "content": {
           "type": "string",
+          "format" : "textarea",
           "title": "Content",
           "description": "The full content to write to the file. Must include ALL parts of the file — partial updates are not supported by this tool.",
           "$comment": "group:common"
@@ -124,6 +127,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -148,6 +152,7 @@
         },
         "taskDescription": {
           "type": "string",
+          "format" : "textarea",
           "title": "Task Description",
           "description": "Detailed instructions for the subagent. Be specific about what it should accomplish. The subagent cannot interact with the user — all context must be provided here.",
           "$comment": "group:common"
@@ -186,6 +191,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -262,6 +268,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -275,6 +282,7 @@
         },
         "todos": {
           "type": "string",
+          "format" : "textarea",
           "title": "Todos",
           "description": "Markdown-formatted checklist of all tasks. Use [ ] for pending, [-] for in-progress, and [x] for completed. Always provide the full list — the system overwrites the previous one.",
           "$comment": "group:common"
@@ -305,6 +313,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -348,6 +357,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -391,6 +401,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
@@ -410,6 +421,7 @@
         },
         "message": {
           "type": "string",
+          "format" : "textarea",
           "title": "Message",
           "description": "Detailed instructions for the subtask. This is the initial user message the subtask will act on.",
           "$comment": "group:common"
@@ -422,6 +434,7 @@
         },
         "todos": {
           "type": "string",
+          "format" : "textarea",
           "title": "Initial Todos",
           "description": "Optional initial todo list in markdown checklist format for the subtask.",
           "$comment": "group:advanced"
@@ -453,6 +466,7 @@
         },
         "description": {
           "type": "string",
+          "format" : "textarea",
           "title": "Description",
           "description": "Sets the description of this step",
           "$comment": "group:common"
