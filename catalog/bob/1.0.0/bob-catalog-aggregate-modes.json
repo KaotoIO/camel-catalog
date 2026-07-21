@@ -25,6 +25,7 @@
         },
         "description" : {
           "type" : "string",
+          "format" : "textarea",
           "title" : "Description",
           "description" : "Short summary of what this mode does, shown in the mode picker.",
           "$comment" : "group:common"
@@ -44,10 +45,7 @@
               "todo",
               "subtask",
               "subagent",
-              "mode",
-              "command",
-              "browser",
-              "write"
+              "mode"
             ]
           },
           "default" : [ "read" ],
@@ -56,18 +54,20 @@
         },
         "whenToUse" : {
           "type" : "string",
+          "format" : "textarea",
           "title" : "When To Use",
           "description" : "Guidance for the orchestrator on when to activate this mode. Used by Bob to route requests to the right mode.",
           "$comment" : "group:advanced"
         },
         "roleDefinition" : {
           "type" : "string",
+          "format" : "textarea",
           "title" : "Role Definition",
           "description" : "System prompt that defines the mode's persona and responsibilities. This text is injected as the role definition when the mode is activated.",
           "$comment" : "group:advanced"
         }
       },
-      "required" : [ "slug", "name" ]
+      "required" : [ "slug", "name", "roleDefinition" ]
     }
   }
 }
