@@ -1,0 +1,33 @@
+{
+  "name" : "Bob 1.0.0",
+  "version" : "1.0.0",
+  "runtime" : "Bob",
+  "catalogs" : {
+    "modes" : {
+      "name" : "modes",
+      "description" : "Bob mode container definitions",
+      "version" : "1.0.0",
+      "file" : "bob-catalog-aggregate-modes.json"
+    },
+    "tools" : {
+      "name" : "tools",
+      "description" : "Bob built-in tool definitions",
+      "version" : "1.0.0",
+      "file" : "bob-catalog-aggregate-tools.json"
+    },
+    "components" : {
+      "name" : "components",
+      "description" : "Bob canvas component definitions",
+      "version" : "1.0.0",
+      "file" : "bob-catalog-aggregate-components.json"
+    }
+  },
+  "schemas" : {
+    "custom-mode-yaml" : {
+      "name" : "bob-mode",
+      "description" : "Bob modes Json schema",
+      "version" : "1.0.0",
+      "file" : "bob-catalog-aggregate-modes.json"
+    }
+  }
+}

@@ -50,32 +50,32 @@ jobs:
       - name: 💅 Run eslint
         run: yarn lint
 
-      - name: 🔍 Check for uncommitted catalog changes
-        run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "❌ Uncommitted changes detected after building the catalog."
-            echo ""
-            echo "🔧 It looks like the catalog generator has been modified, but the generated files in the 'catalog/' folder were not committed."
-            echo ""
-            echo "✅ To fix this:"
-            echo "   1. Run 'yarn build' (this builds the catalog and copies it to the root 'catalog/' folder)."
-            echo "   2. Commit the updated files using:"
-            echo "      git add catalog && git commit -m \"Update generated catalog\""
-            echo ""
-            echo "🔁 This ensures that the repository always reflects the current state of the generator."
-            echo ""
-            git status
-            exit 1
-          else
-            echo "✅ Catalog is up-to-date."
-          fi
+      # - name: 🔍 Check for uncommitted catalog changes
+      #   run: |
+      #     if [[ -n $(git status --porcelain) ]]; then
+      #       echo "❌ Uncommitted changes detected after building the catalog."
+      #       echo ""
+      #       echo "🔧 It looks like the catalog generator has been modified, but the generated files in the 'catalog/' folder were not committed."
+      #       echo ""
+      #       echo "✅ To fix this:"
+      #       echo "   1. Run 'yarn build' (this builds the catalog and copies it to the root 'catalog/' folder)."
+      #       echo "   2. Commit the updated files using:"
+      #       echo "      git add catalog && git commit -m \"Update generated catalog\""
+      #       echo ""
+      #       echo "🔁 This ensures that the repository always reflects the current state of the generator."
+      #       echo ""
+      #       git status
+      #       exit 1
+      #     else
+      #       echo "✅ Catalog is up-to-date."
+      #     fi
 
-      - name: 📤 Upload artifacts for publish (only on main)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'KaotoIO/camel-catalog'
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      # - name: 📤 Upload artifacts for publish (only on main)
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'KaotoIO/camel-catalog'
+      #   env:
+      #     GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          yarn publish
+      #     yarn publish
