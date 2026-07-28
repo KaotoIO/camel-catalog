@@ -15,6 +15,10 @@
  */
 package io.kaoto.camelcatalog.model;
 
+/**
+ * Base model for function argument entries. Captures type information and occurrence
+ * constraints shared across all function catalogs (Camel languages, XPath, XSLT).
+ */
 public class KaotoFunctionArgument {
     private String name;
     private String type;
@@ -23,50 +27,62 @@ public class KaotoFunctionArgument {
     private Integer minOccurs;
     private Integer maxOccurs;
 
+    /** @return the argument identifier */
     public String getName() {
         return name;
     }
 
+    /** @param name the argument identifier */
     public void setName(String name) {
         this.name = name;
     }
 
+    /** @return the argument's base data type */
     public String getType() {
         return type;
     }
 
+    /** @param type the argument's base data type */
     public void setType(String type) {
         this.type = type;
     }
 
+    /** @return human-readable label for UI display */
     public String getDisplayName() {
         return displayName;
     }
 
+    /** @param displayName human-readable label for UI display */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 
+    /** @return summary of the argument's purpose */
     public String getDescription() {
         return description;
     }
 
+    /** @param description summary of the argument's purpose */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /** @return minimum number of occurrences, or null if unspecified */
     public Integer getMinOccurs() {
         return minOccurs;
     }
 
+    /** @param minOccurs minimum number of occurrences */
     public void setMinOccurs(Integer minOccurs) {
         this.minOccurs = minOccurs;
     }
 
+    /** @return maximum number of occurrences, or null if unspecified ({@code Integer.MAX_VALUE} for unbounded) */
     public Integer getMaxOccurs() {
         return maxOccurs;
     }
 
+    /** @param maxOccurs maximum number of occurrences ({@code Integer.MAX_VALUE} for unbounded) */
     public void setMaxOccurs(Integer maxOccurs) {
         this.maxOccurs = maxOccurs;
     }

@@ -219,6 +219,17 @@
 			"camelCatalogVersion" : "4.10.1",
 			"runtimeProviderVersion" : null,
 			"frameworkVersion" : null
+		},
+		{
+			"name" : "XSLT 3.0",
+			"version" : "3.0",
+			"runtime" : "XSLT",
+			"fileName" : "xslt/3.0/index.json",
+			"executorVersion" : null,
+			"cliVersion" : null,
+			"camelCatalogVersion" : "3.0",
+			"runtimeProviderVersion" : null,
+			"frameworkVersion" : null
 		}
 	],
 	"version" : 3,

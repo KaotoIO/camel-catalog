@@ -19,7 +19,8 @@ public enum CatalogRuntime {
     Main("Main"),
     Quarkus("Quarkus"),
     SpringBoot("Spring Boot"),
-    Citrus("Citrus");
+    Citrus("Citrus"),
+    XSLT("XSLT");
 
     private final String label;
 
@@ -44,7 +45,7 @@ public enum CatalogRuntime {
     public String getRuntimeFolder() {
         return switch (this) {
             case Main, Quarkus, SpringBoot -> "camel-" + name().toLowerCase();
-            case Citrus -> name().toLowerCase();
+            case Citrus, XSLT -> name().toLowerCase();
         };
     }
 }

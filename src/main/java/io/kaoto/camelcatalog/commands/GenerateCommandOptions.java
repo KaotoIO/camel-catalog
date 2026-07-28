@@ -54,6 +54,9 @@ public class GenerateCommandOptions {
         Option citrusVersionOption = Option.builder().argName("version").option("c").longOpt("citrus")
                 .desc("Citrus version. If not specified, it will use the generator installed version")
                 .hasArg().build();
+        Option xsltVersionOption = Option.builder().argName("version").option("x").longOpt("xslt")
+                .desc("XSLT version (e.g. 3.0)")
+                .hasArg().build();
         Option verboseOption = Option.builder().argName("v").option("v").longOpt("verbose")
                 .desc("Be more verbose")
                 .build();
@@ -68,6 +71,7 @@ public class GenerateCommandOptions {
         options.addOption(camelQuarkusVersionOption);
         options.addOption(camelSpringbootVersionOption);
         options.addOption(citrusVersionOption);
+        options.addOption(xsltVersionOption);
         options.addOption(verboseOption);
         options.addOption(reposOption);
 
@@ -87,6 +91,7 @@ public class GenerateCommandOptions {
         addRuntimeVersions(configBean, cmd, camelQuarkusVersionOption, CatalogRuntime.Quarkus);
         addRuntimeVersions(configBean, cmd, camelSpringbootVersionOption, CatalogRuntime.SpringBoot);
         addRuntimeVersions(configBean, cmd, citrusVersionOption, CatalogRuntime.Citrus);
+        addRuntimeVersions(configBean, cmd, xsltVersionOption, CatalogRuntime.XSLT);
 
         if (configBean.getCatalogVersionSet().isEmpty()) {
             addDefaultVersions(configBean);

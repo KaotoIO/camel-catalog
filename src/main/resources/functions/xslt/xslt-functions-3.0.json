@@ -1,0 +1,671 @@
+[
+  {
+    "name": "current",
+    "prefix": "fn",
+    "displayName": "Current",
+    "description": "Returns the item that was the context item at the point where the expression was invoked from the XSLT stylesheet.",
+    "returnType": "item()",
+    "returnCardinality": "",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "item()",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      }
+    ]
+  },
+  {
+    "name": "current-group",
+    "prefix": "fn",
+    "displayName": "Current Group",
+    "description": "Returns the contents of the current group selected by xsl:for-each-group.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "item()*",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "current-grouping-key",
+    "prefix": "fn",
+    "displayName": "Current Grouping Key",
+    "description": "Returns the grouping key of the current group within xsl:for-each-group.",
+    "returnType": "xs:anyAtomicType",
+    "returnCardinality": "*",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "xs:anyAtomicType*",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "current-merge-group",
+    "prefix": "fn",
+    "displayName": "Current Merge Group",
+    "description": "Returns the items within the current merge group that share the same merge key value, within xsl:merge.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "source",
+        "displayName": "$source",
+        "description": "Source",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "item()*",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      },
+      {
+        "returnType": "item()*",
+        "arguments": [
+          { "name": "source", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "current-merge-key",
+    "prefix": "fn",
+    "displayName": "Current Merge Key",
+    "description": "Returns the merge key value shared by all items in the current merge group, within xsl:merge.",
+    "returnType": "xs:anyAtomicType",
+    "returnCardinality": "*",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "xs:anyAtomicType*",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "current-output-uri",
+    "prefix": "fn",
+    "displayName": "Current Output Uri",
+    "description": "Returns the URI of the current output destination being written to by xsl:result-document.",
+    "returnType": "xs:anyURI",
+    "returnCardinality": "?",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "xs:anyURI?",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "document",
+    "prefix": "fn",
+    "displayName": "Document",
+    "description": "Provides access to XML documents identified by a URI.",
+    "returnType": "node()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "uri-sequence",
+        "displayName": "$uri-sequence",
+        "description": "Uri Sequence",
+        "type": "item()",
+        "cardinality": "*",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "base-node",
+        "displayName": "$base-node",
+        "description": "Base Node",
+        "type": "node()",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "node()*",
+        "arguments": [
+          { "name": "uri-sequence", "type": "item()*", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "node()*",
+        "arguments": [
+          { "name": "uri-sequence", "type": "item()*", "default": null, "usage": null },
+          { "name": "base-node", "type": "node()", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "key",
+    "prefix": "fn",
+    "displayName": "Key",
+    "description": "Returns the nodes that match a given key value, as defined by an xsl:key declaration.",
+    "returnType": "node()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "name",
+        "displayName": "$name",
+        "description": "Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "value",
+        "displayName": "$value",
+        "description": "Value",
+        "type": "xs:anyAtomicType",
+        "cardinality": "*",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "top",
+        "displayName": "$top",
+        "description": "Top",
+        "type": "node()",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "node()*",
+        "arguments": [
+          { "name": "name", "type": "xs:string", "default": null, "usage": null },
+          { "name": "value", "type": "xs:anyAtomicType*", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "node()*",
+        "arguments": [
+          { "name": "name", "type": "xs:string", "default": null, "usage": null },
+          { "name": "value", "type": "xs:anyAtomicType*", "default": null, "usage": null },
+          { "name": "top", "type": "node()", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "regex-group",
+    "prefix": "fn",
+    "displayName": "Regex Group",
+    "description": "Returns the substring captured by a parenthesized sub-expression of the regular expression used by xsl:analyze-string.",
+    "returnType": "xs:string",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "group-number",
+        "displayName": "$group-number",
+        "description": "Group Number",
+        "type": "xs:integer",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:string",
+        "arguments": [
+          { "name": "group-number", "type": "xs:integer", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "accumulator-before",
+    "prefix": "fn",
+    "displayName": "Accumulator Before",
+    "description": "Returns the value of the named accumulator before processing the context node.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "name",
+        "displayName": "$name",
+        "description": "Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "item()*",
+        "arguments": [
+          { "name": "name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      }
+    ]
+  },
+  {
+    "name": "accumulator-after",
+    "prefix": "fn",
+    "displayName": "Accumulator After",
+    "description": "Returns the value of the named accumulator after processing the context node and its descendants.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "name",
+        "displayName": "$name",
+        "description": "Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "item()*",
+        "arguments": [
+          { "name": "name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      }
+    ]
+  },
+  {
+    "name": "copy-of",
+    "prefix": "fn",
+    "displayName": "Copy Of",
+    "description": "Creates deep copies of nodes and returns atomic values unchanged, useful in streaming to capture a grounded copy.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "input",
+        "displayName": "$input",
+        "description": "Input",
+        "type": "item()",
+        "cardinality": "*",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": ".",
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "item()",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "item()*",
+        "arguments": [
+          { "name": "input", "type": "item()*", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-independent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "snapshot",
+    "prefix": "fn",
+    "displayName": "Snapshot",
+    "description": "Creates a copy of nodes that preserves ancestor and namespace context, useful for streamed processing.",
+    "returnType": "item()",
+    "returnCardinality": "*",
+    "arguments": [
+      {
+        "name": "input",
+        "displayName": "$input",
+        "description": "Input",
+        "type": "item()",
+        "cardinality": "*",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": ".",
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "item()",
+        "arguments": [],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "item()*",
+        "arguments": [
+          { "name": "input", "type": "item()*", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-independent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "system-property",
+    "prefix": "fn",
+    "displayName": "System Property",
+    "description": "Returns the value of a system property identified by a QName (e.g., xsl:version, xsl:vendor).",
+    "returnType": "xs:string",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "property-name",
+        "displayName": "$property-name",
+        "description": "Property Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:string",
+        "arguments": [
+          { "name": "property-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "available-system-properties",
+    "prefix": "fn",
+    "displayName": "Available System Properties",
+    "description": "Returns the names of all system properties available from the XSLT processor.",
+    "returnType": "xs:QName",
+    "returnCardinality": "*",
+    "arguments": [],
+    "signatures": [
+      {
+        "returnType": "xs:QName*",
+        "arguments": [],
+        "properties": ["deterministic", "context-independent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "function-available",
+    "prefix": "fn",
+    "displayName": "Function Available",
+    "description": "Tests whether a function with the given name and optionally arity is available for use in XPath expressions.",
+    "returnType": "xs:boolean",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "function-name",
+        "displayName": "$function-name",
+        "description": "Function Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "arity",
+        "displayName": "$arity",
+        "description": "Arity",
+        "type": "xs:integer",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:boolean",
+        "arguments": [
+          { "name": "function-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      },
+      {
+        "returnType": "xs:boolean",
+        "arguments": [
+          { "name": "function-name", "type": "xs:string", "default": null, "usage": null },
+          { "name": "arity", "type": "xs:integer", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "element-available",
+    "prefix": "fn",
+    "displayName": "Element Available",
+    "description": "Tests whether an XSLT instruction with the given name is available in the processor.",
+    "returnType": "xs:boolean",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "element-name",
+        "displayName": "$element-name",
+        "description": "Element Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:boolean",
+        "arguments": [
+          { "name": "element-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "type-available",
+    "prefix": "fn",
+    "displayName": "Type Available",
+    "description": "Tests whether a schema type with the given name is available for use in the stylesheet.",
+    "returnType": "xs:boolean",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "type-name",
+        "displayName": "$type-name",
+        "description": "Type Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:boolean",
+        "arguments": [
+          { "name": "type-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "unparsed-entity-uri",
+    "prefix": "fn",
+    "displayName": "Unparsed Entity Uri",
+    "description": "Returns the URI of an unparsed entity declared in the DTD of the document containing the context node.",
+    "returnType": "xs:anyURI",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "entity-name",
+        "displayName": "$entity-name",
+        "description": "Entity Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "doc",
+        "displayName": "$doc",
+        "description": "Doc",
+        "type": "node()",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:anyURI",
+        "arguments": [
+          { "name": "entity-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "xs:anyURI",
+        "arguments": [
+          { "name": "entity-name", "type": "xs:string", "default": null, "usage": null },
+          { "name": "doc", "type": "node()", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "unparsed-entity-public-id",
+    "prefix": "fn",
+    "displayName": "Unparsed Entity Public Id",
+    "description": "Returns the public identifier of an unparsed entity declared in the DTD of the document containing the context node.",
+    "returnType": "xs:string",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "entity-name",
+        "displayName": "$entity-name",
+        "description": "Entity Name",
+        "type": "xs:string",
+        "cardinality": "",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      },
+      {
+        "name": "doc",
+        "displayName": "$doc",
+        "description": "Doc",
+        "type": "node()",
+        "cardinality": "",
+        "minOccurs": 0,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:string",
+        "arguments": [
+          { "name": "entity-name", "type": "xs:string", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-dependent"]
+      },
+      {
+        "returnType": "xs:string",
+        "arguments": [
+          { "name": "entity-name", "type": "xs:string", "default": null, "usage": null },
+          { "name": "doc", "type": "node()", "default": null, "usage": null }
+        ],
+        "properties": ["deterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  },
+  {
+    "name": "stream-available",
+    "prefix": "fn",
+    "displayName": "Stream Available",
+    "description": "Tests whether a resource identified by the given URI is available for streaming via xsl:source-document.",
+    "returnType": "xs:boolean",
+    "returnCardinality": "",
+    "arguments": [
+      {
+        "name": "uri",
+        "displayName": "$uri",
+        "description": "Uri",
+        "type": "xs:string",
+        "cardinality": "?",
+        "minOccurs": 1,
+        "maxOccurs": 1,
+        "default": null,
+        "usage": null
+      }
+    ],
+    "signatures": [
+      {
+        "returnType": "xs:boolean",
+        "arguments": [
+          { "name": "uri", "type": "xs:string?", "default": null, "usage": null }
+        ],
+        "properties": ["nondeterministic", "context-dependent", "focus-independent"]
+      }
+    ]
+  }
+]

@@ -52,10 +52,15 @@ class GenerateCommandTest {
         catalogCliArg.setRuntime(CatalogRuntime.Main);
         catalogCliArg.setCatalogVersion("4.8.0");
 
+        CatalogCliArgument xsltCliArg = new CatalogCliArgument();
+        xsltCliArg.setRuntime(CatalogRuntime.XSLT);
+        xsltCliArg.setCatalogVersion("3.0");
+
         ConfigBean configBean = new ConfigBean();
         configBean.setOutputFolder(tempDir.toString());
         configBean.setCatalogsName("test-camel-catalog");
         configBean.addCatalogVersion(catalogCliArg);
+        configBean.addCatalogVersion(xsltCliArg);
         configBean.setKameletsVersion("1.0.0");
 
         generateCommand = new GenerateCommand(configBean);
@@ -135,7 +140,7 @@ class GenerateCommandTest {
             assertEquals(1, mockedLibrary.constructed().size());
             assertEquals(3, ref.version);
             assertEquals("test-camel-catalog", ref.name);
-            assertEquals(1, library.getDefinitions().size());
+            assertEquals(2, library.getDefinitions().size());
 
             CatalogLibraryEntry catalogLibraryEntry = library.getDefinitions().get(0);
             assertEquals("test-camel-catalog", catalogLibraryEntry.name());
@@ -152,6 +157,12 @@ class GenerateCommandTest {
             assertEquals("4.8.0", catalogDefinition.getCamelCatalogVersion());
             assertNull(catalogDefinition.getRuntimeProviderVersion());
             assertNull(catalogDefinition.getFrameworkVersion());
+
+            CatalogLibraryEntry xsltEntry = library.getDefinitions().get(1);
+            assertEquals("XSLT 3.0", xsltEntry.name());
+            assertEquals("3.0", xsltEntry.version());
+            assertEquals("XSLT", xsltEntry.runtime());
+            assertEquals("xslt/3.0/index.json", xsltEntry.fileName());
         }
     }
 }

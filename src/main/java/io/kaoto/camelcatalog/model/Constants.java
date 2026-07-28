@@ -50,5 +50,7 @@ public class Constants {
         public static final String KAMELET_BOUNDARIES_KEY = "kameletBoundaries";
         public static final String KAMELET_BOUNDARIES_FILENAME = "kamelet-boundaries";
         public static final String KAMELETS_AGGREGATE = "kamelets-aggregate";
+        public static final String XPATH_FUNCTIONS = "xpathFunctions";
+        public static final String XPATH_FUNCTIONS_FILENAME = "xslt-xpath-functions";
 
 }

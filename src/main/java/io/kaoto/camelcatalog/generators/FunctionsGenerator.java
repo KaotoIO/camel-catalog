@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.KaotoFunction;
+import io.kaoto.camelcatalog.model.KaotoFunctionArgument;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.tooling.model.LanguageModel;
 
@@ -94,9 +95,9 @@ public class FunctionsGenerator implements Generator {
         });
     }
 
-    private KaotoFunction getKaotoFunctionFromLanguageFunction(String functionName,
+    private KaotoFunction<KaotoFunctionArgument> getKaotoFunctionFromLanguageFunction(String functionName,
                                                                LanguageModel.LanguageFunctionModel camelFunction) {
-        var kaotoFunction = new KaotoFunction();
+        var kaotoFunction = new KaotoFunction<KaotoFunctionArgument>();
         kaotoFunction.setName(functionName);
         kaotoFunction.setDisplayName(camelFunction.getDisplayName());
         kaotoFunction.setDescription(camelFunction.getDescription());

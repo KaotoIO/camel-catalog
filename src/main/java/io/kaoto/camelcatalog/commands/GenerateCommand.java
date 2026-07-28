@@ -6,6 +6,7 @@ import io.kaoto.camelcatalog.beans.ConfigBean;
 import io.kaoto.camelcatalog.generator.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder;
+import io.kaoto.camelcatalog.generator.xslt.XsltCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.maven.PomFetcher;
 import io.kaoto.camelcatalog.maven.RuntimeVersionResolver;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
@@ -70,6 +71,12 @@ public class GenerateCommand implements Runnable {
                                 .withResolvedVersions(resolved)
                                 .build();
                         case Citrus -> new CitrusCatalogGeneratorBuilder()
+                                .withCatalogVersion(downloadVersion)
+                                .withOutputDirectory(catalogDefinitionFolder)
+                                .withVerbose(configBean.isVerbose())
+                                .withResolvedVersions(resolved)
+                                .build();
+                        case XSLT -> new XsltCatalogGeneratorBuilder()
                                 .withCatalogVersion(downloadVersion)
                                 .withOutputDirectory(catalogDefinitionFolder)
                                 .withVerbose(configBean.isVerbose())

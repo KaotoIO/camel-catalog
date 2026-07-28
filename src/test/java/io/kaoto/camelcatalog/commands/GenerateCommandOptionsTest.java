@@ -79,7 +79,7 @@ public class GenerateCommandOptionsTest {
     public void testConfigureWithInvalidOptions() {
         ConfigBean configBean = new ConfigBean();
         GenerateCommandOptions generateCommandOptions = new GenerateCommandOptions(configBean);
-        String[] args = { "-x", "invalidOption" };
+        String[] args = { "-z", "invalidOption" };
 
         Exception exception = assertThrows(ParseException.class, () -> {
             generateCommandOptions.configure(args);

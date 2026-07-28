@@ -39,6 +39,7 @@ const CATALOGS = {
     '4.10.7.redhat-00013',
   ],
   Citrus: ['4.10.0', '4.10.1'],
+  XSLT: ['3.0'],
 };
 
 const KAMELETS_VERSION = '4.20.0';
