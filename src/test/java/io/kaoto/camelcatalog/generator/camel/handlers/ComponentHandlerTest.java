@@ -114,7 +114,7 @@ public class ComponentHandlerTest {
     }
 
     @Test
-    void shouldNotFillFormatInformationForEnums() {
+    void shouldGenerateStringSchemaForEnumOptions() {
         var componentsMap = componentHandler.generate();
         var sftpNode = componentsMap.get("sftp");
         var separatorPropertyNode =
@@ -122,7 +122,7 @@ public class ComponentHandlerTest {
 
         assertFalse(separatorPropertyNode.has("format"));
         assertTrue(separatorPropertyNode.has("type"));
-        assertEquals("enum", separatorPropertyNode.get("type").asText());
+        assertEquals("string", separatorPropertyNode.get("type").asText());
 
         List<String> enumValues = new ArrayList<>();
         separatorPropertyNode.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));

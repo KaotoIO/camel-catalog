@@ -133,7 +133,7 @@ public class ComponentHandler implements CatalogEntryHandler {
             var propertyNode = answerProperties.withObject("/" + propertyName);
             propertyNode.put("title", modelOption.getDisplayName());
             propertyNode.put("description", modelOption.getDescription());
-            var propertyType = modelOption.getType();
+            var propertyType = "enum".equals(modelOption.getType()) ? "string" : modelOption.getType();
             propertyNode.put("type", propertyType);
 
             var enumOption = modelOption.getEnums();

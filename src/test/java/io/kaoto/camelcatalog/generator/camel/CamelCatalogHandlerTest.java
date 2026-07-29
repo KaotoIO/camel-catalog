@@ -44,7 +44,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CamelCatalogHandlerTest {
-    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string", "enum");
+    private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string");
 
     private final ObjectNode componentCatalog;
     private final ObjectNode dataFormatCatalog;
@@ -121,7 +121,7 @@ class CamelCatalogHandlerTest {
         assertEquals("array", eventFiltersProperty.get("type").asText());
         assertEquals("string", eventFiltersProperty.withObject("/items").get("type").asText());
         var filteredEventsProperty = jcacheSchema.withObject("/properties").withObject("/filteredEvents");
-        assertEquals("enum", filteredEventsProperty.get("type").asText());
+        assertEquals("string", filteredEventsProperty.get("type").asText());
         List<String> enumValues = new ArrayList<>();
         filteredEventsProperty.get("enum").elements().forEachRemaining(node -> enumValues.add(node.asText()));
         assertEquals(List.of("CREATED", "UPDATED", "REMOVED", "EXPIRED"), enumValues);
