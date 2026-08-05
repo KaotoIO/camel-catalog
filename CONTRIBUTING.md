@@ -1,0 +1,139 @@
+# Contributing to Kaoto Camel Catalog
+
+Thank you for considering contributing to the Kaoto Camel Catalog! Community contributions are essential for the project's success, and we welcome bug fixes, documentation improvements, feature additions, and more.
+
+## Getting Started
+
+### Prerequisites
+
+Before you start contributing, ensure that you have the following installed:
+
+- NodeJS (>v18.x)
+- yarn (>v3.x)
+- Java 17+
+- Maven (bundled via `./mvnw` wrapper — no separate installation needed)
+
+### Setting Up the Project
+
+1. **Fork the Repository**:
+   - Fork the project to your GitHub account by clicking the 'Fork' button on the [camel-catalog GitHub page](https://github.com/KaotoIO/camel-catalog).
+
+2. **Clone Your Fork**:
+   - Clone your fork using `git clone https://github.com/YOUR_USERNAME/camel-catalog.git`.
+
+3. **Install Dependencies**:
+   - Navigate to the cloned folder and run `yarn install` to install all necessary dependencies.
+
+4. **Build the Project**:
+   - For detailed instructions on building and running different parts of the project, refer to the [README.md](README.md).
+
+## How to Contribute
+
+### Find or Create an Issue
+
+- Look for existing issues on the [GitHub Issues page](https://github.com/KaotoIO/camel-catalog/issues).
+- If you want to work on something new, feel free to create a new issue and discuss it with the team.
+- If the research tag is found, the contribution should be research in an issue, not a new PR.
+
+### Create a Feature Branch
+
+- Create a new branch for your work, naming it descriptively, such as `feature/new-feature-name` or `bugfix/issue-description`.
+
+### Make Your Changes
+
+- Work on the issue in your local environment.
+- Make sure to follow the project's coding standards and guidelines.
+- Make sure to not introduce regressions or add any new sonarqube issues.
+
+### Commit and Push Your Changes
+
+- Write a clear and concise commit message describing what you've done.
+- Push your changes to your GitHub fork.
+
+### Submit a Pull Request (PR)
+
+- Create a pull request from your fork to the main [camel-catalog repository](https://github.com/KaotoIO/camel-catalog).
+- Provide a detailed description of your changes, referencing any related issues.
+- PRs without linked issues, introducing regressions, with new sonarqube issues or not follow the code quality guidelines won't be accepted.
+- Await feedback or approval from the maintainers.
+
+## Building the Catalog
+
+The catalog is generated from Apache Camel sources using a Maven build followed by Node.js scripts.
+
+### Full build
+
+```sh
+yarn workspace @kaoto/camel-catalog run build
+```
+
+This runs the following steps in sequence:
+
+1. `./mvnw clean package` — generates raw catalog data via Maven
+2. `node ./scripts/build-catalogs.mjs` — processes catalog JSON files
+3. `node ./scripts/json-schema-to-typescript.mjs` — generates TypeScript types
+4. `copyfiles index.js dist` — copies the package entry point
+5. `node ./scripts/copy-catalog.mjs` — updates the root `catalog/` directory
+6. Commit the generated `catalog/` changes
+
+### Updating the catalog version
+
+To target a different catalog releases, update the `version.camel` property in [`pom.xml`](pom.xml), add the new version to [`index.js`](index.js) and re-run the build.
+
+```sh
+yarn workspace @kaoto/camel-catalog run build
+```
+
+## Code Style and Guidelines
+
+- Follow the existing code style in the project.
+- Scripts under `scripts/` are linted with ESLint (`yarn lint`). Run `yarn lint:fix` to auto-fix issues.
+- JSON and Markdown files are formatted with Prettier (config in [`.prettierrc`](.prettierrc)).
+
+## Testing
+
+- Ensure that your changes don't break existing functionality.
+- Include new tests for added features or bug fixes, and ensure all tests pass.
+
+## Compliance with License
+
+- By contributing, you agree that your contributions will be licensed under the Apache License 2.0.
+- Make sure to review the full [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) to understand the terms.
+- The repository includes a [`LICENSE`](LICENSE) file containing the Apache License 2.0 text.
+
+## AI-Assisted Contributions
+
+We welcome contributions created with AI assistance! AI tools can help accelerate development, but all contributions require human oversight and responsibility.
+
+### Guidelines for AI-Assisted Contributions
+
+- **AI Use is Permitted**: You may use AI tools (like GitHub Copilot, Claude Code, ChatGPT, etc.) to help write code, documentation, or tests.
+
+- **Disclosure is Optional but Encouraged**: While not required, mentioning your AI tool helps us improve our AI-specific documentation. If you discover gaps in our agent documentation, please suggest improvements.
+
+- **Human Responsibility Required**:
+  - AI agents cannot submit PRs independently
+  - A human must review, approve, and sign all AI-generated code
+  - The human contributor is responsible for:
+    - Code quality and correctness
+    - Responding to maintainer feedback
+    - Following up on PR comments and requested changes
+
+- **Active Participation Expected**:
+  - PRs require active follow-up from the human contributor
+  - PRs without response after **2 weeks** will be closed
+  - We know sometimes things happen. If you need more time, please communicate with maintainers to make the necessary adjustments
+
+- **Quality Standards Apply**:
+  - All AI-generated code must pass linting and tests
+  - Follow the same code style and guidelines as manual contributions
+  - Do not introduce regressions nor sonarqube issues.
+  - See the Testing and Code Style sections above
+
+---
+
+Your contributions make Kaoto better, and we sincerely appreciate your support and collaboration. Happy coding!
+
+## Questions or Need Help?
+
+If you have any questions or need assistance, feel free to create an issue on the [camel-catalog GitHub page](https://github.com/KaotoIO/camel-catalog/issues) or contact the project maintainers directly.
