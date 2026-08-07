@@ -1849,8 +1849,7 @@
                       "title" : "Client",
                       "description" : "Sets the Http client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -2076,8 +2075,7 @@
                       "title" : "Server",
                       "description" : "Sets the Http server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -2091,8 +2089,7 @@
               "title" : "Http",
               "description" : "Http client and server endpoints"
             }
-          },
-          "required" : [ "http" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -2203,8 +2200,7 @@
                       "title" : "Client",
                       "description" : "Sets the SOAP WebService client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -2375,8 +2371,7 @@
                       "title" : "Server",
                       "description" : "Sets the SOAP WebService server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -2390,8 +2385,7 @@
               "title" : "Soap",
               "description" : "SOAP WebService client and server endpoints"
             }
-          },
-          "required" : [ "soap" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -2448,8 +2442,7 @@
                       "title" : "Client",
                       "description" : "Sets the WebSocket client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -2685,8 +2678,7 @@
                       "title" : "Server",
                       "description" : "Sets the WebSocket server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -2700,8 +2692,7 @@
               "title" : "WebSocket",
               "description" : "WebSocket client and server endpoints"
             }
-          },
-          "required" : [ "webSocket" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -2736,8 +2727,7 @@
               "title" : "Context",
               "description" : "Context endpoint."
             }
-          },
-          "required" : [ "context" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -2815,8 +2805,7 @@
                       "title" : "Client",
                       "description" : "Sets the mail client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -2915,8 +2904,7 @@
                       "title" : "Server",
                       "description" : "Sets the mail server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -2930,8 +2918,7 @@
               "title" : "Mail",
               "description" : "Mail client and server endpoints"
             }
-          },
-          "required" : [ "mail" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3014,8 +3001,7 @@
                       "title" : "Client",
                       "description" : "Sets the ftp client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -3144,8 +3130,7 @@
                       "title" : "Server",
                       "description" : "Sets the ftp server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -3159,8 +3144,7 @@
               "title" : "Ftp",
               "description" : "Ftp client and server endpoints"
             }
-          },
-          "required" : [ "ftp" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3283,8 +3267,7 @@
                       "title" : "Client",
                       "description" : "Sets the sftp client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -3412,8 +3395,7 @@
                       "title" : "Server",
                       "description" : "Sets the sftp server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -3427,8 +3409,7 @@
               "title" : "Sftp",
               "description" : "Sftp client and server endpoints"
             }
-          },
-          "required" : [ "sftp" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3536,8 +3517,7 @@
                       "title" : "Client",
                       "description" : "Sets the scp client endpoint."
                     }
-                  },
-                  "required" : [ "client" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -3665,8 +3645,7 @@
                       "title" : "Server",
                       "description" : "Sets the sftp server endpoint."
                     }
-                  },
-                  "required" : [ "server" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -3680,8 +3659,7 @@
               "title" : "Scp",
               "description" : "Scp client and server endpoint"
             }
-          },
-          "required" : [ "scp" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3757,8 +3735,7 @@
               "title" : "Docker",
               "description" : "Docker client"
             }
-          },
-          "required" : [ "docker" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3842,8 +3819,7 @@
               "title" : "Kubernetes",
               "description" : "Kubernetes client"
             }
-          },
-          "required" : [ "kubernetes" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -3947,8 +3923,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the Jms endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4039,8 +4014,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous Jms endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4054,8 +4028,7 @@
               "title" : "JMS",
               "description" : "JMS endpoint"
             }
-          },
-          "required" : [ "jms" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4126,8 +4099,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the Vert.x endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4193,8 +4165,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous Vert.x endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4208,8 +4179,7 @@
               "title" : "Vert.x",
               "description" : "Vert.x endpoint."
             }
-          },
-          "required" : [ "vertx" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4252,8 +4222,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the direct endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4296,8 +4265,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous direct endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4311,8 +4279,7 @@
               "title" : "Direct",
               "description" : "Direct endpoint."
             }
-          },
-          "required" : [ "direct" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4439,8 +4406,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the Kafka endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4556,8 +4522,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous Kafka endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4571,8 +4536,7 @@
               "title" : "Kafka",
               "description" : "Kafka endpoint."
             }
-          },
-          "required" : [ "kafka" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4621,8 +4585,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the Camel endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4671,8 +4634,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous Camel endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4686,8 +4648,7 @@
               "title" : "Camel",
               "description" : "Camel endpoint."
             }
-          },
-          "required" : [ "camel" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4756,8 +4717,7 @@
                       "title" : "Asynchronous",
                       "description" : "Sets the Spring message channel endpoint."
                     }
-                  },
-                  "required" : [ "asynchronous" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -4827,8 +4787,7 @@
                       "title" : "Synchronous",
                       "description" : "Sets the synchronous Spring message channel endpoint."
                     }
-                  },
-                  "required" : [ "synchronous" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -4842,8 +4801,7 @@
               "title" : "Spring channel",
               "description" : "Spring channel endpoint."
             }
-          },
-          "required" : [ "channel" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -4924,8 +4882,7 @@
               "title" : "Selenium",
               "description" : "Selenium endpoint."
             }
-          },
-          "required" : [ "selenium" ]
+          }
         }, {
           "not" : {
             "anyOf" : [ {
@@ -5669,8 +5626,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -5690,8 +5645,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -5725,8 +5679,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -5818,8 +5771,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -5842,10 +5793,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -5933,8 +5881,7 @@
               "title" : "GET",
               "description" : "Http GET request"
             }
-          },
-          "required" : [ "GET" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -5961,8 +5908,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -5982,8 +5927,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -6017,8 +5961,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -6110,8 +6053,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -6134,10 +6075,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -6225,8 +6163,7 @@
               "title" : "POST",
               "description" : "Http POST request"
             }
-          },
-          "required" : [ "POST" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -6253,8 +6190,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -6274,8 +6209,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -6309,8 +6243,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -6402,8 +6335,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -6426,10 +6357,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -6517,8 +6445,7 @@
               "title" : "PUT",
               "description" : "Http PUT request"
             }
-          },
-          "required" : [ "PUT" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -6545,8 +6472,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -6566,8 +6491,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -6601,8 +6525,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -6694,8 +6617,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -6718,10 +6639,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -6809,8 +6727,7 @@
               "title" : "DELETE",
               "description" : "Http DELETE request"
             }
-          },
-          "required" : [ "DELETE" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -6837,8 +6754,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -6858,8 +6773,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -6893,8 +6807,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -6986,8 +6899,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -7010,10 +6921,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -7101,8 +7009,7 @@
               "title" : "HEAD",
               "description" : "Http HEAD request"
             }
-          },
-          "required" : [ "HEAD" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -7129,8 +7036,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -7150,8 +7055,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -7185,8 +7089,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -7278,8 +7181,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -7302,10 +7203,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -7393,8 +7291,7 @@
               "title" : "OPTIONS",
               "description" : "Http OPTIONS request"
             }
-          },
-          "required" : [ "OPTIONS" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -7421,8 +7318,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -7442,8 +7337,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -7477,8 +7371,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -7570,8 +7463,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -7594,10 +7485,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -7685,8 +7573,7 @@
               "title" : "PATCH",
               "description" : "Http PATCH request"
             }
-          },
-          "required" : [ "PATCH" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -7713,8 +7600,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -7734,8 +7619,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -7769,8 +7653,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -7862,8 +7745,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -7886,10 +7767,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -7977,8 +7855,7 @@
               "title" : "TRACE",
               "description" : "Http TRACE request"
             }
-          },
-          "required" : [ "TRACE" ]
+          }
         }, {
           "not" : {
             "anyOf" : [ {
@@ -8107,8 +7984,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -8128,8 +8003,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -8163,8 +8037,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -8256,8 +8129,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -8280,10 +8151,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -8685,8 +8553,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -8706,8 +8572,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -8741,8 +8606,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -8834,8 +8698,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -8858,10 +8720,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -8949,8 +8808,7 @@
               "title" : "GET",
               "description" : "Http GET request"
             }
-          },
-          "required" : [ "GET" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -8977,8 +8835,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -8998,8 +8854,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -9033,8 +8888,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -9126,8 +8980,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -9150,10 +9002,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -9241,8 +9090,7 @@
               "title" : "POST",
               "description" : "Http POST request"
             }
-          },
-          "required" : [ "POST" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -9269,8 +9117,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -9290,8 +9136,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -9325,8 +9170,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -9418,8 +9262,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -9442,10 +9284,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -9533,8 +9372,7 @@
               "title" : "PUT",
               "description" : "Http PUT request"
             }
-          },
-          "required" : [ "PUT" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -9561,8 +9399,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -9582,8 +9418,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -9617,8 +9452,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -9710,8 +9544,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -9734,10 +9566,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -9825,8 +9654,7 @@
               "title" : "DELETE",
               "description" : "Http DELETE request"
             }
-          },
-          "required" : [ "DELETE" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -9853,8 +9681,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -9874,8 +9700,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -9909,8 +9734,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -10002,8 +9826,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -10026,10 +9848,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -10117,8 +9936,7 @@
               "title" : "HEAD",
               "description" : "Http HEAD request"
             }
-          },
-          "required" : [ "HEAD" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -10145,8 +9963,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -10166,8 +9982,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -10201,8 +10016,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -10294,8 +10108,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -10318,10 +10130,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -10409,8 +10218,7 @@
               "title" : "OPTIONS",
               "description" : "Http OPTIONS request"
             }
-          },
-          "required" : [ "OPTIONS" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -10437,8 +10245,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -10458,8 +10264,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -10493,8 +10298,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -10586,8 +10390,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -10610,10 +10412,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -10701,8 +10500,7 @@
               "title" : "PATCH",
               "description" : "Http PATCH request"
             }
-          },
-          "required" : [ "PATCH" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -10729,8 +10527,6 @@
                   "additionalProperties" : false,
                   "anyOf" : [ {
                     "oneOf" : [ {
-                      "required" : [ "data" ]
-                    }, {
                       "type" : "object",
                       "properties" : {
                         "resource" : {
@@ -10750,8 +10546,7 @@
                           "title" : "Resource",
                           "description" : "The message body loaded from a file resource."
                         }
-                      },
-                      "required" : [ "resource" ]
+                      }
                     }, {
                       "type" : "object",
                       "properties" : {
@@ -10785,8 +10580,7 @@
                           "title" : "Script",
                           "description" : "The message body set via script."
                         }
-                      },
-                      "required" : [ "script" ]
+                      }
                     }, {
                       "not" : {
                         "anyOf" : [ {
@@ -10878,8 +10672,6 @@
                     "additionalProperties" : false,
                     "anyOf" : [ {
                       "oneOf" : [ {
-                        "required" : [ "value" ]
-                      }, {
                         "type" : "object",
                         "properties" : {
                           "resource" : {
@@ -10902,10 +10694,7 @@
                             "title" : "Resource",
                             "description" : "The header data loaded from a file resource."
                           }
-                        },
-                        "required" : [ "resource" ]
-                      }, {
-                        "required" : [ "data" ]
+                        }
                       }, {
                         "not" : {
                           "anyOf" : [ {
@@ -10993,8 +10782,7 @@
               "title" : "TRACE",
               "description" : "Http TRACE request"
             }
-          },
-          "required" : [ "TRACE" ]
+          }
         }, {
           "not" : {
             "anyOf" : [ {
@@ -11111,8 +10899,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -11132,8 +10918,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -11167,8 +10952,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -11260,8 +11044,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -11284,10 +11066,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -12176,10 +11955,6 @@
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "required" : [ "data" ]
-        }, {
-          "required" : [ "file" ]
-        }, {
           "not" : {
             "anyOf" : [ {
               "required" : [ "data" ]
@@ -12258,10 +12033,6 @@
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "required" : [ "data" ]
-        }, {
-          "required" : [ "file" ]
-        }, {
           "not" : {
             "anyOf" : [ {
               "required" : [ "data" ]
@@ -12475,10 +12246,6 @@
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "required" : [ "data" ]
-        }, {
-          "required" : [ "file" ]
-        }, {
           "not" : {
             "anyOf" : [ {
               "required" : [ "data" ]
@@ -13857,8 +13624,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -13878,8 +13643,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -13913,8 +13677,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -14001,8 +13764,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -14025,10 +13786,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -15417,8 +15175,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -15438,8 +15194,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -15473,8 +15228,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -15561,8 +15315,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -15585,10 +15337,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -15867,8 +15616,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -15888,8 +15635,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -15923,8 +15669,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -16016,8 +15761,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -16040,10 +15783,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -16335,8 +16075,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -16356,8 +16094,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -16391,8 +16128,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -16484,8 +16220,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -16508,10 +16242,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -16924,8 +16655,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -16945,8 +16674,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -16980,8 +16708,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -17114,8 +16841,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -17138,10 +16863,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -17358,8 +17080,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -17379,8 +17099,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -17414,8 +17133,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -17507,8 +17225,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -17531,10 +17247,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -17751,8 +17464,6 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "required" : [ "data" ]
-                }, {
                   "type" : "object",
                   "properties" : {
                     "resource" : {
@@ -17772,8 +17483,7 @@
                       "title" : "Resource",
                       "description" : "The message body loaded from a file resource."
                     }
-                  },
-                  "required" : [ "resource" ]
+                  }
                 }, {
                   "type" : "object",
                   "properties" : {
@@ -17807,8 +17517,7 @@
                       "title" : "Script",
                       "description" : "The message body set via script."
                     }
-                  },
-                  "required" : [ "script" ]
+                  }
                 }, {
                   "not" : {
                     "anyOf" : [ {
@@ -17900,8 +17609,6 @@
                 "additionalProperties" : false,
                 "anyOf" : [ {
                   "oneOf" : [ {
-                    "required" : [ "value" ]
-                  }, {
                     "type" : "object",
                     "properties" : {
                       "resource" : {
@@ -17924,10 +17631,7 @@
                         "title" : "Resource",
                         "description" : "The header data loaded from a file resource."
                       }
-                    },
-                    "required" : [ "resource" ]
-                  }, {
-                    "required" : [ "data" ]
+                    }
                   }, {
                     "not" : {
                       "anyOf" : [ {
@@ -19444,8 +19148,7 @@
               "title" : "Message",
               "description" : "Wait for given message to exist in message store."
             }
-          },
-          "required" : [ "message" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -19477,8 +19180,7 @@
               "title" : "Http",
               "description" : "Wait for given Http endpoint to return a proper response code."
             }
-          },
-          "required" : [ "http" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -19495,8 +19197,7 @@
               "title" : "File",
               "description" : "Wait for given file path to exist."
             }
-          },
-          "required" : [ "file" ]
+          }
         }, {
           "type" : "object",
           "properties" : {
@@ -19505,8 +19206,7 @@
               "title" : "Action",
               "description" : "Waits for the test action to complete."
             }
-          },
-          "required" : [ "action" ]
+          }
         }, {
           "not" : {
             "anyOf" : [ {
