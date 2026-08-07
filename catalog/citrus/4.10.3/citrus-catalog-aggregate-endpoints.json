@@ -1,7 +1,7 @@
 {
   "kubernetes-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "kubernetes-client",
     "group": "kubernetes",
     "module": "citrus-kubernetes",
@@ -79,7 +79,7 @@
   },
   "context-messageStore": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "context-messageStore",
     "group": "context",
     "module": "citrus-base",
@@ -108,7 +108,7 @@
   },
   "kafka-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "kafka-synchronous",
     "group": "kafka",
     "module": "citrus-kafka",
@@ -226,7 +226,7 @@
   },
   "scp-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "scp-server",
     "group": "scp",
     "module": "citrus-ftp",
@@ -339,7 +339,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The server timeout.",
-          "default": "5000"
+          "default": 5000
         },
         "user": {
           "type": "string",
@@ -356,7 +356,7 @@
   },
   "direct-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "direct-synchronous",
     "group": "direct",
     "module": "citrus-base",
@@ -401,7 +401,7 @@
   },
   "docker-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "docker-client",
     "group": "docker",
     "module": "citrus-docker",
@@ -471,7 +471,7 @@
   },
   "kafka-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "kafka-asynchronous",
     "group": "kafka",
     "module": "citrus-kafka",
@@ -589,7 +589,7 @@
   },
   "k8s-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "k8s-client",
     "group": "k8s",
     "module": "citrus-kubernetes",
@@ -667,7 +667,7 @@
   },
   "mail-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "mail-client",
     "group": "mail",
     "module": "citrus-mail",
@@ -736,7 +736,7 @@
   },
   "http-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "http-client",
     "group": "http",
     "module": "citrus-http",
@@ -904,14 +904,14 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The Http request timeout while waiting for a response",
-          "default": "5000"
+          "default": 5000
         }
       },
       "additionalProperties": false    }
   },
   "ssh-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "ssh-client",
     "group": "ssh",
     "module": "citrus-ssh",
@@ -930,7 +930,7 @@
   },
   "websocket-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "websocket-client",
     "group": "websocket",
     "module": "citrus-websocket",
@@ -971,14 +971,14 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The Http request timeout while waiting for a response",
-          "default": "5000"
+          "default": 5000
         }
       },
       "additionalProperties": false    }
   },
   "channel-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "channel-asynchronous",
     "group": "channel",
     "module": "citrus-spring-integration",
@@ -1025,7 +1025,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the receive timeout when waiting for messages.",
-          "default": "5000"
+          "default": 5000
         },
         "useObjectMessages": {
           "type": "boolean",
@@ -1038,7 +1038,7 @@
   },
   "soap-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "soap-server",
     "group": "soap",
     "module": "citrus-ws",
@@ -1170,9 +1170,9 @@
           "description": "Sets the security handler as a bean reference.",
           "$comment": "group:security"
         },
-        "serServletHandler": {
+        "servletHandler": {
           "type": "string",
-          "title": "SerServletHandler",
+          "title": "ServletHandler",
           "description": "Sets a custom servlet handler as a bean reference.",
           "$comment": "group:servlet"
         },
@@ -1204,14 +1204,14 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the server timeout while waiting for incoming requests.",
-          "default": "5000"
+          "default": 5000
         }
       },
       "additionalProperties": false    }
   },
   "channel-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "channel-synchronous",
     "group": "channel",
     "module": "citrus-spring-integration",
@@ -1270,7 +1270,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the receive timeout when waiting for messages.",
-          "default": "5000"
+          "default": 5000
         },
         "useObjectMessages": {
           "type": "boolean",
@@ -1283,7 +1283,7 @@
   },
   "sftp-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "sftp-server",
     "group": "sftp",
     "module": "citrus-ftp",
@@ -1396,7 +1396,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The server timeout.",
-          "default": "5000"
+          "default": 5000
         },
         "user": {
           "type": "string",
@@ -1413,7 +1413,7 @@
   },
   "ftp-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "ftp-server",
     "group": "ftp",
     "module": "citrus-ftp",
@@ -1523,7 +1523,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The server timeout.",
-          "default": "5000"
+          "default": 5000
         },
         "user": {
           "type": "string",
@@ -1547,7 +1547,7 @@
   },
   "camel-inOut": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "camel-inOut",
     "group": "camel",
     "module": "citrus-camel",
@@ -1598,7 +1598,7 @@
   },
   "vertx-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "vertx-asynchronous",
     "group": "vertx",
     "module": "citrus-vertx",
@@ -1660,7 +1660,7 @@
   },
   "ftp-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "ftp-client",
     "group": "ftp",
     "module": "citrus-ftp",
@@ -1737,7 +1737,7 @@
   },
   "camel-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "camel-asynchronous",
     "group": "camel",
     "module": "citrus-camel",
@@ -1777,7 +1777,7 @@
   },
   "scp-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "scp-client",
     "group": "scp",
     "module": "citrus-ftp",
@@ -1879,7 +1879,7 @@
   },
   "vertx-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "vertx-synchronous",
     "group": "vertx",
     "module": "citrus-vertx",
@@ -1947,7 +1947,7 @@
   },
   "jms-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "jms-synchronous",
     "group": "jms",
     "module": "citrus-jms",
@@ -2040,7 +2040,7 @@
   },
   "camel-inOnly": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "camel-inOnly",
     "group": "camel",
     "module": "citrus-camel",
@@ -2080,7 +2080,7 @@
   },
   "direct-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "direct-asynchronous",
     "group": "direct",
     "module": "citrus-base",
@@ -2114,7 +2114,7 @@
   },
   "camel-synchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "camel-synchronous",
     "group": "camel",
     "module": "citrus-camel",
@@ -2165,7 +2165,7 @@
   },
   "soap-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "soap-client",
     "group": "soap",
     "module": "citrus-ws",
@@ -2257,7 +2257,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the receive timeout when the client waits for response messages.",
-          "default": "5000"
+          "default": 5000
         },
         "webServiceTemplate": {
           "type": "string",
@@ -2270,7 +2270,7 @@
   },
   "jms-asynchronous": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "jms-asynchronous",
     "group": "jms",
     "module": "citrus-jms",
@@ -2352,7 +2352,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the receive timeout when the consumer waits for messages to arrive.",
-          "default": "5000"
+          "default": 5000
         },
         "useObjectMessages": {
           "type": "boolean",
@@ -2365,7 +2365,7 @@
   },
   "sftp-client": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "sftp-client",
     "group": "sftp",
     "module": "citrus-ftp",
@@ -2482,7 +2482,7 @@
   },
   "selenium-browser": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "selenium-browser",
     "group": "selenium",
     "module": "citrus-selenium",
@@ -2557,7 +2557,7 @@
   },
   "http-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "http-server",
     "group": "http",
     "module": "citrus-http",
@@ -2820,9 +2820,9 @@
           "description": "Sets the security handler as a bean reference.",
           "$comment": "group:security"
         },
-        "serServletHandler": {
+        "servletHandler": {
           "type": "string",
-          "title": "SerServletHandler",
+          "title": "ServletHandler",
           "description": "Sets a custom servlet handler as a bean reference.",
           "$comment": "group:servlet"
         },
@@ -2842,7 +2842,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the server timeout while waiting for incoming requests.",
-          "default": "5000"
+          "default": 5000
         },
         "useDefaultFilters": {
           "type": "boolean",
@@ -2855,7 +2855,7 @@
   },
   "websocket-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "websocket-server",
     "group": "websocket",
     "module": "citrus-websocket",
@@ -3118,9 +3118,9 @@
           "description": "Sets the security handler as a bean reference.",
           "$comment": "group:security"
         },
-        "serServletHandler": {
+        "servletHandler": {
           "type": "string",
-          "title": "SerServletHandler",
+          "title": "ServletHandler",
           "description": "Sets a custom servlet handler as a bean reference.",
           "$comment": "group:servlet"
         },
@@ -3140,7 +3140,7 @@
           "type": "integer",
           "title": "Timeout",
           "description": "Sets the server timeout while waiting for incoming requests.",
-          "default": "5000"
+          "default": 5000
         },
         "useDefaultFilters": {
           "type": "boolean",
@@ -3161,51 +3161,9 @@
       },
       "additionalProperties": false    }
   },
-  "ssh-server": {
-    "kind": "testEndpoint",
-    "version": "4.10.1",
-    "name": "ssh-server",
-    "group": "ssh",
-    "module": "citrus-ssh",
-    "title": "SshServer",
-    "propertiesSchema": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "properties": {
-        "autoStart": {
-          "type": "boolean",
-          "title": "AutoStart",
-          "description": "When enabled the server is automatically started after creation."
-        },
-        "debugLogging": {
-          "type": "boolean",
-          "title": "DebugLogging",
-          "description": "When enabled the server prints debug logging output.",
-          "$comment": "group:advanced"
-        },
-        "endpointAdapter": {
-          "type": "string",
-          "title": "EndpointAdapter",
-          "description": "Sets a custom endpoint adapter to handle requests.",
-          "$comment": "group:advanced"
-        },
-        "name": {
-          "type": "string",
-          "title": "Name",
-          "description": "The name of the endpoint"
-        },
-        "timeout": {
-          "type": "integer",
-          "title": "Timeout",
-          "description": "The server timeout.",
-          "default": "5000"
-        }
-      },
-      "additionalProperties": false    }
-  },
   "mail-server": {
     "kind": "testEndpoint",
-    "version": "4.10.1",
+    "version": "4.10.3",
     "name": "mail-server",
     "group": "mail",
     "module": "citrus-mail",
@@ -3299,7 +3257,49 @@
           "type": "integer",
           "title": "Timeout",
           "description": "The server timeout.",
-          "default": "5000"
+          "default": 5000
+        }
+      },
+      "additionalProperties": false    }
+  },
+  "ssh-server": {
+    "kind": "testEndpoint",
+    "version": "4.10.3",
+    "name": "ssh-server",
+    "group": "ssh",
+    "module": "citrus-ssh",
+    "title": "SshServer",
+    "propertiesSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "properties": {
+        "autoStart": {
+          "type": "boolean",
+          "title": "AutoStart",
+          "description": "When enabled the server is automatically started after creation."
+        },
+        "debugLogging": {
+          "type": "boolean",
+          "title": "DebugLogging",
+          "description": "When enabled the server prints debug logging output.",
+          "$comment": "group:advanced"
+        },
+        "endpointAdapter": {
+          "type": "string",
+          "title": "EndpointAdapter",
+          "description": "Sets a custom endpoint adapter to handle requests.",
+          "$comment": "group:advanced"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the endpoint"
+        },
+        "timeout": {
+          "type": "integer",
+          "title": "Timeout",
+          "description": "The server timeout.",
+          "default": 5000
         }
       },
       "additionalProperties": false    }

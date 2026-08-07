@@ -1,7 +1,7 @@
 {
   "average": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "average",
     "group": "citrus",
     "module": "citrus-base",
@@ -28,7 +28,7 @@
   },
   "cdataSection": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "cdataSection",
     "group": "citrus",
     "module": "citrus-validation-xml",
@@ -50,7 +50,7 @@
   },
   "unixTimestamp": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "unixTimestamp",
     "group": "citrus",
     "module": "citrus-base",
@@ -62,7 +62,7 @@
   },
   "randomString": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomString",
     "group": "citrus",
     "module": "citrus-base",
@@ -99,7 +99,7 @@
   },
   "resolveExternalServiceUrl": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "resolveExternalServiceUrl",
     "group": "citrus",
     "module": "citrus-base",
@@ -126,7 +126,7 @@
   },
   "urlDecode": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "urlDecode",
     "group": "citrus",
     "module": "citrus-base",
@@ -154,7 +154,7 @@
   },
   "localHostAddress": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "localHostAddress",
     "group": "citrus",
     "module": "citrus-base",
@@ -166,7 +166,7 @@
   },
   "currentDate": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "currentDate",
     "group": "citrus",
     "module": "citrus-base",
@@ -195,7 +195,7 @@
   },
   "sum": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "sum",
     "group": "citrus",
     "module": "citrus-base",
@@ -222,7 +222,7 @@
   },
   "urlEncode": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "urlEncode",
     "group": "citrus",
     "module": "citrus-base",
@@ -250,7 +250,7 @@
   },
   "substring": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "substring",
     "group": "citrus",
     "module": "citrus-base",
@@ -283,7 +283,7 @@
   },
   "translate": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "translate",
     "group": "citrus",
     "module": "citrus-base",
@@ -317,7 +317,7 @@
   },
   "escapeJson": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "escapeJson",
     "group": "citrus",
     "module": "citrus-base",
@@ -339,7 +339,7 @@
   },
   "digestAuthHeader": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "digestAuthHeader",
     "group": "citrus",
     "module": "citrus-base",
@@ -403,7 +403,7 @@
   },
   "xpath": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "xpath",
     "group": "citrus",
     "module": "citrus-validation-xml",
@@ -420,7 +420,7 @@
         "source": {
           "type": "string",
           "title": "Source",
-          "description": "The XML source."
+          "description": "The XML source as inline data."
         }
       },
       "required": [
@@ -430,7 +430,7 @@
   },
   "resolveServiceUrl": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "resolveServiceUrl",
     "group": "citrus",
     "module": "citrus-base",
@@ -463,7 +463,7 @@
   },
   "lowerCase": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "lowerCase",
     "group": "citrus",
     "module": "citrus-base",
@@ -485,7 +485,7 @@
   },
   "randomNumber": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomNumber",
     "group": "citrus",
     "module": "citrus-base",
@@ -512,7 +512,7 @@
   },
   "changeDate": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "changeDate",
     "group": "citrus",
     "module": "citrus-base",
@@ -544,7 +544,7 @@
   },
   "randomEnumValue": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomEnumValue",
     "group": "citrus",
     "module": "citrus-base",
@@ -571,7 +571,7 @@
   },
   "escapeXml": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "escapeXml",
     "group": "citrus",
     "module": "citrus-validation-xml",
@@ -593,7 +593,7 @@
   },
   "substringAfter": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "substringAfter",
     "group": "citrus",
     "module": "citrus-base",
@@ -621,7 +621,7 @@
   },
   "randomUUID": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomUUID",
     "group": "citrus",
     "module": "citrus-base",
@@ -633,7 +633,7 @@
   },
   "jsonPatch": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "jsonPatch",
     "group": "citrus",
     "module": "citrus-base",
@@ -677,7 +677,7 @@
         "source": {
           "type": "string",
           "title": "Source",
-          "description": "The JSON source content to be patched."
+          "description": "The JSON source content to be patched as inline data."
         }
       },
       "required": [
@@ -688,7 +688,7 @@
   },
   "floor": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "floor",
     "group": "citrus",
     "module": "citrus-base",
@@ -710,7 +710,7 @@
   },
   "stringLength": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "stringLength",
     "group": "citrus",
     "module": "citrus-base",
@@ -732,7 +732,7 @@
   },
   "encodeBase64": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "encodeBase64",
     "group": "citrus",
     "module": "citrus-base",
@@ -760,7 +760,7 @@
   },
   "ceiling": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "ceiling",
     "group": "citrus",
     "module": "citrus-base",
@@ -782,7 +782,7 @@
   },
   "randomNumberGenerator": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomNumberGenerator",
     "group": "citrus",
     "module": "citrus-base",
@@ -794,7 +794,7 @@
   },
   "systemProperty": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "systemProperty",
     "group": "citrus",
     "module": "citrus-base",
@@ -821,7 +821,7 @@
   },
   "jsonPath": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "jsonPath",
     "group": "citrus",
     "module": "citrus-base",
@@ -838,7 +838,7 @@
         "source": {
           "type": "string",
           "title": "Source",
-          "description": "The Json source."
+          "description": "The Json source as inline data."
         }
       },
       "required": [
@@ -848,7 +848,7 @@
   },
   "concat": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "concat",
     "group": "citrus",
     "module": "citrus-base",
@@ -875,7 +875,7 @@
   },
   "message": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "message",
     "group": "citrus",
     "module": "citrus-base",
@@ -897,7 +897,7 @@
   },
   "round": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "round",
     "group": "citrus",
     "module": "citrus-base",
@@ -919,7 +919,7 @@
   },
   "decodeBase64": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "decodeBase64",
     "group": "citrus",
     "module": "citrus-base",
@@ -947,7 +947,7 @@
   },
   "serviceClusterIp": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "serviceClusterIp",
     "group": "citrus",
     "module": "citrus-base",
@@ -974,7 +974,7 @@
   },
   "randomPattern": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "randomPattern",
     "group": "citrus",
     "module": "citrus-base",
@@ -996,7 +996,7 @@
   },
   "upperCase": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "upperCase",
     "group": "citrus",
     "module": "citrus-base",
@@ -1018,7 +1018,7 @@
   },
   "absolute": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "absolute",
     "group": "citrus",
     "module": "citrus-base",
@@ -1040,7 +1040,7 @@
   },
   "readFile": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "readFile",
     "group": "citrus",
     "module": "citrus-base",
@@ -1073,7 +1073,7 @@
   },
   "maximum": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "maximum",
     "group": "citrus",
     "module": "citrus-base",
@@ -1100,7 +1100,7 @@
   },
   "substringBefore": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "substringBefore",
     "group": "citrus",
     "module": "citrus-base",
@@ -1128,7 +1128,7 @@
   },
   "minimum": {
     "kind": "testFunction",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "minimum",
     "group": "citrus",
     "module": "citrus-base",

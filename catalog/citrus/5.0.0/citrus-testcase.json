@@ -40,21 +40,17 @@
     "Body" : {
       "type" : "object",
       "properties" : {
-        "data" : { },
+        "data" : {
+          "type" : "string",
+          "title" : "Data",
+          "description" : "The message body content as inline data."
+        },
         "resource" : { },
         "script" : { }
       },
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "type" : "object",
-          "properties" : {
-            "data" : {
-              "type" : "string",
-              "title" : "Data",
-              "description" : "The message body content."
-            }
-          },
           "required" : [ "data" ]
         }, {
           "type" : "object",
@@ -93,7 +89,7 @@
                 "content" : {
                   "type" : "string",
                   "title" : "Content",
-                  "description" : "The script content."
+                  "description" : "The script content as inline data."
                 },
                 "file" : {
                   "type" : "string",
@@ -113,8 +109,912 @@
             }
           },
           "required" : [ "script" ]
+        }, {
+          "not" : {
+            "anyOf" : [ {
+              "required" : [ "data" ]
+            }, {
+              "required" : [ "resource" ]
+            }, {
+              "required" : [ "script" ]
+            } ]
+          }
         } ]
       } ]
+    },
+    "Cli" : {
+      "type" : "object",
+      "properties" : {
+        "camelVersion" : {
+          "type" : "string",
+          "title" : "CamelVersion",
+          "description" : "The Apache Camel version."
+        },
+        "cmd" : {
+          "type" : "object",
+          "properties" : {
+            "receive" : {
+              "type" : "object",
+              "properties" : {
+                "args" : {
+                  "title" : "Args",
+                  "description" : "Command arguments.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Args",
+                    "description" : "Command arguments.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "delayBetweenAttempts" : {
+                  "type" : "integer",
+                  "title" : "DelayBetweenAttempts",
+                  "description" : "The delay in milliseconds to wait between validation attempts.",
+                  "default" : 1000,
+                  "$comment" : "group:advanced"
+                },
+                "endpoint" : {
+                  "type" : "string",
+                  "title" : "Endpoint",
+                  "description" : "Optional endpoint in the Camel integration.",
+                  "$comment" : "group:advanced"
+                },
+                "grep" : {
+                  "type" : "string",
+                  "title" : "Grep",
+                  "description" : "Filter messages based on this expression."
+                },
+                "integration" : {
+                  "type" : "string",
+                  "title" : "Integration",
+                  "description" : "The Camel integration to send the message to."
+                },
+                "jsonOutput" : {
+                  "type" : "boolean",
+                  "title" : "JsonOutput",
+                  "description" : "When enabled action stores messages from json output.",
+                  "default" : false,
+                  "$comment" : "group:advanced"
+                },
+                "loggingColor" : {
+                  "type" : "boolean",
+                  "title" : "LoggingColor",
+                  "description" : "When enabled the output uses logging color.",
+                  "default" : false,
+                  "$comment" : "group:advanced"
+                },
+                "maxAttempts" : {
+                  "type" : "integer",
+                  "title" : "MaxAttempts",
+                  "description" : "Maximum number of validation attempts.",
+                  "default" : 60,
+                  "$comment" : "group:advanced"
+                },
+                "printLogs" : {
+                  "type" : "boolean",
+                  "title" : "PrintLogs",
+                  "description" : "When enabled the Camel integration log output is added to the test log output.",
+                  "$comment" : "group:advanced"
+                },
+                "since" : {
+                  "type" : "string",
+                  "title" : "Since",
+                  "description" : "Return messages newer than a relative duration.",
+                  "$comment" : "group:advanced"
+                },
+                "stopOnErrorStatus" : {
+                  "type" : "boolean",
+                  "title" : "StopOnErrorStatus",
+                  "description" : "When enabled the validation attempts stop when error state is reported.",
+                  "default" : true,
+                  "$comment" : "group:advanced"
+                },
+                "tail" : {
+                  "type" : "integer",
+                  "title" : "Tail",
+                  "description" : "The number of messages from the end to show.",
+                  "default" : 0,
+                  "$comment" : "group:advanced"
+                },
+                "uri" : {
+                  "type" : "string",
+                  "title" : "Uri",
+                  "description" : "Camel endpoint URI to send message to.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Receive",
+              "description" : "Receives a message from a Camel CLI integration."
+            },
+            "send" : {
+              "type" : "object",
+              "properties" : {
+                "args" : {
+                  "title" : "Args",
+                  "description" : "Command arguments.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Args",
+                    "description" : "Command arguments.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "data" : {
+                      "type" : "string",
+                      "title" : "Data",
+                      "description" : "The message body as inline data."
+                    },
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "The message body content loaded from a file resource."
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Body",
+                  "description" : "The message body."
+                },
+                "endpoint" : {
+                  "type" : "string",
+                  "title" : "Endpoint",
+                  "description" : "Optional endpoint in the Camel integration.",
+                  "$comment" : "group:advanced"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "title" : "Headers",
+                  "description" : "The message headers.",
+                  "additionalProperties" : {
+                    "type" : "string",
+                    "title" : "Headers",
+                    "description" : "The message headers."
+                  }
+                },
+                "infra" : {
+                  "type" : "string",
+                  "title" : "Infra",
+                  "description" : "Optional Camel infrastructure service to connect to.",
+                  "$comment" : "group:advanced"
+                },
+                "integration" : {
+                  "type" : "string",
+                  "title" : "Integration",
+                  "description" : "The Camel integration to send the message to."
+                },
+                "reply" : {
+                  "type" : "boolean",
+                  "title" : "Reply",
+                  "description" : "When enabled the operation waits for a reply message from the integration.",
+                  "$comment" : "group:advanced"
+                },
+                "timeout" : {
+                  "type" : "string",
+                  "title" : "Timeout",
+                  "description" : "The send timeout."
+                },
+                "uri" : {
+                  "type" : "string",
+                  "title" : "Uri",
+                  "description" : "Camel endpoint URI to send message to.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Send",
+              "description" : "Sends a message to Camel CLI integration."
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Cmd",
+          "description" : "Camel CLI cmd operations."
+        },
+        "custom" : {
+          "type" : "object",
+          "properties" : {
+            "args" : {
+              "title" : "Args",
+              "description" : "Optional command arguments.",
+              "$comment" : "group:advanced",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Args",
+                "description" : "Optional command arguments.",
+                "$comment" : "group:advanced"
+              }
+            },
+            "autoRemove" : {
+              "type" : "boolean",
+              "title" : "AutoRemove",
+              "description" : "When enabled the Camel integration is automatically stopped after the test.",
+              "default" : true,
+              "$comment" : "group:advanced"
+            },
+            "commands" : {
+              "title" : "Commands",
+              "description" : "Customized Camel CLI commands.",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Commands",
+                "description" : "Customized Camel CLI commands."
+              }
+            },
+            "dumpIntegrationOutput" : {
+              "type" : "boolean",
+              "title" : "DumpIntegrationOutput",
+              "description" : "When enabled the integration output is saved to a log file.",
+              "default" : false,
+              "$comment" : "group:advanced"
+            },
+            "integration" : {
+              "type" : "object",
+              "properties" : {
+                "environment" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "Environment variables loaded from a file resource."
+                    },
+                    "variables" : {
+                      "title" : "Variables",
+                      "description" : "List of environment variables.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The environment variable name."
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The environment variable value."
+                          }
+                        },
+                        "required" : [ "name", "value" ],
+                        "additionalProperties" : false,
+                        "title" : "Variables",
+                        "description" : "List of environment variables."
+                      }
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Environment",
+                  "description" : "Environment variables set for the Camel CLI process.",
+                  "$comment" : "group:advanced"
+                },
+                "file" : {
+                  "type" : "string",
+                  "title" : "File",
+                  "description" : "Camel integration source code loaded from a file resource."
+                },
+                "name" : {
+                  "type" : "string",
+                  "title" : "Name",
+                  "description" : "The Camel integration name."
+                },
+                "systemProperties" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "System properties loaded from a file resource."
+                    },
+                    "properties" : {
+                      "title" : "Properties",
+                      "description" : "List of system properties.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The system property name."
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The system property value."
+                          }
+                        },
+                        "required" : [ "name", "value" ],
+                        "additionalProperties" : false,
+                        "title" : "Properties",
+                        "description" : "List of system properties."
+                      }
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "SystemProperties",
+                  "description" : "System properties set for the Camel CLI process.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Integration",
+              "description" : "The Camel integration."
+            },
+            "processName" : {
+              "type" : "string",
+              "title" : "ProcessName",
+              "description" : "Custom Camel CLI process name.",
+              "$comment" : "group:advanced"
+            },
+            "resources" : {
+              "title" : "Resources",
+              "description" : "Optional list of resources added to the Camel CLI process.",
+              "$comment" : "group:advanced",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Resources",
+                "description" : "Optional list of resources added to the Camel CLI process.",
+                "$comment" : "group:advanced"
+              }
+            },
+            "waitForRunningState" : {
+              "type" : "boolean",
+              "title" : "WaitForRunningState",
+              "description" : "Wait for the integration to report running state.",
+              "default" : true,
+              "$comment" : "group:advanced"
+            },
+            "workDir" : {
+              "type" : "string",
+              "title" : "WorkDir",
+              "description" : "Custom working directory for the Camel CLI process.",
+              "$comment" : "group:advanced"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Custom",
+          "description" : "Runs a Camel integration with customized parameters."
+        },
+        "kameletsVersion" : {
+          "type" : "string",
+          "title" : "KameletsVersion",
+          "description" : "The Kamelets version."
+        },
+        "kubernetes" : {
+          "type" : "object",
+          "properties" : {
+            "delete" : {
+              "type" : "object",
+              "properties" : {
+                "clusterType" : {
+                  "type" : "string",
+                  "title" : "ClusterType",
+                  "description" : "The Kubernetes cluster type.",
+                  "$comment" : "group:advanced"
+                },
+                "integration" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "The Camel integration source code loaded from a file resource."
+                    },
+                    "name" : {
+                      "type" : "string",
+                      "title" : "Name",
+                      "description" : "The Camel integration name."
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Integration",
+                  "description" : "The Camel integration to delete."
+                },
+                "namespace" : {
+                  "type" : "string",
+                  "title" : "Namespace",
+                  "description" : "The Kubernetes namespace.",
+                  "$comment" : "group:advanced"
+                },
+                "workingDir" : {
+                  "type" : "string",
+                  "title" : "WorkingDir",
+                  "description" : "The working directory that contains the Kubernetes manifest.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Delete",
+              "description" : "Deletes a Camel integration from Kubernetes."
+            },
+            "run" : {
+              "type" : "object",
+              "properties" : {
+                "argLine" : {
+                  "type" : "string",
+                  "title" : "ArgLine",
+                  "description" : "Camel CLI command arguments.",
+                  "$comment" : "group:advanced"
+                },
+                "args" : {
+                  "title" : "Args",
+                  "description" : "Camel CLI command arguments.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Args",
+                    "description" : "Camel CLI command arguments.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "autoRemove" : {
+                  "type" : "boolean",
+                  "title" : "AutoRemove",
+                  "description" : "When enabled the Camel integration is automatically removed from Kubernetes after the test.",
+                  "default" : true
+                },
+                "buildProperties" : {
+                  "title" : "BuildProperties",
+                  "description" : "List of build properties passed to the Camel CLI project build.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "BuildProperties",
+                    "description" : "List of build properties passed to the Camel CLI project build.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "clusterType" : {
+                  "type" : "string",
+                  "title" : "ClusterType",
+                  "description" : "The Kubernetes cluster type.",
+                  "$comment" : "group:advanced"
+                },
+                "imageBuilder" : {
+                  "type" : "string",
+                  "title" : "ImageBuilder",
+                  "description" : "The Docker image builder.",
+                  "$comment" : "group:advanced"
+                },
+                "imageRegistry" : {
+                  "type" : "string",
+                  "title" : "ImageRegistry",
+                  "description" : "The Docker image registry.",
+                  "$comment" : "group:advanced"
+                },
+                "integration" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "The integration source code loaded as a file resource."
+                    },
+                    "name" : {
+                      "type" : "string",
+                      "title" : "Name",
+                      "description" : "The Camel integration name."
+                    },
+                    "source" : {
+                      "type" : "string",
+                      "title" : "Source",
+                      "description" : "The integration source code as inline data."
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Integration",
+                  "description" : "The Camel integration name."
+                },
+                "properties" : {
+                  "title" : "Properties",
+                  "description" : "Properties set on the Camel CLI project export.",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Properties",
+                    "description" : "Properties set on the Camel CLI project export."
+                  }
+                },
+                "runtime" : {
+                  "type" : "string",
+                  "title" : "Runtime",
+                  "description" : "The runtime to use.",
+                  "default" : "quarkus",
+                  "$comment" : "group:advanced"
+                },
+                "traits" : {
+                  "title" : "Traits",
+                  "description" : "List of traits to set for the project export.",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Traits",
+                    "description" : "List of traits to set for the project export."
+                  }
+                },
+                "verbose" : {
+                  "type" : "boolean",
+                  "title" : "Verbose",
+                  "description" : "When enabled the Camel CLI command print verbose log messages.",
+                  "default" : false,
+                  "$comment" : "group:advanced"
+                },
+                "waitForRunningState" : {
+                  "type" : "boolean",
+                  "title" : "WaitForRunningState",
+                  "description" : "When enabled the test waits for the Camel integration Kubernetes deployment to report proper running state.",
+                  "default" : true,
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Run",
+              "description" : "Runs a Camel integration on Kubernetes."
+            },
+            "verify" : {
+              "type" : "object",
+              "properties" : {
+                "args" : {
+                  "title" : "Args",
+                  "description" : "Camel CLI command arguments.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Args",
+                    "description" : "Camel CLI command arguments.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "delayBetweenAttempts" : {
+                  "type" : "integer",
+                  "title" : "DelayBetweenAttempts",
+                  "description" : "The delay in milliseconds to wait between validation attempts.",
+                  "default" : 1000,
+                  "$comment" : "group:advanced"
+                },
+                "integration" : {
+                  "type" : "string",
+                  "title" : "Integration",
+                  "description" : "The Camel integration name."
+                },
+                "label" : {
+                  "type" : "string",
+                  "title" : "Label",
+                  "description" : "Identify the Camel integration via a Kubernetes label."
+                },
+                "logMessage" : {
+                  "type" : "string",
+                  "title" : "LogMessage",
+                  "description" : "The expected log message to verify."
+                },
+                "maxAttempts" : {
+                  "type" : "integer",
+                  "title" : "MaxAttempts",
+                  "description" : "Maximum number of validation attempts.",
+                  "default" : 60,
+                  "$comment" : "group:advanced"
+                },
+                "namespace" : {
+                  "type" : "string",
+                  "title" : "Namespace",
+                  "description" : "The Kubernetes namespace.",
+                  "$comment" : "group:advanced"
+                },
+                "printLogs" : {
+                  "type" : "boolean",
+                  "title" : "PrintLogs",
+                  "description" : "When enabled the Camel integration log output is added to the test log output.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Verify",
+              "description" : "Verify the status and log messages for a Camel integration run on Kubernetes."
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Kubernetes",
+          "description" : "Camel Kubernetes plugin related operations."
+        },
+        "plugin" : {
+          "type" : "object",
+          "properties" : {
+            "add" : {
+              "type" : "object",
+              "properties" : {
+                "args" : {
+                  "title" : "Args",
+                  "description" : "Plugin arguments.",
+                  "$comment" : "group:advanced",
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string",
+                    "title" : "Args",
+                    "description" : "Plugin arguments.",
+                    "$comment" : "group:advanced"
+                  }
+                },
+                "autoRemove" : {
+                  "type" : "boolean",
+                  "title" : "AutoRemove",
+                  "description" : "When enabled the Camel plugin is automatically removed after the test.",
+                  "default" : false,
+                  "$comment" : "group:advanced"
+                },
+                "name" : {
+                  "type" : "string",
+                  "title" : "Name",
+                  "description" : "The plugin name."
+                }
+              },
+              "required" : [ "name" ],
+              "additionalProperties" : false,
+              "title" : "Add",
+              "description" : "Adds a plugin to the Camel CLI installation."
+            },
+            "delete" : {
+              "type" : "object",
+              "properties" : {
+                "name" : {
+                  "type" : "string",
+                  "title" : "Name",
+                  "description" : "The plugin name."
+                }
+              },
+              "required" : [ "name" ],
+              "additionalProperties" : false,
+              "title" : "Delete",
+              "description" : "Deletes a plugin from the Camel CLI installation."
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Plugin",
+          "description" : "Manage Camel CLI plugins."
+        },
+        "run" : {
+          "type" : "object",
+          "properties" : {
+            "args" : {
+              "title" : "Args",
+              "description" : "Optional command arguments.",
+              "$comment" : "group:advanced",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Args",
+                "description" : "Optional command arguments.",
+                "$comment" : "group:advanced"
+              }
+            },
+            "autoRemove" : {
+              "type" : "boolean",
+              "title" : "AutoRemove",
+              "description" : "When enabled the Camel integration is automatically stopped after the test.",
+              "default" : true,
+              "$comment" : "group:advanced"
+            },
+            "dumpIntegrationOutput" : {
+              "type" : "boolean",
+              "title" : "DumpIntegrationOutput",
+              "description" : "When enabled the integration output is saved to a log file.",
+              "default" : false,
+              "$comment" : "group:advanced"
+            },
+            "integration" : {
+              "type" : "object",
+              "properties" : {
+                "environment" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "Environment variables loaded from a file resource."
+                    },
+                    "variables" : {
+                      "title" : "Variables",
+                      "description" : "List of environment variables.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The environment variable name."
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The environment variable value."
+                          }
+                        },
+                        "required" : [ "name", "value" ],
+                        "additionalProperties" : false,
+                        "title" : "Variables",
+                        "description" : "List of environment variables."
+                      }
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Environment",
+                  "description" : "Environment variables set for the Camel CLI process.",
+                  "$comment" : "group:advanced"
+                },
+                "file" : {
+                  "type" : "string",
+                  "title" : "File",
+                  "description" : "Camel integration source code loaded from a file resource."
+                },
+                "name" : {
+                  "type" : "string",
+                  "title" : "Name",
+                  "description" : "The Camel integration name."
+                },
+                "source" : {
+                  "type" : "string",
+                  "title" : "Source",
+                  "description" : "Camel integration source code as inline data."
+                },
+                "systemProperties" : {
+                  "type" : "object",
+                  "properties" : {
+                    "file" : {
+                      "type" : "string",
+                      "title" : "File",
+                      "description" : "System properties loaded from a file resource."
+                    },
+                    "properties" : {
+                      "title" : "Properties",
+                      "description" : "List of system properties.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The system property name."
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The system property value."
+                          }
+                        },
+                        "required" : [ "name", "value" ],
+                        "additionalProperties" : false,
+                        "title" : "Properties",
+                        "description" : "List of system properties."
+                      }
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "SystemProperties",
+                  "description" : "System properties set for the Camel CLI process.",
+                  "$comment" : "group:advanced"
+                }
+              },
+              "additionalProperties" : false,
+              "title" : "Integration",
+              "description" : "The Camel integration."
+            },
+            "resources" : {
+              "title" : "Resources",
+              "description" : "Optional list of resources added to the Camel CLI process.",
+              "$comment" : "group:advanced",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Resources",
+                "description" : "Optional list of resources added to the Camel CLI process.",
+                "$comment" : "group:advanced"
+              }
+            },
+            "stub" : {
+              "title" : "Stub",
+              "description" : "Optional stubbed components.",
+              "$comment" : "group:advanced",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Stub",
+                "description" : "Optional stubbed components.",
+                "$comment" : "group:advanced"
+              }
+            },
+            "waitForRunningState" : {
+              "type" : "boolean",
+              "title" : "WaitForRunningState",
+              "description" : "Wait for the integration to report running state.",
+              "default" : true,
+              "$comment" : "group:advanced"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Run",
+          "description" : "Runs a Camel integration."
+        },
+        "stop" : {
+          "type" : "object",
+          "properties" : {
+            "integration" : {
+              "type" : "string",
+              "title" : "Integration",
+              "description" : "Camel integration name"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Stop",
+          "description" : "Stops a Camel integration."
+        },
+        "verify" : {
+          "type" : "object",
+          "properties" : {
+            "delayBetweenAttempts" : {
+              "type" : "integer",
+              "title" : "DelayBetweenAttempts",
+              "description" : "The delay in milliseconds to wait between validation attempts.",
+              "default" : 1000,
+              "$comment" : "group:advanced"
+            },
+            "integration" : {
+              "type" : "string",
+              "title" : "Integration",
+              "description" : "The Camel integration name."
+            },
+            "logMessage" : {
+              "type" : "string",
+              "title" : "LogMessage",
+              "description" : "The expected log message to verify."
+            },
+            "maxAttempts" : {
+              "type" : "integer",
+              "title" : "MaxAttempts",
+              "description" : "Maximum attempts to validate the integration.",
+              "default" : 60,
+              "$comment" : "group:advanced"
+            },
+            "phase" : {
+              "type" : "string",
+              "title" : "Phase",
+              "description" : "The expected integration status",
+              "default" : "Running",
+              "$comment" : "group:advanced"
+            },
+            "printLogs" : {
+              "type" : "boolean",
+              "title" : "PrintLogs",
+              "description" : "When enabled the Camel integration log output is added to the test log output.",
+              "$comment" : "group:advanced"
+            },
+            "stopOnErrorStatus" : {
+              "type" : "boolean",
+              "title" : "StopOnErrorStatus",
+              "description" : "When enabled the validation attempts stop when error state is reported.",
+              "default" : true,
+              "$comment" : "group:advanced"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Verify",
+          "description" : "Verify the Camel integration status and log messages."
+        }
+      },
+      "additionalProperties" : false
     },
     "Element" : {
       "type" : "object",
@@ -169,11 +1069,7 @@
       },
       "additionalProperties" : false
     },
-    "ErrorHandlingStrategy" : {
-      "type" : "string",
-      "enum" : [ "THROWS_EXCEPTION", "PROPAGATE" ]
-    },
-    "Expression" : {
+    "Expression-1" : {
       "type" : "object",
       "properties" : {
         "path" : {
@@ -188,6 +1084,23 @@
         }
       },
       "required" : [ "path", "value" ],
+      "additionalProperties" : false
+    },
+    "Expression-2" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "title" : "Path",
+          "description" : "The path expression to evaluate."
+        },
+        "value" : {
+          "type" : "string",
+          "title" : "Value",
+          "description" : "The path expression value."
+        }
+      },
+      "required" : [ "value" ],
       "additionalProperties" : false
     },
     "Extract" : {
@@ -253,7 +1166,11 @@
     "Header" : {
       "type" : "object",
       "properties" : {
-        "data" : { },
+        "data" : {
+          "type" : "string",
+          "title" : "Data",
+          "description" : "The message header value as inline data."
+        },
         "name" : {
           "type" : "string",
           "title" : "Name",
@@ -266,19 +1183,15 @@
           "description" : "The message header type to create typed message headers.",
           "$comment" : "group:advanced"
         },
-        "value" : { }
+        "value" : {
+          "type" : "string",
+          "title" : "Value",
+          "description" : "The message header value."
+        }
       },
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "type" : "object",
-          "properties" : {
-            "value" : {
-              "type" : "string",
-              "title" : "Value",
-              "description" : "The message header value."
-            }
-          },
           "required" : [ "value" ]
         }, {
           "type" : "object",
@@ -306,15 +1219,17 @@
           },
           "required" : [ "resource" ]
         }, {
-          "type" : "object",
-          "properties" : {
-            "data" : {
-              "type" : "string",
-              "title" : "Data",
-              "description" : "The message header value as inline data."
-            }
-          },
           "required" : [ "data" ]
+        }, {
+          "not" : {
+            "anyOf" : [ {
+              "required" : [ "value" ]
+            }, {
+              "required" : [ "resource" ]
+            }, {
+              "required" : [ "data" ]
+            } ]
+          }
         } ]
       } ]
     },
@@ -353,7 +1268,7 @@
           "type" : "array",
           "items" : {
             "allOf" : [ {
-              "$ref" : "#/definitions/Expression"
+              "$ref" : "#/definitions/Expression-1"
             }, {
               "title" : "Expression",
               "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -362,7 +1277,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -437,7 +1352,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -478,7 +1393,7 @@
           "type" : "array",
           "items" : {
             "allOf" : [ {
-              "$ref" : "#/definitions/Expression"
+              "$ref" : "#/definitions/Expression-1"
             }, {
               "title" : "Expression",
               "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -487,7 +1402,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -542,7 +1457,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -556,7 +1471,7 @@
     },
     "HttpStatus" : {
       "type" : "string",
-      "enum" : [ "CONTINUE", "SWITCHING_PROTOCOLS", "PROCESSING", "EARLY_HINTS", "CHECKPOINT", "OK", "CREATED", "ACCEPTED", "NON_AUTHORITATIVE_INFORMATION", "NO_CONTENT", "RESET_CONTENT", "PARTIAL_CONTENT", "MULTI_STATUS", "ALREADY_REPORTED", "IM_USED", "MULTIPLE_CHOICES", "MOVED_PERMANENTLY", "FOUND", "MOVED_TEMPORARILY", "SEE_OTHER", "NOT_MODIFIED", "USE_PROXY", "TEMPORARY_REDIRECT", "PERMANENT_REDIRECT", "BAD_REQUEST", "UNAUTHORIZED", "PAYMENT_REQUIRED", "FORBIDDEN", "NOT_FOUND", "METHOD_NOT_ALLOWED", "NOT_ACCEPTABLE", "PROXY_AUTHENTICATION_REQUIRED", "REQUEST_TIMEOUT", "CONFLICT", "GONE", "LENGTH_REQUIRED", "PRECONDITION_FAILED", "PAYLOAD_TOO_LARGE", "REQUEST_ENTITY_TOO_LARGE", "URI_TOO_LONG", "REQUEST_URI_TOO_LONG", "UNSUPPORTED_MEDIA_TYPE", "REQUESTED_RANGE_NOT_SATISFIABLE", "EXPECTATION_FAILED", "I_AM_A_TEAPOT", "INSUFFICIENT_SPACE_ON_RESOURCE", "METHOD_FAILURE", "DESTINATION_LOCKED", "UNPROCESSABLE_ENTITY", "LOCKED", "FAILED_DEPENDENCY", "TOO_EARLY", "UPGRADE_REQUIRED", "PRECONDITION_REQUIRED", "TOO_MANY_REQUESTS", "REQUEST_HEADER_FIELDS_TOO_LARGE", "UNAVAILABLE_FOR_LEGAL_REASONS", "INTERNAL_SERVER_ERROR", "NOT_IMPLEMENTED", "BAD_GATEWAY", "SERVICE_UNAVAILABLE", "GATEWAY_TIMEOUT", "HTTP_VERSION_NOT_SUPPORTED", "VARIANT_ALSO_NEGOTIATES", "INSUFFICIENT_STORAGE", "LOOP_DETECTED", "BANDWIDTH_LIMIT_EXCEEDED", "NOT_EXTENDED", "NETWORK_AUTHENTICATION_REQUIRED" ]
+      "enum" : [ "CONTINUE", "SWITCHING_PROTOCOLS", "PROCESSING", "EARLY_HINTS", "OK", "CREATED", "ACCEPTED", "NON_AUTHORITATIVE_INFORMATION", "NO_CONTENT", "RESET_CONTENT", "PARTIAL_CONTENT", "MULTI_STATUS", "ALREADY_REPORTED", "IM_USED", "MULTIPLE_CHOICES", "MOVED_PERMANENTLY", "FOUND", "SEE_OTHER", "NOT_MODIFIED", "TEMPORARY_REDIRECT", "PERMANENT_REDIRECT", "BAD_REQUEST", "UNAUTHORIZED", "PAYMENT_REQUIRED", "FORBIDDEN", "NOT_FOUND", "METHOD_NOT_ALLOWED", "NOT_ACCEPTABLE", "PROXY_AUTHENTICATION_REQUIRED", "REQUEST_TIMEOUT", "CONFLICT", "GONE", "LENGTH_REQUIRED", "PRECONDITION_FAILED", "CONTENT_TOO_LARGE", "PAYLOAD_TOO_LARGE", "URI_TOO_LONG", "UNSUPPORTED_MEDIA_TYPE", "REQUESTED_RANGE_NOT_SATISFIABLE", "EXPECTATION_FAILED", "I_AM_A_TEAPOT", "MISDIRECTED_REQUEST", "UNPROCESSABLE_CONTENT", "UNPROCESSABLE_ENTITY", "LOCKED", "FAILED_DEPENDENCY", "TOO_EARLY", "UPGRADE_REQUIRED", "PRECONDITION_REQUIRED", "TOO_MANY_REQUESTS", "REQUEST_HEADER_FIELDS_TOO_LARGE", "UNAVAILABLE_FOR_LEGAL_REASONS", "INTERNAL_SERVER_ERROR", "NOT_IMPLEMENTED", "BAD_GATEWAY", "SERVICE_UNAVAILABLE", "GATEWAY_TIMEOUT", "HTTP_VERSION_NOT_SUPPORTED", "VARIANT_ALSO_NEGOTIATES", "INSUFFICIENT_STORAGE", "LOOP_DETECTED", "BANDWIDTH_LIMIT_EXCEEDED", "NOT_EXTENDED", "NETWORK_AUTHENTICATION_REQUIRED" ]
     },
     "Label" : {
       "type" : "object",
@@ -596,7 +1511,7 @@
           "type" : "array",
           "items" : {
             "allOf" : [ {
-              "$ref" : "#/definitions/Expression"
+              "$ref" : "#/definitions/Expression-1"
             }, {
               "title" : "Expression",
               "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -605,7 +1520,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -649,8 +1564,155 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "Processor" : {
+      "type" : "object",
+      "properties" : {
+        "binary" : {
+          "type" : "object",
+          "properties" : {
+            "encoding" : {
+              "type" : "string",
+              "title" : "Encoding",
+              "description" : "Sets a custom file encoding.",
+              "$comment" : "group:advanced"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Binary",
+          "description" : "Message processor to create binary message content."
+        },
+        "camel" : {
+          "type" : "object",
+          "properties" : {
+            "camelContext" : {
+              "type" : "string",
+              "title" : "CamelContext",
+              "description" : "Camel context used with this processor."
+            },
+            "convertBodyTo" : {
+              "type" : "object",
+              "properties" : {
+                "type" : {
+                  "type" : "string",
+                  "title" : "Type",
+                  "description" : "Fully qualified class name of the target type."
+                }
+              },
+              "required" : [ "type" ],
+              "additionalProperties" : false,
+              "title" : "ConvertBodyTo",
+              "description" : "Converts message body to given type."
+            },
+            "marshal" : {
+              "type" : "object",
+              "title" : "Marshal",
+              "description" : "Marshal message content with a Camel data format."
+            },
+            "processor" : {
+              "type" : "string",
+              "title" : "Processor",
+              "description" : "Camel message processor referenced by its bean name."
+            },
+            "transform" : {
+              "type" : "object",
+              "title" : "Transform",
+              "description" : "Transform message content with a Camel expression."
+            },
+            "unmarshal" : {
+              "type" : "object",
+              "title" : "Unmarshal",
+              "description" : "Unmarshal message content with a Camel data format."
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Camel",
+          "description" : "Camel message processors using transform capabilities of Apache Camel with supported data formats."
+        },
+        "gzip" : {
+          "type" : "object",
+          "properties" : {
+            "encoding" : {
+              "type" : "string",
+              "title" : "Encoding",
+              "description" : "Sets a custom file encoding.",
+              "$comment" : "group:advanced"
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Gzip",
+          "description" : "Gzip message processor transforms content into zipped content."
+        },
+        "json" : {
+          "type" : "object",
+          "properties" : {
+            "expressions" : {
+              "title" : "Expressions",
+              "description" : "List of expressions to evaluate",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Expression-2"
+                }, {
+                  "title" : "Expressions",
+                  "description" : "List of expressions to evaluate"
+                } ]
+              }
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Json",
+          "description" : "Json message processors."
+        },
+        "xpath" : {
+          "type" : "object",
+          "properties" : {
+            "expressions" : {
+              "title" : "Expressions",
+              "description" : "List of expressions to evaluate",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Expression-2"
+                }, {
+                  "title" : "Expressions",
+                  "description" : "List of expressions to evaluate"
+                } ]
+              }
+            },
+            "namespaces" : {
+              "title" : "Namespaces",
+              "description" : "List of namespaces that should be used with the expression evaluation.",
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "prefix" : {
+                    "type" : "string",
+                    "title" : "Prefix",
+                    "description" : "The namespace prefix."
+                  },
+                  "uri" : {
+                    "type" : "string",
+                    "title" : "Uri",
+                    "description" : "The namespace uri."
+                  }
+                },
+                "required" : [ "prefix", "uri" ],
+                "additionalProperties" : false,
+                "title" : "Namespaces",
+                "description" : "List of namespaces that should be used with the expression evaluation."
+              }
+            }
+          },
+          "additionalProperties" : false,
+          "title" : "Xpath",
+          "description" : "Xml message processors."
         }
       },
       "additionalProperties" : false
@@ -788,7 +1850,7 @@
           "type" : "array",
           "items" : {
             "allOf" : [ {
-              "$ref" : "#/definitions/Expression"
+              "$ref" : "#/definitions/Expression-1"
             }, {
               "title" : "Expression",
               "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -797,7 +1859,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -857,7 +1919,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -913,7 +1975,7 @@
           "type" : "array",
           "items" : {
             "allOf" : [ {
-              "$ref" : "#/definitions/Expression"
+              "$ref" : "#/definitions/Expression-1"
             }, {
               "title" : "Expression",
               "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -922,7 +1984,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -977,7 +2039,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -1308,6 +2370,14 @@
               "title" : "CamelContext",
               "description" : "Name of the Camel context."
             },
+            "cli" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/Cli"
+              }, {
+                "title" : "Cli",
+                "description" : "Connect with Camel CLI to run commands."
+              } ]
+            },
             "controlBus" : {
               "type" : "object",
               "properties" : {
@@ -1461,15 +2531,26 @@
                       "description" : "When enabled the service output is saved into a log file.",
                       "$comment" : "group:advanced"
                     },
+                    "fixedPort" : {
+                      "type" : "boolean",
+                      "title" : "FixedPort",
+                      "description" : "When enabled the infra service uses fixed ports."
+                    },
                     "implementation" : {
                       "type" : "string",
                       "title" : "Implementation",
                       "description" : "Optional service implementation detail."
                     },
+                    "port" : {
+                      "type" : "integer",
+                      "title" : "Port",
+                      "description" : "When set the infra service uses this port as a fixed port."
+                    },
                     "service" : {
                       "type" : "string",
                       "title" : "Service",
-                      "description" : "The Camel infra service name."
+                      "description" : "The Camel infra service name.",
+                      "examples" : [ "arangodb", "artemis", "artemis.amqp", "aws.cloud-watch", "aws.config", "aws.dynamo-db", "aws.dynamodb", "aws.ec2", "aws.event-bridge", "aws.iam", "aws.kinesis", "aws.kms", "aws.lambda", "aws.s3", "aws.secrets-manager", "aws.sns", "aws.sqs", "aws.ssm", "aws.sts", "aws.transcribe", "azure.storage-blob", "azure.storage-queue", "cassandra", "chat-script", "consul", "couchbase", "couchdb", "docling", "elasticsearch", "fhir", "ftp", "ftps", "google.pub-sub", "hashicorp.vault", "hazelcast", "hive-mq", "hive-mq.sparkplug", "ibmmq", "iggy", "ignite", "infinispan", "jaeger", "kafka", "kafka.confluent", "kafka.redpanda", "kafka.strimzi", "keycloak", "microprofile.lra", "milvus", "minio", "mongodb", "mosquitto", "nats", "neo4j", "ollama", "openldap", "pgvector", "pinecone", "postgres", "postgres-vector", "pulsar", "qdrant", "rabbitmq", "redis", "rocketmq", "sftp", "smb", "solr", "weaviate", "xmpp", "zookeeper" ]
                     }
                   },
                   "additionalProperties" : false,
@@ -1500,879 +2581,12 @@
               "description" : "Manage Camel infra services."
             },
             "jbang" : {
-              "type" : "object",
-              "properties" : {
-                "camelVersion" : {
-                  "type" : "string",
-                  "title" : "CamelVersion",
-                  "description" : "The Apache Camel version."
-                },
-                "cmd" : {
-                  "type" : "object",
-                  "properties" : {
-                    "receive" : {
-                      "type" : "object",
-                      "properties" : {
-                        "args" : {
-                          "title" : "Args",
-                          "description" : "Command arguments.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Args",
-                            "description" : "Command arguments.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "delayBetweenAttempts" : {
-                          "type" : "integer",
-                          "title" : "DelayBetweenAttempts",
-                          "description" : "The delay in milliseconds to wait between validation attempts.",
-                          "default" : "1000",
-                          "$comment" : "group:advanced"
-                        },
-                        "endpoint" : {
-                          "type" : "string",
-                          "title" : "Endpoint",
-                          "description" : "Optional endpoint in the Camel integration.",
-                          "$comment" : "group:advanced"
-                        },
-                        "grep" : {
-                          "type" : "string",
-                          "title" : "Grep",
-                          "description" : "Filter messages based on this expression."
-                        },
-                        "integration" : {
-                          "type" : "string",
-                          "title" : "Integration",
-                          "description" : "The Camel integration to send the message to."
-                        },
-                        "jsonOutput" : {
-                          "type" : "boolean",
-                          "title" : "JsonOutput",
-                          "description" : "When enabled action stores messages from json output.",
-                          "default" : "false",
-                          "$comment" : "group:advanced"
-                        },
-                        "loggingColor" : {
-                          "type" : "boolean",
-                          "title" : "LoggingColor",
-                          "description" : "When enabled the output uses logging color.",
-                          "default" : "false",
-                          "$comment" : "group:advanced"
-                        },
-                        "maxAttempts" : {
-                          "type" : "integer",
-                          "title" : "MaxAttempts",
-                          "description" : "Maximum number of validation attempts.",
-                          "default" : "60",
-                          "$comment" : "group:advanced"
-                        },
-                        "printLogs" : {
-                          "type" : "boolean",
-                          "title" : "PrintLogs",
-                          "description" : "When enabled the Camel integration log output is added to the test log output.",
-                          "$comment" : "group:advanced"
-                        },
-                        "since" : {
-                          "type" : "string",
-                          "title" : "Since",
-                          "description" : "Return messages newer than a relative duration.",
-                          "$comment" : "group:advanced"
-                        },
-                        "stopOnErrorStatus" : {
-                          "type" : "boolean",
-                          "title" : "StopOnErrorStatus",
-                          "description" : "When enabled the validation attempts stop when error state is reported.",
-                          "default" : "true",
-                          "$comment" : "group:advanced"
-                        },
-                        "tail" : {
-                          "type" : "string",
-                          "title" : "Tail",
-                          "description" : "The number of messages from the end to show.",
-                          "default" : "0",
-                          "$comment" : "group:advanced"
-                        },
-                        "uri" : {
-                          "type" : "string",
-                          "title" : "Uri",
-                          "description" : "Camel endpoint URI to send message to.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Receive",
-                      "description" : "Receives a message from a Camel JBang integration."
-                    },
-                    "send" : {
-                      "type" : "object",
-                      "properties" : {
-                        "args" : {
-                          "title" : "Args",
-                          "description" : "Command arguments.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Args",
-                            "description" : "Command arguments.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "body" : {
-                          "type" : "object",
-                          "properties" : {
-                            "data" : {
-                              "type" : "string",
-                              "title" : "Data",
-                              "description" : "The message body as inline data."
-                            },
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "The message body content loaded from a file resource."
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "Body",
-                          "description" : "The message body."
-                        },
-                        "endpoint" : {
-                          "type" : "string",
-                          "title" : "Endpoint",
-                          "description" : "Optional endpoint in the Camel integration.",
-                          "$comment" : "group:advanced"
-                        },
-                        "headers" : {
-                          "type" : "object",
-                          "title" : "Headers",
-                          "description" : "The message headers.",
-                          "additionalProperties" : {
-                            "type" : "string",
-                            "title" : "Headers",
-                            "description" : "The message headers."
-                          }
-                        },
-                        "infra" : {
-                          "type" : "string",
-                          "title" : "Infra",
-                          "description" : "Optional Camel infrastructure service to connect to.",
-                          "$comment" : "group:advanced"
-                        },
-                        "integration" : {
-                          "type" : "string",
-                          "title" : "Integration",
-                          "description" : "The Camel integration to send the message to."
-                        },
-                        "reply" : {
-                          "type" : "boolean",
-                          "title" : "Reply",
-                          "description" : "When enabled the operation waits for a reply message from the integration.",
-                          "$comment" : "group:advanced"
-                        },
-                        "timeout" : {
-                          "type" : "string",
-                          "title" : "Timeout",
-                          "description" : "The send timeout."
-                        },
-                        "uri" : {
-                          "type" : "string",
-                          "title" : "Uri",
-                          "description" : "Camel endpoint URI to send message to.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Send",
-                      "description" : "Sends a message to Camel JBang integration."
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Cmd",
-                  "description" : "Camel JBang cmd operations."
-                },
-                "custom" : {
-                  "type" : "object",
-                  "properties" : {
-                    "args" : {
-                      "title" : "Args",
-                      "description" : "Optional command arguments.",
-                      "$comment" : "group:advanced",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Args",
-                        "description" : "Optional command arguments.",
-                        "$comment" : "group:advanced"
-                      }
-                    },
-                    "autoRemove" : {
-                      "type" : "boolean",
-                      "title" : "AutoRemove",
-                      "description" : "When enabled the Camel integration is automatically stopped after the test.",
-                      "default" : "true",
-                      "$comment" : "group:advanced"
-                    },
-                    "commands" : {
-                      "title" : "Commands",
-                      "description" : "Customized Camel JBang commands.",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Commands",
-                        "description" : "Customized Camel JBang commands."
-                      }
-                    },
-                    "dumpIntegrationOutput" : {
-                      "type" : "boolean",
-                      "title" : "DumpIntegrationOutput",
-                      "description" : "When enabled the integration output is saved to a log file.",
-                      "default" : "false",
-                      "$comment" : "group:advanced"
-                    },
-                    "integration" : {
-                      "type" : "object",
-                      "properties" : {
-                        "environment" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "Environment variables loaded from a file resource."
-                            },
-                            "variables" : {
-                              "title" : "Variables",
-                              "description" : "List of environment variables.",
-                              "type" : "array",
-                              "items" : {
-                                "type" : "object",
-                                "properties" : {
-                                  "name" : {
-                                    "type" : "string",
-                                    "title" : "Name",
-                                    "description" : "The environment variable name."
-                                  },
-                                  "value" : {
-                                    "type" : "string",
-                                    "title" : "Value",
-                                    "description" : "The environment variable value."
-                                  }
-                                },
-                                "required" : [ "name", "value" ],
-                                "additionalProperties" : false,
-                                "title" : "Variables",
-                                "description" : "List of environment variables."
-                              }
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "Environment",
-                          "description" : "Environment variables set for the Camel JBang process.",
-                          "$comment" : "group:advanced"
-                        },
-                        "file" : {
-                          "type" : "string",
-                          "title" : "File",
-                          "description" : "Camel integration source code loaded from a file resource."
-                        },
-                        "name" : {
-                          "type" : "string",
-                          "title" : "Name",
-                          "description" : "The Camel integration name."
-                        },
-                        "systemProperties" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "System properties loaded from a file resource."
-                            },
-                            "properties" : {
-                              "title" : "Properties",
-                              "description" : "List of system properties.",
-                              "type" : "array",
-                              "items" : {
-                                "type" : "object",
-                                "properties" : {
-                                  "name" : {
-                                    "type" : "string",
-                                    "title" : "Name",
-                                    "description" : "The system property name."
-                                  },
-                                  "value" : {
-                                    "type" : "string",
-                                    "title" : "Value",
-                                    "description" : "The system property value."
-                                  }
-                                },
-                                "required" : [ "name", "value" ],
-                                "additionalProperties" : false,
-                                "title" : "Properties",
-                                "description" : "List of system properties."
-                              }
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "SystemProperties",
-                          "description" : "System properties set for the Camel JBang process.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Integration",
-                      "description" : "The Camel integration."
-                    },
-                    "processName" : {
-                      "type" : "string",
-                      "title" : "ProcessName",
-                      "description" : "Custom Camel JBang process name.",
-                      "$comment" : "group:advanced"
-                    },
-                    "resources" : {
-                      "title" : "Resources",
-                      "description" : "Optional list of resources added to the Camel JBang process.",
-                      "$comment" : "group:advanced",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Resources",
-                        "description" : "Optional list of resources added to the Camel JBang process.",
-                        "$comment" : "group:advanced"
-                      }
-                    },
-                    "waitForRunningState" : {
-                      "type" : "boolean",
-                      "title" : "WaitForRunningState",
-                      "description" : "Wait for the integration to report running state.",
-                      "default" : "true",
-                      "$comment" : "group:advanced"
-                    },
-                    "workDir" : {
-                      "type" : "string",
-                      "title" : "WorkDir",
-                      "description" : "Custom working directory for the Camel JBang process.",
-                      "$comment" : "group:advanced"
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Custom",
-                  "description" : "Runs a Camel integration with customized parameters."
-                },
-                "kameletsVersion" : {
-                  "type" : "string",
-                  "title" : "KameletsVersion",
-                  "description" : "The Kamelets version."
-                },
-                "kubernetes" : {
-                  "type" : "object",
-                  "properties" : {
-                    "delete" : {
-                      "type" : "object",
-                      "properties" : {
-                        "clusterType" : {
-                          "type" : "string",
-                          "title" : "ClusterType",
-                          "description" : "The Kubernetes cluster type.",
-                          "$comment" : "group:advanced"
-                        },
-                        "integration" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "The Camel integration source code loaded from a file resource."
-                            },
-                            "name" : {
-                              "type" : "string",
-                              "title" : "Name",
-                              "description" : "The Camel integration name."
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "Integration",
-                          "description" : "The Camel integration to delete."
-                        },
-                        "namespace" : {
-                          "type" : "string",
-                          "title" : "Namespace",
-                          "description" : "The Kubernetes namespace.",
-                          "$comment" : "group:advanced"
-                        },
-                        "workingDir" : {
-                          "type" : "string",
-                          "title" : "WorkingDir",
-                          "description" : "The working directory that contains the Kubernetes manifest.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Delete",
-                      "description" : "Deletes a Camel integration from Kubernetes."
-                    },
-                    "run" : {
-                      "type" : "object",
-                      "properties" : {
-                        "argLine" : {
-                          "type" : "string",
-                          "title" : "ArgLine",
-                          "description" : "Camel JBang command arguments.",
-                          "$comment" : "group:advanced"
-                        },
-                        "args" : {
-                          "title" : "Args",
-                          "description" : "Camel JBang command arguments.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Args",
-                            "description" : "Camel JBang command arguments.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "autoRemove" : {
-                          "type" : "boolean",
-                          "title" : "AutoRemove",
-                          "description" : "When enabled the Camel integration is automatically removed from Kubernetes after the test.",
-                          "default" : "true"
-                        },
-                        "buildProperties" : {
-                          "title" : "BuildProperties",
-                          "description" : "List of build properties passed to the Camel JBang project build.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "BuildProperties",
-                            "description" : "List of build properties passed to the Camel JBang project build.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "clusterType" : {
-                          "type" : "string",
-                          "title" : "ClusterType",
-                          "description" : "The Kubernetes cluster type.",
-                          "$comment" : "group:advanced"
-                        },
-                        "imageBuilder" : {
-                          "type" : "string",
-                          "title" : "ImageBuilder",
-                          "description" : "The Docker image builder.",
-                          "$comment" : "group:advanced"
-                        },
-                        "imageRegistry" : {
-                          "type" : "string",
-                          "title" : "ImageRegistry",
-                          "description" : "The Docker image registry.",
-                          "$comment" : "group:advanced"
-                        },
-                        "integration" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "The integration source code loaded as a file resource."
-                            },
-                            "name" : {
-                              "type" : "string",
-                              "title" : "Name",
-                              "description" : "The Camel integration name."
-                            },
-                            "source" : {
-                              "type" : "string",
-                              "title" : "Source",
-                              "description" : "The integration source code."
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "Integration",
-                          "description" : "The Camel integration name."
-                        },
-                        "properties" : {
-                          "title" : "Properties",
-                          "description" : "Properties set on the Camel JBang project export.",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Properties",
-                            "description" : "Properties set on the Camel JBang project export."
-                          }
-                        },
-                        "runtime" : {
-                          "type" : "string",
-                          "title" : "Runtime",
-                          "description" : "The runtime to use.",
-                          "default" : "quarkus",
-                          "$comment" : "group:advanced"
-                        },
-                        "traits" : {
-                          "title" : "Traits",
-                          "description" : "List of traits to set for the project export.",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Traits",
-                            "description" : "List of traits to set for the project export."
-                          }
-                        },
-                        "verbose" : {
-                          "type" : "boolean",
-                          "title" : "Verbose",
-                          "description" : "When enabled the Camel JBang command print verbose log messages.",
-                          "default" : "false",
-                          "$comment" : "group:advanced"
-                        },
-                        "waitForRunningState" : {
-                          "type" : "boolean",
-                          "title" : "WaitForRunningState",
-                          "description" : "When enabled the test waits for the Camel integration Kubernetes deployment to report proper running state.",
-                          "default" : "true",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Run",
-                      "description" : "Runs a Camel integration on Kubernetes."
-                    },
-                    "verify" : {
-                      "type" : "object",
-                      "properties" : {
-                        "args" : {
-                          "title" : "Args",
-                          "description" : "Camel JBang command arguments.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Args",
-                            "description" : "Camel JBang command arguments.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "delayBetweenAttempts" : {
-                          "type" : "integer",
-                          "title" : "DelayBetweenAttempts",
-                          "description" : "The delay in milliseconds to wait between validation attempts.",
-                          "default" : "1000",
-                          "$comment" : "group:advanced"
-                        },
-                        "integration" : {
-                          "type" : "string",
-                          "title" : "Integration",
-                          "description" : "The Camel integration name."
-                        },
-                        "label" : {
-                          "type" : "string",
-                          "title" : "Label",
-                          "description" : "Identify the Camel integration via a Kubernetes label."
-                        },
-                        "logMessage" : {
-                          "type" : "string",
-                          "title" : "LogMessage",
-                          "description" : "The expected log message to verify."
-                        },
-                        "maxAttempts" : {
-                          "type" : "integer",
-                          "title" : "MaxAttempts",
-                          "description" : "Maximum number of validation attempts.",
-                          "default" : "60",
-                          "$comment" : "group:advanced"
-                        },
-                        "namespace" : {
-                          "type" : "string",
-                          "title" : "Namespace",
-                          "description" : "The Kubernetes namespace.",
-                          "$comment" : "group:advanced"
-                        },
-                        "printLogs" : {
-                          "type" : "boolean",
-                          "title" : "PrintLogs",
-                          "description" : "When enabled the Camel integration log output is added to the test log output.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Verify",
-                      "description" : "Verify the status and log messages for a Camel integration run on Kubernetes."
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Kubernetes",
-                  "description" : "Camel Kubernetes plugin related operations."
-                },
-                "plugin" : {
-                  "type" : "object",
-                  "properties" : {
-                    "add" : {
-                      "type" : "object",
-                      "properties" : {
-                        "args" : {
-                          "title" : "Args",
-                          "description" : "Plugin arguments.",
-                          "$comment" : "group:advanced",
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "title" : "Args",
-                            "description" : "Plugin arguments.",
-                            "$comment" : "group:advanced"
-                          }
-                        },
-                        "name" : {
-                          "type" : "string",
-                          "title" : "Name",
-                          "description" : "The plugin name."
-                        }
-                      },
-                      "required" : [ "name" ],
-                      "additionalProperties" : false,
-                      "title" : "Add",
-                      "description" : "Adds a plugin to the Camel Jbang installation."
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Plugin",
-                  "description" : "Manage Camel JBang plugins."
-                },
-                "run" : {
-                  "type" : "object",
-                  "properties" : {
-                    "args" : {
-                      "title" : "Args",
-                      "description" : "Optional command arguments.",
-                      "$comment" : "group:advanced",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Args",
-                        "description" : "Optional command arguments.",
-                        "$comment" : "group:advanced"
-                      }
-                    },
-                    "autoRemove" : {
-                      "type" : "boolean",
-                      "title" : "AutoRemove",
-                      "description" : "When enabled the Camel integration is automatically stopped after the test.",
-                      "default" : "true",
-                      "$comment" : "group:advanced"
-                    },
-                    "dumpIntegrationOutput" : {
-                      "type" : "boolean",
-                      "title" : "DumpIntegrationOutput",
-                      "description" : "When enabled the integration output is saved to a log file.",
-                      "default" : "false",
-                      "$comment" : "group:advanced"
-                    },
-                    "integration" : {
-                      "type" : "object",
-                      "properties" : {
-                        "environment" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "Environment variables loaded from a file resource."
-                            },
-                            "variables" : {
-                              "title" : "Variables",
-                              "description" : "List of environment variables.",
-                              "type" : "array",
-                              "items" : {
-                                "type" : "object",
-                                "properties" : {
-                                  "name" : {
-                                    "type" : "string",
-                                    "title" : "Name",
-                                    "description" : "The environment variable name."
-                                  },
-                                  "value" : {
-                                    "type" : "string",
-                                    "title" : "Value",
-                                    "description" : "The environment variable value."
-                                  }
-                                },
-                                "required" : [ "name", "value" ],
-                                "additionalProperties" : false,
-                                "title" : "Variables",
-                                "description" : "List of environment variables."
-                              }
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "Environment",
-                          "description" : "Environment variables set for the Camel JBang process.",
-                          "$comment" : "group:advanced"
-                        },
-                        "file" : {
-                          "type" : "string",
-                          "title" : "File",
-                          "description" : "Camel integration source code loaded from a file resource."
-                        },
-                        "name" : {
-                          "type" : "string",
-                          "title" : "Name",
-                          "description" : "The Camel integration name."
-                        },
-                        "source" : {
-                          "type" : "string",
-                          "title" : "Source",
-                          "description" : "Camel integration source code."
-                        },
-                        "systemProperties" : {
-                          "type" : "object",
-                          "properties" : {
-                            "file" : {
-                              "type" : "string",
-                              "title" : "File",
-                              "description" : "System properties loaded from a file resource."
-                            },
-                            "properties" : {
-                              "title" : "Properties",
-                              "description" : "List of system properties.",
-                              "type" : "array",
-                              "items" : {
-                                "type" : "object",
-                                "properties" : {
-                                  "name" : {
-                                    "type" : "string",
-                                    "title" : "Name",
-                                    "description" : "The system property name."
-                                  },
-                                  "value" : {
-                                    "type" : "string",
-                                    "title" : "Value",
-                                    "description" : "The system property value."
-                                  }
-                                },
-                                "required" : [ "name", "value" ],
-                                "additionalProperties" : false,
-                                "title" : "Properties",
-                                "description" : "List of system properties."
-                              }
-                            }
-                          },
-                          "additionalProperties" : false,
-                          "title" : "SystemProperties",
-                          "description" : "System properties set for the Camel JBang process.",
-                          "$comment" : "group:advanced"
-                        }
-                      },
-                      "additionalProperties" : false,
-                      "title" : "Integration",
-                      "description" : "The Camel integration."
-                    },
-                    "resources" : {
-                      "title" : "Resources",
-                      "description" : "Optional list of resources added to the Camel JBang process.",
-                      "$comment" : "group:advanced",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Resources",
-                        "description" : "Optional list of resources added to the Camel JBang process.",
-                        "$comment" : "group:advanced"
-                      }
-                    },
-                    "stub" : {
-                      "title" : "Stub",
-                      "description" : "Optional stubbed components.",
-                      "$comment" : "group:advanced",
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string",
-                        "title" : "Stub",
-                        "description" : "Optional stubbed components.",
-                        "$comment" : "group:advanced"
-                      }
-                    },
-                    "waitForRunningState" : {
-                      "type" : "boolean",
-                      "title" : "WaitForRunningState",
-                      "description" : "Wait for the integration to report running state.",
-                      "default" : "true",
-                      "$comment" : "group:advanced"
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Run",
-                  "description" : "Runs a Camel integration."
-                },
-                "stop" : {
-                  "type" : "object",
-                  "properties" : {
-                    "integration" : {
-                      "type" : "string",
-                      "title" : "Integration",
-                      "description" : "Camel integration name"
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Stop",
-                  "description" : "Stops a Camel integration."
-                },
-                "verify" : {
-                  "type" : "object",
-                  "properties" : {
-                    "delayBetweenAttempts" : {
-                      "type" : "integer",
-                      "title" : "DelayBetweenAttempts",
-                      "description" : "The delay in milliseconds to wait between validation attempts.",
-                      "default" : "1000",
-                      "$comment" : "group:advanced"
-                    },
-                    "integration" : {
-                      "type" : "string",
-                      "title" : "Integration",
-                      "description" : "The Camel integration name."
-                    },
-                    "logMessage" : {
-                      "type" : "string",
-                      "title" : "LogMessage",
-                      "description" : "The expected log message to verify."
-                    },
-                    "maxAttempts" : {
-                      "type" : "integer",
-                      "title" : "MaxAttempts",
-                      "description" : "Maximum attempts to validate the integration.",
-                      "default" : "60",
-                      "$comment" : "group:advanced"
-                    },
-                    "phase" : {
-                      "type" : "string",
-                      "title" : "Phase",
-                      "description" : "The expected integration status",
-                      "default" : "Running",
-                      "$comment" : "group:advanced"
-                    },
-                    "printLogs" : {
-                      "type" : "boolean",
-                      "title" : "PrintLogs",
-                      "description" : "When enabled the Camel integration log output is added to the test log output.",
-                      "$comment" : "group:advanced"
-                    },
-                    "stopOnErrorStatus" : {
-                      "type" : "boolean",
-                      "title" : "StopOnErrorStatus",
-                      "description" : "When enabled the validation attempts stop when error state is reported.",
-                      "default" : "true",
-                      "$comment" : "group:advanced"
-                    }
-                  },
-                  "additionalProperties" : false,
-                  "title" : "Verify",
-                  "description" : "Verify the Camel integration status and log messages."
-                }
-              },
-              "additionalProperties" : false,
-              "title" : "Jbang",
-              "description" : "Connect with Camel JBang to run commands."
+              "allOf" : [ {
+                "$ref" : "#/definitions/Cli"
+              }, {
+                "title" : "Jbang",
+                "description" : "Connect with Camel JBang to run commands. Deprecated, please use Camel CLI instead."
+              } ]
             },
             "removeRoutes" : {
               "type" : "object",
@@ -2528,6 +2742,18 @@
         "createEndpoint" : {
           "type" : "object",
           "properties" : {
+            "autoClose" : {
+              "type" : "boolean",
+              "title" : "AutoClose",
+              "description" : "When enabled the dynamic endpoint is closed automatically after the test.",
+              "$comment" : "group:generic"
+            },
+            "autoRemove" : {
+              "type" : "boolean",
+              "title" : "AutoRemove",
+              "description" : "When enabled the dynamic endpoint is removed automatically after the test.",
+              "$comment" : "group:generic"
+            },
             "camel" : { },
             "channel" : { },
             "context" : { },
@@ -2662,13 +2888,10 @@
                               "$comment" : "group:errorHandling"
                             },
                             "errorHandlingStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "ErrorHandlingStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandling"
-                              } ]
+                              "type" : "string",
+                              "title" : "ErrorHandlingStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandling"
                             },
                             "handleCookies" : {
                               "type" : "boolean",
@@ -2752,7 +2975,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The Http request timeout while waiting for a response",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -2953,9 +3176,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -2975,7 +3198,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useDefaultFilters" : {
                               "type" : "boolean",
@@ -2990,6 +3213,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Http",
@@ -3032,13 +3263,10 @@
                               "$comment" : "group:advanced"
                             },
                             "faultStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "FaultStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandler"
-                              } ]
+                              "type" : "string",
+                              "title" : "FaultStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandler"
                             },
                             "interceptor" : {
                               "type" : "string",
@@ -3096,7 +3324,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when the client waits for response messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "webServiceTemplate" : {
                               "type" : "string",
@@ -3240,9 +3468,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -3274,7 +3502,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3283,6 +3511,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Soap",
@@ -3313,6 +3549,12 @@
                               "description" : "Sets the endpoint URI resolver.",
                               "$comment" : "group:advanced"
                             },
+                            "httpHeaders" : {
+                              "type" : "string",
+                              "title" : "HttpHeaders",
+                              "description" : "Sets the Websocket Http headers.",
+                              "$comment" : "group:advanced"
+                            },
                             "messageConverter" : {
                               "type" : "string",
                               "title" : "MessageConverter",
@@ -3339,7 +3581,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The Http request timeout while waiting for a response",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3540,9 +3782,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -3562,7 +3804,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useDefaultFilters" : {
                               "type" : "boolean",
@@ -3587,6 +3829,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "WebSocket",
@@ -3606,7 +3856,7 @@
                         "messageName" : {
                           "type" : "string",
                           "title" : "MessageName",
-                          "description" : "The message name."
+                          "description" : "The message name in the context."
                         },
                         "name" : {
                           "type" : "string",
@@ -3800,7 +4050,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3809,6 +4059,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Mail",
@@ -3845,13 +4103,10 @@
                               "$comment" : "group:advanced"
                             },
                             "errorHandlingStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "ErrorHandlingStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandler"
-                              } ]
+                              "type" : "string",
+                              "title" : "ErrorHandlingStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandler"
                             },
                             "host" : {
                               "type" : "string",
@@ -3952,13 +4207,10 @@
                               "$comment" : "group:advanced"
                             },
                             "errorHandlingStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "ErrorHandlingStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandler"
-                              } ]
+                              "type" : "string",
+                              "title" : "ErrorHandlingStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandler"
                             },
                             "host" : {
                               "type" : "string",
@@ -4008,7 +4260,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
@@ -4034,6 +4286,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Ftp",
@@ -4070,13 +4330,10 @@
                               "$comment" : "group:advanced"
                             },
                             "errorHandlingStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "ErrorHandlingStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandler"
-                              } ]
+                              "type" : "string",
+                              "title" : "ErrorHandlingStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandler"
                             },
                             "host" : {
                               "type" : "string",
@@ -4277,12 +4534,13 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
                               "title" : "User",
-                              "description" : "Sets the allowed user name."
+                              "description" : "Sets the allowed user name.",
+                              "$comment" : "group:security"
                             },
                             "userHomePath" : {
                               "type" : "string",
@@ -4296,6 +4554,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Sftp",
@@ -4332,13 +4598,10 @@
                               "$comment" : "group:advanced"
                             },
                             "errorHandlingStrategy" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/ErrorHandlingStrategy"
-                              }, {
-                                "title" : "ErrorHandlingStrategy",
-                                "description" : "Sets the error handling strategy.",
-                                "$comment" : "group:errorHandler"
-                              } ]
+                              "type" : "string",
+                              "title" : "ErrorHandlingStrategy",
+                              "description" : "Sets the error handling strategy.",
+                              "$comment" : "group:errorHandler"
                             },
                             "host" : {
                               "type" : "string",
@@ -4524,12 +4787,13 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
                               "title" : "User",
-                              "description" : "Sets the allowed user name."
+                              "description" : "Sets the allowed user name.",
+                              "$comment" : "group:security"
                             },
                             "userHomePath" : {
                               "type" : "string",
@@ -4543,6 +4807,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Scp",
@@ -4648,6 +4920,12 @@
                           "description" : "Sets the reference to the Kubernetes client implementation.",
                           "$comment" : "group:advanced"
                         },
+                        "jsonMapper" : {
+                          "type" : "string",
+                          "title" : "JsonMapper",
+                          "description" : "Sets the JSON mapper.",
+                          "$comment" : "group:advanced"
+                        },
                         "messageConverter" : {
                           "type" : "string",
                           "title" : "MessageConverter",
@@ -4669,12 +4947,6 @@
                           "title" : "OAuthToken",
                           "description" : "Sets the OAuth token used to connect to the Kubernetes cluster.",
                           "$comment" : "group:security"
-                        },
-                        "objectMapper" : {
-                          "type" : "string",
-                          "title" : "ObjectMapper",
-                          "description" : "Sets the object mapper.",
-                          "$comment" : "group:advanced"
                         },
                         "password" : {
                           "type" : "string",
@@ -4802,7 +5074,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when the consumer waits for messages to arrive.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -4909,6 +5181,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "JMS",
@@ -5055,6 +5335,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Vert.x",
@@ -5150,6 +5438,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Direct",
@@ -5265,6 +5561,12 @@
                               "type" : "string",
                               "title" : "Topic",
                               "description" : "Sets the Kafka topic."
+                            },
+                            "useThreadSafeConsumer" : {
+                              "type" : "boolean",
+                              "title" : "UseThreadSafeConsumer",
+                              "description" : "Sets thread safe consumer option for this endpoint.",
+                              "$comment" : "group:consume"
                             },
                             "valueDeserializer" : {
                               "type" : "string",
@@ -5383,6 +5685,12 @@
                               "title" : "Topic",
                               "description" : "Sets the Kafka topic."
                             },
+                            "useThreadSafeConsumer" : {
+                              "type" : "boolean",
+                              "title" : "UseThreadSafeConsumer",
+                              "description" : "Sets thread safe consumer option for this endpoint.",
+                              "$comment" : "group:consume"
+                            },
                             "valueDeserializer" : {
                               "type" : "string",
                               "title" : "ValueDeserializer",
@@ -5402,6 +5710,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Kafka",
@@ -5509,6 +5825,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Camel",
@@ -5571,7 +5895,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when waiting for messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -5642,7 +5966,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when waiting for messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -5657,6 +5981,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Spring channel",
@@ -5746,6 +6078,44 @@
                 }
               },
               "required" : [ "selenium" ]
+            }, {
+              "not" : {
+                "anyOf" : [ {
+                  "required" : [ "http" ]
+                }, {
+                  "required" : [ "soap" ]
+                }, {
+                  "required" : [ "webSocket" ]
+                }, {
+                  "required" : [ "context" ]
+                }, {
+                  "required" : [ "mail" ]
+                }, {
+                  "required" : [ "ftp" ]
+                }, {
+                  "required" : [ "sftp" ]
+                }, {
+                  "required" : [ "scp" ]
+                }, {
+                  "required" : [ "docker" ]
+                }, {
+                  "required" : [ "kubernetes" ]
+                }, {
+                  "required" : [ "jms" ]
+                }, {
+                  "required" : [ "vertx" ]
+                }, {
+                  "required" : [ "direct" ]
+                }, {
+                  "required" : [ "kafka" ]
+                }, {
+                  "required" : [ "camel" ]
+                }, {
+                  "required" : [ "channel" ]
+                }, {
+                  "required" : [ "selenium" ]
+                } ]
+              }
             } ]
           } ],
           "title" : "CreateEndpoint",
@@ -5893,7 +6263,7 @@
             "endpoint" : {
               "type" : "string",
               "title" : "Endpoint",
-              "description" : "The message endpoint to consume messages from."
+              "description" : "The message endpoint to consume messages from. Uses an endpoint URI or references an endpoint name."
             },
             "select" : {
               "type" : "string",
@@ -6027,7 +6397,7 @@
             "client" : {
               "type" : "string",
               "title" : "Client",
-              "description" : "The Http client."
+              "description" : "The Http client. Uses an endpoint URI or references an endpoint name."
             },
             "description" : {
               "type" : "string",
@@ -6157,12 +6527,6 @@
                 }, {
                   "type" : "object",
                   "properties" : {
-                    "PUT" : { }
-                  },
-                  "required" : [ "PUT" ]
-                }, {
-                  "type" : "object",
-                  "properties" : {
                     "DELETE" : {
                       "allOf" : [ {
                         "$ref" : "#/definitions/HttpRequest"
@@ -6225,6 +6589,26 @@
                     }
                   },
                   "required" : [ "TRACE" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "GET" ]
+                    }, {
+                      "required" : [ "POST" ]
+                    }, {
+                      "required" : [ "PUT" ]
+                    }, {
+                      "required" : [ "DELETE" ]
+                    }, {
+                      "required" : [ "HEAD" ]
+                    }, {
+                      "required" : [ "OPTIONS" ]
+                    }, {
+                      "required" : [ "PATCH" ]
+                    }, {
+                      "required" : [ "TRACE" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "ReceiveRequest",
@@ -6388,12 +6772,6 @@
                 }, {
                   "type" : "object",
                   "properties" : {
-                    "PUT" : { }
-                  },
-                  "required" : [ "PUT" ]
-                }, {
-                  "type" : "object",
-                  "properties" : {
                     "DELETE" : {
                       "allOf" : [ {
                         "$ref" : "#/definitions/HttpRequest"
@@ -6456,6 +6834,26 @@
                     }
                   },
                   "required" : [ "TRACE" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "GET" ]
+                    }, {
+                      "required" : [ "POST" ]
+                    }, {
+                      "required" : [ "PUT" ]
+                    }, {
+                      "required" : [ "DELETE" ]
+                    }, {
+                      "required" : [ "HEAD" ]
+                    }, {
+                      "required" : [ "OPTIONS" ]
+                    }, {
+                      "required" : [ "PATCH" ]
+                    }, {
+                      "required" : [ "TRACE" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "SendRequest",
@@ -6489,7 +6887,7 @@
             "server" : {
               "type" : "string",
               "title" : "Server",
-              "description" : "The Http server."
+              "description" : "The Http server. Uses an endpoint URI or references an endpoint name."
             }
           },
           "additionalProperties" : false,
@@ -6533,14 +6931,14 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "step" : {
               "type" : "integer",
               "title" : "Step",
               "description" : "The step added to the index for each iteration.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             }
           },
@@ -6850,7 +7248,8 @@
                     },
                     "data" : {
                       "type" : "string",
-                      "title" : "Data"
+                      "title" : "Data",
+                      "description" : "The event message body as inline data."
                     }
                   },
                   "additionalProperties" : false,
@@ -6903,7 +7302,8 @@
                     },
                     "data" : {
                       "type" : "string",
-                      "title" : "Data"
+                      "title" : "Data",
+                      "description" : "The event message body as inline data."
                     }
                   },
                   "additionalProperties" : false,
@@ -6924,9 +7324,17 @@
             "verifyBroker" : {
               "type" : "object",
               "properties" : {
+                "condition" : {
+                  "type" : "string",
+                  "title" : "Condition"
+                },
                 "name" : {
                   "type" : "string",
                   "title" : "Name"
+                },
+                "status" : {
+                  "type" : "string",
+                  "title" : "Status"
                 }
               },
               "additionalProperties" : false,
@@ -7156,11 +7564,13 @@
                 },
                 "data" : {
                   "type" : "string",
-                  "title" : "Data"
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
                 },
                 "file" : {
                   "type" : "string",
-                  "title" : "File"
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
                 },
                 "group" : {
                   "type" : "string",
@@ -7180,6 +7590,21 @@
                 }
               },
               "additionalProperties" : false,
+              "anyOf" : [ {
+                "oneOf" : [ {
+                  "required" : [ "data" ]
+                }, {
+                  "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
+                } ]
+              } ],
               "title" : "CreateCustomResource"
             },
             "createLabels" : {
@@ -7221,14 +7646,31 @@
               "properties" : {
                 "data" : {
                   "type" : "string",
-                  "title" : "Data"
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
                 },
                 "file" : {
                   "type" : "string",
-                  "title" : "File"
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
                 }
               },
               "additionalProperties" : false,
+              "anyOf" : [ {
+                "oneOf" : [ {
+                  "required" : [ "data" ]
+                }, {
+                  "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
+                } ]
+              } ],
               "title" : "CreateResource"
             },
             "createSecret" : {
@@ -7327,7 +7769,8 @@
                 },
                 "server" : {
                   "type" : "string",
-                  "title" : "Server"
+                  "title" : "Server",
+                  "description" : "Uses an endpoint URI or references an endpoint name."
                 }
               },
               "additionalProperties" : false,
@@ -7380,14 +7823,31 @@
               "properties" : {
                 "data" : {
                   "type" : "string",
-                  "title" : "Data"
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
                 },
                 "file" : {
                   "type" : "string",
-                  "title" : "File"
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
                 }
               },
               "additionalProperties" : false,
+              "anyOf" : [ {
+                "oneOf" : [ {
+                  "required" : [ "data" ]
+                }, {
+                  "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
+                } ]
+              } ],
               "title" : "DeleteResource"
             },
             "deleteSecret" : {
@@ -7633,7 +8093,7 @@
             "client" : {
               "type" : "string",
               "title" : "Client",
-              "description" : "Sets the Http client used to send requests."
+              "description" : "Sets the Http client used to send requests. Uses an endpoint URI or references an endpoint name."
             },
             "description" : {
               "type" : "string",
@@ -7674,7 +8134,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false"
+                  "default" : false
                 },
                 "select" : {
                   "type" : "string",
@@ -7751,7 +8211,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false"
+                  "default" : false
                 },
                 "select" : {
                   "type" : "string",
@@ -7831,7 +8291,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false",
+                  "default" : false,
                   "$comment" : "group:advanced"
                 },
                 "uri" : {
@@ -7875,7 +8335,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false",
+                  "default" : false,
                   "$comment" : "group:advanced"
                 },
                 "status" : {
@@ -7892,7 +8352,7 @@
             "server" : {
               "type" : "string",
               "title" : "Server",
-              "description" : "Sets the Http server that provides the Http API."
+              "description" : "Sets the Http server that provides the Http API. Uses an endpoint URI or references an endpoint name."
             },
             "specification" : {
               "type" : "string",
@@ -8024,7 +8484,7 @@
             "endpoint" : {
               "type" : "string",
               "title" : "Endpoint",
-              "description" : "The name of the endpoint to purge."
+              "description" : "The name of the endpoint to purge. Uses an endpoint URI or references an endpoint name."
             },
             "endpoints" : {
               "title" : "Endpoints",
@@ -8036,12 +8496,12 @@
                   "name" : {
                     "type" : "string",
                     "title" : "Name",
-                    "description" : "The name of the endpoint."
+                    "description" : "The name of the endpoint. Uses an endpoint URI or references an endpoint name."
                   },
                   "ref" : {
                     "type" : "string",
                     "title" : "Ref",
-                    "description" : "Reference to the endpoint in the bean registry."
+                    "description" : "Reference to the endpoint in the bean registry. Uses an endpoint URI or references an endpoint name."
                   }
                 },
                 "additionalProperties" : false,
@@ -8177,7 +8637,7 @@
             "endpoint" : {
               "type" : "string",
               "title" : "Endpoint",
-              "description" : "The message endpoint name or URI used to receive the message."
+              "description" : "The message endpoint name or URI used to receive the message. Uses an endpoint URI or references an endpoint name."
             },
             "extract" : {
               "allOf" : [ {
@@ -8255,6 +8715,21 @@
                 "$comment" : "group:xml"
               }
             },
+            "process" : {
+              "title" : "Process",
+              "description" : "Process the message content when received.",
+              "$comment" : "group:process",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Processor"
+                }, {
+                  "title" : "Process",
+                  "description" : "Process the message content when received.",
+                  "$comment" : "group:process"
+                } ]
+              }
+            },
             "select" : {
               "type" : "string",
               "title" : "Select",
@@ -8274,6 +8749,21 @@
               "type" : "integer",
               "title" : "Timeout",
               "description" : "Receive timeout."
+            },
+            "transform" : {
+              "title" : "Transform",
+              "description" : "Transforms the message content before the message is validated.",
+              "$comment" : "group:transform",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Processor"
+                }, {
+                  "title" : "Transform",
+                  "description" : "Transforms the message content before the message is validated.",
+                  "$comment" : "group:transform"
+                } ]
+              }
             },
             "validate" : {
               "title" : "Validate",
@@ -8338,7 +8828,7 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "until" : {
@@ -8389,7 +8879,7 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "until" : {
@@ -8432,7 +8922,8 @@
             },
             "browser" : {
               "type" : "string",
-              "title" : "Browser"
+              "title" : "Browser",
+              "description" : "Sets the Selenium browser.Uses an endpoint URI or references an endpoint name."
             },
             "checkInput" : {
               "type" : "object",
@@ -8795,7 +9286,8 @@
                 },
                 "browser" : {
                   "type" : "string",
-                  "title" : "Browser"
+                  "title" : "Browser",
+                  "description" : "Sets the Selenium browser.Uses an endpoint URI or references an endpoint name."
                 }
               },
               "additionalProperties" : false,
@@ -8806,7 +9298,8 @@
               "properties" : {
                 "browser" : {
                   "type" : "string",
-                  "title" : "Browser"
+                  "title" : "Browser",
+                  "description" : "Sets the Selenium browser.Uses an endpoint URI or references an endpoint name."
                 }
               },
               "additionalProperties" : false,
@@ -8878,7 +9371,7 @@
             "endpoint" : {
               "type" : "string",
               "title" : "Endpoint",
-              "description" : "The message endpoint name or URI."
+              "description" : "The message endpoint name or URI. Uses an endpoint URI or references an endpoint name."
             },
             "extract" : {
               "allOf" : [ {
@@ -8901,6 +9394,36 @@
                 "title" : "Message",
                 "description" : "The message to send."
               } ]
+            },
+            "process" : {
+              "title" : "Process",
+              "description" : "Process the message content when received.",
+              "$comment" : "group:process",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Processor"
+                }, {
+                  "title" : "Process",
+                  "description" : "Process the message content when received.",
+                  "$comment" : "group:process"
+                } ]
+              }
+            },
+            "transform" : {
+              "title" : "Transform",
+              "description" : "Transforms the message content before the message is validated.",
+              "$comment" : "group:transform",
+              "type" : "array",
+              "items" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/Processor"
+                }, {
+                  "title" : "Transform",
+                  "description" : "Transforms the message content before the message is validated.",
+                  "$comment" : "group:transform"
+                } ]
+              }
             }
           },
           "required" : [ "endpoint" ],
@@ -9025,7 +9548,7 @@
             "client" : {
               "type" : "string",
               "title" : "Client",
-              "description" : "Sets the SOAP Http client."
+              "description" : "Sets the SOAP Http client. Uses an endpoint URI or references an endpoint name."
             },
             "description" : {
               "type" : "string",
@@ -9254,7 +9777,7 @@
                       "type" : "array",
                       "items" : {
                         "allOf" : [ {
-                          "$ref" : "#/definitions/Expression"
+                          "$ref" : "#/definitions/Expression-1"
                         }, {
                           "title" : "Expression",
                           "description" : "List of path expressions to evaluate on the message content before processing the message.",
@@ -9294,7 +9817,7 @@
                       "description" : "The SOAP fault string."
                     },
                     "headerIgnoreCase" : {
-                      "type" : "string",
+                      "type" : "boolean",
                       "title" : "HeaderIgnoreCase",
                       "description" : "When enabled the header case is not verified.",
                       "$comment" : "group:advanced"
@@ -9349,7 +9872,7 @@
                     "type" : {
                       "type" : "string",
                       "title" : "Type",
-                      "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+                      "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
                       "$comment" : "group:advanced"
                     },
                     "version" : {
@@ -9577,7 +10100,8 @@
           "properties" : {
             "server" : {
               "type" : "string",
-              "title" : "Server"
+              "title" : "Server",
+              "description" : "Uses an endpoint URI or references an endpoint name."
             },
             "servers" : {
               "title" : "Servers",
@@ -9604,7 +10128,8 @@
           "properties" : {
             "server" : {
               "type" : "string",
-              "title" : "Server"
+              "title" : "Server",
+              "description" : "Uses an endpoint URI or references an endpoint name."
             },
             "servers" : {
               "title" : "Servers",
@@ -9614,7 +10139,8 @@
                 "properties" : {
                   "name" : {
                     "type" : "string",
-                    "title" : "Name"
+                    "title" : "Name",
+                    "description" : "Uses an endpoint URI or references an endpoint name."
                   }
                 },
                 "additionalProperties" : false,
@@ -9854,6 +10380,135 @@
                   "additionalProperties" : false,
                   "title" : "Container"
                 },
+                "floci" : {
+                  "type" : "object",
+                  "properties" : {
+                    "accountId" : {
+                      "type" : "string",
+                      "title" : "AccountId",
+                      "description" : "AWS account id",
+                      "$comment" : "group:security"
+                    },
+                    "autoCreateClients" : {
+                      "type" : "boolean",
+                      "title" : "AutoCreateClients"
+                    },
+                    "autoRemove" : {
+                      "type" : "boolean",
+                      "title" : "AutoRemove"
+                    },
+                    "availabilityZone" : {
+                      "type" : "string",
+                      "title" : "AvailabilityZone",
+                      "description" : "AWS availability zone",
+                      "$comment" : "group:security"
+                    },
+                    "command" : {
+                      "type" : "string",
+                      "title" : "Command"
+                    },
+                    "env" : {
+                      "title" : "Env",
+                      "type" : "array",
+                      "items" : {
+                        "allOf" : [ {
+                          "$ref" : "#/definitions/Variable"
+                        }, {
+                          "title" : "Env"
+                        } ]
+                      }
+                    },
+                    "exposedPorts" : {
+                      "title" : "ExposedPorts",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "integer",
+                        "title" : "ExposedPorts"
+                      }
+                    },
+                    "image" : {
+                      "type" : "string",
+                      "title" : "Image"
+                    },
+                    "labels" : {
+                      "title" : "Labels",
+                      "type" : "array",
+                      "items" : {
+                        "allOf" : [ {
+                          "$ref" : "#/definitions/Label"
+                        }, {
+                          "title" : "Labels"
+                        } ]
+                      }
+                    },
+                    "name" : {
+                      "type" : "string",
+                      "title" : "Name"
+                    },
+                    "options" : {
+                      "type" : "object",
+                      "title" : "Options",
+                      "additionalProperties" : {
+                        "type" : "string",
+                        "title" : "Options"
+                      }
+                    },
+                    "portBindings" : {
+                      "title" : "PortBindings",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "title" : "PortBindings"
+                      }
+                    },
+                    "region" : {
+                      "type" : "string",
+                      "title" : "Region",
+                      "description" : "AWS region",
+                      "$comment" : "group:security"
+                    },
+                    "serviceName" : {
+                      "type" : "string",
+                      "title" : "ServiceName"
+                    },
+                    "services" : {
+                      "title" : "Services",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "title" : "Services"
+                      }
+                    },
+                    "startUpTimeout" : {
+                      "type" : "integer",
+                      "title" : "StartUpTimeout"
+                    },
+                    "version" : {
+                      "type" : "string",
+                      "title" : "Version"
+                    },
+                    "volumeMounts" : {
+                      "title" : "VolumeMounts",
+                      "type" : "array",
+                      "items" : {
+                        "allOf" : [ {
+                          "$ref" : "#/definitions/VolumeMount"
+                        }, {
+                          "title" : "VolumeMounts"
+                        } ]
+                      }
+                    },
+                    "waitFor" : {
+                      "allOf" : [ {
+                        "$ref" : "#/definitions/WaitFor"
+                      }, {
+                        "title" : "WaitFor"
+                      } ]
+                    }
+                  },
+                  "additionalProperties" : false,
+                  "title" : "Floci"
+                },
                 "kafka" : {
                   "type" : "object",
                   "properties" : {
@@ -9927,6 +10582,14 @@
                       "type" : "integer",
                       "title" : "StartUpTimeout"
                     },
+                    "topics" : {
+                      "title" : "Topics",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string",
+                        "title" : "Topics"
+                      }
+                    },
                     "version" : {
                       "type" : "string",
                       "title" : "Version"
@@ -9956,6 +10619,18 @@
                 "localstack" : {
                   "type" : "object",
                   "properties" : {
+                    "accessKey" : {
+                      "type" : "string",
+                      "title" : "AccessKey",
+                      "description" : "AWS access key",
+                      "$comment" : "group:security"
+                    },
+                    "authToken" : {
+                      "type" : "string",
+                      "title" : "AuthToken",
+                      "description" : "Newer versions of Localstack container require an auth token.",
+                      "$comment" : "group:security"
+                    },
                     "autoCreateClients" : {
                       "type" : "boolean",
                       "title" : "AutoCreateClients"
@@ -10021,6 +10696,18 @@
                         "type" : "string",
                         "title" : "PortBindings"
                       }
+                    },
+                    "region" : {
+                      "type" : "string",
+                      "title" : "Region",
+                      "description" : "AWS region",
+                      "$comment" : "group:security"
+                    },
+                    "secretKey" : {
+                      "type" : "string",
+                      "title" : "SecretKey",
+                      "description" : "AWS secret key",
+                      "$comment" : "group:security"
                     },
                     "serviceName" : {
                       "type" : "string",
@@ -10288,6 +10975,16 @@
                       "type" : "string",
                       "title" : "Command"
                     },
+                    "enableAuthorization" : {
+                      "type" : "boolean",
+                      "title" : "EnableAuthorization",
+                      "description" : "Enables authorization for the Redpanda container."
+                    },
+                    "enableSasl" : {
+                      "type" : "boolean",
+                      "title" : "EnableSasl",
+                      "description" : "Enables Sasl for the Redpanda container."
+                    },
                     "env" : {
                       "title" : "Env",
                       "type" : "array",
@@ -10334,6 +11031,11 @@
                         "title" : "PortBindings"
                       }
                     },
+                    "securedSchemaRegistry" : {
+                      "type" : "boolean",
+                      "title" : "SecuredSchemaRegistry",
+                      "description" : "Enables a secured schema registry for the Redpanda container. Usually through Http basic auth."
+                    },
                     "serviceName" : {
                       "type" : "string",
                       "title" : "ServiceName"
@@ -10341,6 +11043,11 @@
                     "startUpTimeout" : {
                       "type" : "integer",
                       "title" : "StartUpTimeout"
+                    },
+                    "superuser" : {
+                      "type" : "string",
+                      "title" : "Superuser",
+                      "description" : "Sets a super user for the Redpanda container."
                     },
                     "version" : {
                       "type" : "string",
@@ -10408,7 +11115,7 @@
               "type" : "boolean",
               "title" : "AutoStop",
               "description" : "Automatically stop the timer when the test is finished.",
-              "default" : "true",
+              "default" : true,
               "$comment" : "group:advanced"
             },
             "delay" : {
@@ -10427,7 +11134,7 @@
               "type" : "boolean",
               "title" : "Fork",
               "description" : "Do not block the test while the timer is running.",
-              "default" : "false",
+              "default" : false,
               "$comment" : "group:advanced"
             },
             "id" : {
@@ -10439,7 +11146,7 @@
               "type" : "integer",
               "title" : "Interval",
               "description" : "Timer interval in milliseconds.",
-              "default" : "1000"
+              "default" : 1000
             },
             "repeatCount" : {
               "type" : "integer",
@@ -10665,6 +11372,18 @@
                 }
               },
               "required" : [ "action" ]
+            }, {
+              "not" : {
+                "anyOf" : [ {
+                  "required" : [ "message" ]
+                }, {
+                  "required" : [ "http" ]
+                }, {
+                  "required" : [ "file" ]
+                }, {
+                  "required" : [ "action" ]
+                } ]
+              }
             } ]
           } ],
           "title" : "WaitFor",
@@ -10750,7 +11469,7 @@
             "content" : {
               "type" : "string",
               "title" : "Content",
-              "description" : "The script content."
+              "description" : "The script content as inline data."
             },
             "file" : {
               "type" : "string",
@@ -10893,6 +11612,18 @@
       "items" : {
         "type" : "object",
         "properties" : {
+          "autoClose" : {
+            "type" : "boolean",
+            "title" : "AutoClose",
+            "description" : "When enabled the dynamic endpoint is closed automatically after the test.",
+            "$comment" : "group:generic"
+          },
+          "autoRemove" : {
+            "type" : "boolean",
+            "title" : "AutoRemove",
+            "description" : "When enabled the dynamic endpoint is removed automatically after the test.",
+            "$comment" : "group:generic"
+          },
           "camel" : { },
           "channel" : { },
           "context" : { },
@@ -10930,6 +11661,12 @@
             "type" : "string",
             "title" : "Type",
             "description" : "The endpoint type.",
+            "$comment" : "group:generic"
+          },
+          "uri" : {
+            "type" : "string",
+            "title" : "Uri",
+            "description" : "The endpoint uri.",
             "$comment" : "group:generic"
           },
           "vertx" : { },
@@ -11015,13 +11752,10 @@
                             "$comment" : "group:errorHandling"
                           },
                           "errorHandlingStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "ErrorHandlingStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandling"
-                            } ]
+                            "type" : "string",
+                            "title" : "ErrorHandlingStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandling"
                           },
                           "handleCookies" : {
                             "type" : "boolean",
@@ -11105,7 +11839,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The Http request timeout while waiting for a response",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11306,9 +12040,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11328,7 +12062,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useDefaultFilters" : {
                             "type" : "boolean",
@@ -11343,6 +12077,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Http",
@@ -11385,13 +12127,10 @@
                             "$comment" : "group:advanced"
                           },
                           "faultStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "FaultStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandler"
-                            } ]
+                            "type" : "string",
+                            "title" : "FaultStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandler"
                           },
                           "interceptor" : {
                             "type" : "string",
@@ -11449,7 +12188,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when the client waits for response messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "webServiceTemplate" : {
                             "type" : "string",
@@ -11593,9 +12332,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11627,7 +12366,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11636,6 +12375,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Soap",
@@ -11666,6 +12413,12 @@
                             "description" : "Sets the endpoint URI resolver.",
                             "$comment" : "group:advanced"
                           },
+                          "httpHeaders" : {
+                            "type" : "string",
+                            "title" : "HttpHeaders",
+                            "description" : "Sets the Websocket Http headers.",
+                            "$comment" : "group:advanced"
+                          },
                           "messageConverter" : {
                             "type" : "string",
                             "title" : "MessageConverter",
@@ -11692,7 +12445,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The Http request timeout while waiting for a response",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11893,9 +12646,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11915,7 +12668,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useDefaultFilters" : {
                             "type" : "boolean",
@@ -11940,6 +12693,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "WebSocket",
@@ -11959,7 +12720,7 @@
                       "messageName" : {
                         "type" : "string",
                         "title" : "MessageName",
-                        "description" : "The message name."
+                        "description" : "The message name in the context."
                       },
                       "name" : {
                         "type" : "string",
@@ -12153,7 +12914,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -12162,6 +12923,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Mail",
@@ -12198,13 +12967,10 @@
                             "$comment" : "group:advanced"
                           },
                           "errorHandlingStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "ErrorHandlingStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandler"
-                            } ]
+                            "type" : "string",
+                            "title" : "ErrorHandlingStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandler"
                           },
                           "host" : {
                             "type" : "string",
@@ -12305,13 +13071,10 @@
                             "$comment" : "group:advanced"
                           },
                           "errorHandlingStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "ErrorHandlingStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandler"
-                            } ]
+                            "type" : "string",
+                            "title" : "ErrorHandlingStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandler"
                           },
                           "host" : {
                             "type" : "string",
@@ -12361,7 +13124,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
@@ -12387,6 +13150,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Ftp",
@@ -12423,13 +13194,10 @@
                             "$comment" : "group:advanced"
                           },
                           "errorHandlingStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "ErrorHandlingStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandler"
-                            } ]
+                            "type" : "string",
+                            "title" : "ErrorHandlingStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandler"
                           },
                           "host" : {
                             "type" : "string",
@@ -12630,12 +13398,13 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
                             "title" : "User",
-                            "description" : "Sets the allowed user name."
+                            "description" : "Sets the allowed user name.",
+                            "$comment" : "group:security"
                           },
                           "userHomePath" : {
                             "type" : "string",
@@ -12649,6 +13418,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Sftp",
@@ -12685,13 +13462,10 @@
                             "$comment" : "group:advanced"
                           },
                           "errorHandlingStrategy" : {
-                            "allOf" : [ {
-                              "$ref" : "#/definitions/ErrorHandlingStrategy"
-                            }, {
-                              "title" : "ErrorHandlingStrategy",
-                              "description" : "Sets the error handling strategy.",
-                              "$comment" : "group:errorHandler"
-                            } ]
+                            "type" : "string",
+                            "title" : "ErrorHandlingStrategy",
+                            "description" : "Sets the error handling strategy.",
+                            "$comment" : "group:errorHandler"
                           },
                           "host" : {
                             "type" : "string",
@@ -12877,12 +13651,13 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
                             "title" : "User",
-                            "description" : "Sets the allowed user name."
+                            "description" : "Sets the allowed user name.",
+                            "$comment" : "group:security"
                           },
                           "userHomePath" : {
                             "type" : "string",
@@ -12896,6 +13671,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Scp",
@@ -13001,6 +13784,12 @@
                         "description" : "Sets the reference to the Kubernetes client implementation.",
                         "$comment" : "group:advanced"
                       },
+                      "jsonMapper" : {
+                        "type" : "string",
+                        "title" : "JsonMapper",
+                        "description" : "Sets the JSON mapper.",
+                        "$comment" : "group:advanced"
+                      },
                       "messageConverter" : {
                         "type" : "string",
                         "title" : "MessageConverter",
@@ -13022,12 +13811,6 @@
                         "title" : "OAuthToken",
                         "description" : "Sets the OAuth token used to connect to the Kubernetes cluster.",
                         "$comment" : "group:security"
-                      },
-                      "objectMapper" : {
-                        "type" : "string",
-                        "title" : "ObjectMapper",
-                        "description" : "Sets the object mapper.",
-                        "$comment" : "group:advanced"
                       },
                       "password" : {
                         "type" : "string",
@@ -13155,7 +13938,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when the consumer waits for messages to arrive.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -13262,6 +14045,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "JMS",
@@ -13408,6 +14199,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Vert.x",
@@ -13503,6 +14302,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Direct",
@@ -13618,6 +14425,12 @@
                             "type" : "string",
                             "title" : "Topic",
                             "description" : "Sets the Kafka topic."
+                          },
+                          "useThreadSafeConsumer" : {
+                            "type" : "boolean",
+                            "title" : "UseThreadSafeConsumer",
+                            "description" : "Sets thread safe consumer option for this endpoint.",
+                            "$comment" : "group:consume"
                           },
                           "valueDeserializer" : {
                             "type" : "string",
@@ -13736,6 +14549,12 @@
                             "title" : "Topic",
                             "description" : "Sets the Kafka topic."
                           },
+                          "useThreadSafeConsumer" : {
+                            "type" : "boolean",
+                            "title" : "UseThreadSafeConsumer",
+                            "description" : "Sets thread safe consumer option for this endpoint.",
+                            "$comment" : "group:consume"
+                          },
                           "valueDeserializer" : {
                             "type" : "string",
                             "title" : "ValueDeserializer",
@@ -13755,6 +14574,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Kafka",
@@ -13862,6 +14689,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Camel",
@@ -13924,7 +14759,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when waiting for messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -13995,7 +14830,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when waiting for messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -14010,6 +14845,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Spring channel",
@@ -14099,6 +14942,44 @@
               }
             },
             "required" : [ "selenium" ]
+          }, {
+            "not" : {
+              "anyOf" : [ {
+                "required" : [ "http" ]
+              }, {
+                "required" : [ "soap" ]
+              }, {
+                "required" : [ "webSocket" ]
+              }, {
+                "required" : [ "context" ]
+              }, {
+                "required" : [ "mail" ]
+              }, {
+                "required" : [ "ftp" ]
+              }, {
+                "required" : [ "sftp" ]
+              }, {
+                "required" : [ "scp" ]
+              }, {
+                "required" : [ "docker" ]
+              }, {
+                "required" : [ "kubernetes" ]
+              }, {
+                "required" : [ "jms" ]
+              }, {
+                "required" : [ "vertx" ]
+              }, {
+                "required" : [ "direct" ]
+              }, {
+                "required" : [ "kafka" ]
+              }, {
+                "required" : [ "camel" ]
+              }, {
+                "required" : [ "channel" ]
+              }, {
+                "required" : [ "selenium" ]
+              } ]
+            }
           } ]
         } ],
         "title" : "Endpoints",
@@ -14157,7 +15038,7 @@
               "content" : {
                 "type" : "string",
                 "title" : "Content",
-                "description" : "The script content."
+                "description" : "The script content as inline data."
               },
               "file" : {
                 "type" : "string",

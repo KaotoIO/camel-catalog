@@ -40,21 +40,17 @@
     "Body" : {
       "type" : "object",
       "properties" : {
-        "data" : { },
+        "data" : {
+          "type" : "string",
+          "title" : "Data",
+          "description" : "The message body content as inline data."
+        },
         "resource" : { },
         "script" : { }
       },
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "type" : "object",
-          "properties" : {
-            "data" : {
-              "type" : "string",
-              "title" : "Data",
-              "description" : "The message body content as inline data."
-            }
-          },
           "required" : [ "data" ]
         }, {
           "type" : "object",
@@ -113,6 +109,16 @@
             }
           },
           "required" : [ "script" ]
+        }, {
+          "not" : {
+            "anyOf" : [ {
+              "required" : [ "data" ]
+            }, {
+              "required" : [ "resource" ]
+            }, {
+              "required" : [ "script" ]
+            } ]
+          }
         } ]
       } ]
     },
@@ -253,7 +259,11 @@
     "Header" : {
       "type" : "object",
       "properties" : {
-        "data" : { },
+        "data" : {
+          "type" : "string",
+          "title" : "Data",
+          "description" : "The message header value as inline data."
+        },
         "name" : {
           "type" : "string",
           "title" : "Name",
@@ -266,19 +276,15 @@
           "description" : "The message header type to create typed message headers.",
           "$comment" : "group:advanced"
         },
-        "value" : { }
+        "value" : {
+          "type" : "string",
+          "title" : "Value",
+          "description" : "The message header value."
+        }
       },
       "additionalProperties" : false,
       "anyOf" : [ {
         "oneOf" : [ {
-          "type" : "object",
-          "properties" : {
-            "value" : {
-              "type" : "string",
-              "title" : "Value",
-              "description" : "The message header value."
-            }
-          },
           "required" : [ "value" ]
         }, {
           "type" : "object",
@@ -306,15 +312,17 @@
           },
           "required" : [ "resource" ]
         }, {
-          "type" : "object",
-          "properties" : {
-            "data" : {
-              "type" : "string",
-              "title" : "Data",
-              "description" : "The message header value as inline data."
-            }
-          },
           "required" : [ "data" ]
+        }, {
+          "not" : {
+            "anyOf" : [ {
+              "required" : [ "value" ]
+            }, {
+              "required" : [ "resource" ]
+            }, {
+              "required" : [ "data" ]
+            } ]
+          }
         } ]
       } ]
     },
@@ -362,7 +370,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -437,7 +445,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -487,7 +495,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -542,7 +550,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -605,7 +613,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -649,7 +657,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         }
       },
@@ -797,7 +805,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -857,7 +865,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -922,7 +930,7 @@
           }
         },
         "headerIgnoreCase" : {
-          "type" : "string",
+          "type" : "boolean",
           "title" : "HeaderIgnoreCase",
           "description" : "When enabled the header case is not verified.",
           "$comment" : "group:advanced"
@@ -977,7 +985,7 @@
         "type" : {
           "type" : "string",
           "title" : "Type",
-          "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+          "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
           "$comment" : "group:advanced"
         },
         "version" : {
@@ -1461,15 +1469,26 @@
                       "description" : "When enabled the service output is saved into a log file.",
                       "$comment" : "group:advanced"
                     },
+                    "fixedPort" : {
+                      "type" : "boolean",
+                      "title" : "FixedPort",
+                      "description" : "When enabled the infra service uses fixed ports."
+                    },
                     "implementation" : {
                       "type" : "string",
                       "title" : "Implementation",
                       "description" : "Optional service implementation detail."
                     },
+                    "port" : {
+                      "type" : "integer",
+                      "title" : "Port",
+                      "description" : "When set the infra service uses this port as a fixed port."
+                    },
                     "service" : {
                       "type" : "string",
                       "title" : "Service",
-                      "description" : "The Camel infra service name."
+                      "description" : "The Camel infra service name.",
+                      "examples" : [ "arangodb", "artemis", "artemis.amqp", "aws.cloud-watch", "aws.config", "aws.dynamo-db", "aws.dynamodb", "aws.ec2", "aws.event-bridge", "aws.iam", "aws.kinesis", "aws.kms", "aws.lambda", "aws.s3", "aws.secrets-manager", "aws.sns", "aws.sqs", "aws.ssm", "aws.sts", "aws.transcribe", "azure.storage-blob", "azure.storage-queue", "cassandra", "chat-script", "consul", "couchbase", "couchdb", "docling", "elasticsearch", "fhir", "ftp", "ftps", "google.pub-sub", "hashicorp.vault", "hazelcast", "hive-mq", "hive-mq.sparkplug", "ibmmq", "iggy", "ignite", "infinispan", "kafka", "kafka.confluent", "kafka.redpanda", "kafka.strimzi", "keycloak", "microprofile.lra", "milvus", "minio", "mongodb", "mosquitto", "nats", "neo4j", "ollama", "openldap", "pinecone", "postgres", "pulsar", "qdrant", "rabbitmq", "redis", "rocketmq", "sftp", "smb", "solr", "torch-serve", "weaviate", "xmpp", "zookeeper" ]
                     }
                   },
                   "additionalProperties" : false,
@@ -1529,7 +1548,7 @@
                           "type" : "integer",
                           "title" : "DelayBetweenAttempts",
                           "description" : "The delay in milliseconds to wait between validation attempts.",
-                          "default" : "1000",
+                          "default" : 1000,
                           "$comment" : "group:advanced"
                         },
                         "endpoint" : {
@@ -1552,21 +1571,21 @@
                           "type" : "boolean",
                           "title" : "JsonOutput",
                           "description" : "When enabled action stores messages from json output.",
-                          "default" : "false",
+                          "default" : false,
                           "$comment" : "group:advanced"
                         },
                         "loggingColor" : {
                           "type" : "boolean",
                           "title" : "LoggingColor",
                           "description" : "When enabled the output uses logging color.",
-                          "default" : "false",
+                          "default" : false,
                           "$comment" : "group:advanced"
                         },
                         "maxAttempts" : {
                           "type" : "integer",
                           "title" : "MaxAttempts",
                           "description" : "Maximum number of validation attempts.",
-                          "default" : "60",
+                          "default" : 60,
                           "$comment" : "group:advanced"
                         },
                         "printLogs" : {
@@ -1585,7 +1604,7 @@
                           "type" : "boolean",
                           "title" : "StopOnErrorStatus",
                           "description" : "When enabled the validation attempts stop when error state is reported.",
-                          "default" : "true",
+                          "default" : true,
                           "$comment" : "group:advanced"
                         },
                         "tail" : {
@@ -1712,7 +1731,7 @@
                       "type" : "boolean",
                       "title" : "AutoRemove",
                       "description" : "When enabled the Camel integration is automatically stopped after the test.",
-                      "default" : "true",
+                      "default" : true,
                       "$comment" : "group:advanced"
                     },
                     "commands" : {
@@ -1729,7 +1748,7 @@
                       "type" : "boolean",
                       "title" : "DumpIntegrationOutput",
                       "description" : "When enabled the integration output is saved to a log file.",
-                      "default" : "false",
+                      "default" : false,
                       "$comment" : "group:advanced"
                     },
                     "integration" : {
@@ -1848,7 +1867,7 @@
                       "type" : "boolean",
                       "title" : "WaitForRunningState",
                       "description" : "Wait for the integration to report running state.",
-                      "default" : "true",
+                      "default" : true,
                       "$comment" : "group:advanced"
                     },
                     "workDir" : {
@@ -1939,7 +1958,7 @@
                           "type" : "boolean",
                           "title" : "AutoRemove",
                           "description" : "When enabled the Camel integration is automatically removed from Kubernetes after the test.",
-                          "default" : "true"
+                          "default" : true
                         },
                         "buildProperties" : {
                           "title" : "BuildProperties",
@@ -2025,14 +2044,14 @@
                           "type" : "boolean",
                           "title" : "Verbose",
                           "description" : "When enabled the Camel JBang command print verbose log messages.",
-                          "default" : "false",
+                          "default" : false,
                           "$comment" : "group:advanced"
                         },
                         "waitForRunningState" : {
                           "type" : "boolean",
                           "title" : "WaitForRunningState",
                           "description" : "When enabled the test waits for the Camel integration Kubernetes deployment to report proper running state.",
-                          "default" : "true",
+                          "default" : true,
                           "$comment" : "group:advanced"
                         }
                       },
@@ -2059,7 +2078,7 @@
                           "type" : "integer",
                           "title" : "DelayBetweenAttempts",
                           "description" : "The delay in milliseconds to wait between validation attempts.",
-                          "default" : "1000",
+                          "default" : 1000,
                           "$comment" : "group:advanced"
                         },
                         "integration" : {
@@ -2081,7 +2100,7 @@
                           "type" : "integer",
                           "title" : "MaxAttempts",
                           "description" : "Maximum number of validation attempts.",
-                          "default" : "60",
+                          "default" : 60,
                           "$comment" : "group:advanced"
                         },
                         "namespace" : {
@@ -2124,6 +2143,13 @@
                             "$comment" : "group:advanced"
                           }
                         },
+                        "autoRemove" : {
+                          "type" : "boolean",
+                          "title" : "AutoRemove",
+                          "description" : "When enabled the Camel plugin is automatically removed after the test.",
+                          "default" : false,
+                          "$comment" : "group:advanced"
+                        },
                         "name" : {
                           "type" : "string",
                           "title" : "Name",
@@ -2134,6 +2160,20 @@
                       "additionalProperties" : false,
                       "title" : "Add",
                       "description" : "Adds a plugin to the Camel Jbang installation."
+                    },
+                    "delete" : {
+                      "type" : "object",
+                      "properties" : {
+                        "name" : {
+                          "type" : "string",
+                          "title" : "Name",
+                          "description" : "The plugin name."
+                        }
+                      },
+                      "required" : [ "name" ],
+                      "additionalProperties" : false,
+                      "title" : "Delete",
+                      "description" : "Deletes a plugin from the Camel Jbang installation."
                     }
                   },
                   "additionalProperties" : false,
@@ -2159,14 +2199,14 @@
                       "type" : "boolean",
                       "title" : "AutoRemove",
                       "description" : "When enabled the Camel integration is automatically stopped after the test.",
-                      "default" : "true",
+                      "default" : true,
                       "$comment" : "group:advanced"
                     },
                     "dumpIntegrationOutput" : {
                       "type" : "boolean",
                       "title" : "DumpIntegrationOutput",
                       "description" : "When enabled the integration output is saved to a log file.",
-                      "default" : "false",
+                      "default" : false,
                       "$comment" : "group:advanced"
                     },
                     "integration" : {
@@ -2296,7 +2336,7 @@
                       "type" : "boolean",
                       "title" : "WaitForRunningState",
                       "description" : "Wait for the integration to report running state.",
-                      "default" : "true",
+                      "default" : true,
                       "$comment" : "group:advanced"
                     }
                   },
@@ -2324,7 +2364,7 @@
                       "type" : "integer",
                       "title" : "DelayBetweenAttempts",
                       "description" : "The delay in milliseconds to wait between validation attempts.",
-                      "default" : "1000",
+                      "default" : 1000,
                       "$comment" : "group:advanced"
                     },
                     "integration" : {
@@ -2341,7 +2381,7 @@
                       "type" : "integer",
                       "title" : "MaxAttempts",
                       "description" : "Maximum attempts to validate the integration.",
-                      "default" : "60",
+                      "default" : 60,
                       "$comment" : "group:advanced"
                     },
                     "phase" : {
@@ -2361,7 +2401,7 @@
                       "type" : "boolean",
                       "title" : "StopOnErrorStatus",
                       "description" : "When enabled the validation attempts stop when error state is reported.",
-                      "default" : "true",
+                      "default" : true,
                       "$comment" : "group:advanced"
                     }
                   },
@@ -2752,7 +2792,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The Http request timeout while waiting for a response",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -2953,9 +2993,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -2975,7 +3015,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useDefaultFilters" : {
                               "type" : "boolean",
@@ -2990,6 +3030,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Http",
@@ -3096,7 +3144,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when the client waits for response messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "webServiceTemplate" : {
                               "type" : "string",
@@ -3240,9 +3288,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -3274,7 +3322,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3283,6 +3331,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Soap",
@@ -3339,7 +3395,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The Http request timeout while waiting for a response",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3540,9 +3596,9 @@
                               "description" : "Sets the security handler as a bean reference.",
                               "$comment" : "group:security"
                             },
-                            "serServletHandler" : {
+                            "servletHandler" : {
                               "type" : "string",
-                              "title" : "SerServletHandler",
+                              "title" : "ServletHandler",
                               "description" : "Sets a custom servlet handler as a bean reference.",
                               "$comment" : "group:servlet"
                             },
@@ -3562,7 +3618,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the server timeout while waiting for incoming requests.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useDefaultFilters" : {
                               "type" : "boolean",
@@ -3587,6 +3643,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "WebSocket",
@@ -3800,7 +3864,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             }
                           },
                           "additionalProperties" : false,
@@ -3809,6 +3873,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Mail",
@@ -4008,7 +4080,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
@@ -4034,6 +4106,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Ftp",
@@ -4277,7 +4357,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
@@ -4296,6 +4376,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Sftp",
@@ -4524,7 +4612,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "The server timeout.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "user" : {
                               "type" : "string",
@@ -4543,6 +4631,14 @@
                         }
                       },
                       "required" : [ "server" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "client" ]
+                        }, {
+                          "required" : [ "server" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Scp",
@@ -4802,7 +4898,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when the consumer waits for messages to arrive.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -4909,6 +5005,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "JMS",
@@ -5055,6 +5159,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Vert.x",
@@ -5150,6 +5262,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Direct",
@@ -5402,6 +5522,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Kafka",
@@ -5509,6 +5637,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Camel",
@@ -5571,7 +5707,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when waiting for messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -5642,7 +5778,7 @@
                               "type" : "integer",
                               "title" : "Timeout",
                               "description" : "Sets the receive timeout when waiting for messages.",
-                              "default" : "5000"
+                              "default" : 5000
                             },
                             "useObjectMessages" : {
                               "type" : "boolean",
@@ -5657,6 +5793,14 @@
                         }
                       },
                       "required" : [ "synchronous" ]
+                    }, {
+                      "not" : {
+                        "anyOf" : [ {
+                          "required" : [ "asynchronous" ]
+                        }, {
+                          "required" : [ "synchronous" ]
+                        } ]
+                      }
                     } ]
                   } ],
                   "title" : "Spring channel",
@@ -5746,6 +5890,44 @@
                 }
               },
               "required" : [ "selenium" ]
+            }, {
+              "not" : {
+                "anyOf" : [ {
+                  "required" : [ "http" ]
+                }, {
+                  "required" : [ "soap" ]
+                }, {
+                  "required" : [ "webSocket" ]
+                }, {
+                  "required" : [ "context" ]
+                }, {
+                  "required" : [ "mail" ]
+                }, {
+                  "required" : [ "ftp" ]
+                }, {
+                  "required" : [ "sftp" ]
+                }, {
+                  "required" : [ "scp" ]
+                }, {
+                  "required" : [ "docker" ]
+                }, {
+                  "required" : [ "kubernetes" ]
+                }, {
+                  "required" : [ "jms" ]
+                }, {
+                  "required" : [ "vertx" ]
+                }, {
+                  "required" : [ "direct" ]
+                }, {
+                  "required" : [ "kafka" ]
+                }, {
+                  "required" : [ "camel" ]
+                }, {
+                  "required" : [ "channel" ]
+                }, {
+                  "required" : [ "selenium" ]
+                } ]
+              }
             } ]
           } ],
           "title" : "CreateEndpoint",
@@ -6157,12 +6339,6 @@
                 }, {
                   "type" : "object",
                   "properties" : {
-                    "PUT" : { }
-                  },
-                  "required" : [ "PUT" ]
-                }, {
-                  "type" : "object",
-                  "properties" : {
                     "DELETE" : {
                       "allOf" : [ {
                         "$ref" : "#/definitions/HttpRequest"
@@ -6225,6 +6401,26 @@
                     }
                   },
                   "required" : [ "TRACE" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "GET" ]
+                    }, {
+                      "required" : [ "POST" ]
+                    }, {
+                      "required" : [ "PUT" ]
+                    }, {
+                      "required" : [ "DELETE" ]
+                    }, {
+                      "required" : [ "HEAD" ]
+                    }, {
+                      "required" : [ "OPTIONS" ]
+                    }, {
+                      "required" : [ "PATCH" ]
+                    }, {
+                      "required" : [ "TRACE" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "ReceiveRequest",
@@ -6388,12 +6584,6 @@
                 }, {
                   "type" : "object",
                   "properties" : {
-                    "PUT" : { }
-                  },
-                  "required" : [ "PUT" ]
-                }, {
-                  "type" : "object",
-                  "properties" : {
                     "DELETE" : {
                       "allOf" : [ {
                         "$ref" : "#/definitions/HttpRequest"
@@ -6456,6 +6646,26 @@
                     }
                   },
                   "required" : [ "TRACE" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "GET" ]
+                    }, {
+                      "required" : [ "POST" ]
+                    }, {
+                      "required" : [ "PUT" ]
+                    }, {
+                      "required" : [ "DELETE" ]
+                    }, {
+                      "required" : [ "HEAD" ]
+                    }, {
+                      "required" : [ "OPTIONS" ]
+                    }, {
+                      "required" : [ "PATCH" ]
+                    }, {
+                      "required" : [ "TRACE" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "SendRequest",
@@ -6533,14 +6743,14 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "step" : {
               "type" : "integer",
               "title" : "Step",
               "description" : "The step added to the index for each iteration.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             }
           },
@@ -7156,8 +7366,16 @@
                   "type" : "string",
                   "title" : "ApiVersion"
                 },
-                "data" : { },
-                "file" : { },
+                "data" : {
+                  "type" : "string",
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
+                },
+                "file" : {
+                  "type" : "string",
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
+                },
                 "group" : {
                   "type" : "string",
                   "title" : "Group"
@@ -7178,25 +7396,17 @@
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "type" : "object",
-                  "properties" : {
-                    "data" : {
-                      "type" : "string",
-                      "title" : "Data",
-                      "description" : "The custom resource specification as inline data."
-                    }
-                  },
                   "required" : [ "data" ]
                 }, {
-                  "type" : "object",
-                  "properties" : {
-                    "file" : {
-                      "type" : "string",
-                      "title" : "File",
-                      "description" : "The custom resource specification loaded from a file resource."
-                    }
-                  },
                   "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "CreateCustomResource"
@@ -7238,31 +7448,31 @@
             "createResource" : {
               "type" : "object",
               "properties" : {
-                "data" : { },
-                "file" : { }
+                "data" : {
+                  "type" : "string",
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
+                },
+                "file" : {
+                  "type" : "string",
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
+                }
               },
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "type" : "object",
-                  "properties" : {
-                    "data" : {
-                      "type" : "string",
-                      "title" : "Data",
-                      "description" : "The custom resource specification as inline data."
-                    }
-                  },
                   "required" : [ "data" ]
                 }, {
-                  "type" : "object",
-                  "properties" : {
-                    "file" : {
-                      "type" : "string",
-                      "title" : "File",
-                      "description" : "The custom resource specification loaded from a file resource."
-                    }
-                  },
                   "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "CreateResource"
@@ -7415,31 +7625,31 @@
             "deleteResource" : {
               "type" : "object",
               "properties" : {
-                "data" : { },
-                "file" : { }
+                "data" : {
+                  "type" : "string",
+                  "title" : "Data",
+                  "description" : "The custom resource specification as inline data."
+                },
+                "file" : {
+                  "type" : "string",
+                  "title" : "File",
+                  "description" : "The custom resource specification loaded from a file resource."
+                }
               },
               "additionalProperties" : false,
               "anyOf" : [ {
                 "oneOf" : [ {
-                  "type" : "object",
-                  "properties" : {
-                    "data" : {
-                      "type" : "string",
-                      "title" : "Data",
-                      "description" : "The custom resource specification as inline data."
-                    }
-                  },
                   "required" : [ "data" ]
                 }, {
-                  "type" : "object",
-                  "properties" : {
-                    "file" : {
-                      "type" : "string",
-                      "title" : "File",
-                      "description" : "The custom resource specification loaded from a file resource."
-                    }
-                  },
                   "required" : [ "file" ]
+                }, {
+                  "not" : {
+                    "anyOf" : [ {
+                      "required" : [ "data" ]
+                    }, {
+                      "required" : [ "file" ]
+                    } ]
+                  }
                 } ]
               } ],
               "title" : "DeleteResource"
@@ -7728,7 +7938,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false"
+                  "default" : false
                 },
                 "select" : {
                   "type" : "string",
@@ -7805,7 +8015,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false"
+                  "default" : false
                 },
                 "select" : {
                   "type" : "string",
@@ -7885,7 +8095,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false",
+                  "default" : false,
                   "$comment" : "group:advanced"
                 },
                 "uri" : {
@@ -7929,7 +8139,7 @@
                   "type" : "boolean",
                   "title" : "SchemaValidation",
                   "description" : "Enables the schema validation.",
-                  "default" : "false",
+                  "default" : false,
                   "$comment" : "group:advanced"
                 },
                 "status" : {
@@ -8392,7 +8602,7 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "until" : {
@@ -8443,7 +8653,7 @@
               "type" : "integer",
               "title" : "StartsWith",
               "description" : "Index starts with this value.",
-              "default" : "1",
+              "default" : 1,
               "$comment" : "group:advanced"
             },
             "until" : {
@@ -9351,7 +9561,7 @@
                       "description" : "The SOAP fault string."
                     },
                     "headerIgnoreCase" : {
-                      "type" : "string",
+                      "type" : "boolean",
                       "title" : "HeaderIgnoreCase",
                       "description" : "When enabled the header case is not verified.",
                       "$comment" : "group:advanced"
@@ -9406,7 +9616,7 @@
                     "type" : {
                       "type" : "string",
                       "title" : "Type",
-                      "description" : "The message type. Gives the validator a hint which validatory are capable of performing proper message validation.",
+                      "description" : "The message type. Gives the test action a hint which validators are capable of performing proper message validation for this message.",
                       "$comment" : "group:advanced"
                     },
                     "version" : {
@@ -10468,7 +10678,7 @@
               "type" : "boolean",
               "title" : "AutoStop",
               "description" : "Automatically stop the timer when the test is finished.",
-              "default" : "true",
+              "default" : true,
               "$comment" : "group:advanced"
             },
             "delay" : {
@@ -10487,7 +10697,7 @@
               "type" : "boolean",
               "title" : "Fork",
               "description" : "Do not block the test while the timer is running.",
-              "default" : "false",
+              "default" : false,
               "$comment" : "group:advanced"
             },
             "id" : {
@@ -10499,7 +10709,7 @@
               "type" : "integer",
               "title" : "Interval",
               "description" : "Timer interval in milliseconds.",
-              "default" : "1000"
+              "default" : 1000
             },
             "repeatCount" : {
               "type" : "integer",
@@ -10725,6 +10935,18 @@
                 }
               },
               "required" : [ "action" ]
+            }, {
+              "not" : {
+                "anyOf" : [ {
+                  "required" : [ "message" ]
+                }, {
+                  "required" : [ "http" ]
+                }, {
+                  "required" : [ "file" ]
+                }, {
+                  "required" : [ "action" ]
+                } ]
+              }
             } ]
           } ],
           "title" : "WaitFor",
@@ -11165,7 +11387,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The Http request timeout while waiting for a response",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11366,9 +11588,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11388,7 +11610,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useDefaultFilters" : {
                             "type" : "boolean",
@@ -11403,6 +11625,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Http",
@@ -11509,7 +11739,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when the client waits for response messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "webServiceTemplate" : {
                             "type" : "string",
@@ -11653,9 +11883,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11687,7 +11917,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11696,6 +11926,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Soap",
@@ -11752,7 +11990,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The Http request timeout while waiting for a response",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -11953,9 +12191,9 @@
                             "description" : "Sets the security handler as a bean reference.",
                             "$comment" : "group:security"
                           },
-                          "serServletHandler" : {
+                          "servletHandler" : {
                             "type" : "string",
-                            "title" : "SerServletHandler",
+                            "title" : "ServletHandler",
                             "description" : "Sets a custom servlet handler as a bean reference.",
                             "$comment" : "group:servlet"
                           },
@@ -11975,7 +12213,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the server timeout while waiting for incoming requests.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useDefaultFilters" : {
                             "type" : "boolean",
@@ -12000,6 +12238,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "WebSocket",
@@ -12213,7 +12459,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           }
                         },
                         "additionalProperties" : false,
@@ -12222,6 +12468,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Mail",
@@ -12421,7 +12675,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
@@ -12447,6 +12701,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Ftp",
@@ -12690,7 +12952,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
@@ -12709,6 +12971,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Sftp",
@@ -12937,7 +13207,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "The server timeout.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "user" : {
                             "type" : "string",
@@ -12956,6 +13226,14 @@
                       }
                     },
                     "required" : [ "server" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "client" ]
+                      }, {
+                        "required" : [ "server" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Scp",
@@ -13215,7 +13493,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when the consumer waits for messages to arrive.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -13322,6 +13600,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "JMS",
@@ -13468,6 +13754,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Vert.x",
@@ -13563,6 +13857,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Direct",
@@ -13815,6 +14117,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Kafka",
@@ -13922,6 +14232,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Camel",
@@ -13984,7 +14302,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when waiting for messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -14055,7 +14373,7 @@
                             "type" : "integer",
                             "title" : "Timeout",
                             "description" : "Sets the receive timeout when waiting for messages.",
-                            "default" : "5000"
+                            "default" : 5000
                           },
                           "useObjectMessages" : {
                             "type" : "boolean",
@@ -14070,6 +14388,14 @@
                       }
                     },
                     "required" : [ "synchronous" ]
+                  }, {
+                    "not" : {
+                      "anyOf" : [ {
+                        "required" : [ "asynchronous" ]
+                      }, {
+                        "required" : [ "synchronous" ]
+                      } ]
+                    }
                   } ]
                 } ],
                 "title" : "Spring channel",
@@ -14159,6 +14485,44 @@
               }
             },
             "required" : [ "selenium" ]
+          }, {
+            "not" : {
+              "anyOf" : [ {
+                "required" : [ "http" ]
+              }, {
+                "required" : [ "soap" ]
+              }, {
+                "required" : [ "webSocket" ]
+              }, {
+                "required" : [ "context" ]
+              }, {
+                "required" : [ "mail" ]
+              }, {
+                "required" : [ "ftp" ]
+              }, {
+                "required" : [ "sftp" ]
+              }, {
+                "required" : [ "scp" ]
+              }, {
+                "required" : [ "docker" ]
+              }, {
+                "required" : [ "kubernetes" ]
+              }, {
+                "required" : [ "jms" ]
+              }, {
+                "required" : [ "vertx" ]
+              }, {
+                "required" : [ "direct" ]
+              }, {
+                "required" : [ "kafka" ]
+              }, {
+                "required" : [ "camel" ]
+              }, {
+                "required" : [ "channel" ]
+              }, {
+                "required" : [ "selenium" ]
+              } ]
+            }
           } ]
         } ],
         "title" : "Endpoints",

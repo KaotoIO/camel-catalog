@@ -199,24 +199,24 @@
 			"frameworkVersion" : "3.4.10"
 		},
 		{
-			"name" : "Citrus 4.10.0",
-			"version" : "4.10.0",
+			"name" : "Citrus 4.10.3",
+			"version" : "4.10.3",
 			"runtime" : "Citrus",
-			"fileName" : "citrus/4.10.0/index.json",
+			"fileName" : "citrus/4.10.3/index.json",
 			"executorVersion" : null,
 			"cliVersion" : null,
-			"camelCatalogVersion" : "4.10.0",
+			"camelCatalogVersion" : "4.10.3",
 			"runtimeProviderVersion" : null,
 			"frameworkVersion" : null
 		},
 		{
-			"name" : "Citrus 4.10.1",
-			"version" : "4.10.1",
+			"name" : "Citrus 5.0.0",
+			"version" : "5.0.0",
 			"runtime" : "Citrus",
-			"fileName" : "citrus/4.10.1/index.json",
+			"fileName" : "citrus/5.0.0/index.json",
 			"executorVersion" : null,
 			"cliVersion" : null,
-			"camelCatalogVersion" : "4.10.1",
+			"camelCatalogVersion" : "5.0.0",
 			"runtimeProviderVersion" : null,
 			"frameworkVersion" : null
 		},

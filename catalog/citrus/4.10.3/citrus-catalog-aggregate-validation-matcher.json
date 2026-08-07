@@ -1,7 +1,7 @@
 {
   "isUUIDv4": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "isUUIDv4",
     "group": "citrus",
     "module": "citrus-base",
@@ -13,7 +13,7 @@
   },
   "dateRange": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "dateRange",
     "group": "citrus",
     "module": "citrus-base",
@@ -47,7 +47,7 @@
   },
   "lowerThan": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "lowerThan",
     "group": "citrus",
     "module": "citrus-base",
@@ -69,7 +69,7 @@
   },
   "matchesDatePattern": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "matchesDatePattern",
     "group": "citrus",
     "module": "citrus-base",
@@ -91,7 +91,7 @@
   },
   "isWeekday": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "isWeekday",
     "group": "citrus",
     "module": "citrus-base",
@@ -128,7 +128,7 @@
   },
   "empty": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "empty",
     "group": "citrus",
     "module": "citrus-base",
@@ -140,7 +140,7 @@
   },
   "trim": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "trim",
     "group": "citrus",
     "module": "citrus-base",
@@ -162,7 +162,7 @@
   },
   "ignoreNewLine": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "ignoreNewLine",
     "group": "citrus",
     "module": "citrus-base",
@@ -184,7 +184,7 @@
   },
   "isNumber": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "isNumber",
     "group": "citrus",
     "module": "citrus-base",
@@ -196,7 +196,7 @@
   },
   "ignore": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "ignore",
     "group": "citrus",
     "module": "citrus-base",
@@ -208,7 +208,7 @@
   },
   "equalsIgnoreCase": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "equalsIgnoreCase",
     "group": "citrus",
     "module": "citrus-base",
@@ -230,7 +230,7 @@
   },
   "hasLength": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "hasLength",
     "group": "citrus",
     "module": "citrus-base",
@@ -252,7 +252,7 @@
   },
   "greaterThan": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "greaterThan",
     "group": "citrus",
     "module": "citrus-base",
@@ -274,7 +274,7 @@
   },
   "notNull": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "notNull",
     "group": "citrus",
     "module": "citrus-base",
@@ -286,7 +286,7 @@
   },
   "matchesXml": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "matchesXml",
     "group": "citrus",
     "module": "citrus-validation-xml",
@@ -308,7 +308,7 @@
   },
   "containsIgnoreCase": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "containsIgnoreCase",
     "group": "citrus",
     "module": "citrus-base",
@@ -330,7 +330,7 @@
   },
   "trimAllWhitespaces": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "trimAllWhitespaces",
     "group": "citrus",
     "module": "citrus-base",
@@ -352,7 +352,7 @@
   },
   "assertThat": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "assertThat",
     "group": "citrus",
     "module": "citrus-validation-hamcrest",
@@ -379,7 +379,7 @@
   },
   "matches": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "matches",
     "group": "citrus",
     "module": "citrus-base",
@@ -401,7 +401,7 @@
   },
   "contains": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "contains",
     "group": "citrus",
     "module": "citrus-base",
@@ -423,7 +423,7 @@
   },
   "null": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "null",
     "group": "citrus",
     "module": "citrus-base",
@@ -435,7 +435,7 @@
   },
   "endsWith": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "endsWith",
     "group": "citrus",
     "module": "citrus-base",
@@ -457,7 +457,7 @@
   },
   "variable": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "variable",
     "group": "citrus",
     "module": "citrus-base",
@@ -479,7 +479,7 @@
   },
   "notEmpty": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "notEmpty",
     "group": "citrus",
     "module": "citrus-base",
@@ -491,7 +491,7 @@
   },
   "startsWith": {
     "kind": "testValidationMatcher",
-    "version": "4.10.0",
+    "version": "4.10.3",
     "name": "startsWith",
     "group": "citrus",
     "module": "citrus-base",

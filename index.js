@@ -38,7 +38,7 @@ const CATALOGS = {
     // '4.14.4.redhat-00010', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '4.10.7.redhat-00013',
   ],
-  Citrus: ['4.10.0', '4.10.1'],
+  Citrus: ['4.10.3', '5.0.0'],
   XSLT: ['3.0'],
 };
 
