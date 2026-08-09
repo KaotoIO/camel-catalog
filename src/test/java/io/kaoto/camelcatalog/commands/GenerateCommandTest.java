@@ -16,8 +16,8 @@
 package io.kaoto.camelcatalog.commands;
 
 import io.kaoto.camelcatalog.beans.ConfigBean;
-import io.kaoto.camelcatalog.generator.CamelCatalogGenerator;
-import io.kaoto.camelcatalog.generator.CamelCatalogGeneratorBuilder;
+import io.kaoto.camelcatalog.generator.camel.CamelCatalogGenerator;
+import io.kaoto.camelcatalog.generator.camel.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

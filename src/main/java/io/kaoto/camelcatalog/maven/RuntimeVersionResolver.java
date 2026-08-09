@@ -15,7 +15,7 @@
  */
 package io.kaoto.camelcatalog.maven;
 
-import io.kaoto.camelcatalog.generator.CamelLauncherVersionResolver;
+import io.kaoto.camelcatalog.generator.camel.CamelLauncherVersionResolver;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import io.kaoto.camelcatalog.model.ResolvedVersions;
 import org.apache.camel.tooling.maven.MavenArtifact;

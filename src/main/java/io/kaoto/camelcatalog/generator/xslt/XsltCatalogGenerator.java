@@ -28,7 +28,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.kaoto.camelcatalog.generator.CatalogGenerator;
 import io.kaoto.camelcatalog.generator.Util;
-import io.kaoto.camelcatalog.generators.XPathFunctionsGenerator;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogDefinitionEntry;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
