@@ -185,7 +185,10 @@ public class CamelCatalogProcessor {
         var answer = jsonMapper.createObjectNode();
         camelCatalog.findModelNames().stream().sorted().forEach(name -> {
             try {
-                var model = (EipModel) camelCatalog.model(Kind.eip, name);
+               var model = (EipModel) camelCatalog.model(Kind.eip, name);
+                if (model == null) {
+                    throw new RuntimeException("Model " + name + " is not found in Camel model catalog.");
+                }
                 var json = JsonMapper.asJsonObject(model).toJson();
                 var catalogNode = (ObjectNode) jsonMapper.readTree(json);
 
