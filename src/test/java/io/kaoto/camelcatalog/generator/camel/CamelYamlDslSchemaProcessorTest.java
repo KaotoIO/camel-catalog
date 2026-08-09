@@ -75,6 +75,61 @@ class CamelYamlDslSchemaProcessorTest {
     }
 
     @Test
+    void testGetLanguagesMissingType() throws Exception {
+        ObjectNode yamlDslSchema;
+        try (var is = YamlRoutesBuilderLoader.class.getClassLoader()
+                .getResourceAsStream("schema/camelYamlDsl.json")) {
+            yamlDslSchema = (ObjectNode) jsonMapper.readTree(is);
+        }
+
+        var languages = yamlDslSchema
+                .withObject("/items")
+                .withObject("/definitions")
+                .withObject("/org.apache.camel.model.language.ExpressionDefinition")
+                .withArray("/anyOf")
+                .get(0)
+                .withArray("/oneOf");
+
+        var languageEntry = (ObjectNode) languages.get(0);
+        languageEntry.remove("type");
+
+        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+
+        Exception exception = assertThrows(Exception.class, () ->
+                processor.getLanguages());
+
+        assertEquals("Unexpected language entry " + languageEntry.asText(), exception.getMessage());
+    }
+
+    @Test
+    void testGetLanguagesNonObjectType() throws Exception {
+        ObjectNode yamlDslSchema;
+        try (var is = YamlRoutesBuilderLoader.class.getClassLoader()
+                .getResourceAsStream("schema/camelYamlDsl.json")) {
+            yamlDslSchema = (ObjectNode) jsonMapper.readTree(is);
+        }
+
+        var languages = yamlDslSchema
+                .withObject("/items")
+                .withObject("/definitions")
+                .withObject("/org.apache.camel.model.language.ExpressionDefinition")
+                .withArray("/anyOf")
+                .get(0)
+                .withArray("/oneOf");
+
+        var languageEntry = (ObjectNode) languages.get(0);
+        languageEntry.put("type", "string");
+
+        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+
+        Exception exception = assertThrows(Exception.class, () ->
+                processor.getLanguages());
+
+        assertEquals("Unexpected language entry " + languageEntry.asText(), exception.getMessage());
+    }
+
+
+    @Test
     void testGetLoadBalancers() throws Exception {
         var lbMap = processor.getLoadBalancers();
         assertTrue(lbMap.containsKey("customLoadBalancer"));
