@@ -147,8 +147,8 @@ public class CamelYamlDslSchemaProcessor {
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : languages) {
             if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
-    throw new Exception("Unexpected language entry " + entry.asText());
-}
+                throw new Exception("Unexpected language entry " + entry.asText());
+            }
             var entryName = entry.withArray("/required").get(0).asText();
             var property = entry
                     .withObject("/properties")
