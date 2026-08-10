@@ -33,6 +33,7 @@ import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
 import org.apache.camel.dsl.yaml.YamlRoutesBuilderLoader;
+import org.apache.camel.tooling.model.Kind;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -42,6 +43,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class CamelCatalogHandlerTest {
     private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string", "enum");
@@ -271,6 +274,19 @@ class CamelCatalogHandlerTest {
     @Test
     void testLanguageEnumParameter() throws Exception {
         checkEnumParameters(languageCatalog);
+    }
+
+    @Test
+    void testModelHandlerThrowsExceptionWhenModelIsMissing() {
+        CamelCatalog catalog = mock(CamelCatalog.class);
+        when(catalog.findModelNames()).thenReturn(List.of("missingModel"));
+        when(catalog.model(Kind.eip, "missingModel")).thenReturn(null);
+
+        var exception = assertThrows(
+            RuntimeException.class,
+            () -> new ModelHandler(catalog).generate());
+
+        assertEquals("Model missingModel is not found in Camel model catalog.", exception.getMessage());
     }
 
     @Test
