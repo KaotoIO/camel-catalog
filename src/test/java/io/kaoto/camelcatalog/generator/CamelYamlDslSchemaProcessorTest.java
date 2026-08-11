@@ -213,4 +213,18 @@ class CamelYamlDslSchemaProcessorTest {
         assertEquals("string", customLbRefProp.get("type").asText());
         assertEquals("Ref", customLbRefProp.get("title").asText());
     }
+
+    @Test
+    void testPopulateDefinitionsDoesNotCreateMissingDefinitions() throws Exception {
+        var processorMap = processor.getProcessors();
+
+        processorMap.values().forEach(processorSchema -> {
+            var definitions = processorSchema.get("definitions");
+            if (definitions != null) {
+                definitions.properties().forEach(entry ->
+                    assertFalse(entry.getValue().isEmpty(),
+                        "Definition " + entry.getKey() + " should not be empty"));
+            }
+        });
+    }
 }

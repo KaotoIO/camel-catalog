@@ -199,7 +199,7 @@ public class CamelYamlDslSchemaProcessor {
                 }
                 if (!schema.has("definitions") || !schema.withObject("/definitions").has(name)) {
                     var schemaDefinitions = schema.withObject("/definitions");
-                    schemaDefinitions.set(name, definitions.withObject("/" + name));
+                    schemaDefinitions.set(name, definitions.get(name));
                     added = true;
                     break;
                 }
