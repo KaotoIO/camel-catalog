@@ -61,9 +61,9 @@ class CitrusCatalogGeneratorTest {
     @Test
     void testGenerateReturnsValidCatalogDefinition() {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         CatalogDefinition catalogDefinition = generator.generate();
-        
+
         assertNotNull(catalogDefinition);
         assertEquals("Citrus 4.10.0", catalogDefinition.getName());
         assertEquals(CatalogRuntime.Citrus, catalogDefinition.getRuntime());
@@ -74,7 +74,7 @@ class CitrusCatalogGeneratorTest {
     @Test
     void testGenerateWithResolvedVersions() {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         ResolvedVersions resolvedVersions = new ResolvedVersions(
             "4.15.0",
             "4.15.0",
@@ -82,9 +82,9 @@ class CitrusCatalogGeneratorTest {
             "4.15.0"
         );
         generator.setResolvedVersions(resolvedVersions);
-        
+
         CatalogDefinition catalogDefinition = generator.generate();
-        
+
         assertNotNull(catalogDefinition);
         assertEquals("4.15.0", catalogDefinition.getCamelCatalogVersion());
         assertEquals("4.15.0", catalogDefinition.getRuntimeProviderVersion());
@@ -94,9 +94,9 @@ class CitrusCatalogGeneratorTest {
     @Test
     void testGenerateWithSnapshotVersion() {
         generator = new CitrusCatalogGenerator("4.10.0-SNAPSHOT", outputDirectory, false);
-        
+
         CatalogDefinition catalogDefinition = generator.generate();
-        
+
         assertNotNull(catalogDefinition);
         assertEquals("Citrus 4.10.0-SNAPSHOT", catalogDefinition.getName());
         assertEquals("4.10.0-SNAPSHOT", catalogDefinition.getVersion());
@@ -137,22 +137,22 @@ class CitrusCatalogGeneratorTest {
             """;
 
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         // Use reflection to access private method
         var method = CitrusCatalogGenerator.class.getDeclaredMethod(
-            "removeActionsProperty", String.class, String.class);
+            "postProcessActionSchema", String.class);
         method.setAccessible(true);
-        
-        String result = (String) method.invoke(generator, testActionsJson, "citrus-catalog-aggregate-test-actions");
-        
+
+        String result = (String) method.invoke(generator, testActionsJson);
+
         JsonNode resultNode = objectMapper.readTree(result);
-        
+
         // Verify actions property is removed from echo
         assertFalse(resultNode.at("/echo/propertiesSchema/properties").has("actions"),
             "actions property should be removed from echo");
         assertTrue(resultNode.at("/echo/propertiesSchema/properties").has("message"),
             "message property should still exist");
-        
+
         // Verify actions property is removed from sleep
         assertFalse(resultNode.at("/sleep/propertiesSchema/properties").has("actions"),
             "actions property should be removed from sleep");
@@ -199,10 +199,10 @@ class CitrusCatalogGeneratorTest {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
 
         var method = CitrusCatalogGenerator.class.getDeclaredMethod(
-            "removeActionsProperty", String.class, String.class);
+            "postProcessActionSchema", String.class);
         method.setAccessible(true);
 
-        String result = (String) method.invoke(generator, testContainersJson, "citrus-catalog-aggregate-test-containers");
+        String result = (String) method.invoke(generator, testContainersJson);
 
         JsonNode resultNode = objectMapper.readTree(result);
 
@@ -235,13 +235,13 @@ class CitrusCatalogGeneratorTest {
         String invalidJson = "not valid json";
 
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         var method = CitrusCatalogGenerator.class.getDeclaredMethod(
-            "removeActionsProperty", String.class, String.class);
+            "postProcessActionSchema", String.class);
         method.setAccessible(true);
-        
-        String result = (String) method.invoke(generator, invalidJson, "citrus-testcase");
-        
+
+        String result = (String) method.invoke(generator, invalidJson);
+
         // Should return original content on error
         assertEquals(invalidJson, result);
     }
@@ -251,13 +251,13 @@ class CitrusCatalogGeneratorTest {
         String arrayJson = "[1, 2, 3]";
 
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         var method = CitrusCatalogGenerator.class.getDeclaredMethod(
-            "removeActionsProperty", String.class, String.class);
+            "postProcessActionSchema", String.class);
         method.setAccessible(true);
-        
-        String result = (String) method.invoke(generator, arrayJson, "citrus-testcase");
-        
+
+        String result = (String) method.invoke(generator, arrayJson);
+
         // Should return original content for non-object JSON
         assertEquals(arrayJson, result);
     }
@@ -265,14 +265,14 @@ class CitrusCatalogGeneratorTest {
     @Test
     void testSetResolvedVersions() {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         ResolvedVersions resolvedVersions = new ResolvedVersions(
             "4.15.0",
             "4.15.0",
             "3.27.0",
             "4.15.0"
         );
-        
+
         assertDoesNotThrow(() -> generator.setResolvedVersions(resolvedVersions));
     }
 
@@ -283,18 +283,18 @@ class CitrusCatalogGeneratorTest {
         File nestedDir = new File(tempDir.toFile(), "nested/output");
         nestedDir.mkdirs();
         assertTrue(nestedDir.exists());
-        
+
         generator = new CitrusCatalogGenerator("4.10.0", nestedDir, false);
-        
+
         assertDoesNotThrow(() -> generator.generate());
     }
 
     @Test
     void testCatalogDefinitionFileName() {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
-        
+
         CatalogDefinition catalogDefinition = generator.generate();
-        
+
         assertEquals("index.json", catalogDefinition.getFileName(),
             "Catalog definition should always use 'index.json' as filename");
     }
@@ -302,11 +302,11 @@ class CitrusCatalogGeneratorTest {
     @Test
     void testCatalogDefinitionNameFormat() {
         String[] versions = {"4.10.0", "4.10.1-SNAPSHOT", "4.11.0.redhat-00001"};
-        
+
         for (String version : versions) {
             generator = new CitrusCatalogGenerator(version, outputDirectory, false);
             CatalogDefinition catalogDefinition = generator.generate();
-            
+
             assertEquals("Citrus " + version, catalogDefinition.getName(),
                 "Catalog name should be 'Citrus ' + version");
         }
@@ -316,12 +316,413 @@ class CitrusCatalogGeneratorTest {
     void testGenerateWithNullResolvedVersions() {
         generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
         // Don't set resolved versions
-        
+
         CatalogDefinition catalogDefinition = generator.generate();
-        
+
         assertNotNull(catalogDefinition);
         assertNull(catalogDefinition.getCamelCatalogVersion());
         assertNull(catalogDefinition.getRuntimeProviderVersion());
         assertNull(catalogDefinition.getFrameworkVersion());
+    }
+
+    @Test
+    void testRemoveRequiredFromOneOf() throws Exception {
+        String testActionsJson = """
+            {
+              "send" : {
+                "propertiesSchema" : {
+                  "$schema" : "http://json-schema.org/draft-07/schema#",
+                  "type" : "object",
+                  "properties" : {
+                    "fork" : {
+                      "type" : "boolean",
+                      "title" : "Fork",
+                      "description" : "When set the send operation does not block while waiting for the response."
+                    },
+                    "message" : {
+                      "type" : "object",
+                      "properties" : {
+                        "body" : {
+                          "type" : "object",
+                          "properties" : {
+                            "data" : {
+                              "type" : "string",
+                              "title" : "Data",
+                              "description" : "The message body content as inline data."
+                            },
+                            "resource" : { }
+                          },
+                          "additionalProperties" : false,
+                          "anyOf" : [ {
+                            "oneOf" : [ {
+                              "required" : [ "data" ]
+                            }, {
+                              "type" : "object",
+                              "properties" : {
+                                "resource" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "file" : {
+                                      "type" : "string",
+                                      "title" : "File"
+                                    }
+                                  },
+                                  "additionalProperties" : false,
+                                  "title" : "Resource",
+                                  "description" : "The message body loaded from a file resource."
+                                }
+                              },
+                              "required" : [ "resource" ]
+                            }, {
+                              "not" : {
+                                "anyOf" : [ {
+                                  "required" : [ "data" ]
+                                }, {
+                                  "required" : [ "resource" ]
+                                }, {
+                                  "required" : [ "script" ]
+                                } ]
+                              }
+                            } ]
+                          } ],
+                          "title" : "Body",
+                          "description" : "The message body."
+                        }
+                      },
+                      "additionalProperties" : false,
+                      "title" : "Message",
+                      "description" : "The message to send."
+                    }
+                  },
+                  "required" : [ "endpoint" ],
+                  "additionalProperties" : false
+                }
+              }
+            }
+            """;
+
+        generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
+
+        // Use reflection to access private method
+        var method = CitrusCatalogGenerator.class.getDeclaredMethod(
+                "postProcessActionSchema", String.class);
+        method.setAccessible(true);
+
+        String result = (String) method.invoke(generator, testActionsJson);
+
+        JsonNode expected = objectMapper.readTree("""
+            {
+              "send" : {
+                "propertiesSchema" : {
+                  "$schema" : "http://json-schema.org/draft-07/schema#",
+                  "type" : "object",
+                  "properties" : {
+                    "fork" : {
+                      "type" : "boolean",
+                      "title" : "Fork",
+                      "description" : "When set the send operation does not block while waiting for the response."
+                    },
+                    "message" : {
+                      "type" : "object",
+                      "properties" : {
+                        "body" : {
+                          "type" : "object",
+                          "properties" : {
+                            "data" : {
+                              "type" : "string",
+                              "title" : "Data",
+                              "description" : "The message body content as inline data."
+                            },
+                            "resource" : { }
+                          },
+                          "additionalProperties" : false,
+                          "anyOf" : [ {
+                            "oneOf" : [ {
+                              "type" : "object",
+                              "properties" : {
+                                "resource" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "file" : {
+                                      "type" : "string",
+                                      "title" : "File"
+                                    }
+                                  },
+                                  "additionalProperties" : false,
+                                  "title" : "Resource",
+                                  "description" : "The message body loaded from a file resource."
+                                }
+                              }
+                            }, {
+                              "not" : {
+                                "anyOf" : [ {
+                                  "required" : [ "data" ]
+                                }, {
+                                  "required" : [ "resource" ]
+                                }, {
+                                  "required" : [ "script" ]
+                                } ]
+                              }
+                            } ]
+                          } ],
+                          "title" : "Body",
+                          "description" : "The message body."
+                        }
+                      },
+                      "additionalProperties" : false,
+                      "title" : "Message",
+                      "description" : "The message to send."
+                    }
+                  },
+                  "required" : [ "endpoint" ],
+                  "additionalProperties" : false
+                }
+              }
+            }""");
+        assertEquals(expected, objectMapper.readTree(result));
+    }
+
+    @Test
+    void testRemoveRequiredFromOneOfInArray() throws Exception {
+        String testActionsJson = """
+            {
+              "send" : {
+                "propertiesSchema" : {
+                  "$schema" : "http://json-schema.org/draft-07/schema#",
+                  "type" : "object",
+                  "properties" : {
+                    "fork" : {
+                      "type" : "boolean",
+                      "title" : "Fork",
+                      "description" : "When set the send operation does not block while waiting for the response."
+                    },
+                    "headers" : {
+                      "title" : "Headers",
+                      "description" : "The message headers.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "data" : {
+                            "type" : "string",
+                            "title" : "Data",
+                            "description" : "The message header value as inline data."
+                          },
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The message header name."
+                          },
+                          "resource" : { },
+                          "type" : {
+                            "type" : "string",
+                            "title" : "Type",
+                            "description" : "The message header type to create typed message headers.",
+                            "$comment" : "group:advanced"
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The message header value."
+                          }
+                        },
+                        "additionalProperties" : false,
+                        "anyOf" : [ {
+                          "oneOf" : [ {
+                            "required" : [ "value" ]
+                          }, {
+                            "type" : "object",
+                            "properties" : {
+                              "resource" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "charset" : {
+                                    "type" : "string",
+                                    "title" : "Charset",
+                                    "description" : "Optional file resource charset used to read the file content.",
+                                    "$comment" : "group:advanced"
+                                  },
+                                  "file" : {
+                                    "type" : "string",
+                                    "title" : "File",
+                                    "description" : "The file resource path."
+                                  }
+                                },
+                                "required" : [ "file" ],
+                                "additionalProperties" : false,
+                                "title" : "Resource",
+                                "description" : "The header data loaded from a file resource."
+                              }
+                            },
+                            "required" : [ "resource" ]
+                          }, {
+                            "required" : [ "data" ]
+                          }, {
+                            "not" : {
+                              "anyOf" : [ {
+                                "required" : [ "value" ]
+                              }, {
+                                "required" : [ "resource" ]
+                              }, {
+                                "required" : [ "data" ]
+                              } ]
+                            }
+                          } ]
+                        } ],
+                        "title" : "Headers",
+                        "description" : "The message headers."
+                      }
+                    }
+                  },
+                  "required" : [ "endpoint" ],
+                  "additionalProperties" : false
+                }
+              }
+            }
+            """;
+
+        generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
+
+        // Use reflection to access private method
+        var method = CitrusCatalogGenerator.class.getDeclaredMethod(
+                "postProcessActionSchema", String.class);
+        method.setAccessible(true);
+
+        String result = (String) method.invoke(generator, testActionsJson);
+
+        JsonNode expected = objectMapper.readTree("""
+            {
+              "send" : {
+                "propertiesSchema" : {
+                  "$schema" : "http://json-schema.org/draft-07/schema#",
+                  "type" : "object",
+                  "properties" : {
+                    "fork" : {
+                      "type" : "boolean",
+                      "title" : "Fork",
+                      "description" : "When set the send operation does not block while waiting for the response."
+                    },
+                    "headers" : {
+                      "title" : "Headers",
+                      "description" : "The message headers.",
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "data" : {
+                            "type" : "string",
+                            "title" : "Data",
+                            "description" : "The message header value as inline data."
+                          },
+                          "name" : {
+                            "type" : "string",
+                            "title" : "Name",
+                            "description" : "The message header name."
+                          },
+                          "resource" : { },
+                          "type" : {
+                            "type" : "string",
+                            "title" : "Type",
+                            "description" : "The message header type to create typed message headers.",
+                            "$comment" : "group:advanced"
+                          },
+                          "value" : {
+                            "type" : "string",
+                            "title" : "Value",
+                            "description" : "The message header value."
+                          }
+                        },
+                        "additionalProperties" : false,
+                        "anyOf" : [ {
+                          "oneOf" : [ {
+                            "type" : "object",
+                            "properties" : {
+                              "resource" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "charset" : {
+                                    "type" : "string",
+                                    "title" : "Charset",
+                                    "description" : "Optional file resource charset used to read the file content.",
+                                    "$comment" : "group:advanced"
+                                  },
+                                  "file" : {
+                                    "type" : "string",
+                                    "title" : "File",
+                                    "description" : "The file resource path."
+                                  }
+                                },
+                                "required" : [ "file" ],
+                                "additionalProperties" : false,
+                                "title" : "Resource",
+                                "description" : "The header data loaded from a file resource."
+                              }
+                            }
+                          }, {
+                            "not" : {
+                              "anyOf" : [ {
+                                "required" : [ "value" ]
+                              }, {
+                                "required" : [ "resource" ]
+                              }, {
+                                "required" : [ "data" ]
+                              } ]
+                            }
+                          } ]
+                        } ],
+                        "title" : "Headers",
+                        "description" : "The message headers."
+                      }
+                    }
+                  },
+                  "required" : [ "endpoint" ],
+                  "additionalProperties" : false
+                }
+              }
+            }""");
+        assertEquals(expected, objectMapper.readTree(result));
+    }
+
+    @Test
+    void testRemoveEmptyOneOfAfterCleanup() throws Exception {
+        String testActionsJson = """
+            {
+              "action" : {
+                "propertiesSchema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "value" : {
+                      "type" : "object",
+                      "properties" : {
+                        "a" : { "type" : "string" },
+                        "b" : { "type" : "string" }
+                      },
+                      "oneOf" : [ {
+                        "required" : [ "a" ]
+                      }, {
+                        "required" : [ "b" ]
+                      } ]
+                    }
+                  }
+                }
+              }
+            }
+            """;
+
+        generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
+
+        var method = CitrusCatalogGenerator.class.getDeclaredMethod(
+                "postProcessActionSchema", String.class);
+        method.setAccessible(true);
+
+        String result = (String) method.invoke(generator, testActionsJson);
+
+        JsonNode resultNode = objectMapper.readTree(result);
+        JsonNode valueNode = resultNode.at("/action/propertiesSchema/properties/value");
+
+        assertFalse(valueNode.has("oneOf"),
+            "Empty oneOf should be removed after all required-only branches are cleaned up");
+        assertTrue(valueNode.has("properties"),
+            "properties should still exist");
     }
 }

@@ -3,7 +3,7 @@ package io.kaoto.camelcatalog.commands;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.kaoto.camelcatalog.beans.ConfigBean;
-import io.kaoto.camelcatalog.generator.CamelCatalogGeneratorBuilder;
+import io.kaoto.camelcatalog.generator.camel.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.xslt.XsltCatalogGeneratorBuilder;

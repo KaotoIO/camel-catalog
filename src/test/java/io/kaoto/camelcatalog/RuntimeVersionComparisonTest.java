@@ -18,7 +18,7 @@ package io.kaoto.camelcatalog;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.kaoto.camelcatalog.generators.ComponentGenerator;
+import io.kaoto.camelcatalog.generator.camel.handlers.ComponentHandler;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
@@ -84,7 +84,7 @@ public class RuntimeVersionComparisonTest {
         loader.loadCamelCatalog(version);
 
         CamelCatalog catalog = loader.getCamelCatalog();
-        ComponentGenerator generator = new ComponentGenerator(catalog, CatalogRuntime.Main);
+        ComponentHandler generator = new ComponentHandler(catalog, CatalogRuntime.Main);
         Map<String, ObjectNode> components = generator.generate();
 
         // Verify core components that should exist in all versions
@@ -104,13 +104,13 @@ public class RuntimeVersionComparisonTest {
         // Load Camel 4.12.0
         CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentGenerator generator412 = new ComponentGenerator(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
         CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentGenerator generator415 = new ComponentGenerator(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         // Compare file component
@@ -159,13 +159,13 @@ public class RuntimeVersionComparisonTest {
         // Load Camel 4.12.0
         CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentGenerator generator412 = new ComponentGenerator(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
         CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentGenerator generator415 = new ComponentGenerator(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         // Compare timer component
@@ -225,13 +225,13 @@ public class RuntimeVersionComparisonTest {
         // Load Camel 4.12.0
         CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentGenerator generator412 = new ComponentGenerator(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
         CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentGenerator generator415 = new ComponentGenerator(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         int count412 = components412.size();

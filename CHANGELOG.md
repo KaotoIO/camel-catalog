@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.8.2 (2026-08-10)
+
+### Bug Fixes
+
+* **#111:** Post process Citrus test actions schemas ([a81fd90](https://github.com/KaotoIO/camel-catalog/commit/a81fd909b6f4ab8e8e386242059c67b57eebc71a)), closes [#111](https://github.com/KaotoIO/camel-catalog/issues/111)
+
+## 0.8.1 (2026-08-10)
+
+**Note:** Version bump only for package @kaoto/camel-catalog
+
 # 0.8.0 (2026-08-07)
 
 ### Features
