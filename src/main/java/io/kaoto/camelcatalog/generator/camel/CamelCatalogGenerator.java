@@ -218,6 +218,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
+            throw new IllegalStateException("Failed to generate Camel aggregate catalogs", e);
         }
     }
 
