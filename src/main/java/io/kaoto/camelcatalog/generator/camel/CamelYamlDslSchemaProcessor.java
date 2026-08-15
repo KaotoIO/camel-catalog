@@ -67,8 +67,12 @@ public class CamelYamlDslSchemaProcessor {
                     continue;
                 }
                 if (!schema.has("definitions") || !schema.withObject("/definitions").has(name)) {
+                    if (!definitions.has(name)) {
+                        throw new IllegalStateException("Missing definition: " + name);
+                    }
+
                     var schemaDefinitions = schema.withObject("/definitions");
-                    schemaDefinitions.set(name, definitions.withObject("/" + name));
+                    schemaDefinitions.set(name, definitions.get(name));
                     added = true;
                     break;
                 }

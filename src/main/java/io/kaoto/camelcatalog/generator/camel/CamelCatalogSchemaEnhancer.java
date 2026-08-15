@@ -500,7 +500,7 @@ public class CamelCatalogSchemaEnhancer {
         var yamlDslProperties = yamlDslSchema.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
         for (var propertyName : yamlDslProperties) {
-            var catalogPropertySchema = catalogModel.withObject("/properties").withObject("/" + propertyName);
+            var catalogPropertySchema = catalogModel.path("properties").path(propertyName);
             if (catalogPropertySchema.has("required") && catalogPropertySchema.get("required").asBoolean()) {
                 required.add(propertyName);
             }
