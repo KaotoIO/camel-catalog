@@ -72,7 +72,7 @@ public class CamelYamlDslSchemaProcessor {
                     }
 
                     var schemaDefinitions = schema.withObject("/definitions");
-                    schemaDefinitions.set(name, definitions.get(name));
+                    schemaDefinitions.set(name, definitions.get(name).deepCopy());
                     added = true;
                     break;
                 }

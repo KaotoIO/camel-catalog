@@ -139,4 +139,43 @@ class CamelYamlDslSchemaProcessorTest {
         assertEquals("string", customLbRefProp.get("type").asText());
         assertEquals("Ref", customLbRefProp.get("title").asText());
     }
+
+    @Test
+    void testReusedDefinitionsAreDeepCopied() throws Exception {
+        var dataFormatMap = processor.getDataFormats();
+
+        var dataFormatsUsingUniVocityHeader = dataFormatMap.values().stream()
+                .filter(dataFormat -> dataFormat.has("definitions")
+                        && dataFormat.withObject("/definitions")
+                        .has("org.apache.camel.model.dataformat.UniVocityHeader"))
+                .toList();
+
+        assertTrue(dataFormatsUsingUniVocityHeader.size() >= 2);
+
+        var first = dataFormatsUsingUniVocityHeader.get(0);
+        var second = dataFormatsUsingUniVocityHeader.get(1);
+
+        var firstHeader = first
+                .withObject("/definitions")
+                .withObject("/org.apache.camel.model.dataformat.UniVocityHeader");
+
+        var secondHeader = second
+                .withObject("/definitions")
+                .withObject("/org.apache.camel.model.dataformat.UniVocityHeader");
+
+        assertNotSame(firstHeader, secondHeader);
+
+        firstHeader
+                .withObject("/properties")
+                .withObject("/name")
+                .put("title", "Changed");
+
+        assertNotEquals(
+                "Changed",
+                secondHeader
+                        .withObject("/properties")
+                        .withObject("/name")
+                        .get("title")
+                        .asText());
+    }
 }
