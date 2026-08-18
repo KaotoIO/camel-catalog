@@ -17,9 +17,8 @@ package io.kaoto.camelcatalog.generator;
 
 import org.junit.jupiter.api.Test;
 
-import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,13 +78,16 @@ class UtilTest {
     }
 
     @Test
-    void testMessageDigestHash() throws Exception {
-        try (var is = Thread.currentThread().getContextClassLoader().getResourceAsStream(testFiles.get(0))) {
-            if (is == null) throw new Exception("no test file available");
-            var digest = MessageDigest.getInstance("MD5");
-            var hash = digest.digest(is.readAllBytes());
-            String checksum = new BigInteger(1, hash).toString(16);
-            assertNotNull(checksum);
-        }
+    void testGenerateHashUsesCRC32() throws Exception {
+        // Known-vector: CRC32 of "123456789" is cbf43926 (ISO 3309 standard check value)
+        assertEquals("cbf43926", Util.generateHash("123456789".getBytes(StandardCharsets.UTF_8)));
+
+        // Resource-based: non-null, hex format, and within CRC32's 32-bit range (≤8 hex chars)
+        var is = Thread.currentThread().getContextClassLoader().getResourceAsStream(testFiles.get(0));
+        if (is == null) throw new Exception("no test file available");
+        var hash = Util.generateHash(is.readAllBytes());
+        assertNotNull(hash);
+        assertTrue(hash.matches("[0-9a-f]{1,8}"),
+                "Expected a CRC32 hex hash matching [0-9a-f]{1,8} but got: " + hash);
     }
 }

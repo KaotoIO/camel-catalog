@@ -26,6 +26,7 @@ import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.zip.CRC32;
 
 public class Util {
     private static final ObjectMapper jsonMapper = new ObjectMapper();
@@ -46,19 +47,26 @@ public class Util {
     public static ObjectWriter createTabWriter(ObjectMapper mapper) {
         return mapper.writer(createTabPrettyPrinter());
     }
-    public static String generateHash(byte[] content) throws Exception {
+    /**
+     * Generates a CRC32 hex string for the given content.
+     * This is used exclusively for cache-busting filename suffixes and carries
+     * no security requirement — CRC32 is the appropriate tool here.
+     * Using java.util.zip.CRC32 (rather than java.security.MessageDigest) makes
+     * the non-cryptographic intent explicit and avoids weak-algorithm Sonar warnings.
+     */
+    public static String generateHash(byte[] content) {
         if (content == null)
             return null;
-        var digest = java.security.MessageDigest.getInstance("MD5");
-        var hash = digest.digest(content);
-        return new java.math.BigInteger(1, hash).toString(16);
+        var crc = new CRC32();
+        crc.update(content);
+        return Long.toHexString(crc.getValue());
     }
 
-    public static String generateHash(Path path) throws Exception {
+    public static String generateHash(Path path) throws IOException {
         return path == null ? null : generateHash(Files.readAllBytes(path));
     }
 
-    public static String generateHash(String content) throws Exception {
+    public static String generateHash(String content) {
         return content == null ? null : generateHash(content.getBytes());
     }
 
