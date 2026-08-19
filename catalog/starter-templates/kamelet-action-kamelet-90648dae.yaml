@@ -1,0 +1,25 @@
+apiVersion: camel.apache.org/v1
+kind: Kamelet
+metadata:
+  name: kamelet-action-__KAOTO_ID__
+  labels:
+    camel.apache.org/kamelet.type: action
+spec:
+  definition:
+    title: My Action Kamelet
+    description: Applies a delay to the message
+    properties:
+      delay:
+        title: Delay
+        description: The delay in milliseconds before forwarding the message
+        type: integer
+        default: 1000
+  template:
+    from:
+      uri: kamelet:source
+      steps:
+        - delay:
+            expression:
+              constant:
+                expression: "{{delay}}"
+        - to: kamelet:sink

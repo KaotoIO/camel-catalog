@@ -6,6 +6,7 @@ import io.kaoto.camelcatalog.beans.ConfigBean;
 import io.kaoto.camelcatalog.generator.camel.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder;
+import io.kaoto.camelcatalog.generator.templates.StarterTemplatesGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.xslt.XsltCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.maven.PomFetcher;
 import io.kaoto.camelcatalog.maven.RuntimeVersionResolver;
@@ -46,6 +47,11 @@ public class GenerateCommand implements Runnable {
 
         configBean.getCatalogVersionSet()
                 .forEach(catalogCliArg -> {
+                    if (catalogCliArg.getRuntime() == CatalogRuntime.StarterTemplates) {
+                        throw new IllegalArgumentException(
+                                "StarterTemplates is not a versioned CLI runtime");
+                    }
+
                     ResolvedVersions resolved = versionResolver.resolve(
                             catalogCliArg.getRuntime(), catalogCliArg.getCatalogVersion());
 
@@ -82,6 +88,8 @@ public class GenerateCommand implements Runnable {
                                 .withVerbose(configBean.isVerbose())
                                 .withResolvedVersions(resolved)
                                 .build();
+                        case StarterTemplates -> throw new IllegalStateException(
+                                "StarterTemplates is not a versioned CLI runtime");
                     };
 
                     CatalogDefinition catalogDefinition = catalogGenerator.generate();
@@ -97,6 +105,18 @@ public class GenerateCommand implements Runnable {
 
                     library.addDefinition(catalogDefinition);
                 });
+
+        // Generate starter templates once — runtime-agnostic, invoked after the runtime loop
+        File starterTemplatesFolder = createSubFolder(outputFolder,
+                CatalogRuntime.StarterTemplates.getRuntimeFolder());
+        CatalogDefinition starterDef = new StarterTemplatesGeneratorBuilder()
+                .withOutputDirectory(starterTemplatesFolder)
+                .build()
+                .generate();
+        String relativeStarterIndex = outputFolder.toPath()
+                .relativize(starterTemplatesFolder.toPath().resolve(starterDef.getFileName()))
+                .toString().replace(File.separator, "/");
+        library.setStarterTemplates(relativeStarterIndex);
 
         ObjectMapper jsonMapper = new ObjectMapper()
                 .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);

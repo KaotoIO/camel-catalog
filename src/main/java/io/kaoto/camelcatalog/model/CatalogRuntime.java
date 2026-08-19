@@ -20,7 +20,8 @@ public enum CatalogRuntime {
     Quarkus("Quarkus"),
     SpringBoot("Spring Boot"),
     Citrus("Citrus"),
-    XSLT("XSLT");
+    XSLT("XSLT"),
+    StarterTemplates("Starter Templates");
 
     private final String label;
 
@@ -46,6 +47,7 @@ public enum CatalogRuntime {
         return switch (this) {
             case Main, Quarkus, SpringBoot -> "camel-" + name().toLowerCase();
             case Citrus, XSLT -> name().toLowerCase();
+            case StarterTemplates -> "starter-templates";
         };
     }
 }

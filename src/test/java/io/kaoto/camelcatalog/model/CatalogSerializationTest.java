@@ -18,6 +18,7 @@ package io.kaoto.camelcatalog.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CatalogSerializationTest {
@@ -65,5 +66,24 @@ class CatalogSerializationTest {
         assertTrue(json.contains("\"runtimeProviderVersion\":\"3.33.0.redhat-00007\""), json);
         assertTrue(json.contains("\"frameworkVersion\":\"3.33.1.redhat-00006\""), json);
         assertTrue(json.contains("\"cliVersion\":\"4.20.0\""), json);
+    }
+
+    @Test
+    void testStarterTemplatesRuntimeFolder() {
+        assertEquals("starter-templates", CatalogRuntime.StarterTemplates.getRuntimeFolder());
+        assertEquals("Starter Templates", CatalogRuntime.StarterTemplates.getLabel());
+    }
+
+    @Test
+    void testCatalogLibraryStarterTemplatesField() throws Exception {
+        var library = new CatalogLibrary(3, "test");
+        library.setStarterTemplates("starter-templates/index-abc12345.json");
+
+        String json = mapper.writeValueAsString(library);
+        assertTrue(json.contains("\"starterTemplates\""));
+        assertTrue(json.contains("starter-templates/index-abc12345.json"));
+
+        CatalogLibrary roundTripped = mapper.readValue(json, CatalogLibrary.class);
+        assertEquals("starter-templates/index-abc12345.json", roundTripped.getStarterTemplates());
     }
 }

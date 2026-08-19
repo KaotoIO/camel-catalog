@@ -26,8 +26,12 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 class GenerateCommandTest {
@@ -163,6 +167,38 @@ class GenerateCommandTest {
             assertEquals("3.0", xsltEntry.version());
             assertEquals("XSLT", xsltEntry.runtime());
             assertEquals("xslt/3.0/index.json", xsltEntry.fileName());
+        }
+    }
+
+    @Test
+    void testCatalogLibraryHasStarterTemplatesField() throws Exception {
+        try (
+            var mockedCamelBuilder = mockConstruction(CamelCatalogGeneratorBuilder.class, (mockBuilder, context) -> {
+                when(mockBuilder.withRuntime(any(CatalogRuntime.class))).thenCallRealMethod().thenReturn(mockBuilder);
+                when(mockBuilder.withCatalogVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                when(mockBuilder.withKameletsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
+                when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
+                when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
+                when(mockBuilder.build()).thenAnswer(invocation -> {
+                    CamelCatalogGenerator gen = mock(CamelCatalogGenerator.class);
+                    when(gen.generate()).thenReturn(catalogDefinition);
+                    return gen;
+                });
+            })
+        ) {
+            generateCommand.run();
+
+            // index.json is written directly into tempDir (the output folder)
+            File indexFile = new File(tempDir, "index.json");
+            assertTrue(indexFile.exists(), "index.json not written to " + tempDir);
+
+            ObjectMapper mapper = new ObjectMapper();
+            CatalogLibrary library = mapper.readValue(indexFile, CatalogLibrary.class);
+            assertNotNull(library.getStarterTemplates(), "starterTemplates must not be null");
+            assertTrue(library.getStarterTemplates().startsWith("starter-templates/index-"),
+                    "starterTemplates path must point into starter-templates/: " + library.getStarterTemplates());
         }
     }
 }

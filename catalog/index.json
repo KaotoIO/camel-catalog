@@ -1,4 +1,6 @@
 {
+	"version" : 3,
+	"name" : "Default Kaoto catalog",
 	"definitions" : [
 		{
 			"name" : "Camel Main 4.20.0",
@@ -232,6 +234,5 @@
 			"frameworkVersion" : null
 		}
 	],
-	"version" : 3,
-	"name" : "Default Kaoto catalog"
+	"starterTemplates" : "starter-templates/index-e8af9122.json"
 }

@@ -1,0 +1,13 @@
+- route:
+    id: route-__KAOTO_ID__
+    from:
+      uri: timer:yaml
+      parameters:
+        period: "1000"
+    steps:
+      - setBody:
+          expression:
+            simple:
+              expression: Hello Camel from ${routeId}
+      - log:
+          message: ${body}
