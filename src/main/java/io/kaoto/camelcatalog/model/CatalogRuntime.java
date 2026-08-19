@@ -14,28 +14,44 @@
  * limitations under the License.
  */
 package io.kaoto.camelcatalog.model;
-
-public enum CatalogRuntime {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
     
-    MAIN("Main"),
-    QUARKUS("Quarkus"),
-    SPRING_BOOT("Spring Boot"),
-    CITRUS("Citrus"),
-    XSLT("XSLT"),
-    STARTER_TEMPLATES("Starter Templates");
+public enum CatalogRuntime {
+    MAIN("Main", "Main"),
+    QUARKUS("Quarkus", "Quarkus"),
+    SPRING_BOOT("SpringBoot", "Spring Boot"),
+    CITRUS("Citrus", "Citrus"),
+    XSLT("XSLT", "XSLT"),
+    STARTER_TEMPLATES("StarterTemplates", "Starter Templates");
+
+    /**
+     * Stable identifier written to the generated catalogs and used to build the
+     * runtime folder names. It is part of the catalog contract, so it must not
+     * follow renames of the enum constants.
+     */
+    private final String id;
     private final String label;
 
-    CatalogRuntime(String label) {
+    CatalogRuntime(String id, String label) {
+        this.id = id;
         this.label = label;
+    }
+
+    @JsonValue
+    public String getId() {
+        return id;
     }
 
     public String getLabel() {
         return label;
     }
 
+    @JsonCreator
     public static CatalogRuntime fromString(String name) {
         for (CatalogRuntime runtime : CatalogRuntime.values()) {
-            if (runtime.name().equalsIgnoreCase(name)
+            if (runtime.id.equalsIgnoreCase(name)
+                    || runtime.name().equalsIgnoreCase(name)
                     || runtime.name().replace("_", "").equalsIgnoreCase(name)) {
                 return runtime;
             }
@@ -46,8 +62,7 @@ public enum CatalogRuntime {
 
     public String getRuntimeFolder() {
         return switch (this) {
-            case MAIN, QUARKUS -> "camel-" + name().toLowerCase();
-            case SPRING_BOOT -> "camel-springboot";
+            case MAIN, QUARKUS, SPRING_BOOT -> "camel-" + id.toLowerCase();
             case CITRUS, XSLT -> name().toLowerCase();
             case STARTER_TEMPLATES -> "starter-templates";
         };

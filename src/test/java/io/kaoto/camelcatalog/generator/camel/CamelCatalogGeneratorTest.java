@@ -42,7 +42,7 @@ class CamelCatalogGeneratorTest {
 
         var loader = mock(CamelCatalogVersionLoader.class);
         when(loader.getCamelCatalog()).thenReturn(camelCatalog);
-        when(loader.getRuntime()).thenReturn(CatalogRuntime.Main);
+        when(loader.getRuntime()).thenReturn(CatalogRuntime.MAIN);
 
         var generator = new CamelCatalogGenerator(loader, outputDirectory);
         var processCatalog = CamelCatalogGenerator.class.getDeclaredMethod(
