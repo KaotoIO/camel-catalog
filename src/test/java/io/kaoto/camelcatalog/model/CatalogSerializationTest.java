@@ -70,8 +70,8 @@ class CatalogSerializationTest {
 
     @Test
     void testStarterTemplatesRuntimeFolder() {
-        assertEquals("starter-templates", CatalogRuntime.StarterTemplates.getRuntimeFolder());
-        assertEquals("Starter Templates", CatalogRuntime.StarterTemplates.getLabel());
+        assertEquals("starter-templates", CatalogRuntime.STARTER_TEMPLATES.getRuntimeFolder());
+        assertEquals("Starter Templates", CatalogRuntime.STARTER_TEMPLATES.getLabel());
     }
 
     @Test

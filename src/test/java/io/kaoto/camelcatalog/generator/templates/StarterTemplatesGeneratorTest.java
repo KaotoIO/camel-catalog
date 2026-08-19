@@ -47,7 +47,7 @@ class StarterTemplatesGeneratorTest {
         CatalogDefinition def = generator.generate();
 
         assertNotNull(def);
-        assertEquals(CatalogRuntime.StarterTemplates, def.getRuntime());
+        assertEquals(CatalogRuntime.STARTER_TEMPLATES, def.getRuntime());
         assertEquals("Kaoto Starter Templates", def.getName());
         assertEquals("1", def.getVersion());
     }
