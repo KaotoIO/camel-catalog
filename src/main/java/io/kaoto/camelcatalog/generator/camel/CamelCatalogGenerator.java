@@ -290,8 +290,6 @@ private CatalogDefinitionEntry getKameletsEntry(
 
         return null;
     }
-        return null;
-    }
 
     private void processKameletFile(String kamelet, ObjectNode targetObject) {
         try {
