@@ -45,41 +45,23 @@ public class ResourceLoader {
         }
     }
 
-    public void loadResourcesFromFolderAsString(String resourceFolderName, Map<String, String> filesMap,
-                                                String fileSuffix) {
+   public void loadResourcesFromFolderAsString(String resourceFolderName, Map<String, String> filesMap, String fileSuffix) {
         ClassLoader classLoader = kaotoVersionManager.getClassLoader();
-
         try {
             Iterator<URL> it = classLoader.getResources(resourceFolderName).asIterator();
-
             while (it.hasNext()) {
                 URL resourceUrl = it.next();
-
                 if ("jar".equals(resourceUrl.getProtocol())) {
                     JarURLConnection connection = (JarURLConnection) resourceUrl.openConnection();
                     JarFile jarFile = connection.getJarFile();
                     Enumeration<JarEntry> entries = jarFile.entries();
-
                     while (entries.hasMoreElements()) {
                         JarEntry entry = entries.nextElement();
-                        if (entry.getName().startsWith(connection.getEntryName()) && !entry.isDirectory() &&
-                                entry.getName().endsWith(fileSuffix)) {
-
+                        if (entry.getName().startsWith(connection.getEntryName()) && !entry.isDirectory() && entry.getName().endsWith(fileSuffix)) {
                             if (verbose) {
                                 LOGGER.log(Level.FINE, () -> "Parsing: " + entry.getName());
                             }
-
-                            try (InputStream inputStream = jarFile.getInputStream(entry)) {
-                                try (Scanner scanner = new Scanner(inputStream)) {
-                                    scanner.useDelimiter("\\A");
-                                    String filenameWithoutExtension =
-                                            entry.getName().replace(resourceFolderName + "/", "")
-                                                    .replace(fileSuffix, "");
-                                    filesMap.put(filenameWithoutExtension, scanner.hasNext() ? scanner.next() : "");
-                                }
-                            } catch (IOException e) {
-                                LOGGER.log(Level.SEVERE, e.toString(), e);
-                            }
+                            loadJarResourceEntry(jarFile, entry, resourceFolderName, fileSuffix, filesMap);
                         }
                     }
                 } else if ("file".equals(resourceUrl.getProtocol())) {
@@ -89,14 +71,7 @@ public class ResourceLoader {
                                     if (verbose) {
                                         LOGGER.log(Level.INFO, () -> "Parsing: " + path);
                                     }
-
-                                    try {
-                                        String filenameWithoutExtension = path.toFile().getName()
-                                                .substring(0, path.toFile().getName().lastIndexOf('.'));
-                                        filesMap.put(filenameWithoutExtension, new String(Files.readAllBytes(path)));
-                                    } catch (IOException e) {
-                                        LOGGER.log(Level.SEVERE, e.toString(), e);
-                                    }
+                                    loadFileResourceEntry(path, filesMap);
                                 });
                     } catch (IOException | URISyntaxException e) {
                         LOGGER.log(Level.SEVERE, e.toString(), e);
@@ -108,6 +83,26 @@ public class ResourceLoader {
         }
     }
 
+private void loadJarResourceEntry(JarFile jarFile, JarEntry entry, String resourceFolderName, String fileSuffix, Map<String, String> filesMap) {
+        try (InputStream inputStream = jarFile.getInputStream(entry);
+             Scanner scanner = new Scanner(inputStream)) {
+            scanner.useDelimiter("\\A");
+            String filenameWithoutExtension = entry.getName().replace(resourceFolderName + "/", "")
+                    .replace(fileSuffix, "");
+            filesMap.put(filenameWithoutExtension, scanner.hasNext() ? scanner.next() : "");
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
+    private void loadFileResourceEntry(java.nio.file.Path path, Map<String, String> filesMap) {
+        try {
+            String filenameWithoutExtension = path.toFile().getName()
+                    .substring(0, path.toFile().getName().lastIndexOf('.'));
+            filesMap.put(filenameWithoutExtension, new String(Files.readAllBytes(path), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
     void configureRepositories(String version) {
         if (kaotoVersionManager.repositories.get("central") == null) {
             kaotoVersionManager.addMavenRepository("central", "https://repo1.maven.org/maven2/");
