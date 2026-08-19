@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,7 +37,8 @@ class CamelCatalogGeneratorTest {
     @Test
     void processCatalogPropagatesHandlerFailure() throws Exception {
         var camelCatalog = mock(CamelCatalog.class);
-        when(camelCatalog.findComponentNames()).thenThrow(new IllegalStateException("handler failure"));
+        var handlerFailure = new IllegalStateException("handler failure");
+        when(camelCatalog.findComponentNames()).thenThrow(handlerFailure);
 
         var loader = mock(CamelCatalogVersionLoader.class);
         when(loader.getCamelCatalog()).thenReturn(camelCatalog);
@@ -51,6 +53,6 @@ class CamelCatalogGeneratorTest {
                 () -> processCatalog.invoke(generator, null, new CatalogDefinition()));
         var cause = assertInstanceOf(IllegalStateException.class, thrown.getCause());
         assertEquals("Failed to generate Camel aggregate catalogs", cause.getMessage());
-        assertEquals("handler failure", cause.getCause().getMessage());
+        assertSame(handlerFailure, cause.getCause());
     }
 }
