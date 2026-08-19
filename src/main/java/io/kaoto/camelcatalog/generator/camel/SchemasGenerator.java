@@ -85,7 +85,7 @@ public class SchemasGenerator {
         }
     }
 
-    private void loadXSDSchemasFromJar(URL resourceUrl, Map<String, String> schemas) {
+   private void loadXSDSchemasFromJar(URL resourceUrl, Map<String, String> schemas) {
         try {
             JarURLConnection connection = (JarURLConnection) resourceUrl.openConnection();
             try (JarFile jarFile = connection.getJarFile()) {
@@ -94,17 +94,9 @@ public class SchemasGenerator {
 
                 while (entries.hasMoreElements()) {
                     JarEntry entry = entries.nextElement();
-                    if (entry.getName().startsWith(entryBaseName) && !entry.isDirectory() &&
-                            entry.getName().contains(CAMEL_XML_IO_SCHEMA)) {
-
+                    if (entry.getName().startsWith(entryBaseName) && !entry.isDirectory() && entry.getName().contains(CAMEL_XML_IO_SCHEMA)) {
                         LOGGER.log(Level.INFO, "Loading XSD schema: {0}", entry.getName());
-
-                        try (InputStream inputStream = jarFile.getInputStream(entry)) {
-                            String schemaContent = readInputStreamAsString(inputStream);
-                            schemas.put(CAMEL_XML_IO_SCHEMA, schemaContent);
-                        } catch (IOException e) {
-                            LOGGER.log(Level.WARNING, "Error reading XSD schema: " + entry.getName(), e);
-                        }
+                        loadXsdEntry(jarFile, entry, schemas);
                     }
                 }
             }
@@ -113,6 +105,14 @@ public class SchemasGenerator {
         }
     }
 
+    private void loadXsdEntry(JarFile jarFile, JarEntry entry, Map<String, String> schemas) {
+        try (InputStream inputStream = jarFile.getInputStream(entry)) {
+            String schemaContent = readInputStreamAsString(inputStream);
+            schemas.put(CAMEL_XML_IO_SCHEMA, schemaContent);
+        } catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Error reading XSD schema: " + entry.getName(), e);
+        }
+    }
     private void addCRDSchemas(Map<String, String> schemas) {
         List<String> crdList = versionLoader.getCamelKCRDs();
         if (crdList.isEmpty()) {
