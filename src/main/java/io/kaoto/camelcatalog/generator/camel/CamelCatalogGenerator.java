@@ -289,9 +289,7 @@ private CatalogDefinitionEntry getKameletsEntry(
         }
 
         return null;
-    }
-
-    private void processKameletFile(String kamelet, ObjectNode targetObject) {
+    }    private void processKameletFile(String kamelet, ObjectNode targetObject) {
         try {
             JsonNode kameletNode = yamlMapper.readTree(kamelet);
             String lowerFileName = kameletNode.get("metadata").get("name").asText().toLowerCase();
