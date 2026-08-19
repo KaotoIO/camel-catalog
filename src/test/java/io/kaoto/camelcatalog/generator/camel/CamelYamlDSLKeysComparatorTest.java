@@ -80,6 +80,9 @@ class CamelYamlDSLKeysComparatorTest {
 
         assertEquals(-1, Integer.signum(comparator.compare("z-option", "a-option")));
         assertEquals(1, Integer.signum(comparator.compare("a-option", "z-option")));
+        // unknown keys fall back to Integer.MAX_VALUE, so they sort after any known key
+        assertEquals(-1, Integer.signum(comparator.compare("a-option", "unknown-option")));
+        assertEquals(0, Integer.signum(comparator.compare("unknown-a", "unknown-b")));
     }
 
 }

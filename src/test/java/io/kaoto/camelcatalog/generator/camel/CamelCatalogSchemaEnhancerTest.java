@@ -321,6 +321,35 @@ class CamelCatalogSchemaEnhancerTest {
     }
 
     @Test
+    void shouldNotCreatePropertiesNodeWhenAbsent() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schema = jsonMapper.createObjectNode();
+
+        camelCatalogSchemaEnhancer.sortPropertiesByOptions(schema, List.of());
+
+        assertFalse(schema.has("properties"));
+    }
+
+    @Test
+    void shouldKeepUnknownPropertiesAfterKnownOnes() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schema = jsonMapper.createObjectNode();
+        ObjectNode properties = schema.putObject("properties");
+        properties.putObject("unknown").put("type", "string");
+        properties.putObject("a").put("type", "string");
+
+        var optA = new EipModel.EipOptionModel();
+        optA.setName("a");
+        optA.setIndex(0);
+
+        camelCatalogSchemaEnhancer.sortPropertiesByOptions(schema, List.of(optA));
+
+        List<String> keys = new ArrayList<>();
+        schema.get("properties").fieldNames().forEachRemaining(keys::add);
+        assertEquals(List.of("a", "unknown"), keys);
+    }
+
+    @Test
     void shouldGetCamelModelByJavaType() {
         EipModel setHeaderModel =
                 camelCatalogSchemaEnhancer.getCamelModelByJavaType("org.apache.camel.model.SetHeaderDefinition");

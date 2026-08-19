@@ -69,13 +69,10 @@ class LoadBalancerHandlerTest {
         var loadBalancerMap = loadBalancerHandler.generate();
 
         var failoverNode = loadBalancerMap.get("failoverLoadBalancer");
-        var propertiesNode = failoverNode.withObject("propertiesSchema").withObject("properties");
+        var propertiesNode = failoverNode.get("propertiesSchema").get("properties");
         List<String> keys = new ArrayList<>();
         propertiesNode.fieldNames().forEachRemaining(keys::add);
 
-        assertFalse(keys.isEmpty());
-        // 'id' is index 0 for all load balancer EIP models
-        assertEquals("id", keys.get(0),
-                "First property should be 'id' (index 0 in catalog), but was: " + keys.get(0));
+        assertEquals(List.of("id", "exception", "roundRobin", "sticky", "maximumFailoverAttempts"), keys);
     }
 }
