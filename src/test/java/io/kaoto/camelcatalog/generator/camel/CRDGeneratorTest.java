@@ -12,7 +12,7 @@ public class CRDGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, true);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, true);
         camelCatalogVersionLoader.loadCamelKCRDs("2.3.1");
 
         crdGenerator = new CRDGenerator(camelCatalogVersionLoader.getCamelKCRDs());

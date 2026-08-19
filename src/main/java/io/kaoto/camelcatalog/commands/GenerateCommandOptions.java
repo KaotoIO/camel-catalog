@@ -92,10 +92,10 @@ public class GenerateCommandOptions {
                     .map(String::trim).filter(s -> !s.isBlank()).toList());
         }
 
-        addRuntimeVersions(configBean, cmd, camelMainVersionOption, CatalogRuntime.Main);
-        addRuntimeVersions(configBean, cmd, camelQuarkusVersionOption, CatalogRuntime.Quarkus);
-        addRuntimeVersions(configBean, cmd, camelSpringbootVersionOption, CatalogRuntime.SpringBoot);
-        addRuntimeVersions(configBean, cmd, citrusVersionOption, CatalogRuntime.Citrus);
+        addRuntimeVersions(configBean, cmd, camelMainVersionOption, CatalogRuntime.MAIN);
+        addRuntimeVersions(configBean, cmd, camelQuarkusVersionOption, CatalogRuntime.QUARKUS);
+        addRuntimeVersions(configBean, cmd, camelSpringbootVersionOption, CatalogRuntime.SPRING_BOOT);
+        addRuntimeVersions(configBean, cmd, citrusVersionOption, CatalogRuntime.CITRUS);
         addRuntimeVersions(configBean, cmd, xsltVersionOption, CatalogRuntime.XSLT);
 
         if (configBean.getCatalogVersionSet().isEmpty()) {
@@ -125,17 +125,17 @@ public class GenerateCommandOptions {
                 "\nNo Camel Main catalog version specified. \nGenerating the main catalog with the installed version");
 
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
-        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.Main, camelCatalog.getCatalogVersion()));
+        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.MAIN, camelCatalog.getCatalogVersion()));
 
         QuarkusRuntimeProvider quarkusRuntimeProvider = new QuarkusRuntimeProvider();
         camelCatalog.setRuntimeProvider(quarkusRuntimeProvider);
         String quarkusYamlDslVersion = camelCatalog.otherModel("yaml-dsl").getVersion();
-        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.Quarkus, quarkusYamlDslVersion));
+        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.QUARKUS, quarkusYamlDslVersion));
 
         SpringBootRuntimeProvider springBootRuntimeProvider = new SpringBootRuntimeProvider();
         camelCatalog.setRuntimeProvider(springBootRuntimeProvider);
         String springbootYamlDslVersion = camelCatalog.otherModel("yaml-dsl").getVersion();
-        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.SpringBoot, springbootYamlDslVersion));
+        configBean.addCatalogVersion(new CatalogCliArgument(CatalogRuntime.SPRING_BOOT, springbootYamlDslVersion));
     }
 
 }

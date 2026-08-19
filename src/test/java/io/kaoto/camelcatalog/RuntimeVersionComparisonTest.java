@@ -46,7 +46,7 @@ public class RuntimeVersionComparisonTest {
      */
     @Test
     void testLoadCamelCatalog412() {
-        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = loader.loadCamelCatalog("4.12.0");
 
         assertTrue(loaded, "Failed to load Camel catalog for Main version 4.12.0");
@@ -61,7 +61,7 @@ public class RuntimeVersionComparisonTest {
      */
     @Test
     void testLoadCamelCatalog415() {
-        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = loader.loadCamelCatalog("4.15.0");
 
         assertTrue(loaded, "Failed to load Camel catalog for Main version 4.15.0");
@@ -80,11 +80,11 @@ public class RuntimeVersionComparisonTest {
             "4.15.0"
     })
     void testCoreComponentsExist(String version) {
-        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader.loadCamelCatalog(version);
 
         CamelCatalog catalog = loader.getCamelCatalog();
-        ComponentHandler generator = new ComponentHandler(catalog, CatalogRuntime.Main);
+        ComponentHandler generator = new ComponentHandler(catalog, CatalogRuntime.MAIN);
         Map<String, ObjectNode> components = generator.generate();
 
         // Verify core components that should exist in all versions
@@ -102,15 +102,15 @@ public class RuntimeVersionComparisonTest {
     @Test
     void testFileComponentDifferencesBetweenVersions() {
         // Load Camel 4.12.0
-        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
-        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         // Compare file component
@@ -157,15 +157,15 @@ public class RuntimeVersionComparisonTest {
     @Test
     void testTimerComponentDifferencesBetweenVersions() {
         // Load Camel 4.12.0
-        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
-        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         // Compare timer component
@@ -223,15 +223,15 @@ public class RuntimeVersionComparisonTest {
     @Test
     void testComponentCountAcrossVersions() {
         // Load Camel 4.12.0
-        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader412.loadCamelCatalog("4.12.0");
-        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator412 = new ComponentHandler(loader412.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components412 = generator412.generate();
 
         // Load Camel 4.15.0
-        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader415.loadCamelCatalog("4.15.0");
-        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.Main);
+        ComponentHandler generator415 = new ComponentHandler(loader415.getCamelCatalog(), CatalogRuntime.MAIN);
         Map<String, ObjectNode> components415 = generator415.generate();
 
         int count412 = components412.size();
@@ -269,10 +269,10 @@ public class RuntimeVersionComparisonTest {
      */
     @Test
     void testCatalogRuntimeMetadata() {
-        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader.loadCamelCatalog("4.15.0");
 
-        assertEquals(CatalogRuntime.Main, loader.getRuntime());
+        assertEquals(CatalogRuntime.MAIN, loader.getRuntime());
         assertNotNull(loader.getCamelCatalog().getCatalogVersion());
     }
 
@@ -309,7 +309,7 @@ public class RuntimeVersionComparisonTest {
         ObjectMapper mapper = new ObjectMapper();
 
         // Load Camel 4.12.0 YAML DSL schema first
-        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader412 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader412.loadCamelCatalog("4.12.0");
         boolean loaded412 = loader412.loadCamelYamlDsl("4.12.0", null);
         assertTrue(loaded412, "Failed to load YAML DSL for 4.12.0");
@@ -320,7 +320,7 @@ public class RuntimeVersionComparisonTest {
         JsonNode schema412 = mapper.readTree(yamlDsl412);
 
         // Load Camel 4.15.0 YAML DSL schema
-        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader415 = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader415.loadCamelCatalog("4.15.0");
         boolean loaded415 = loader415.loadCamelYamlDsl("4.15.0", null);
         assertTrue(loaded415, "Failed to load YAML DSL for 4.15.0");
@@ -393,7 +393,7 @@ public class RuntimeVersionComparisonTest {
             "4.15.0"
     })
     void testYamlDslSchemaLoads(String version) {
-        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader loader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         loader.loadCamelCatalog(version);
         boolean loaded = loader.loadCamelYamlDsl(version, null);
 

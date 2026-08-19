@@ -44,7 +44,7 @@ class EntityHandlerTest {
     @BeforeEach
     void setUp() throws IOException {
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, true);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, true);
         camelCatalogVersionLoader.loadLocalSchemas();
 
         try (var is = YamlRoutesBuilderLoader.class.getClassLoader().getResourceAsStream("schema/camelYamlDsl.json")) {
@@ -273,7 +273,7 @@ class EntityHandlerTest {
 
     @Test
     void shouldSetRedHatProviderIfAvailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5.redhat-00008");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
@@ -289,7 +289,7 @@ class EntityHandlerTest {
 
     @Test
     void shouldNotSetRedHatProviderIfUnavailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
