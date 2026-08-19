@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.camel.catalog.DefaultCamelCatalog;
+import org.apache.camel.tooling.model.BaseOptionModel;
 import org.apache.camel.tooling.model.EipModel;
 import org.apache.camel.tooling.model.Kind;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,6 +64,22 @@ class CamelYamlDSLKeysComparatorTest {
         List<String> result = aggregateKeysFromCamelYAMLDsl.stream().sorted(comparator).toList();
 
         assertEquals(result, expected);
+    }
+
+    @Test
+    void shouldSortBaseOptionModels() {
+        var optA = new EipModel.EipOptionModel();
+        optA.setName("z-option");
+        optA.setIndex(0);
+        var optB = new EipModel.EipOptionModel();
+        optB.setName("a-option");
+        optB.setIndex(1);
+
+        List<BaseOptionModel> options = List.of(optA, optB);
+        var comparator = new CamelYamlDSLKeysComparator(options);
+
+        assertEquals(-1, Integer.signum(comparator.compare("z-option", "a-option")));
+        assertEquals(1, Integer.signum(comparator.compare("a-option", "z-option")));
     }
 
 }
