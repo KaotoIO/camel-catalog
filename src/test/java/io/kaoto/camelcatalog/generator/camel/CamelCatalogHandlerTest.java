@@ -69,13 +69,13 @@ class CamelCatalogHandlerTest {
         }
         var openapiSpec = new String(openapiSpecIS.readAllBytes(), StandardCharsets.UTF_8);
         CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, true);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, true);
         camelCatalogVersionLoader.loadCamelYamlDsl(catalog.getCatalogVersion(), null);
         camelCatalogVersionLoader.loadKubernetesSchema();
         camelCatalogVersionLoader.loadLocalSchemas();
         camelCatalogVersionLoader.loadKaotoPatterns();
 
-        ComponentHandler componentGenerator = new ComponentHandler(catalog, CatalogRuntime.Main);
+        ComponentHandler componentGenerator = new ComponentHandler(catalog, CatalogRuntime.MAIN);
         EIPHandler eipGenerator = new EIPHandler(catalog, jsonMapper.writeValueAsString(yamlDslSchema),
                 camelCatalogVersionLoader.getKaotoPatterns());
         EntityHandler entityGenerator = new EntityHandler(

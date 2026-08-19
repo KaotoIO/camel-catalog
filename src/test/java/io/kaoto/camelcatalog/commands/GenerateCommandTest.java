@@ -47,13 +47,13 @@ class GenerateCommandTest {
         catalogDefinition.setFileName("index.json");
         catalogDefinition.setName("test-camel-catalog");
         catalogDefinition.setVersion("4.8.0");
-        catalogDefinition.setRuntime(CatalogRuntime.Main);
+        catalogDefinition.setRuntime(CatalogRuntime.MAIN);
         // Simulate what generate() stamps for a Main-runtime entry: camelCatalogVersion
         // equals the catalog version; runtimeProviderVersion and frameworkVersion are null.
         catalogDefinition.setCamelCatalogVersion("4.8.0");
 
         CatalogCliArgument catalogCliArg = new CatalogCliArgument();
-        catalogCliArg.setRuntime(CatalogRuntime.Main);
+        catalogCliArg.setRuntime(CatalogRuntime.MAIN);
         catalogCliArg.setCatalogVersion("4.8.0");
 
         CatalogCliArgument xsltCliArg = new CatalogCliArgument();
@@ -91,7 +91,7 @@ class GenerateCommandTest {
 
             CamelCatalogGeneratorBuilder builder = mockedBuilder.constructed().get(0);
 
-            verify(builder, times(1)).withRuntime(CatalogRuntime.Main);
+            verify(builder, times(1)).withRuntime(CatalogRuntime.MAIN);
             verify(builder, times(1)).withCatalogVersion("4.8.0");
             verify(builder, times(1)).withKameletsVersion("1.0.0");
             verify(builder, times(1)).withCamelKCRDsVersion("2.3.1");

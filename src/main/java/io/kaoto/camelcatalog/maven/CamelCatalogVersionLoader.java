@@ -114,10 +114,10 @@ public class CamelCatalogVersionLoader {
          * to the catalog
          */
         switch (runtime) {
-            case Quarkus:
+            case QUARKUS:
                 camelCatalog.setRuntimeProvider(new QuarkusRuntimeProvider());
                 break;
-            case SpringBoot:
+            case SPRING_BOOT:
                 camelCatalog.setRuntimeProvider(new SpringBootRuntimeProvider());
                 break;
             default:
@@ -226,9 +226,9 @@ public class CamelCatalogVersionLoader {
 
     MavenCoordinates getCatalogMavenCoordinates(CatalogRuntime runtime, String version) {
         return switch (runtime) {
-            case Quarkus ->
+            case QUARKUS ->
                     new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".quarkus", "camel-quarkus-catalog", version);
-            case SpringBoot -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot",
+            case SPRING_BOOT -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot",
                     "camel-catalog-provider-springboot", version);
             default -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG, "camel-catalog", version);
         };
@@ -236,13 +236,13 @@ public class CamelCatalogVersionLoader {
 
     MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version, ResolvedVersions resolvedVersions) {
         return switch (runtime) {
-            case Quarkus -> {
+            case QUARKUS -> {
                 // For Quarkus, use the resolved Apache Camel version to load the core camel-yaml-dsl artifact
                 // instead of camel-quarkus-yaml-dsl, because the Quarkus variant doesn't contain the schema file.
                 String camelVersion = resolvedVersions != null ? resolvedVersions.camelCatalogVersion() : version;
                 yield new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, camelVersion);
             }
-            case SpringBoot ->
+            case SPRING_BOOT ->
                     new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot", "camel-yaml-dsl-starter",
                             version);
             default -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, version);

@@ -40,7 +40,7 @@ class FunctionsHandlerTest {
     @BeforeEach
     void setUp() {
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
-        camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         functionsGenerator = new FunctionsHandler(camelCatalog, camelCatalogVersionLoader);
     }
 

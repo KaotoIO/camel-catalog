@@ -79,8 +79,8 @@ public class RuntimeVersionResolver {
      */
     public ResolvedVersions resolve(CatalogRuntime runtime, String inputVersion) {
         return switch (runtime) {
-            case Quarkus -> resolveQuarkus(inputVersion);
-            case SpringBoot -> resolveSpringBoot(inputVersion);
+            case QUARKUS -> resolveQuarkus(inputVersion);
+            case SPRING_BOOT -> resolveSpringBoot(inputVersion);
             default -> new ResolvedVersions(inputVersion, null, null, inputVersion);
         };
     }

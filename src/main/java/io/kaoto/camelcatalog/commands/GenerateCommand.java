@@ -67,7 +67,7 @@ public class GenerateCommand implements Runnable {
                             + " framework=" + resolved.frameworkVersion());
 
                     var catalogGenerator = switch (catalogCliArg.getRuntime()) {
-                        case Main, Quarkus, SpringBoot -> new CamelCatalogGeneratorBuilder()
+                        case MAIN, QUARKUS, SPRING_BOOT -> new CamelCatalogGeneratorBuilder()
                                 .withRuntime(catalogCliArg.getRuntime())
                                 .withCatalogVersion(downloadVersion)
                                 .withKameletsVersion(configBean.getKameletsVersion())
@@ -76,7 +76,7 @@ public class GenerateCommand implements Runnable {
                                 .withVerbose(configBean.isVerbose())
                                 .withResolvedVersions(resolved)
                                 .build();
-                        case Citrus -> new CitrusCatalogGeneratorBuilder()
+                        case CITRUS -> new CitrusCatalogGeneratorBuilder()
                                 .withCatalogVersion(downloadVersion)
                                 .withOutputDirectory(catalogDefinitionFolder)
                                 .withVerbose(configBean.isVerbose())

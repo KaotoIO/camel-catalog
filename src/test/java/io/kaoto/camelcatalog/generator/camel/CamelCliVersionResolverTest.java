@@ -34,17 +34,17 @@ class CamelCliVersionResolverTest {
 
     @Test
     void defaultForMainRuntime() {
-        assertEquals("4.20.0", resolver.resolve("4.18.0", CatalogRuntime.Main));
+        assertEquals("4.20.0", resolver.resolve("4.18.0", CatalogRuntime.MAIN));
     }
 
     @Test
     void defaultForQuarkusRuntime() {
-        assertEquals("4.20.0", resolver.resolve("3.15.0", CatalogRuntime.Quarkus));
+        assertEquals("4.20.0", resolver.resolve("3.15.0", CatalogRuntime.QUARKUS));
     }
 
     @Test
     void defaultForCitrusRuntime() {
-        assertEquals("4.20.0", resolver.resolve("4.10.0", CatalogRuntime.Citrus));
+        assertEquals("4.20.0", resolver.resolve("4.10.0", CatalogRuntime.CITRUS));
     }
 
     @ParameterizedTest(name = "SpringBoot community {0} -> cliVersion {1}")
@@ -58,7 +58,7 @@ class CamelCliVersionResolverTest {
             "4.8.0,  4.18.2",
     })
     void springBootCommunityUsesRules(String camelVersion, String expectedCliVersion) {
-        assertEquals(expectedCliVersion, resolver.resolve(camelVersion, CatalogRuntime.SpringBoot));
+        assertEquals(expectedCliVersion, resolver.resolve(camelVersion, CatalogRuntime.SPRING_BOOT));
     }
 
     @ParameterizedTest(name = "SpringBoot productized {0} -> default")
@@ -68,12 +68,12 @@ class CamelCliVersionResolverTest {
             "4.14.2.redhat-00019",
     })
     void springBootProductizedUsesDefault(String camelVersion) {
-        assertEquals("4.20.0", resolver.resolve(camelVersion, CatalogRuntime.SpringBoot));
+        assertEquals("4.20.0", resolver.resolve(camelVersion, CatalogRuntime.SPRING_BOOT));
     }
 
     @Test
     void nullVersionReturnsDefault() {
-        assertEquals("4.20.0", resolver.resolve(null, CatalogRuntime.SpringBoot));
+        assertEquals("4.20.0", resolver.resolve(null, CatalogRuntime.SPRING_BOOT));
     }
 
     @Test

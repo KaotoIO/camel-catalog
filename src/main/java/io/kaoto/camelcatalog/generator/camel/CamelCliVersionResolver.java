@@ -49,7 +49,7 @@ public class CamelCliVersionResolver {
             return DEFAULT_CLI_VERSION;
         }
 
-        if (runtime == CatalogRuntime.SpringBoot && !isRedhat(camelVersion)) {
+        if (runtime == CatalogRuntime.SPRING_BOOT && !isRedhat(camelVersion)) {
             return resolveFromRules(camelVersion);
         }
 
