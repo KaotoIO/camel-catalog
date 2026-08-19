@@ -198,24 +198,27 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             catalogMap.put("functions",
                     Util.getPrettyJSON(new FunctionsHandler(camelCatalog, camelCatalogVersionLoader).generate()));
 
-            for (var entry : catalogMap.entrySet()) {
-                var name = entry.getKey();
-                var catalog = entry.getValue();
-                try {
-                    var outputFileName = String.format(
-                            "%s-%s-%s.json", CAMEL_CATALOG_AGGREGATE, name, Util.generateHash(catalog));
-                    var output = outputDirectory.toPath().resolve(outputFileName);
-                    Files.writeString(output, catalog);
-                    var indexEntry = new CatalogDefinitionEntry(
+for (var entry : catalogMap.entrySet()) {
+            writeCatalogEntry(entry.getKey(), entry.getValue(), index);
+        }
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
+
+    private void writeCatalogEntry(String name, String catalog, CatalogDefinition index) {
+        try {
+            var outputFileName = String.format(
+                    "%s-%s-%s.json", CAMEL_CATALOG_AGGREGATE, name, Util.generateHash(catalog));
+            var output = outputDirectory.toPath().resolve(outputFileName);
+            Files.writeString(output, catalog);
+            var indexEntry =
+                    new CatalogDefinitionEntry(
                             name,
                             "Aggregated Camel catalog for " + name,
                             camelCatalogVersion,
                             outputFileName);
-                    index.getCatalogs().put(name, indexEntry);
-                } catch (Exception e) {
-                    LOGGER.log(Level.SEVERE, e.toString(), e);
-                }
-            }
+            index.getCatalogs().put(name, indexEntry);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
@@ -242,8 +245,8 @@ public class CamelCatalogGenerator implements CatalogGenerator {
         index.getCatalogs().put(indexEntry.name(), indexEntry);
     }
 
-    private CatalogDefinitionEntry getKameletsEntry(List<String> kamelets, String name, String filename,
-                                                    String description) {
+private CatalogDefinitionEntry getKameletsEntry(
+            List<String> kamelets, String name, String filename, String description) {
         var root = jsonMapper.createObjectNode();
 
         try {
@@ -251,30 +254,42 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                 processKameletFile(kamelet, root);
             });
 
-            JsonFactory jsonFactory = new JsonFactory();
-            var outputStream = new ByteArrayOutputStream();
-            var writer = new OutputStreamWriter(outputStream);
-
-            try (JsonGenerator jsonGenerator = jsonFactory.createGenerator(writer).setPrettyPrinter(Util.createTabPrettyPrinter())) {
-                jsonMapper.writeTree(jsonGenerator, root);
-                var rootBytes = outputStream.toByteArray();
-                var outputFileName = String.format("%s-%s.json", filename, Util.generateHash(rootBytes));
-                var output = outputDirectory.toPath().resolve(outputFileName);
-
-                Files.write(output, rootBytes);
-
-                return new CatalogDefinitionEntry(
-                        name,
-                        description,
-                        kameletsVersion,
-                        outputFileName);
-            } catch (IOException e) {
-                LOGGER.log(Level.SEVERE, e.toString(), e);
-            }
+            return writeKameletsDefinition(root, name, filename, description);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
 
+        return null;
+    }
+
+    private CatalogDefinitionEntry writeKameletsDefinition(
+            ObjectNode root, String name, String filename, String description) {
+        JsonFactory jsonFactory = new JsonFactory();
+        var outputStream = new ByteArrayOutputStream();
+        var writer = new OutputStreamWriter(outputStream);
+
+        try (JsonGenerator jsonGenerator =
+                jsonFactory
+                        .createGenerator(writer)
+                        .setPrettyPrinter(Util.createTabPrettyPrinter())) {
+            jsonMapper.writeTree(jsonGenerator, root);
+            var rootBytes = outputStream.toByteArray();
+            var outputFileName =
+                    String.format("%s-%s.json", filename, Util.generateHash(rootBytes));
+            var output = outputDirectory.toPath().resolve(outputFileName);
+            Files.write(output, rootBytes);
+
+            return new CatalogDefinitionEntry(
+                    name,
+                    description,
+                    kameletsVersion,
+                    outputFileName);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+
+        return null;
+    }
         return null;
     }
 
