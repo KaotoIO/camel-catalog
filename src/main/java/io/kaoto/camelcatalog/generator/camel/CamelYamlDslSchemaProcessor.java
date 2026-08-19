@@ -63,18 +63,18 @@ public class CamelYamlDslSchemaProcessor {
             added = false;
             for (JsonNode refParent : schema.findParents("$ref")) {
                 var name = getNameFromRef((ObjectNode) refParent);
-                if (processorReferenceBlockList.contains(name)) {
-                    continue;
-                }
-                if (!schema.has("definitions") || !schema.withObject("/definitions").has(name)) {
+
+                if ((!schema.has("definitions") || !schema.withObject("/definitions").has(name)) && !processorReferenceBlockList.contains(name)){
                     if (!definitions.has(name)) {
                         throw new IllegalStateException("Missing definition: " + name);
                     }
 
-                    var schemaDefinitions = schema.withObject("/definitions");
-                    schemaDefinitions.set(name, definitions.get(name).deepCopy());
-                    added = true;
-                    break;
+                    if ((!schema.has("definitions") || !schema.withObject("/definitions").has(name)) && !processorReferenceBlockList.contains(name)) {
+                        var schemaDefinitions = schema.withObject("/definitions");
+                        schemaDefinitions.set(name, definitions.get(name).deepCopy());
+                        added = true;
+                        break;
+                    }
                 }
             }
         }
@@ -101,37 +101,34 @@ public class CamelYamlDslSchemaProcessor {
 
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : fromMarshal) {
-            if (!entry.has("required")) {
-                // assuming "not" entry
-                continue;
-            }
-            var entryName = entry.withArray("/required").get(0).asText();
-            var property = entry
-                    .withObject("/properties")
-                    .withObject("/" + entryName);
-            var entryDefinitionName = getNameFromRef(property);
-            var dataformat = relocatedDefinitions.withObject("/" + entryDefinitionName);
-            if (!dataformat.has("oneOf")) {
-                populateDefinitions(dataformat, relocatedDefinitions);
-                answer.put(entryName, dataformat);
-                continue;
-            }
-
-            var dfOneOf = dataformat.withArray("/oneOf");
-            if (dfOneOf.size() != 2) {
-                throw new Exception(String.format(
-                        "DataFormat '%s' has '%s' entries in oneOf unexpectedly, look it closer",
-                        entryDefinitionName,
-                        dfOneOf.size()));
-            }
-            for (var def : dfOneOf) {
-                if (def.get("type").asText().equals("object")) {
-                    var objectDef = (ObjectNode) def;
-                    objectDef.set("title", dataformat.get("title"));
-                    objectDef.set("description", dataformat.get("description"));
-                    populateDefinitions(objectDef, relocatedDefinitions);
-                    answer.put(entryName, objectDef);
-                    break;
+            if (entry.has("required")) {
+                var entryName = entry.withArray("/required").get(0).asText();
+                var property = entry
+                        .withObject("/properties")
+                        .withObject("/" + entryName);
+                var entryDefinitionName = getNameFromRef(property);
+                var dataformat = relocatedDefinitions.withObject("/" + entryDefinitionName);
+                if (!dataformat.has("oneOf")) {
+                    populateDefinitions(dataformat, relocatedDefinitions);
+                    answer.put(entryName, dataformat);
+                } else {
+                    var dfOneOf = dataformat.withArray("/oneOf");
+                    if (dfOneOf.size() != 2) {
+                        throw new Exception(String.format(
+                                "DataFormat '%s' has '%s' entries in oneOf unexpectedly, look it closer",
+                                entryDefinitionName,
+                                dfOneOf.size()));
+                    }
+                    for (var def : dfOneOf) {
+                        if (def.get("type").asText().equals("object")) {
+                            var objectDef = (ObjectNode) def;
+                            objectDef.set("title", dataformat.get("title"));
+                            objectDef.set("description", dataformat.get("description"));
+                            populateDefinitions(objectDef, relocatedDefinitions);
+                            answer.put(entryName, objectDef);
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -159,28 +156,27 @@ public class CamelYamlDslSchemaProcessor {
                     .withObject("/" + entryName);
             var entryDefinitionName = getNameFromRef(property);
             var language = relocatedDefinitions.withObject("/" + entryDefinitionName);
-            if (!language.has("oneOf")) {
+            if (language.has("oneOf")) {
+                var langOneOf = language.withArray("/oneOf");
+                if (langOneOf.size() != 2) {
+                    throw new Exception(String.format(
+                            "Language '%s' has '%s' entries in oneOf unexpectedly, look it closer",
+                            entryDefinitionName,
+                            langOneOf.size()));
+                }
+                for (var def : langOneOf) {
+                    if (def.get("type").asText().equals("object")) {
+                        var objectDef = (ObjectNode) def;
+                        objectDef.set("title", language.get("title"));
+                        objectDef.set("description", language.get("description"));
+                        populateDefinitions(objectDef, relocatedDefinitions);
+                        answer.put(entryName, objectDef);
+                        break;
+                    }
+                }
+            } else {
                 populateDefinitions(language, relocatedDefinitions);
                 answer.put(entryName, language);
-                continue;
-            }
-
-            var langOneOf = language.withArray("/oneOf");
-            if (langOneOf.size() != 2) {
-                throw new Exception(String.format(
-                        "Language '%s' has '%s' entries in oneOf unexpectedly, look it closer",
-                        entryDefinitionName,
-                        langOneOf.size()));
-            }
-            for (var def : langOneOf) {
-                if (def.get("type").asText().equals("object")) {
-                    var objectDef = (ObjectNode) def;
-                    objectDef.set("title", language.get("title"));
-                    objectDef.set("description", language.get("description"));
-                    populateDefinitions(objectDef, relocatedDefinitions);
-                    answer.put(entryName, (ObjectNode) def);
-                    break;
-                }
             }
         }
         return answer;
