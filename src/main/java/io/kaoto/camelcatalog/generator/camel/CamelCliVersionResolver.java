@@ -54,7 +54,7 @@ public class CamelCliVersionResolver {
             return defaultCliVersion;
         }
 
-        if (runtime == CatalogRuntime.SpringBoot && !isRedhat(camelVersion)) {
+        if (runtime == CatalogRuntime.SPRING_BOOT && !isRedhat(camelVersion)) {
             return resolveFromRules(camelVersion);
         }
 

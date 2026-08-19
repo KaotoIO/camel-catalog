@@ -16,13 +16,13 @@
 package io.kaoto.camelcatalog.model;
 
 public enum CatalogRuntime {
-    Main("Main"),
-    Quarkus("Quarkus"),
-    SpringBoot("Spring Boot"),
-    Citrus("Citrus"),
+    
+    MAIN("Main"),
+    QUARKUS("Quarkus"),
+    SPRING_BOOT("Spring Boot"),
+    CITRUS("Citrus"),
     XSLT("XSLT"),
-    StarterTemplates("Starter Templates");
-
+    STARTER_TEMPLATES("Starter Templates");
     private final String label;
 
     CatalogRuntime(String label) {
@@ -35,7 +35,8 @@ public enum CatalogRuntime {
 
     public static CatalogRuntime fromString(String name) {
         for (CatalogRuntime runtime : CatalogRuntime.values()) {
-            if (runtime.name().equalsIgnoreCase(name)) {
+            if (runtime.name().equalsIgnoreCase(name)
+                    || runtime.name().replace("_", "").equalsIgnoreCase(name)) {
                 return runtime;
             }
         }
@@ -45,9 +46,10 @@ public enum CatalogRuntime {
 
     public String getRuntimeFolder() {
         return switch (this) {
-            case Main, Quarkus, SpringBoot -> "camel-" + name().toLowerCase();
-            case Citrus, XSLT -> name().toLowerCase();
-            case StarterTemplates -> "starter-templates";
+            case MAIN, QUARKUS -> "camel-" + name().toLowerCase();
+            case SPRING_BOOT -> "camel-springboot";
+            case CITRUS, XSLT -> name().toLowerCase();
+            case STARTER_TEMPLATES -> "starter-templates";
         };
     }
 }

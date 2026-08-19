@@ -50,7 +50,7 @@ class EIPHandlerTest {
             camelYamlSchema = new String(is.readAllBytes(), StandardCharsets.UTF_8);
         }
 
-        camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         camelCatalogVersionLoader.loadKaotoPatterns();
 
         eipGenerator = new EIPHandler(camelCatalog, camelYamlSchema, camelCatalogVersionLoader.getKaotoPatterns());
@@ -352,7 +352,7 @@ class EIPHandlerTest {
 
     @Test
     void shouldSetRedHatProviderIfAvailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = localVersionLoader.loadCamelCatalog("4.8.5.redhat-00008");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
@@ -374,7 +374,7 @@ class EIPHandlerTest {
 
     @Test
     void shouldNotSetRedHatProviderIfUnavailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = localVersionLoader.loadCamelCatalog("4.8.5");
         assertTrue(loaded, "The catalog version wasn't loaded");
 

@@ -32,7 +32,7 @@ public class ComponentHandlerTest {
     void setUp() throws IOException {
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
 
-        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.Main);
+        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.MAIN);
     }
 
     @Test
@@ -173,7 +173,7 @@ public class ComponentHandlerTest {
     void shouldAppendCamelVersionForQuarkus() {
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
         camelCatalog.setRuntimeProvider(new QuarkusRuntimeProvider());
-        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.Quarkus);
+        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.QUARKUS);
         var componentsMap = componentHandler.generate();
 
         var logNode = componentsMap.get("log");
@@ -197,7 +197,7 @@ public class ComponentHandlerTest {
     void shouldNotAppendCamelVersionForSpring() {
         CamelCatalog camelCatalog = new DefaultCamelCatalog();
         camelCatalog.setRuntimeProvider(new SpringBootRuntimeProvider());
-        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.SpringBoot);
+        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.SPRING_BOOT);
         var componentsMap = componentHandler.generate();
 
         var logNode = componentsMap.get("log");
@@ -208,12 +208,12 @@ public class ComponentHandlerTest {
 
     @Test
     void shouldSetRedHatProviderIfAvailable() {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5.redhat-00008");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
         CamelCatalog camelCatalog = camelCatalogVersionLoader.getCamelCatalog();
-        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.Main);
+        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.MAIN);
         var componentsMap = componentHandler.generate();
 
         var logNode = componentsMap.get("log");
@@ -224,12 +224,12 @@ public class ComponentHandlerTest {
 
     @Test
     void shouldNotSetRedHatProviderIfUnavailable() {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.MAIN, false);
         boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
         CamelCatalog camelCatalog = camelCatalogVersionLoader.getCamelCatalog();
-        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.Main);
+        componentHandler = new ComponentHandler(camelCatalog, CatalogRuntime.MAIN);
         var componentsMap = componentHandler.generate();
 
         var logNode = componentsMap.get("log");

@@ -103,7 +103,7 @@ public class ComponentHandler implements CatalogEntryHandler {
              * Quarkus has a different versioning scheme, therefore we need to get the Camel
              * version from the debug model and combine it with the component version
              */
-            if (runtime == CatalogRuntime.Quarkus) {
+            if (runtime == CatalogRuntime.QUARKUS) {
                 String camelVersion = camelCatalog.model(Kind.other, "debug").getMetadata()
                         .get("camelVersion").toString();
                 componentVersion = String.format("%s (CEQ %s)", camelVersion, componentVersion);
