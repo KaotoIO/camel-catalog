@@ -291,6 +291,36 @@ class CamelCatalogSchemaEnhancerTest {
     }
 
     @Test
+    void shouldNotCreateEmptyNodesWhenSortingProperties() {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectNode schema = jsonMapper.createObjectNode();
+        ObjectNode properties = schema.putObject("properties");
+        properties.putObject("b").put("type", "string");
+        properties.putObject("a").put("type", "integer");
+
+        var optA = new EipModel.EipOptionModel();
+        optA.setName("a");
+        optA.setIndex(0);
+        var optB = new EipModel.EipOptionModel();
+        optB.setName("b");
+        optB.setIndex(1);
+
+        camelCatalogSchemaEnhancer.sortPropertiesByOptions(schema, List.of(optA, optB));
+
+        var sortedProperties = schema.get("properties");
+        List<String> keys = new ArrayList<>();
+        sortedProperties.fieldNames().forEachRemaining(keys::add);
+
+        // Sorted by index: a(0) before b(1)
+        assertEquals(List.of("a", "b"), keys);
+        // Neither property node is empty
+        assertEquals("integer", sortedProperties.get("a").get("type").asText());
+        assertEquals("string", sortedProperties.get("b").get("type").asText());
+        // No spurious nodes created
+        assertEquals(2, keys.size());
+    }
+
+    @Test
     void shouldGetCamelModelByJavaType() {
         EipModel setHeaderModel =
                 camelCatalogSchemaEnhancer.getCamelModelByJavaType("org.apache.camel.model.SetHeaderDefinition");

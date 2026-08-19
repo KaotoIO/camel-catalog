@@ -480,15 +480,19 @@ public class CamelCatalogSchemaEnhancer {
         }
     }
 
-    public void sortPropertiesByOptions(ObjectNode entitySchema, List<EipModel.EipOptionModel> options) {
+    public void sortPropertiesByOptions(ObjectNode entitySchema, List<? extends BaseOptionModel> options) {
         var sortedSchemaProperties = jsonMapper.createObjectNode();
-        var properties = entitySchema.withObject("/properties").properties().stream()
+        var propertiesNode = entitySchema.get("properties");
+        if (propertiesNode == null || !propertiesNode.isObject()) {
+            return;
+        }
+        var properties = ((ObjectNode) propertiesNode).properties().stream()
                 .map(Map.Entry::getKey)
                 .sorted(new CamelYamlDSLKeysComparator(options))
                 .toList();
 
         for (var propertyName : properties) {
-            var propertySchema = entitySchema.withObject("/properties").withObject("/" + propertyName);
+            var propertySchema = propertiesNode.get(propertyName);
             sortedSchemaProperties.set(propertyName, propertySchema);
         }
 
