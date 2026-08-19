@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.camel.catalog.CamelCatalog;
+import org.apache.camel.tooling.model.ComponentModel;
 import org.apache.camel.tooling.model.Kind;
 
 import java.util.LinkedHashMap;
@@ -59,11 +60,13 @@ public class ComponentHandler implements CatalogEntryHandler {
         getComponentNames().forEach(name -> {
             var componentJson = getComponentJson(name);
             if (componentJson != null) {
-                var componentJSONSchema = getComponentJSONSchema(name);
+                var endpointOptions = camelCatalog.componentModel(name).getEndpointOptions();
+                var componentJSONSchema = getComponentJSONSchema(name, endpointOptions);
                 componentJson.set("propertiesSchema", componentJSONSchema);
 
                 camelCatalogSchemaEnhancer.fillSchemaInformation(componentJSONSchema);
                 camelCatalogSchemaEnhancer.fillRequiredPropertiesIfNeeded(Kind.component, name, componentJSONSchema);
+                camelCatalogSchemaEnhancer.sortPropertiesByOptions(componentJSONSchema, endpointOptions);
 
                 componentMap.put(name, componentJson);
             }
@@ -125,9 +128,13 @@ public class ComponentHandler implements CatalogEntryHandler {
      * @return the JSON schema for a given Component, with the details of the properties
      */
     ObjectNode getComponentJSONSchema(String componentName) {
+        return getComponentJSONSchema(componentName, camelCatalog.componentModel(componentName).getEndpointOptions());
+    }
+
+    ObjectNode getComponentJSONSchema(String componentName,
+            List<ComponentModel.EndpointOptionModel> modelOptions) {
         var componentSchemaNode = jsonMapper.createObjectNode();
         var answerProperties = componentSchemaNode.withObject("/properties");
-        var modelOptions = camelCatalog.componentModel(componentName).getEndpointOptions();
         for (var modelOption : modelOptions) {
             var propertyName = modelOption.getName();
             var propertyNode = answerProperties.withObject("/" + propertyName);

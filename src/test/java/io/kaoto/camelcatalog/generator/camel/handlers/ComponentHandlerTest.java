@@ -251,4 +251,18 @@ public class ComponentHandlerTest {
                 .anyMatch(msg -> msg.getMessage().contains("invalidComponent: component definition not found in the catalog")),
                 "Expected warning message not logged");
     }
+
+    @Test
+    void shouldSortPropertiesAccordingToCatalogIndex() {
+        var componentsMap = componentHandler.generate();
+
+        var timerNode = componentsMap.get("timer");
+        var propertiesNode = timerNode.withObject("propertiesSchema").withObject("properties");
+        List<String> keys = new ArrayList<>();
+        propertiesNode.fieldNames().forEachRemaining(keys::add);
+
+        assertFalse(keys.isEmpty());
+        assertEquals("timerName", keys.get(0),
+                "First property should be 'timerName' (index 0 in catalog), but was: " + keys.get(0));
+    }
 }
