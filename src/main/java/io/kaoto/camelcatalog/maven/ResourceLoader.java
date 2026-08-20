@@ -35,12 +35,12 @@ public class ResourceLoader {
         ClassLoader classLoader = kaotoVersionManager.getClassLoader();
         try (InputStream inputStream = classLoader.getResourceAsStream(resourceName)) {
             if (inputStream == null) {
-                LOGGER.log(Level.WARNING, "Resource not found: " + resourceName);
+                LOGGER.log(Level.WARNING, () -> "Resource not found: " + resourceName);
                 return null;
             }
             return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error reading resource: " + resourceName, e);
+            LOGGER.log(Level.SEVERE, e, () -> "Error reading resource: " + resourceName);
             return null;
         }
     }
