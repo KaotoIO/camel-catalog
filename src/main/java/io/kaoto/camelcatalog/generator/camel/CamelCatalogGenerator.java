@@ -174,35 +174,18 @@ public class CamelCatalogGenerator implements CatalogGenerator {
         var schemaEnhancer = new CamelCatalogSchemaEnhancer(camelCatalog);
         var runtime = camelCatalogVersionLoader.getRuntime();
 
-        try {
-            var catalogMap = new LinkedHashMap<String, String>();
-            catalogMap.put("components",
-                    Util.getPrettyJSON(new ComponentHandler(camelCatalog, runtime).generate()));
-            catalogMap.put("dataformats",
-                    Util.getPrettyJSON(new DataFormatHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
-            catalogMap.put("languages",
-                    Util.getPrettyJSON(new LanguageHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
-            catalogMap.put("models",
-                    Util.getPrettyJSON(new ModelHandler(camelCatalog).generate()));
-            catalogMap.put("patterns",
-                    Util.getPrettyJSON(new EIPHandler(camelCatalog,
-                            camelCatalogVersionLoader.getCamelYamlDslSchema(),
-                            camelCatalogVersionLoader.getKaotoPatterns()).generate()));
-            catalogMap.put("entities",
-                    Util.getPrettyJSON(new EntityHandler(camelCatalog,
-                            camelCatalogVersionLoader.getCamelYamlDslSchema(),
-                            camelCatalogVersionLoader.getKubernetesSchema(),
-                            camelCatalogVersionLoader.getLocalSchemas()).generate()));
-            catalogMap.put("loadbalancers",
-                    Util.getPrettyJSON(new LoadBalancerHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
-            catalogMap.put("functions",
-                    Util.getPrettyJSON(new FunctionsHandler(camelCatalog, camelCatalogVersionLoader).generate()));
+        var catalogMap = new LinkedHashMap<String, String>();
+        catalogMap.put("components", Util.getPrettyJSON(new ComponentHandler(camelCatalog, runtime).generate()));
+        catalogMap.put("dataformats", Util.getPrettyJSON(new DataFormatHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
+        catalogMap.put("languages", Util.getPrettyJSON(new LanguageHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
+        catalogMap.put("models", Util.getPrettyJSON(new ModelHandler(camelCatalog).generate()));
+        catalogMap.put("patterns", Util.getPrettyJSON(new EIPHandler(camelCatalog, camelCatalogVersionLoader.getCamelYamlDslSchema(), camelCatalogVersionLoader.getKaotoPatterns()).generate()));
+        catalogMap.put("entities", Util.getPrettyJSON(new EntityHandler(camelCatalog, camelCatalogVersionLoader.getCamelYamlDslSchema(), camelCatalogVersionLoader.getKubernetesSchema(), camelCatalogVersionLoader.getLocalSchemas()).generate()));
+        catalogMap.put("loadbalancers", Util.getPrettyJSON(new LoadBalancerHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
+        catalogMap.put("functions", Util.getPrettyJSON(new FunctionsHandler(camelCatalog, camelCatalogVersionLoader).generate()));
 
-            for (var entry : catalogMap.entrySet()) {
-                writeCatalogEntry(entry.getKey(), entry.getValue(), index);
-            }
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
+        for (var entry : catalogMap.entrySet()) {
+            writeCatalogEntry(entry.getKey(), entry.getValue(), index);
         }
     }
 
@@ -219,11 +202,11 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                             camelCatalogVersion,
                             outputFileName);
             index.getCatalogs().put(name, indexEntry);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
+            throw new RuntimeException(e);
         }
     }
-
     private void processKameletBoundaries(CatalogDefinition index) {
         if (camelCatalogVersionLoader.getKameletBoundaries().isEmpty()) {
             LOGGER.severe("Kamelet boundaries are not loaded");
