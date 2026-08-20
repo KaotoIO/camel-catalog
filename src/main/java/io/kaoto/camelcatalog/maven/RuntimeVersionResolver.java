@@ -92,8 +92,8 @@ public class RuntimeVersionResolver {
         String bomPom = pomFetcher.fetchPom(groupId, "quarkus-camel-bom", platformVersion, repos);
         String camelQuarkusVersion = extractCamelQuarkusVersionFromPlatformBom(bomPom);
         if (camelQuarkusVersion == null) {
-            LOGGER.warning("Could not resolve Camel Quarkus version from platform "
-                    + groupId + ":" + platformVersion + "; falling back to platform version");
+            LOGGER.warning(() -> "Could not resolve Camel Quarkus version from platform "
+        + groupId + ":" + platformVersion + "; falling back to platform version");
             camelQuarkusVersion = platformVersion;
         }
 
@@ -105,8 +105,8 @@ public class RuntimeVersionResolver {
         String camelVersion = camelFromQuarkusResolver
                 .resolveCamelVersionFromQuarkusBom(camelQuarkusVersion);
         if (camelVersion == null) {
-            LOGGER.warning("Could not resolve Apache Camel version from camel-quarkus-bom "
-                    + camelQuarkusVersion + "; falling back to camelQuarkus version");
+            LOGGER.warning(() -> "Could not resolve Apache Camel version from camel-quarkus-bom "
+        + camelQuarkusVersion + "; falling back to camelQuarkus version");
             camelVersion = camelQuarkusVersion;
         }
 
@@ -135,7 +135,7 @@ public class RuntimeVersionResolver {
             List<MavenGav> gavs = artifacts.stream().map(MavenArtifact::getGav).toList();
             return findVersion(gavs, "org.springframework.boot", "spring-boot-starter");
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Failed to resolve Spring Boot version from " + camelSpringBootVersion, e);
+            LOGGER.log(Level.WARNING, e, () -> "Failed to resolve Spring Boot version from " + camelSpringBootVersion);
             return null;
         }
     }
@@ -214,7 +214,7 @@ public class RuntimeVersionResolver {
                 }
             }
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Failed to parse POM for " + groupId + ":" + artifactId, e);
+            LOGGER.log(Level.WARNING, e, () -> "Failed to parse POM for " + groupId + ":" + artifactId);
         }
         return null;
     }
