@@ -27,8 +27,8 @@ import java.util.*;
 public class CamelCatalogSchemaEnhancer {
 
     private final CamelCatalog camelCatalog;
-    private final Map<String, String> JAVA_TYPE_TO_MODEL_NAME = new HashMap<>();
-    private final Map<String, String> MODEL_NAME_TO_JAVA_TYPE = new HashMap<>();
+    private final Map<String, String> JavaTypeToModelName = new HashMap<>();
+    private final Map<String, String> ModelNameToJavaType = new HashMap<>();
     ObjectMapper jsonMapper = new ObjectMapper();
 
     public CamelCatalogSchemaEnhancer(CamelCatalog camelCatalog) {
@@ -217,16 +217,16 @@ public class CamelCatalogSchemaEnhancer {
      * @return the Camel model
      */
     public EipModel getCamelModelByJavaType(String javaType) {
-        return camelCatalog.eipModel(JAVA_TYPE_TO_MODEL_NAME.get(javaType));
+        return camelCatalog.eipModel(JavaTypeToModelName.get(javaType));
     }
 
     public String getJavaTypeByModelName(String modelName) {
-        String javaType = MODEL_NAME_TO_JAVA_TYPE.get(modelName);
+        String javaType = ModelNameToJavaType.get(modelName);
         if (javaType == null) {
             EipModel model = camelCatalog.eipModel(modelName);
             if (model != null) {
                 javaType = model.getJavaType();
-                MODEL_NAME_TO_JAVA_TYPE.put(modelName, javaType);
+                ModelNameToJavaType.put(modelName, javaType);
             }
         }
         return javaType;
@@ -352,8 +352,8 @@ public class CamelCatalogSchemaEnhancer {
         camelCatalog.findModelNames().forEach(modelName -> {
             EipModel model = camelCatalog.eipModel(modelName);
             if (model != null) {
-                JAVA_TYPE_TO_MODEL_NAME.put(model.getJavaType(), modelName);
-                MODEL_NAME_TO_JAVA_TYPE.put(modelName, model.getJavaType());
+                JavaTypeToModelName.put(model.getJavaType(), modelName);
+                ModelNameToJavaType.put(modelName, model.getJavaType());
             }
         });
     }
