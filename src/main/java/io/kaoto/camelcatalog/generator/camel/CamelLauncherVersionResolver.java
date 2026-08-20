@@ -72,7 +72,7 @@ public class CamelLauncherVersionResolver {
             
             // For Quarkus, resolve the internal Camel version from the BOM
             if (runtime == CatalogRuntime.Quarkus) {
-                LOGGER.info("Resolving internal Camel version from Quarkus BOM {}" , camelVersion);
+                LOGGER.info(() -> "Resolving internal Camel version from Quarkus BOM " + camelVersion);
                 resolvedCamelVersion = resolveCamelVersionFromQuarkusBom(camelVersion);
                 if (resolvedCamelVersion == null) {
                     LOGGER.warning("Failed to resolve Camel version from Quarkus BOM: {}" , camelVersion);
@@ -86,7 +86,7 @@ public class CamelLauncherVersionResolver {
             boolean useRedhatRepo = inputVersion.isRedhat || (runtime == CatalogRuntime.Quarkus && isOriginalRedhat);
             String repository = useRedhatRepo ? REDHAT_GA : MAVEN_CENTRAL;
             
-            LOGGER.info("Resolving camel-launcher version for Camel {} from repository {}" , resolvedCamelVersion  , repository);
+            LOGGER.info(() -> "Resolving camel-launcher version for Camel " + resolvedCamelVersion + " from repository " + repository);
             
             List<String> availableVersions = fetchAvailableVersions(repository);
             String matchedVersion = findBestMatch(inputVersion, availableVersions);
@@ -99,7 +99,7 @@ public class CamelLauncherVersionResolver {
             
             return matchedVersion;
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Failed to resolve launcher version for: {}" , camelVersion, e);
+            LOGGER.log(Level.WARNING, e, () -> "Failed to resolve launcher version for: " + camelVersion);
             return null;
         }
     }
@@ -228,7 +228,7 @@ public class CamelLauncherVersionResolver {
             }
             
             List<String> versionList = metadata.versioning.versions.version;
-            LOGGER.log(Level.SEVERE, e, () -> "Failed to parse maven-metadata.xml from: " + metadataUrl);
+            LOGGER.fine(() -> "Found " + versionList.size() + " available versions in repository");
             return versionList;
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to parse maven-metadata.xml from: " + metadataUrl, e);
