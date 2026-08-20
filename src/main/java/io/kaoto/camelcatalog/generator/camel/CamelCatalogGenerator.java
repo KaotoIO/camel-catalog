@@ -199,8 +199,8 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                     Util.getPrettyJSON(new FunctionsHandler(camelCatalog, camelCatalogVersionLoader).generate()));
 
             for (var entry : catalogMap.entrySet()) {
-            writeCatalogEntry(entry.getKey(), entry.getValue(), index);
-        }
+                writeCatalogEntry(entry.getKey(), entry.getValue(), index);
+            }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
