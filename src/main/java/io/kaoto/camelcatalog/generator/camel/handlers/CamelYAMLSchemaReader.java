@@ -1,6 +1,5 @@
 package io.kaoto.camelcatalog.generator.camel.handlers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -11,7 +10,7 @@ class CamelYAMLSchemaReader {
     ObjectMapper jsonMapper = new ObjectMapper();
     ObjectNode camelYamlSchemaNode;
 
-    public CamelYAMLSchemaReader(ObjectNode camelYamlSchemaNode) throws JsonProcessingException {
+    public CamelYAMLSchemaReader(ObjectNode camelYamlSchemaNode) {
         this.camelYamlSchemaNode = camelYamlSchemaNode;
     }
 

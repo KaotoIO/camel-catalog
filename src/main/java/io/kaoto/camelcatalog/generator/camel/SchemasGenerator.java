@@ -129,7 +129,7 @@ public class SchemasGenerator {
         });
     }
 
-    private String readInputStreamAsString(InputStream inputStream) throws IOException {
+    private String readInputStreamAsString(InputStream inputStream) {
         try (Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8)) {
             scanner.useDelimiter("\\A");
             return scanner.hasNext() ? scanner.next() : "";

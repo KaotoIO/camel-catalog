@@ -34,7 +34,7 @@ public class CamelYamlDslSchemaProcessor {
 
     private final List<String> processorReferenceBlockList = List.of(PROCESSOR_DEFINITION);
 
-    public CamelYamlDslSchemaProcessor(ObjectMapper mapper, ObjectNode yamlDslSchema) throws Exception {
+    public CamelYamlDslSchemaProcessor(ObjectMapper mapper, ObjectNode yamlDslSchema) {
         this.jsonMapper = mapper;
         this.yamlDslSchema = yamlDslSchema;
     }
