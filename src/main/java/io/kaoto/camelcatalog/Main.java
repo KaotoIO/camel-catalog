@@ -9,7 +9,7 @@ import io.kaoto.camelcatalog.commands.GenerateCommand;
 import io.kaoto.camelcatalog.commands.GenerateCommandOptions;
 
 public class Main {
-    private static final Logger LOGGER;
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
     static final int EXIT_CODE_SUCCESS = 0;
     static final int EXIT_CODE_FAILURE = 1;
 
@@ -20,9 +20,8 @@ public class Main {
                 LogManager.getLogManager().readConfiguration(is);
             }
         } catch (Exception e) {
-            System.err.println("Failed to load logging configuration: " + e.getMessage());
+            LOGGER.severe("Failed to load logging configuration: " + e.getMessage());
         }
-        LOGGER = Logger.getLogger(Main.class.getName());
     }
 
     public static void main(String[] args) {
