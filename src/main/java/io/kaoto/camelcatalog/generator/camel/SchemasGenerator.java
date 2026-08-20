@@ -69,11 +69,9 @@ public class SchemasGenerator {
     private void addXSDSchemas(Map<String, String> schemas) {
         try {
             Iterator<URL> it = classLoader.getResources(XSD_RESOURCE_PATH).asIterator();
-
             while (it.hasNext()) {
                 URL resourceUrl = it.next();
                 LOGGER.log(Level.FINE, "Processing XSD resource URL: {0}", resourceUrl);
-
                 if ("jar".equals(resourceUrl.getProtocol())) {
                     loadXSDSchemasFromJar(resourceUrl, schemas);
                 } else {
@@ -84,8 +82,7 @@ public class SchemasGenerator {
             LOGGER.log(Level.WARNING, "Error loading XSD schemas from classpath", e);
         }
     }
-
-   private void loadXSDSchemasFromJar(URL resourceUrl, Map<String, String> schemas) {
+    private void loadXSDSchemasFromJar(URL resourceUrl, Map<String, String> schemas) {
         try {
             JarURLConnection connection = (JarURLConnection) resourceUrl.openConnection();
             try (JarFile jarFile = connection.getJarFile()) {
