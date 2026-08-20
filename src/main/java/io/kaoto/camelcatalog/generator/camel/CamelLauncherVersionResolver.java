@@ -75,10 +75,10 @@ public class CamelLauncherVersionResolver {
                 LOGGER.info(() -> "Resolving internal Camel version from Quarkus BOM " + camelVersion);
                 resolvedCamelVersion = resolveCamelVersionFromQuarkusBom(camelVersion);
                 if (resolvedCamelVersion == null) {
-                    LOGGER.info(() -> "Resolved internal Camel version: " + resolvedCamelVersion);
+                    LOGGER.warning(() -> "Failed to resolve Camel version from Quarkus BOM: " + camelVersion);
                     return null;
                 }
-                LOGGER.info("Resolved internal Camel version: {} " , resolvedCamelVersion);
+                LOGGER.info(() -> "Resolved internal Camel version: " + resolvedCamelVersion);
             }
             
             VersionInfo inputVersion = parseVersion(resolvedCamelVersion);
