@@ -72,13 +72,13 @@ public class CamelLauncherVersionResolver {
             
             // For Quarkus, resolve the internal Camel version from the BOM
             if (runtime == CatalogRuntime.Quarkus) {
-                LOGGER.info("Resolving internal Camel version from Quarkus BOM " + camelVersion);
+                LOGGER.info("Resolving internal Camel version from Quarkus BOM {}" , camelVersion);
                 resolvedCamelVersion = resolveCamelVersionFromQuarkusBom(camelVersion);
                 if (resolvedCamelVersion == null) {
-                    LOGGER.warning("Failed to resolve Camel version from Quarkus BOM: " + camelVersion);
+                    LOGGER.warning("Failed to resolve Camel version from Quarkus BOM: {}" , camelVersion);
                     return null;
                 }
-                LOGGER.info("Resolved internal Camel version: " + resolvedCamelVersion);
+                LOGGER.info("Resolved internal Camel version: {} " , resolvedCamelVersion);
             }
             
             VersionInfo inputVersion = parseVersion(resolvedCamelVersion);
@@ -86,8 +86,7 @@ public class CamelLauncherVersionResolver {
             boolean useRedhatRepo = inputVersion.isRedhat || (runtime == CatalogRuntime.Quarkus && isOriginalRedhat);
             String repository = useRedhatRepo ? REDHAT_GA : MAVEN_CENTRAL;
             
-            LOGGER.info("Resolving camel-launcher version for Camel " + resolvedCamelVersion + 
-                       " from repository: " + repository);
+            LOGGER.info("Resolving camel-launcher version for Camel {} from repository {}" , resolvedCamelVersion  , repository);
             
             List<String> availableVersions = fetchAvailableVersions(repository);
             String matchedVersion = findBestMatch(inputVersion, availableVersions);
@@ -95,12 +94,12 @@ public class CamelLauncherVersionResolver {
             if (matchedVersion != null) {
                 LOGGER.info("Matched camel-launcher version: " + matchedVersion);
             } else {
-                LOGGER.warning("No matching camel-launcher version found for: " + resolvedCamelVersion);
+                LOGGER.warning("No matching camel-launcher version found for: {}" , resolvedCamelVersion);
             }
             
             return matchedVersion;
         } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Failed to resolve launcher version for: " + camelVersion, e);
+            LOGGER.log(Level.WARNING, "Failed to resolve launcher version for: {}" , camelVersion, e);
             return null;
         }
     }
@@ -134,7 +133,7 @@ public class CamelLauncherVersionResolver {
                 String camelVersion = extractCamelVersionFromPom(pomContent);
                 
                 if (camelVersion != null) {
-                    LOGGER.fine("Extracted Camel version from Quarkus BOM: " + camelVersion);
+                    LOGGER.fine("Extracted Camel version from Quarkus BOM: {}" , camelVersion);
                     return camelVersion;
                 }
             }
@@ -164,7 +163,7 @@ public class CamelLauncherVersionResolver {
             if (pom.dependencyManagement != null && pom.dependencyManagement.dependencies != null) {
                 String version = selectCamelVersion(pom.dependencyManagement.dependencies.dependency);
                 if (version != null) {
-                    LOGGER.fine("Found Camel version in dependencyManagement: " + version);
+                    LOGGER.fine("Found Camel version in dependencyManagement: {}" , version);
                     return version;
                 }
             }
@@ -173,7 +172,7 @@ public class CamelLauncherVersionResolver {
             if (pom.dependencies != null) {
                 String version = selectCamelVersion(pom.dependencies.dependency);
                 if (version != null) {
-                    LOGGER.fine("Found Camel version in dependencies: " + version);
+                    LOGGER.fine("Found Camel version in dependencies: {}" , version);
                     return version;
                 }
             }
@@ -216,7 +215,7 @@ public class CamelLauncherVersionResolver {
         String metadataUrl = String.format("%s/%s/%s/maven-metadata.xml", 
                                           repository, CAMEL_LAUNCHER_GROUP_PATH, CAMEL_LAUNCHER_ARTIFACT);
         
-        LOGGER.fine("Fetching metadata from: " + metadataUrl);
+        LOGGER.fine("Fetching metadata from: {}" , metadataUrl);
         
         try (InputStream is = new URI(metadataUrl).toURL().openStream()) {
             String xmlContent = IOUtils.toString(is, StandardCharsets.UTF_8);
@@ -229,7 +228,7 @@ public class CamelLauncherVersionResolver {
             }
             
             List<String> versionList = metadata.versioning.versions.version;
-            LOGGER.fine("Found " + versionList.size() + " available versions in repository");
+            LOGGER.log(Level.SEVERE, e, () -> "Failed to parse maven-metadata.xml from: " + metadataUrl);
             return versionList;
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to parse maven-metadata.xml from: " + metadataUrl, e);
@@ -243,9 +242,9 @@ public class CamelLauncherVersionResolver {
      * When searching in a specific repository, matches versions from that repository.
      */
     private String findBestMatch(VersionInfo inputVersion, List<String> availableVersions) {
-        LOGGER.fine("Searching for match. Input version: " + inputVersion + 
-                   " (major=" + inputVersion.major + ", minor=" + inputVersion.minor + 
-                   ", patch=" + inputVersion.patch + ", isRedhat=" + inputVersion.isRedhat + ")");
+        LOGGER.fine(() -> "Searching for match. Input version: " + inputVersion +
+        " (major=" + inputVersion.major + ", minor=" + inputVersion.minor +
+        ", patch=" + inputVersion.patch + ", isRedhat=" + inputVersion.isRedhat + ")");
         
         String bestMatch = null;
         int highestBuildNumber = -1;
@@ -260,7 +259,7 @@ public class CamelLauncherVersionResolver {
                     candidate.minor == inputVersion.minor &&
                     candidate.patch == inputVersion.patch) {
                     
-                    LOGGER.fine("Found matching version: " + version);
+                    LOGGER.fine("Found matching version: {}" , version);
                     
                     // Select the version with the highest build number
                     if (candidate.buildNumber > highestBuildNumber) {
