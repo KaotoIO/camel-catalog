@@ -74,6 +74,7 @@ class ResourceLoaderTest {
         try {
             when(is.readAllBytes()).thenThrow(new java.io.IOException("fail"));
         } catch (Exception ignored) {
+            // Expected exception during mock setup.
         }
 
         String result = resourceLoader.getResourceAsString("ioerror.txt");
