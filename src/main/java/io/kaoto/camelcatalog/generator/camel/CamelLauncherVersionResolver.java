@@ -75,7 +75,7 @@ public class CamelLauncherVersionResolver {
                 LOGGER.info(() -> "Resolving internal Camel version from Quarkus BOM " + camelVersion);
                 resolvedCamelVersion = resolveCamelVersionFromQuarkusBom(camelVersion);
                 if (resolvedCamelVersion == null) {
-                    LOGGER.warning("Failed to resolve Camel version from Quarkus BOM: {}" , camelVersion);
+                    LOGGER.info(() -> "Resolved internal Camel version: " + resolvedCamelVersion);
                     return null;
                 }
                 LOGGER.info("Resolved internal Camel version: {} " , resolvedCamelVersion);
@@ -94,7 +94,7 @@ public class CamelLauncherVersionResolver {
             if (matchedVersion != null) {
                 LOGGER.info("Matched camel-launcher version: " + matchedVersion);
             } else {
-                LOGGER.warning("No matching camel-launcher version found for: {}" , resolvedCamelVersion);
+                LOGGER.warning(() -> "No matching camel-launcher version found for: " + resolvedCamelVersion);
             }
             
             return matchedVersion;
@@ -133,7 +133,7 @@ public class CamelLauncherVersionResolver {
                 String camelVersion = extractCamelVersionFromPom(pomContent);
                 
                 if (camelVersion != null) {
-                    LOGGER.fine("Extracted Camel version from Quarkus BOM: {}" , camelVersion);
+                    LOGGER.fine(() -> "Extracted Camel version from Quarkus BOM: " + camelVersion);
                     return camelVersion;
                 }
             }
@@ -163,7 +163,7 @@ public class CamelLauncherVersionResolver {
             if (pom.dependencyManagement != null && pom.dependencyManagement.dependencies != null) {
                 String version = selectCamelVersion(pom.dependencyManagement.dependencies.dependency);
                 if (version != null) {
-                    LOGGER.fine("Found Camel version in dependencyManagement: {}" , version);
+                    LOGGER.fine(() -> "Found Camel version in dependencyManagement: " + version);
                     return version;
                 }
             }
@@ -172,7 +172,7 @@ public class CamelLauncherVersionResolver {
             if (pom.dependencies != null) {
                 String version = selectCamelVersion(pom.dependencies.dependency);
                 if (version != null) {
-                    LOGGER.fine("Found Camel version in dependencies: {}" , version);
+                    LOGGER.fine(() -> "Found Camel version in dependencies: " + version);
                     return version;
                 }
             }
@@ -215,7 +215,7 @@ public class CamelLauncherVersionResolver {
         String metadataUrl = String.format("%s/%s/%s/maven-metadata.xml", 
                                           repository, CAMEL_LAUNCHER_GROUP_PATH, CAMEL_LAUNCHER_ARTIFACT);
         
-        LOGGER.fine("Fetching metadata from: {}" , metadataUrl);
+        LOGGER.fine(() -> "Fetching metadata from: " + metadataUrl);
         
         try (InputStream is = new URI(metadataUrl).toURL().openStream()) {
             String xmlContent = IOUtils.toString(is, StandardCharsets.UTF_8);
@@ -259,7 +259,7 @@ public class CamelLauncherVersionResolver {
                     candidate.minor == inputVersion.minor &&
                     candidate.patch == inputVersion.patch) {
                     
-                    LOGGER.fine("Found matching version: {}" , version);
+                    LOGGER.fine(() -> "Found matching version: " + version);
                     
                     // Select the version with the highest build number
                     if (candidate.buildNumber > highestBuildNumber) {
