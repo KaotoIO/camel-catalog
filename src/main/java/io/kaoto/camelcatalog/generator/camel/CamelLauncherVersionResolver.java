@@ -282,10 +282,10 @@ public class CamelLauncherVersionResolver {
      */
     private VersionInfo parseVersion(String version) {
         // Pattern: major.minor.patch[.redhat-buildNumber]
-        Pattern pattern = Pattern.compile("^(\\d+)\\.(\\d+)\\.(\\d+)(?:\\.redhat-(\\d+))?$");
+        Pattern pattern = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)(?:\\.redhat-(\\d+))?");
         Matcher matcher = pattern.matcher(version);
-        
-        if (matcher.find()) {
+
+        if (matcher.matches()) {
             int major = Integer.parseInt(matcher.group(1));
             int minor = Integer.parseInt(matcher.group(2));
             int patch = Integer.parseInt(matcher.group(3));

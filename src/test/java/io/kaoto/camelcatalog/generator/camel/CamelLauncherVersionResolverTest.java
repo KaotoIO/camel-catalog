@@ -126,6 +126,20 @@ class CamelLauncherVersionResolverTest {
     }
 
     @Test
+    void testResolveVersionWithTrailingNewline() {
+        String launcherVersion = resolver.findLauncherVersion("4.18.0\n", CatalogRuntime.Main);
+
+        assertNull(launcherVersion, "Version with trailing newline should be rejected");
+    }
+
+    @Test
+    void testResolveVersionWithTrailingCarriageReturnNewline() {
+        String launcherVersion = resolver.findLauncherVersion("4.18.0\r\n", CatalogRuntime.Main);
+
+        assertNull(launcherVersion, "Version with trailing CRLF should be rejected");
+    }
+
+    @Test
     void testResolveNullVersion() {
         // Test handling of null version
         String launcherVersion = resolver.findLauncherVersion(null, CatalogRuntime.Main);
