@@ -20,6 +20,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.List;
 
 public class KameletProcessor {
+
+    private KameletProcessor() {
+    }
+
     private static final List<String> TO_STRING_TYPES = List.of("binary");
 
     public static void process(ObjectNode kamelet) {

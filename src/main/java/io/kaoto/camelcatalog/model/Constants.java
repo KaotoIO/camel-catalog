@@ -18,6 +18,10 @@ package io.kaoto.camelcatalog.model;
 import java.util.List;
 
 public class Constants {
+
+        private Constants() {
+        }
+
         public static final String COMPONENTS = "components";
         public static final String DATAFORMATS = "dataformats";
         public static final String LANGUAGES = "languages";
