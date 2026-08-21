@@ -21,6 +21,7 @@ public class ResourceLoader {
     private static final Logger LOGGER = Logger.getLogger(ResourceLoader.class.getName());
     private final KaotoMavenVersionManager kaotoVersionManager;
     private final boolean verbose;
+    private static final String JAR_ENTRY_SEPARATOR = "/";
 
     public ResourceLoader(KaotoMavenVersionManager kaotoVersionManager, boolean verbose) {
         this.verbose = verbose;
@@ -73,7 +74,7 @@ public class ResourceLoader {
                                 try (Scanner scanner = new Scanner(inputStream)) {
                                     scanner.useDelimiter("\\A");
                                     String filenameWithoutExtension =
-                                            entry.getName().replace(resourceFolderName + "/", "")
+                                            entry.getName().replace(resourceFolderName + JAR_ENTRY_SEPARATOR, "")
                                                     .replace(fileSuffix, "");
                                     filesMap.put(filenameWithoutExtension, scanner.hasNext() ? scanner.next() : "");
                                 }
