@@ -197,7 +197,7 @@ public class CamelYamlDslSchemaProcessor {
             if (entry.has("not")) {
                 continue;
             }
-            if (!"object".equals(entry.get("type").asText()) || !entry.has("required")) {
+            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
                 throw new IllegalStateException("Unexpected loadbalancer entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
