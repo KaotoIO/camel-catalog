@@ -1,6 +1,7 @@
 package io.kaoto.camelcatalog;
 
 import java.io.InputStream;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -20,7 +21,8 @@ public class Main {
                 LogManager.getLogManager().readConfiguration(is);
             }
         } catch (Exception e) {
-            System.err.println("Failed to load logging configuration: " + e.getMessage());
+            Logger.getLogger(Main.class.getName())
+                    .log(Level.SEVERE,"Failed to load logging configuration: " + e.getMessage());
         }
         LOGGER = Logger.getLogger(Main.class.getName());
     }
