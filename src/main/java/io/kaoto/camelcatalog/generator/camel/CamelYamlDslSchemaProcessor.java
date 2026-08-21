@@ -34,7 +34,7 @@ public class CamelYamlDslSchemaProcessor {
 
     private final List<String> processorReferenceBlockList = List.of(PROCESSOR_DEFINITION);
 
-    public CamelYamlDslSchemaProcessor(ObjectMapper mapper, ObjectNode yamlDslSchema) throws Exception {
+    public CamelYamlDslSchemaProcessor(ObjectMapper mapper, ObjectNode yamlDslSchema) {
         this.jsonMapper = mapper;
         this.yamlDslSchema = yamlDslSchema;
     }
@@ -80,7 +80,7 @@ public class CamelYamlDslSchemaProcessor {
         }
     }
 
-    public Map<String, ObjectNode> getDataFormats() throws Exception {
+    public Map<String, ObjectNode> getDataFormats() {
         var definitions = yamlDslSchema
                 .withObject("/items")
                 .withObject("/definitions");
@@ -96,7 +96,7 @@ public class CamelYamlDslSchemaProcessor {
         if (fromMarshal.size() != fromUnmarshal.size()) {
             // Could this happen in the future? If so, we need to prepare separate sets for
             // marshal and unmarshal
-            throw new Exception("Marshal and Unmarshal dataformats are not the same size");
+            throw new IllegalStateException("Marshal and Unmarshal dataformats are not the same size");
         }
 
         var answer = new LinkedHashMap<String, ObjectNode>();
@@ -114,7 +114,7 @@ public class CamelYamlDslSchemaProcessor {
                 } else {
                     var dfOneOf = dataformat.withArray("/oneOf");
                     if (dfOneOf.size() != 2) {
-                        throw new Exception(String.format(
+                        throw new IllegalStateException(String.format(
                                 "DataFormat '%s' has '%s' entries in oneOf unexpectedly, look it closer",
                                 entryDefinitionName,
                                 dfOneOf.size()));
@@ -135,7 +135,7 @@ public class CamelYamlDslSchemaProcessor {
         return answer;
     }
 
-    public Map<String, ObjectNode> getLanguages() throws Exception {
+    public Map<String, ObjectNode> getLanguages() {
         var definitions = yamlDslSchema
                 .withObject("/items")
                 .withObject("/definitions");
@@ -148,7 +148,7 @@ public class CamelYamlDslSchemaProcessor {
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : languages) {
             if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
-                throw new Exception("Unexpected language entry " + entry.asText());
+                throw new IllegalStateException("Unexpected language entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
             var property = entry
@@ -159,7 +159,7 @@ public class CamelYamlDslSchemaProcessor {
             if (language.has("oneOf")) {
                 var langOneOf = language.withArray("/oneOf");
                 if (langOneOf.size() != 2) {
-                    throw new Exception(String.format(
+                    throw new IllegalStateException(String.format(
                             "Language '%s' has '%s' entries in oneOf unexpectedly, look it closer",
                             entryDefinitionName,
                             langOneOf.size()));
@@ -182,7 +182,7 @@ public class CamelYamlDslSchemaProcessor {
         return answer;
     }
 
-    public Map<String, ObjectNode> getLoadBalancers() throws Exception {
+    public Map<String, ObjectNode> getLoadBalancers() {
         var definitions = yamlDslSchema
                 .withObject("/items")
                 .withObject("/definitions");
@@ -198,7 +198,7 @@ public class CamelYamlDslSchemaProcessor {
                 continue;
             }
             if (!"object".equals(entry.get("type").asText()) || !entry.has("required")) {
-                throw new Exception("Unexpected loadbalancer entry " + entry.asText());
+                throw new IllegalStateException("Unexpected loadbalancer entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
             var property = entry
@@ -209,7 +209,7 @@ public class CamelYamlDslSchemaProcessor {
             if (loadBalancer.has("oneOf")) {
                 var lbOneOf = loadBalancer.withArray("/oneOf");
                 if (lbOneOf.size() != 2) {
-                    throw new Exception(String.format(
+                    throw new IllegalStateException(String.format(
                             "LoadBalancer '%s' has '%s' entries in oneOf unexpectedly, look it closer",
                             entryDefinitionName,
                             lbOneOf.size()));

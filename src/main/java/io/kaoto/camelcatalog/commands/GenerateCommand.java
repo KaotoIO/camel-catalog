@@ -94,7 +94,7 @@ public class GenerateCommand implements Runnable {
 
                     CatalogDefinition catalogDefinition = catalogGenerator.generate();
                     if (catalogDefinition == null) {
-                        throw new RuntimeException("Catalog generation returned no result for "
+                        throw new IllegalStateException("Catalog generation returned no result for "
                                 + catalogCliArg.getRuntime() + " " + downloadVersion);
                     }
 
@@ -125,7 +125,7 @@ public class GenerateCommand implements Runnable {
         try {
             Util.createTabWriter(jsonMapper).writeValue(indexFile, library);
         } catch (IOException e) {
-            throw new RuntimeException("Error writing index file", e);
+            throw new java.io.UncheckedIOException("Error writing index file", e);
         }
     }
 

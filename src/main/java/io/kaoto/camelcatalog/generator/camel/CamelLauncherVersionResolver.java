@@ -21,8 +21,10 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.logging.Level;
@@ -212,7 +214,7 @@ public class CamelLauncherVersionResolver {
     /**
      * Fetches available versions from the Maven repository's maven-metadata.xml
      */
-    private List<String> fetchAvailableVersions(String repository) throws Exception {
+    private List<String> fetchAvailableVersions(String repository) throws IOException, URISyntaxException {
         String metadataUrl = String.format("%s/%s/%s/maven-metadata.xml", 
                                           repository, CAMEL_LAUNCHER_GROUP_PATH, CAMEL_LAUNCHER_ARTIFACT);
         
