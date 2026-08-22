@@ -50,7 +50,8 @@ import static io.kaoto.camelcatalog.model.Constants.*;
 
 public class CamelCatalogGenerator implements CatalogGenerator {
     private static final Logger LOGGER = Logger.getLogger(CamelCatalogGenerator.class.getName());
-
+    private static final String CAMEL_PREFIX = "Camel ";
+    private static final String INDEX = "index";
     private static final ObjectMapper jsonMapper = new ObjectMapper()
             .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
     private static final ObjectMapper yamlMapper = new ObjectMapper(new YAMLFactory());
@@ -86,8 +87,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
         processSchemas(catalogDefinition);
 
         try {
-            catalogDefinition
-                    .setName("Camel " + camelCatalogVersionLoader.getRuntime().getLabel() + " " + camelCatalogVersion);
+            catalogDefinition.setName(CAMEL_PREFIX + camelCatalogVersionLoader.getRuntime().getLabel() + " " + camelCatalogVersion);
             catalogDefinition.setVersion(camelCatalogVersion);
             catalogDefinition.setRuntime(camelCatalogVersionLoader.getRuntime());
             
@@ -107,9 +107,8 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             }
 
             String content = jsonMapper.writeValueAsString(catalogDefinition);
-            String filename = String.format("%s-%s.json", "index",
+            String filename = String.format("%s-%s.json", INDEX,
                     Util.generateHash(content));
-
             File indexFile = outputDirectory.toPath().resolve(filename).toFile();
             catalogDefinition.setFileName(indexFile.getName());
 
