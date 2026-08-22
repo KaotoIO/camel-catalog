@@ -47,7 +47,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static io.kaoto.camelcatalog.model.Constants.*;
-
+private static final String JSON_FILE_PATTERN = "%s-%s.json";
 public class CamelCatalogGenerator implements CatalogGenerator {
     private static final Logger LOGGER = Logger.getLogger(CamelCatalogGenerator.class.getName());
 
@@ -107,8 +107,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             }
 
             String content = jsonMapper.writeValueAsString(catalogDefinition);
-            String filename = String.format("%s-%s.json", "index",
-                    Util.generateHash(content));
+            String filename = String.format(JSON_FILE_PATTERN, INDEX, Util.generateHash(content));
 
             File indexFile = outputDirectory.toPath().resolve(filename).toFile();
             catalogDefinition.setFileName(indexFile.getName());
@@ -260,7 +259,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                 jsonMapper.writeTree(jsonGenerator, root);
                 var rootBytes = outputStream.toByteArray();
                 var outputFileName = String.format("%s-%s.json", filename, Util.generateHash(rootBytes));
-                var output = outputDirectory.toPath().resolve(outputFileName);
+                var outputFileName = String.format(JSON_FILE_PATTERN, filename, Util.generateHash(rootBytes));
 
                 Files.write(output, rootBytes);
 
@@ -297,7 +296,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                 try {
                     JsonNode kameletNode1 = yamlMapper.readTree(k1);
                     JsonNode kameletNode2 = yamlMapper.readTree(k2);
-                    String kamelet1 = kameletNode1.get("metadata").get("name").asText().toLowerCase();
+                    outputFileName = String.format(JSON_FILE_PATTERN, name, Util.generateHash(schema));
                     String kamelet2 = kameletNode2.get("metadata").get("name").asText().toLowerCase();
                     return kamelet1.compareTo(kamelet2);
                 } catch (Exception e) {
