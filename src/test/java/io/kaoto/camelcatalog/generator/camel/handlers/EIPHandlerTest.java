@@ -352,14 +352,14 @@ class EIPHandlerTest {
 
     @Test
     void shouldSetRedHatProviderIfAvailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
-        boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5.redhat-00008");
+        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        boolean loaded = localVersionLoader.loadCamelCatalog("4.8.5.redhat-00008");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
-        CamelCatalog camelCatalog = camelCatalogVersionLoader.getCamelCatalog();
-        camelCatalogVersionLoader.loadKaotoPatterns();
+        CamelCatalog camelCatalog = localVersionLoader.getCamelCatalog();
+        localVersionLoader.loadKaotoPatterns();
 
-        eipGenerator = new EIPHandler(camelCatalog, camelYamlSchema, camelCatalogVersionLoader.getKaotoPatterns());
+        eipGenerator = new EIPHandler(camelCatalog, camelYamlSchema, localVersionLoader.getKaotoPatterns());
         var processorsMap = eipGenerator.generate();
 
         var logProcessor = processorsMap.get("log").withObject("model").get("provider").asText();
@@ -374,12 +374,12 @@ class EIPHandlerTest {
 
     @Test
     void shouldNotSetRedHatProviderIfUnavailable() throws JsonProcessingException {
-        CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
-        boolean loaded = camelCatalogVersionLoader.loadCamelCatalog("4.8.5");
+        CamelCatalogVersionLoader localVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, false);
+        boolean loaded = localVersionLoader.loadCamelCatalog("4.8.5");
         assertTrue(loaded, "The catalog version wasn't loaded");
 
-        CamelCatalog camelCatalog = camelCatalogVersionLoader.getCamelCatalog();
-        eipGenerator = new EIPHandler(camelCatalog, camelYamlSchema, camelCatalogVersionLoader.getKaotoPatterns());
+        CamelCatalog camelCatalog = localVersionLoader.getCamelCatalog();
+        eipGenerator = new EIPHandler(camelCatalog, camelYamlSchema, localVersionLoader.getKaotoPatterns());
         var processorsMap = eipGenerator.generate();
 
         var logNode = processorsMap.get("log");

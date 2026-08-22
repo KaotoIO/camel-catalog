@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -250,5 +251,24 @@ public class ComponentHandlerTest {
         assertTrue(mockLoggerHandler.getRecords().stream()
                 .anyMatch(msg -> msg.getMessage().contains("invalidComponent: component definition not found in the catalog")),
                 "Expected warning message not logged");
+    }
+
+    @Test
+    void shouldSortPropertiesAccordingToCatalogIndex() {
+        var componentsMap = componentHandler.generate();
+
+        var timerNode = componentsMap.get("timer");
+        var propertiesNode = timerNode.get("propertiesSchema").get("properties");
+        List<String> keys = new ArrayList<>();
+        propertiesNode.fieldNames().forEachRemaining(keys::add);
+
+        // Build expected order from the catalog's own index values so the assertion stays
+        // correct across Camel version bumps without hardcoding positions.
+        var expectedOrder = componentHandler.camelCatalog.componentModel("timer").getEndpointOptions()
+                .stream()
+                .sorted(Comparator.comparingInt(o -> o.getIndex()))
+                .map(o -> o.getName())
+                .toList();
+        assertEquals(expectedOrder, keys, "Schema properties must follow the catalog option index order");
     }
 }

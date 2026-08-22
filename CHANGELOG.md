@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.9.7 (2026-08-20)
+
+### Bug Fixes
+
+* require full version string match ([8d297d8](https://github.com/KaotoIO/camel-catalog/commit/8d297d84c1fe40fedbbcfb4cfad0d4f219fc0f6e))
+
+## 0.9.6 (2026-08-20)
+
+### Bug Fixes
+
+* rename shadowing variables in EIPHandlerTest ([9a4be13](https://github.com/KaotoIO/camel-catalog/commit/9a4be13a7b06a79167ae005bd66389a893098cf2))
+
+## 0.9.5 (2026-08-20)
+
+### Bug Fixes
+
+* document empty catch block ([55c6f2d](https://github.com/KaotoIO/camel-catalog/commit/55c6f2d45f4e566ba148e1d30e5a928221b6a164))
+
+## 0.9.4 (2026-08-20)
+
+### Bug Fixes
+
+* rename restricted identifier ([edb1143](https://github.com/KaotoIO/camel-catalog/commit/edb11434db2d6abb10640e6914f9fdf3e1c52e31))
+
+## 0.9.3 (2026-08-20)
+
+**Note:** Version bump only for package @kaoto/camel-catalog
+
+## 0.9.2 (2026-08-20)
+
+### Bug Fixes
+
+* refactor loops to comply with Sonar rule S135 ([1c9575d](https://github.com/KaotoIO/camel-catalog/commit/1c9575d830f31f87428deaeb9ec046dc92c8a371))
+
+## 0.9.1 (2026-08-20)
+
+**Note:** Version bump only for package @kaoto/camel-catalog
+
+# 0.9.0 (2026-08-20)
+
+### Features
+
+* **templates:** publish shared starter templates from @kaoto/camel-catalog ([11c80dc](https://github.com/KaotoIO/camel-catalog/commit/11c80dce6ab4d630232f9531b8f387bcba8f6126))
+
 ## 0.8.9 (2026-08-19)
 
 **Note:** Version bump only for package @kaoto/camel-catalog

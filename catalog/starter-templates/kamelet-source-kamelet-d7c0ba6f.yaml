@@ -1,0 +1,33 @@
+apiVersion: camel.apache.org/v1
+kind: Kamelet
+metadata:
+  name: kamelet-source-__KAOTO_ID__
+  labels:
+    camel.apache.org/kamelet.type: source
+spec:
+  definition:
+    title: My Source Kamelet
+    description: Produces periodic messages
+    required:
+      - message
+    properties:
+      message:
+        title: Message
+        description: The message to produce
+        type: string
+      period:
+        title: Period
+        description: The interval between two produced messages in milliseconds
+        type: integer
+        default: 1000
+  template:
+    from:
+      uri: timer:tick
+      parameters:
+        period: "{{period}}"
+      steps:
+        - setBody:
+            expression:
+              constant:
+                expression: "{{message}}"
+        - to: kamelet:sink

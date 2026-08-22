@@ -29,8 +29,11 @@ import java.nio.file.Paths;
 import java.util.zip.CRC32;
 
 public class Util {
-    private static final ObjectMapper jsonMapper = new ObjectMapper();
 
+    private Util() {
+    }
+
+    private static final ObjectMapper jsonMapper = new ObjectMapper();
     /**
      * Creates a pretty printer that uses tabs for indentation instead of spaces.
      */

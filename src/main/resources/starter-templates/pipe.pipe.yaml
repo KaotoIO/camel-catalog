@@ -1,0 +1,20 @@
+apiVersion: camel.apache.org/v1
+kind: Pipe
+metadata:
+  name: pipe-__KAOTO_ID__
+spec:
+  source:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: timer-source
+    properties:
+      message: Hello Camel
+      period: "1000"
+  sink:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: log-sink
+    properties:
+      showHeaders: "false"

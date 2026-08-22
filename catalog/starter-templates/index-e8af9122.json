@@ -1,0 +1,55 @@
+{
+	"name" : "Kaoto Starter Templates",
+	"version" : "1",
+	"executorVersion" : null,
+	"cliVersion" : null,
+	"camelCatalogVersion" : null,
+	"runtimeProviderVersion" : null,
+	"frameworkVersion" : null,
+	"runtime" : "StarterTemplates",
+	"catalogs" : {
+		"camel-route-xml" : {
+			"name" : "camel-route-xml",
+			"description" : "Camel route starter using the XML DSL",
+			"version" : "1",
+			"file" : "camel-route-b26ee652.xml"
+		},
+		"camel-route-yaml" : {
+			"name" : "camel-route-yaml",
+			"description" : "Camel route starter using the YAML DSL",
+			"version" : "1",
+			"file" : "camel-route-camel-9397aead.yaml"
+		},
+		"citrus-yaml" : {
+			"name" : "citrus-yaml",
+			"description" : "Citrus test starter in YAML format",
+			"version" : "1",
+			"file" : "citrus-test-citrus-5088829a.yaml"
+		},
+		"kamelet-action-yaml" : {
+			"name" : "kamelet-action-yaml",
+			"description" : "Kamelet action starter applying a delay",
+			"version" : "1",
+			"file" : "kamelet-action-kamelet-90648dae.yaml"
+		},
+		"kamelet-sink-yaml" : {
+			"name" : "kamelet-sink-yaml",
+			"description" : "Kamelet sink starter logging received messages",
+			"version" : "1",
+			"file" : "kamelet-sink-kamelet-27d2faf9.yaml"
+		},
+		"kamelet-source-yaml" : {
+			"name" : "kamelet-source-yaml",
+			"description" : "Kamelet source starter producing periodic messages",
+			"version" : "1",
+			"file" : "kamelet-source-kamelet-d7c0ba6f.yaml"
+		},
+		"pipe-yaml" : {
+			"name" : "pipe-yaml",
+			"description" : "Camel Pipe connecting a timer-source to a log-sink",
+			"version" : "1",
+			"file" : "pipe-pipe-7515aad3.yaml"
+		}
+	},
+	"schemas" : { }
+}

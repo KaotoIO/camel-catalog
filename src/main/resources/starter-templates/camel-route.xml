@@ -1,0 +1,9 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+  <route id="route-__KAOTO_ID__">
+    <from uri="timer:xml?period=1000"/>
+    <setBody>
+      <simple>Hello Camel from ${routeId}</simple>
+    </setBody>
+    <log message="${body}"/>
+  </route>
+</routes>

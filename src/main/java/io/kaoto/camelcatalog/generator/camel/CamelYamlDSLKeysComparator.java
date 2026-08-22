@@ -19,20 +19,22 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.camel.tooling.model.EipModel.EipOptionModel;
+import org.apache.camel.tooling.model.BaseOptionModel;
 
 public class CamelYamlDSLKeysComparator implements Comparator<String> {
 
-    private final List<EipOptionModel> eipOptions;
+    private final List<? extends BaseOptionModel> options;
 
-    public CamelYamlDSLKeysComparator(List<EipOptionModel> eipOptions) {
-        this.eipOptions = eipOptions;
+    public CamelYamlDSLKeysComparator(List<? extends BaseOptionModel> options) {
+        this.options = options;
     }
 
     @Override
     public int compare(String firstKey, String secondKey) {
-        Optional<EipOptionModel> firstOption = eipOptions.stream().filter(e -> e.getName().equals(firstKey)).findFirst();
-        Optional<EipOptionModel> secondOption = eipOptions.stream().filter(e -> e.getName().equals(secondKey)).findFirst();
+        Optional<? extends BaseOptionModel> firstOption =
+                options.stream().filter(e -> e.getName().equals(firstKey)).findFirst();
+        Optional<? extends BaseOptionModel> secondOption =
+                options.stream().filter(e -> e.getName().equals(secondKey)).findFirst();
 
         var firstIndex = firstOption.isPresent() ? firstOption.get().getIndex() : Integer.MAX_VALUE;
         var secondIndex = secondOption.isPresent() ? secondOption.get().getIndex() : Integer.MAX_VALUE;

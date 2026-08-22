@@ -15,6 +15,9 @@
  */
 package io.kaoto.camelcatalog.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +26,10 @@ public class CatalogLibrary {
     public List<CatalogLibraryEntry> definitions = new ArrayList<>();
     private final int version;
     private final String name;
+    private String starterTemplates;
 
-    public CatalogLibrary(int version, String name) {
+    @JsonCreator
+    public CatalogLibrary(@JsonProperty("version") int version, @JsonProperty("name") String name) {
         this.version = version;
         this.name = name;
     }
@@ -35,6 +40,14 @@ public class CatalogLibrary {
 
     public String getName() {
         return name;
+    }
+
+    public String getStarterTemplates() {
+        return starterTemplates;
+    }
+
+    public void setStarterTemplates(String starterTemplates) {
+        this.starterTemplates = starterTemplates;
     }
 
     public List<CatalogLibraryEntry> getDefinitions() {

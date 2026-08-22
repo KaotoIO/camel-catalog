@@ -1,0 +1,23 @@
+apiVersion: camel.apache.org/v1
+kind: Kamelet
+metadata:
+  name: kamelet-sink-__KAOTO_ID__
+  labels:
+    camel.apache.org/kamelet.type: sink
+spec:
+  definition:
+    title: My Sink Kamelet
+    description: Logs the received message
+    properties:
+      loggerName:
+        title: Logger Name
+        description: The name of the logger
+        type: string
+        default: kamelet-sink
+  template:
+    from:
+      uri: kamelet:source
+      steps:
+        - log:
+            message: "${body}"
+            loggerName: "{{loggerName}}"

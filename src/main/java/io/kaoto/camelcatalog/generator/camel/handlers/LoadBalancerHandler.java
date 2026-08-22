@@ -64,6 +64,7 @@ public class LoadBalancerHandler implements CatalogEntryHandler {
             if (loadBalancerCatalog == null) {
                 throw new RuntimeException("LoadBalancer " + loadBalancerName + " is not found in Camel model catalog.");
             }
+            schemaEnhancer.sortPropertiesByOptions(loadBalancerSchema, loadBalancerCatalog.getOptions());
             var json = JsonMapper.asJsonObject(loadBalancerCatalog).toJson();
             try {
                 var catalogTree = (ObjectNode) jsonMapper.readTree(json);
