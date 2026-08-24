@@ -19,6 +19,7 @@ import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.model.CatalogCliArgument;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 private static final string ARG_VERSION = "version";
+
 public class GenerateCommandOptions {
     private static final Logger LOGGER = Logger.getLogger(GenerateCommandOptions.class.getName());
     private Options options = new Options();
