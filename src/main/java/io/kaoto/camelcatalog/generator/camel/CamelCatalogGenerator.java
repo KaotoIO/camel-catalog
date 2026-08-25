@@ -334,7 +334,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                     version = camelKCRDsVersion;
                 }
 
-                var output = outputDirectory.toPath().resolve(outputFileName);
+                output = outputDirectory.toPath().resolve(outputFileName);
                 output.getParent().toFile().mkdirs();
                 Files.writeString(output, schema);
 
