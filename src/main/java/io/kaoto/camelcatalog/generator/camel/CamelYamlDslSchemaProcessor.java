@@ -29,6 +29,11 @@ public class CamelYamlDslSchemaProcessor {
     private static final String LOAD_BALANCE_DEFINITION = "org.apache.camel.model.LoadBalanceDefinition";
     private static final String EXPRESSION_SUB_ELEMENT_DEFINITION =
             "org.apache.camel.model.ExpressionSubElementDefinition";
+    private static final String REF = "$ref";
+    private static final String ITEMS = "items";
+    private static final String PROPERTIES = "properties";
+    private static final String DEFINITIONS_PATH = "#/definitions/";
+    private static final String ITEMS_DEFINITIONS_PATH = "#/items/definitions/";
     private final ObjectMapper jsonMapper;
     private final ObjectNode yamlDslSchema;
 
@@ -41,27 +46,27 @@ public class CamelYamlDslSchemaProcessor {
 
     private ObjectNode relocateToRootDefinitions(ObjectNode definitions) {
         var relocatedDefinitions = definitions.deepCopy();
-        relocatedDefinitions.findParents("$ref").stream()
+        relocatedDefinitions.findParents(REF).stream()
                 .map(ObjectNode.class::cast)
-                .forEach(n -> n.put("$ref", getRelocatedRef(n)));
+                .forEach(n -> n.put(REF, getRelocatedRef(n)));
         return relocatedDefinitions;
     }
 
     private String getRelocatedRef(ObjectNode parent) {
-        return parent.get("$ref").asText().replace("#/items/definitions/", "#/definitions/");
+        return parent.get(REF).asText().replace(ITEMS_DEFINITIONS, DEFINITIONS_PATH);
     }
 
     private String getNameFromRef(ObjectNode parent) {
-        var ref = parent.get("$ref").asText();
-        return ref.contains("items") ? ref.replace("#/items/definitions/", "")
-                : ref.replace("#/definitions/", "");
+        var ref = parent.get(REF).asText();
+        return ref.contains(ITEMS) ? ref.replace(ITEMS_DEFINITIONS_PATH, "")
+                : ref.replace(DEFINITIONS_PATH, "");
     }
 
     private void populateDefinitions(ObjectNode schema, ObjectNode definitions) {
         boolean added = true;
         while (added) {
             added = false;
-            for (JsonNode refParent : schema.findParents("$ref")) {
+            for (JsonNode refParent : schema.findParents(REF)) {
                 var name = getNameFromRef((ObjectNode) refParent);
 
                 if ((!schema.has("definitions") || !schema.withObject("/definitions").has(name)) && !processorReferenceBlockList.contains(name)){
