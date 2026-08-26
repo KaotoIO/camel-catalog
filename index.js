@@ -12,29 +12,29 @@
 const CATALOGS = {
   Main: [
     //
-    '4.20.0',
-    '4.18.2',
-    '4.14.5',
+    '4.22.0',
+    '4.18.4',
+    '4.14.9',
     '4.10.7',
-    '4.18.1.redhat-00019',
+    '4.18.3.redhat-00005',
     // '4.14.4.redhat-00008', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '4.10.7.redhat-00009',
   ],
   Quarkus: [
-    '3.35.4',
+    '3.39.0',
+    '3.38.0',
     '3.33.2',
     '3.27.4',
-    '3.20.6.1',
-    '3.33.1.redhat-00006', // 4.18
+    '3.33.3.redhat-00001', // 4.18
     // '3.27.3.redhat-00003', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '3.20.6.redhat-00004', // 4.10
   ],
   SpringBoot: [
-    '4.20.0',
-    '4.18.2',
-    '4.14.7',
+    '4.22.0',
+    '4.18.4',
+    '4.14.9',
     '4.10.9',
-    '4.18.1.redhat-00014',
+    '4.18.3.redhat-00006',
     // '4.14.4.redhat-00010', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '4.10.7.redhat-00013',
   ],
