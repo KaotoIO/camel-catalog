@@ -36,6 +36,9 @@ import java.util.logging.Logger;
 
 public class EIPHandler implements CatalogEntryHandler {
     private static final Logger LOGGER = Logger.getLogger(EIPHandler.class.getName());
+    private static final String PROPERTIES_SCHEMA = "propertiesSchema";
+    private static final String DEFINITIONS = "definitions";
+    private static final String PROPERTIES = "properties";
     CamelCatalog camelCatalog;
     CamelCatalogSchemaEnhancer camelCatalogSchemaEnhancer;
     String camelYamlSchema;
@@ -70,7 +73,7 @@ public class EIPHandler implements CatalogEntryHandler {
             if (processorJSON != null) {
                 String javaType = camelCatalogSchemaEnhancer.getJavaTypeByModelName(eipName);
                 var processorJSONSchema = camelYAMLSchemaReader.getEIPJSONSchema(eipName, javaType);
-                processorJSON.set("propertiesSchema", processorJSONSchema);
+                processorJSON.set(PROPERTIES_SCHEMA, processorJSONSchema);
 
                 enhanceJSONSchema(eipName, processorJSONSchema);
                 processorMap.put(eipName, processorJSON);
@@ -82,7 +85,7 @@ public class EIPHandler implements CatalogEntryHandler {
             setProvider(processorJSON);
             if (processorJSON != null) {
                 var processorJSONSchema = camelYAMLSchemaReader.getRestProcessorJSONSchema(processorName);
-                processorJSON.set("propertiesSchema", processorJSONSchema);
+                processorJSON.set(PROPERTIES_SCHEMA, processorJSONSchema);
 
                 enhanceJSONSchema(processorName, processorJSONSchema);
                 processorMap.put(processorName, processorJSON);
@@ -121,8 +124,8 @@ public class EIPHandler implements CatalogEntryHandler {
             camelCatalogSchemaEnhancer.enhanceParametersProperty(mainModel.getJavaType(), processorJSONSchema);
         }
 
-        if (processorJSONSchema.has("definitions")) {
-            iterateOverDefinitions(processorJSONSchema.withObject("definitions"), (model, node) -> {
+        if (processorJSONSchema.has(DEFINITIONS)) {
+            iterateOverDefinitions(processorJSONSchema.withObject(DEFINITIONS), (model, node) -> {
                 if (model == null) {
                     return;
                 }
@@ -147,9 +150,9 @@ public class EIPHandler implements CatalogEntryHandler {
      */
     List<String> getEIPNames() {
         HashSet<String> eipNames = new HashSet<>();
-        var eipsIterator = this.camelYamlSchemaNode.get("items").get("definitions")
+        var eipsIterator = this.camelYamlSchemaNode.get(ITEMS).get(DEFINITIONS)
                 .get("org.apache.camel.model.ProcessorDefinition")
-                .get("properties")
+                .get(PROPERTIES)
                 .fields();
 
         while (eipsIterator.hasNext()) {
