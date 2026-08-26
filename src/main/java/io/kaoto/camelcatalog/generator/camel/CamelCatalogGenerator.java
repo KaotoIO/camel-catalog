@@ -162,7 +162,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
 
         try {
             var yamlDslSchema = (ObjectNode) jsonMapper.readTree(camelYamlDSLSchema07);
-            return new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+            return new CamelYamlDslSchemaProcessor(yamlDslSchema);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
             return null;

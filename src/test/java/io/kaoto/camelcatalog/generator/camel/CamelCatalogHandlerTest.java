@@ -68,7 +68,7 @@ class CamelCatalogHandlerTest {
             throw new Exception("Failed to load kubernetes-api-v1-openapi.json");
         }
         var openapiSpec = new String(openapiSpecIS.readAllBytes(), StandardCharsets.UTF_8);
-        CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
         CamelCatalogVersionLoader camelCatalogVersionLoader = new CamelCatalogVersionLoader(CatalogRuntime.Main, true);
         camelCatalogVersionLoader.loadCamelYamlDsl(catalog.getCatalogVersion(), null);
         camelCatalogVersionLoader.loadKubernetesSchema();

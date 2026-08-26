@@ -25,7 +25,6 @@ import org.apache.camel.dsl.yaml.YamlRoutesBuilderLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ class LoadBalancerHandlerTest {
         ObjectMapper jsonMapper = new ObjectMapper();
         var is = YamlRoutesBuilderLoader.class.getClassLoader().getResourceAsStream("schema/camelYamlDsl.json");
         ObjectNode yamlDslSchema = (ObjectNode) jsonMapper.readTree(is);
-        CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        CamelYamlDslSchemaProcessor schemaProcessor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
         CamelCatalogSchemaEnhancer schemaEnhancer = new CamelCatalogSchemaEnhancer(camelCatalog);
         loadBalancerHandler = new LoadBalancerHandler(camelCatalog, schemaProcessor, schemaEnhancer);
     }

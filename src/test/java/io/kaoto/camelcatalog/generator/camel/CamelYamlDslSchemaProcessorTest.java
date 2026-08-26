@@ -33,7 +33,7 @@ class CamelYamlDslSchemaProcessorTest {
         var is = YamlRoutesBuilderLoader.class.getClassLoader().getResourceAsStream("schema/camelYamlDsl.json");
         ObjectNode yamlDslSchema = (ObjectNode) jsonMapper.readTree(is);
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
     }
 
     @Test
@@ -93,7 +93,7 @@ class CamelYamlDslSchemaProcessorTest {
         var languageEntry = (ObjectNode) languages.get(0);
         languageEntry.remove("type");
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
 
         Exception exception = assertThrows(Exception.class, () ->
                 processor.getLanguages());
@@ -120,7 +120,7 @@ class CamelYamlDslSchemaProcessorTest {
         var languageEntry = (ObjectNode) languages.get(0);
         languageEntry.put("type", "string");
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
 
         Exception exception = assertThrows(Exception.class, () ->
                 processor.getLanguages());
@@ -170,7 +170,7 @@ class CamelYamlDslSchemaProcessorTest {
                 .add("Gson");
         definitions.set("org.apache.camel.model.dataformat.JsonDataFormat", jsonDataFormat);
 
-        var localProcessor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        var localProcessor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
 
         var dataFormats = localProcessor.getDataFormats();
 
