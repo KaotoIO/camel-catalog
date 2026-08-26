@@ -20,22 +20,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Process camelYamlDsl.json file, aka Camel YAML DSL JSON schema.
  */
 public class CamelYamlDslSchemaProcessor {
+    private static final String REQUIRED = "required";
     private static final String PROCESSOR_DEFINITION = "org.apache.camel.model.ProcessorDefinition";
     private static final String LOAD_BALANCE_DEFINITION = "org.apache.camel.model.LoadBalanceDefinition";
     private static final String EXPRESSION_SUB_ELEMENT_DEFINITION =
             "org.apache.camel.model.ExpressionSubElementDefinition";
-    private final ObjectMapper jsonMapper;
     private final ObjectNode yamlDslSchema;
 
     private final List<String> processorReferenceBlockList = List.of(PROCESSOR_DEFINITION);
 
     public CamelYamlDslSchemaProcessor(ObjectMapper mapper, ObjectNode yamlDslSchema) {
-        this.jsonMapper = mapper;
         this.yamlDslSchema = yamlDslSchema;
     }
 
@@ -93,45 +93,43 @@ public class CamelYamlDslSchemaProcessor {
                 .withObject("/org.apache.camel.model.UnmarshalDefinition")
                 .withArray("/anyOf")
                 .get(0).withArray("/oneOf");
-        if (fromMarshal.size() != fromUnmarshal.size()) {
-            // Could this happen in the future? If so, we need to prepare separate sets for
-            // marshal and unmarshal
-            throw new IllegalStateException("Marshal and Unmarshal dataformats are not the same size");
-        }
 
         var answer = new LinkedHashMap<String, ObjectNode>();
-        for (var entry : fromMarshal) {
-            if (entry.has("required")) {
-                var entryName = entry.withArray("/required").get(0).asText();
-                var property = entry
-                        .withObject("/properties")
-                        .withObject("/" + entryName);
-                var entryDefinitionName = getNameFromRef(property);
-                var dataformat = relocatedDefinitions.withObject("/" + entryDefinitionName);
-                if (!dataformat.has("oneOf")) {
-                    populateDefinitions(dataformat, relocatedDefinitions);
-                    answer.put(entryName, dataformat);
-                } else {
-                    var dfOneOf = dataformat.withArray("/oneOf");
-                    if (dfOneOf.size() != 2) {
-                        throw new IllegalStateException(String.format(
-                                "DataFormat '%s' has '%s' entries in oneOf unexpectedly, look it closer",
-                                entryDefinitionName,
-                                dfOneOf.size()));
+        Stream.concat(fromMarshal.valueStream(), fromUnmarshal.valueStream())
+                .filter(entry -> entry.has(REQUIRED))
+                .forEach(entry -> {
+                    var entryName = entry.withArray("/required").get(0).asText();
+                    if (answer.containsKey(entryName)) {
+                        return;
                     }
-                    for (var def : dfOneOf) {
-                        if (def.get("type").asText().equals("object")) {
-                            var objectDef = (ObjectNode) def;
-                            objectDef.set("title", dataformat.get("title"));
-                            objectDef.set("description", dataformat.get("description"));
-                            populateDefinitions(objectDef, relocatedDefinitions);
-                            answer.put(entryName, objectDef);
-                            break;
+                    var property = entry
+                            .withObject("/properties")
+                            .withObject("/" + entryName);
+                    var entryDefinitionName = getNameFromRef(property);
+                    var dataformat = relocatedDefinitions.withObject("/" + entryDefinitionName);
+                    if (!dataformat.has("oneOf")) {
+                        populateDefinitions(dataformat, relocatedDefinitions);
+                        answer.put(entryName, dataformat);
+                    } else {
+                        var dfOneOf = dataformat.withArray("/oneOf");
+                        if (dfOneOf.size() != 2) {
+                            throw new IllegalStateException(String.format(
+                                    "DataFormat '%s' has '%s' entries in oneOf unexpectedly, look it closer",
+                                    entryDefinitionName,
+                                    dfOneOf.size()));
+                        }
+                        for (var def : dfOneOf) {
+                            if (def.get("type").asText().equals("object")) {
+                                var objectDef = (ObjectNode) def;
+                                objectDef.set("title", dataformat.get("title"));
+                                objectDef.set("description", dataformat.get("description"));
+                                populateDefinitions(objectDef, relocatedDefinitions);
+                                answer.put(entryName, objectDef);
+                                break;
+                            }
                         }
                     }
-                }
-            }
-        }
+                });
         return answer;
     }
 
@@ -147,7 +145,7 @@ public class CamelYamlDslSchemaProcessor {
 
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : languages) {
-            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
+            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has(REQUIRED)) {
                 throw new IllegalStateException("Unexpected language entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
@@ -197,7 +195,7 @@ public class CamelYamlDslSchemaProcessor {
             if (entry.has("not")) {
                 continue;
             }
-            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
+            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has(REQUIRED)) {
                 throw new IllegalStateException("Unexpected loadbalancer entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();

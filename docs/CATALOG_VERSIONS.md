@@ -33,8 +33,61 @@ the generator as `--repos`); they are additive and never replace the inferred on
 
 ## Quarkus platform → camel-quarkus → Apache Camel
 
-A Quarkus platform version's `quarkus-camel-bom` pins the `camel-quarkus-catalog` version
-(the runtime provider), which in turn resolves to an Apache Camel version.
+Quarkus versioning involves three numbers that are easy to conflate. This project only
+configures and resolves the first two; the diagram below shows the exact Maven artifact
+read at each hop so any value can be verified by hand.
+
+```
+ STEP 1 — INPUT (configured in index.js)
+ ┌───────────────────────────────────────────────────────────┐
+ │ Quarkus platform version              e.g. 3.35.4         │
+ │ (what `camel run --quarkus-version` takes)                │
+ │                                                            │
+ │ groupId   io.quarkus.platform                             │
+ │           (com.redhat.quarkus.platform if productized)    │
+ │ artifact  quarkus-camel-bom                               │
+ └───────────────────────────────────────────────────────────┘
+                             │
+                             │  read the managed
+                             │  org.apache.camel.quarkus:camel-quarkus-catalog
+                             │  version from this POM's <dependencyManagement>
+                             ▼
+ STEP 2 — DERIVED (provider)
+ ┌───────────────────────────────────────────────────────────┐
+ │ camel-quarkus version                 e.g. 3.35.0         │
+ │ ("runtime provider")                                      │
+ │                                                            │
+ │ groupId   org.apache.camel.quarkus                        │
+ │           (same groupId for community + productized)      │
+ │ artifact  camel-quarkus-catalog, camel-quarkus-bom         │
+ └───────────────────────────────────────────────────────────┘
+                             │
+                             │  read the managed version of any
+                             │  org.apache.camel:* dependency in this POM's
+                             │  <dependencyManagement> (preferring a
+                             │  .redhat- qualified one when both exist)
+                             ▼
+ STEP 3 — DERIVED (final)
+ ┌───────────────────────────────────────────────────────────┐
+ │ Apache Camel version                  e.g. 4.20.0         │
+ │ (catalog.getCatalogVersion())                             │
+ │                                                            │
+ │ groupId   org.apache.camel                                │
+ │ artifact  camel-catalog, camel-yaml-dsl                    │
+ └───────────────────────────────────────────────────────────┘
+```
+
+There is a **fourth** number you may run into that this project does *not* track: the
+actual Quarkus core/framework version (`io.quarkus:quarkus-bom`, e.g. `3.35.3`), shown as
+the separate `QUARKUS` column in `camel version list --runtime=quarkus`. It is irrelevant
+here — the generator only reads Camel/camel-quarkus metadata, never actual Quarkus
+framework classes — so it is intentionally absent from the mapping table below.
+
+| Term used in this doc                | Role                          | Maven coordinates (community)                          | Maven coordinates (productized)                              |
+|---------------------------------------|-------------------------------|---------------------------------------------------------|-----------------------------------------------------------------|
+| **Quarkus platform version** (input)  | value configured in `index.js`| `io.quarkus.platform:quarkus-camel-bom`                | `com.redhat.quarkus.platform:quarkus-camel-bom`                 |
+| **camel-quarkus version** (provider)  | derived, 2nd hop               | `org.apache.camel.quarkus:camel-quarkus-catalog`       | same groupId, resolved via Red Hat GA repo                      |
+| **Apache Camel version**              | derived, final                 | `org.apache.camel:camel-catalog` / `camel-yaml-dsl`    | same groupId, resolved via Red Hat GA repo                      |
 
 ### YAML DSL Schema Resolution for Quarkus
 
@@ -46,7 +99,12 @@ The generator loads this transitive dependency, but uses version-aware resource 
 (`KaotoMavenVersionManager.getResourceAsStream`) that only loads resources whose URL path
 contains the requested version. This means:
 
-- Requesting `camel-quarkus-yaml-dsl:3.33.0.redhat-00007` downloads both:
+Example using the productized `3.33.1.redhat-00006` row from the mapping table below —
+note this walks through the **provider** (`3.33.0.redhat-00007`) and **Apache Camel**
+(`4.18.1.redhat-00020`) versions *derived from* that platform version, not the platform
+version itself:
+
+- Requesting `camel-quarkus-yaml-dsl:3.33.0.redhat-00007` (the provider version) downloads both:
   - `camel-quarkus-yaml-dsl-3.33.0.redhat-00007.jar` (no schema)
   - `camel-yaml-dsl-4.18.1.redhat-00020.jar` (has schema) — transitive dependency
 - But the version filter looks for `3.33.0.redhat-00007` in the resource URL
@@ -59,25 +117,28 @@ the version filter matches and the schema is found.
 
 The mappings below were verified against the registries:
 
-| Platform version (input)  | camel-quarkus (provider) | Apache Camel          |
-|---------------------------|--------------------------|-----------------------|
-| `3.35.4`                  | `3.35.0`                 | `4.20.0`              |
-| `3.33.2`                  | `3.33.1`                 | `4.18.2`              |
-| `3.27.4`                  | `3.27.4`                 | `4.14.7`              |
-| `3.20.6.1`                | `3.20.4`                 | `4.10.8`              |
-| `3.33.1.redhat-00006`     | `3.33.0.redhat-00007`    | `4.18.1.redhat-00020` |
-| `3.27.3.redhat-00003`     | `3.27.1.redhat-00004`    | `4.14.2.redhat-00020` |
-| `3.20.6.redhat-00004`     | `3.20.0.redhat-00011`    | `4.10.3.redhat-00034` |
+| Platform version (input) — `quarkus-camel-bom` | camel-quarkus (provider) — `camel-quarkus-catalog` | Apache Camel — `camel-yaml-dsl` / `camel-catalog` |
+|--------------------------------------------------|-------------------------------------------------------|------------------------------------------------------|
+| **Registry** — [community](https://repo1.maven.org/maven2/io/quarkus/platform/quarkus-camel-bom/) · [Red Hat GA](https://maven.repository.redhat.com/ga/com/redhat/quarkus/platform/quarkus-camel-bom/) | **Registry** — [community](https://repo1.maven.org/maven2/org/apache/camel/quarkus/camel-quarkus-catalog/) · [Red Hat GA](https://maven.repository.redhat.com/ga/org/apache/camel/quarkus/camel-quarkus-catalog/) | **Registry** — [community](https://repo1.maven.org/maven2/org/apache/camel/camel-yaml-dsl/) · [Red Hat GA](https://maven.repository.redhat.com/ga/org/apache/camel/camel-yaml-dsl/) |
+| `3.35.4`                                        | `3.35.0`                                              | `4.20.0`                                              |
+| `3.33.2`                                        | `3.33.1`                                              | `4.18.2`                                              |
+| `3.27.4`                                        | `3.27.4`                                              | `4.14.7`                                              |
+| `3.20.6.1`                                      | `3.20.4`                                              | `4.10.8`                                              |
+| `3.33.1.redhat-00006`                           | `3.33.0.redhat-00007`                                 | `4.18.1.redhat-00020`                                 |
+| `3.27.3.redhat-00003`                           | `3.27.1.redhat-00004`                                 | `4.14.2.redhat-00020`                                 |
+| `3.20.6.redhat-00004`                           | `3.20.0.redhat-00011`                                 | `4.10.3.redhat-00034`                                 |
 
 To re-verify a row, open that platform's `quarkus-camel-bom` POM inside the matching
 registry directory listed below and read the managed
 `org.apache.camel.quarkus:camel-quarkus-catalog` version — e.g.
 <https://repo1.maven.org/maven2/io/quarkus/platform/quarkus-camel-bom/3.35.4/quarkus-camel-bom-3.35.4.pom>.
 
-**Verification links for YAML DSL resolution:**
-- Quarkus YAML DSL POM (shows transitive dependency): <https://repo1.maven.org/maven2/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.1/camel-quarkus-yaml-dsl-3.33.1.pom>
-- Quarkus YAML DSL JAR (no schema inside): <https://repo1.maven.org/maven2/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.1/camel-quarkus-yaml-dsl-3.33.1.jar>
-- Core Camel YAML DSL JAR (schema is here): <https://repo1.maven.org/maven2/org/apache/camel/camel-yaml-dsl/4.18.2/camel-yaml-dsl-4.18.2.jar>
+**Verification links for YAML DSL resolution** (matching the `3.33.0.redhat-00007` /
+`4.18.1.redhat-00020` example above; the Red Hat GA repo requires no authentication for GET
+requests):
+- Quarkus YAML DSL POM (shows transitive dependency): <https://maven.repository.redhat.com/ga/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.0.redhat-00007/camel-quarkus-yaml-dsl-3.33.0.redhat-00007.pom>
+- Quarkus YAML DSL JAR (no schema inside): <https://maven.repository.redhat.com/ga/org/apache/camel/quarkus/camel-quarkus-yaml-dsl/3.33.0.redhat-00007/camel-quarkus-yaml-dsl-3.33.0.redhat-00007.jar>
+- Core Camel YAML DSL JAR (schema is here): <https://maven.repository.redhat.com/ga/org/apache/camel/camel-yaml-dsl/4.18.1.redhat-00020/camel-yaml-dsl-4.18.1.redhat-00020.jar>
 
 ## Listing available versions
 
