@@ -9,7 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 class SchemaPropertyFilter {
-
+    private static final String STEPS = "steps";
+    private static final String ONE_OF = "oneOf";
     private final Map<String, List<String>> processorPropertyBlockList;
     /** 
      * Deleted properties from the schema so that in the construction
@@ -20,30 +21,30 @@ class SchemaPropertyFilter {
     public SchemaPropertyFilter() {
         this.processorPropertyBlockList = Map.ofEntries(
             Map.entry("choice", List.of("when", "otherwise")),
-            Map.entry("doTry", List.of("doCatch", "doFinally", "steps")),
-            Map.entry("when", List.of("steps")),
-            Map.entry("otherwise", List.of("steps")),
-            Map.entry("doCatch", List.of("steps")),
-            Map.entry("doFinally", List.of("steps")),
-            Map.entry("aggregate", List.of("steps")),
-            Map.entry("circuitBreaker", List.of("steps")),
-            Map.entry("filter", List.of("steps")),
-            Map.entry("loadBalance", List.of("steps")),
-            Map.entry("loop", List.of("steps")),
-            Map.entry("multicast", List.of("steps")),
-            Map.entry("onFallback", List.of("steps")),
-            Map.entry("pipeline", List.of("steps")),
-            Map.entry("resequence", List.of("steps")),
-            Map.entry("saga", List.of("steps")),
-            Map.entry("split", List.of("steps")),
-            Map.entry("step", List.of("steps")),
-            Map.entry("whenSkipSendToEndpoint", List.of("steps")),
-            Map.entry("from", List.of("steps")),
-            Map.entry("intercept", List.of("steps")),
-            Map.entry("interceptFrom", List.of("steps")),
-            Map.entry("interceptSendToEndpoint", List.of("steps")),
-            Map.entry("onCompletion", List.of("steps")),
-            Map.entry("onException", List.of("steps")),
+            Map.entry("doTry", List.of("doCatch", "doFinally",STEPS)),
+            Map.entry("when", List.of(STEPS)),
+            Map.entry("otherwise", List.of(STEPS)),
+            Map.entry("doCatch", List.of(STEPS)),
+            Map.entry("doFinally", List.of(STEPS)),
+            Map.entry("aggregate", List.of(STEPS)),
+            Map.entry("circuitBreaker", List.of(STEPS)),
+            Map.entry("filter", List.of(STEPS)),
+            Map.entry("loadBalance", List.of(STEPS)),
+            Map.entry("loop", List.of(STEPS)),
+            Map.entry("multicast", List.of(STEPS)),
+            Map.entry("onFallback", List.of(STEPS)),
+            Map.entry("pipeline", List.of(STEPS)),
+            Map.entry("resequence", List.of(STEPS)),
+            Map.entry("saga", List.of(STEPS)),
+            Map.entry("split", List.of(STEPS)),
+            Map.entry("step", List.of(STEPS)),
+            Map.entry("whenSkipSendToEndpoint", List.of(STEPS)),
+            Map.entry("from", List.of(STEPS)),
+            Map.entry("intercept", List.of(STEPS)),
+            Map.entry("interceptFrom", List.of(STEPS)),
+            Map.entry("interceptSendToEndpoint", List.of(STEPS)),
+            Map.entry("onCompletion", List.of(STEPS)),
+            Map.entry("onException", List.of(STEPS)),
             Map.entry("rest", List.of("get", "post", "put", "delete", "head", "patch"))
         );
       }
@@ -53,8 +54,8 @@ class SchemaPropertyFilter {
 
         filterProperties(eipName, node);
 
-        if (node.has("oneOf")) {
-            var array = (ArrayNode) node.get("oneOf");
+        if (node.has(ONE_OF)) {
+            var array = (ArrayNode) node.get(ONE_OF);
             array.forEach(element -> {
                 filterProperties(eipName, (ObjectNode) element);
             });
