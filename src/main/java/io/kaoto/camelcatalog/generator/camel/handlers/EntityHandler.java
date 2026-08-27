@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 
 public class EntityHandler implements CatalogEntryHandler {
     private static final Logger LOGGER = Logger.getLogger(EntityHandler.class.getName());
+    private static final String PROPERTIES_SCHEMA = "propertiesSchema";
     CamelCatalog camelCatalog;
     CamelCatalogSchemaEnhancer camelCatalogSchemaEnhancer;
     String camelYamlSchema;
@@ -76,7 +77,7 @@ public class EntityHandler implements CatalogEntryHandler {
             ObjectNode entityJSON = getModelJson(entityName);
             if (entityJSON != null) {
                 var processorJSONSchema = camelYAMLSchemaReader.getEntityJSONSchema(entityName);
-                entityJSON.set("propertiesSchema", processorJSONSchema);
+                entityJSON.set(PROPERTIES_SCHEMA, processorJSONSchema);
                 enhanceJSONSchema(entityName, processorJSONSchema);
 
                 entityMap.put("beans".equals(entityName) ? "bean" : entityName, entityJSON);
@@ -87,7 +88,7 @@ public class EntityHandler implements CatalogEntryHandler {
         var objectMetaJSON = k8sSchemaReader.getObjectMetaJSONSchema();
         camelCatalogSchemaEnhancer.fillSchemaInformation(objectMetaJSON);
         ObjectNode objectMetaSchema = jsonMapper.createObjectNode();
-        objectMetaSchema.set("propertiesSchema", objectMetaJSON);
+        objectMetaSchema.set(PROPERTIES_SCHEMA, objectMetaJSON);
         entityMap.put("ObjectMeta", objectMetaSchema);
 
         // Add custom schemas
@@ -95,7 +96,7 @@ public class EntityHandler implements CatalogEntryHandler {
             try {
                 var name = localSchemaEntry.getKey();
                 ObjectNode schema = jsonMapper.createObjectNode();
-                schema.set("propertiesSchema", jsonMapper.readTree(localSchemaEntry.getValue()));
+                schema.set(PROPERTIES_SCHEMA, jsonMapper.readTree(localSchemaEntry.getValue()));
                 entityMap.put(name, schema);
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, "Local Schema definition not found");
