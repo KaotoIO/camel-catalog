@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.tooling.model.*;
+import static io.kaoto.camelcatalog.model.Constants.*;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -46,8 +47,8 @@ public class CamelCatalogSchemaEnhancer {
      */
     public void fixDefaultValueTypesFromCamelSchema(ObjectNode schemaNode) {
         // Process properties at the root level
-        if (schemaNode.has("properties")) {
-            ObjectNode properties = (ObjectNode) schemaNode.get("properties");
+        if (schemaNode.has(JSON_SCHEMA_PROPERTIES)) {
+            ObjectNode properties = (ObjectNode) schemaNode.get(JSON_SCHEMA_PROPERTIES);
             properties.fields().forEachRemaining(entry -> {
                 ObjectNode propertyNode = (ObjectNode) entry.getValue();
                 fixDefaultValueInProperty(propertyNode);
@@ -55,8 +56,8 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         // Process definitions recursively
-        if (schemaNode.has("definitions")) {
-            ObjectNode definitions = (ObjectNode) schemaNode.get("definitions");
+        if (schemaNode.has(JSON_SCHEMA_DEFINITIONS)) {
+            ObjectNode definitions = (ObjectNode) schemaNode.get(JSON_SCHEMA_DEFINITIONS);
             definitions.fields().forEachRemaining(entry -> {
                 ObjectNode definitionNode = (ObjectNode) entry.getValue();
                 fixDefaultValueTypesFromCamelSchema(definitionNode);
@@ -64,8 +65,8 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         // Process anyOf/oneOf arrays
-        fixDefaultValueInArrayFields(schemaNode, "anyOf");
-        fixDefaultValueInArrayFields(schemaNode, "oneOf");
+        fixDefaultValueInArrayFields(schemaNode, JSON_SCHEMA_ANY_OF);
+        fixDefaultValueInArrayFields(schemaNode, JSON_SCHEMA_ONE_OF);
     }
 
     /**
@@ -93,8 +94,8 @@ public class CamelCatalogSchemaEnhancer {
     public void fillRequiredPropertiesIfNeeded(BaseModel<? extends BaseOptionModel> model, ObjectNode modelNode) {
         ArrayList<String> requiredProperties = new ArrayList<>();
 
-        if (modelNode.has("required")) {
-            modelNode.get("required").elements().forEachRemaining(node -> {
+        if (modelNode.has(JSON_SCHEMA_REQUIRED)) {
+            modelNode.get(JSON_SCHEMA_REQUIRED).elements().forEachRemaining(node -> {
                 requiredProperties.add(node.asText());
             });
         }
@@ -104,16 +105,16 @@ public class CamelCatalogSchemaEnhancer {
                 : model.getOptions();
 
         modelOptions.forEach(option -> {
-            if (option.isRequired() && modelNode.has("properties")
-                    && modelNode.get("properties").has(option.getName())
-                    && !modelNode.get("properties").get(option.getName()).isEmpty()
+            if (option.isRequired() && modelNode.has(JSON_SCHEMA_PROPERTIES)
+                    && modelNode.get(JSON_SCHEMA_PROPERTIES).has(option.getName())
+                    && !modelNode.get(JSON_SCHEMA_PROPERTIES).get(option.getName()).isEmpty()
                     && !requiredProperties.contains(option.getName())) {
                 requiredProperties.add(option.getName());
             }
         });
 
         if (!requiredProperties.isEmpty()) {
-            ArrayNode requiredNode = modelNode.putArray("required");
+            ArrayNode requiredNode = modelNode.putArray(JSON_SCHEMA_REQUIRED);
             requiredProperties.forEach(requiredNode::add);
         }
     }
@@ -167,7 +168,7 @@ public class CamelCatalogSchemaEnhancer {
     public void fillPropertiesInformation(BaseModel<? extends BaseOptionModel> model, ObjectNode modelNode) {
         List<? extends BaseOptionModel> modelOptions = model.getOptions();
 
-        modelNode.withObject("properties").fields().forEachRemaining(entry -> {
+        modelNode.withObject(JSON_SCHEMA_PROPERTIES).fields().forEachRemaining(entry -> {
             String propertyName = entry.getKey();
             ObjectNode propertyNode = (ObjectNode) entry.getValue();
             if (propertyNode.isEmpty()) {
@@ -200,13 +201,13 @@ public class CamelCatalogSchemaEnhancer {
 
     void addTitleAndDescription(BaseOptionModel modelOption, ObjectNode propertyNode) {
         var displayName = modelOption.getDisplayName();
-        if (!propertyNode.has("title") && displayName != null) {
-            propertyNode.put("title", displayName);
+        if (!propertyNode.has(TITLE) && displayName != null) {
+            propertyNode.put(TITLE, displayName);
         }
 
         var description = modelOption.getDescription();
-        if (!propertyNode.has("description") && description != null) {
-            propertyNode.put("description", description);
+        if (!propertyNode.has(DESCRIPTION) && description != null) {
+            propertyNode.put(DESCRIPTION, description);
         }
     }
 
@@ -239,8 +240,8 @@ public class CamelCatalogSchemaEnhancer {
      */
     public void fillSchemaInformation(ObjectNode modelNode) {
         modelNode.put("$schema", "http://json-schema.org/draft-07/schema#");
-        if (!modelNode.has("type")) {
-            modelNode.put("type", "object");
+        if (!modelNode.has(JSON_SCHEMA_TYPE)) {
+            modelNode.put(TYPE, JSON_SCHEMA_TYPE_OBJECT);
         }
     }
 
@@ -250,12 +251,12 @@ public class CamelCatalogSchemaEnhancer {
      * @param propertyNode the property node to fix
      */
     private void fixDefaultValueInProperty(ObjectNode propertyNode) {
-        if (!propertyNode.has("default") || !propertyNode.has("type")) {
+        if (!propertyNode.has(JSON_SCHEMA_DEFAULT) || !propertyNode.has(TYPE)) {
             return;
         }
 
-        var defaultValue = propertyNode.get("default");
-        var propertyType = propertyNode.get("type").asText();
+        var defaultValue = propertyNode.get(JSON_SCHEMA_DEFAULT);
+        var propertyType = propertyNode.get(JSON_SCHEMA_TYPE).asText();
 
         // Only process if default is currently a string
         if (!defaultValue.isTextual()) {
@@ -265,11 +266,11 @@ public class CamelCatalogSchemaEnhancer {
         String defaultValueString = defaultValue.asText();
 
         // Fix boolean defaults
-        if ("boolean".equals(propertyType)) {
+        if (JSON_SCHEMA_BOOLEAN.equals(propertyType)) {
             if ("true".equals(defaultValueString)) {
-                propertyNode.put("default", true);
+                propertyNode.put(JSON_SCHEMA_DEFAULT, true);
             } else if ("false".equals(defaultValueString)) {
-                propertyNode.put("default", false);
+                propertyNode.put(JSON_SCHEMA_DEFAULT, false);
             }
         }
         // Fix number/integer defaults
@@ -277,9 +278,9 @@ public class CamelCatalogSchemaEnhancer {
             try {
                 // Check if it's a decimal number
                 if (defaultValueString.contains(".")) {
-                    propertyNode.put("default", Double.parseDouble(defaultValueString));
+                    propertyNode.put(JSON_SCHEMA_DEFAULT, Double.parseDouble(defaultValueString));
                 } else {
-                    propertyNode.put("default", Long.parseLong(defaultValueString));
+                    propertyNode.put(JSON_SCHEMA_DEFAULT, Long.parseLong(defaultValueString));
                 }
             } catch (NumberFormatException e) {
                 // Keep as string if parsing fails
@@ -316,31 +317,31 @@ public class CamelCatalogSchemaEnhancer {
      * @param modelNode the JSON schema node of the model
      */
     public void fillModelFormatInOneOf(ObjectNode modelNode) {
-        if (modelNode.has("anyOf") && modelNode.get("anyOf").isArray()) {
-            modelNode.withArray("anyOf").elements().forEachRemaining(node -> {
+        if (modelNode.has(JSON_SCHEMA_ANY_OF) && modelNode.get(JSON_SCHEMA_ANY_OF).isArray()) {
+            modelNode.withArray(JSON_SCHEMA_ANY_OF).elements().forEachRemaining(node -> {
                 fillModelFormatInOneOf((ObjectNode) node);
             });
         }
 
-        if (!modelNode.has("oneOf")) {
+        if (!modelNode.has(JSON_SCHEMA_ONE_OF)) {
             return;
         }
 
-        modelNode.withArray("oneOf").elements().forEachRemaining(node -> {
-            if (node.has("$ref") && node.get("$ref").asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
-                modelNode.put("format", "expression");
-            } else if (node.has("properties") && node.get("properties").has("customLoadBalancer")
-                    && node.get("properties").get("customLoadBalancer").has("$ref")
-                    && node.get("properties").get("customLoadBalancer").get("$ref").asText().contains("org.apache.camel.model.loadbalancer")) {
-                modelNode.put("format", "loadBalancerType");
-            } else if (node.has("properties") && node.get("properties").has("asn1")
-                    && node.get("properties").get("asn1").has("$ref")
-                    && node.get("properties").get("asn1").get("$ref").asText().contains("org.apache.camel.model.dataformat")) {
-                modelNode.put("format", "dataFormatType");
-            } else if (node.has("properties") && node.get("properties").has("deadLetterChannel")
-                    && node.get("properties").get("deadLetterChannel").has("$ref")
-                    && node.get("properties").get("deadLetterChannel").get("$ref").asText().contains("org.apache.camel.model.errorhandler")) {
-                modelNode.put("format", "errorHandlerType");
+        modelNode.withArray(JSON_SCHEMA_ONE_OF).elements().forEachRemaining(node -> {
+            if (node.has(JSON_SCHEMA_REF) && node.get(JSON_SCHEMA_REF).asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
+                modelNode.put(JSON_SCHEMA_FORMAT, "expression");
+            } else if (node.has(PROPERTIES) && node.get(JSON_SCHEMA_PROPERTIES).has(CUSTOM_LOAD_BALANCER)
+                    && node.get(JSON_SCHEMA_PROPERTIES).get(CUSTOM_LOAD_BALANCER).has(JSON_SCHEMA_REF)
+                    && node.get(JSON_SCHEMA_PROPERTIES).get(CUSTOM_LOAD_BALANCER).get(JSON_SCHEMA_REF).asText().contains("org.apache.camel.model.loadbalancer")) {
+                modelNode.put(JSON_SCHEMA_FORMAT, "loadBalancerType");
+            } else if (node.has(JSON_SCHEMA_PROPERTIES) && node.get(JSON_SCHEMA_PROPERTIES).has("asn1")
+                    && node.get(JSON_SCHEMA_PROPERTIES).get("asn1").has(JSON_SCHEMA_REF)
+                    && node.get(JSON_SCHEMA_PROPERTIES).get("asn1").get(JSON_SCHEMA_REF).asText().contains("org.apache.camel.model.dataformat")) {
+                modelNode.put(JSON_SCHEMA_FORMAT, "dataFormatType");
+            } else if (node.has(JSON_SCHEMA_PROPERTIES) && node.get(JSON_SCHEMA_PROPERTIES).has(DEAD_LETTER_CHANNEL)
+                    && node.get(JSON_SCHEMA_PROPERTIES).get(DEAD_LETTER_CHANNEL).has(JSON_SCHEMA_REF)
+                    && node.get(JSON_SCHEMA_PROPERTIES).get(DEAD_LETTER_CHANNEL).get(JSON_SCHEMA_REF).asText().contains("org.apache.camel.model.errorhandler")) {
+                modelNode.put(JSON_SCHEMA_FORMAT, "errorHandlerType");
             }
         });
     }
@@ -376,8 +377,8 @@ public class CamelCatalogSchemaEnhancer {
 
         // Handle schemas with oneOf (multiple possible schema variants)
         // Each variant needs to be enhanced independently
-        if (schema.has("oneOf")) {
-            ArrayNode oneOfArray = (ArrayNode) schema.get("oneOf");
+        if (schema.has(JSON_SCHEMA_ONE_OF)) {
+            ArrayNode oneOfArray = (ArrayNode) schema.get(JSON_SCHEMA_ONE_OF);
             oneOfArray.forEach(option -> {
                 if (option.isObject()) {
                     enhanceParametersInNode((ObjectNode) option);
@@ -399,11 +400,11 @@ public class CamelCatalogSchemaEnhancer {
      * @param node the JSON schema node to enhance
      */
     private void enhanceParametersInNode(ObjectNode node) {
-        if (!node.has("properties")) {
+        if (!node.has(JSON_SCHEMA_PROPERTIES)) {
             return;
         }
 
-        ObjectNode properties = node.withObject("/properties");
+        ObjectNode properties = node.withObject(JSON_SCHEMA_SLASH_PROPERTIES);
 
         if (properties.has("parameters")) {
             ObjectNode parameters = (ObjectNode) properties.get("parameters");
@@ -421,9 +422,9 @@ public class CamelCatalogSchemaEnhancer {
      * @param parameters the parameters object node to configure
      */
     private void setParametersMetadata(ObjectNode parameters) {
-        parameters.put("type", "object");
-        parameters.put("title", "Endpoint Properties");
-        parameters.put("description", "The key-value pairs of the properties to configure this endpoint");
+        parameters.put(JSON_SCHEMA_TYPE, JSON_SCHEMA_TYPE_OBJECT);
+        parameters.put(TITLE, "Endpoint Properties");
+        parameters.put(DESCRIPTION, "The key-value pairs of the properties to configure this endpoint");
     }
 
     private void addGroupInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
@@ -433,31 +434,31 @@ public class CamelCatalogSchemaEnhancer {
             return;
         }
 
-        if (propertyNode.has("$comment")) {
-            propertyNode.put("$comment", propertyNode.get("$comment").asText() + "|group:" + group);
+        if (propertyNode.has(JSON_sCHEMA_COMMENT)) {
+            propertyNode.put(JSON_SCHEMA_COMMENT, propertyNode.get("$comment").asText() + "|group:" + group);
         } else {
-            propertyNode.put("$comment", "group:" + group);
+            propertyNode.put(JSON_SCHEMA_COMMENT, "group:" + group);
         }
     }
 
     private void addFormatInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
         List<String> format = new ArrayList<>();
-        if (propertyNode.has("format")) {
-            format.add(propertyNode.get("format").asText());
+        if (propertyNode.has(JSON_SCHEMA_FORMAT)) {
+            format.add(propertyNode.get(JSON_SCHEMA_FORMAT).asText());
         }
 
         var propertyType = modelOption.getType();
         String bean =
-                "object".equals(propertyType) && !propertyNode.has("$ref") ? modelOption.getJavaType() : null;
+                JSON_SCHEMA_TYPE_OBJECT.equals(propertyType) && !propertyNode.has(JSON_SCHEMA_REF) ? modelOption.getJavaType() : null;
 
         if (bean != null && !bean.startsWith("java.util.Map")) {
             format.add("bean:" + bean);
-            propertyNode.put("type", "string");
+            propertyNode.put(JSON_SCHEMA_TYPE, JSON_SCHEMA_STRING);
         }
 
         if ("duration".equals(propertyType)) {
             format.add("duration");
-            propertyNode.put("type", "string");
+            propertyNode.put(JSON_SCHEMA_TYPE, JSON_SCHEMA_STRING);
         }
 
         if (modelOption.isSecret()) {
@@ -469,7 +470,7 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         if (!format.isEmpty()) {
-            propertyNode.put("format", String.join("|", format));
+            propertyNode.put(JSON_SCHEMA_FORMAT, String.join("|", format));
         }
     }
 
@@ -482,7 +483,7 @@ public class CamelCatalogSchemaEnhancer {
 
     public void sortPropertiesByOptions(ObjectNode entitySchema, List<? extends BaseOptionModel> options) {
         var sortedSchemaProperties = jsonMapper.createObjectNode();
-        var propertiesNode = entitySchema.get("properties");
+        var propertiesNode = entitySchema.get(JSON_SCHEMA_PROPERTIES);
         if (propertiesNode == null || !propertiesNode.isObject()) {
             return;
         }
@@ -496,42 +497,42 @@ public class CamelCatalogSchemaEnhancer {
             sortedSchemaProperties.set(propertyName, propertySchema);
         }
 
-        entitySchema.set("properties", sortedSchemaProperties);
+        entitySchema.set(JSON_SCHEMA_PROPERTIES, sortedSchemaProperties);
     }
 
     public void setRequiredToPropertiesSchema(ObjectNode yamlDslSchema, ObjectNode catalogModel) {
         List<String> required = new ArrayList<>();
-        var yamlDslProperties = yamlDslSchema.withObject("/properties").properties().stream()
+        var yamlDslProperties = yamlDslSchema.withObject(JSON_SCHEMA_SLASH_PROPERTIES).properties().stream()
                 .map(Map.Entry::getKey).toList();
         for (var propertyName : yamlDslProperties) {
-            var catalogPropertySchema = catalogModel.path("properties").path(propertyName);
-            if (catalogPropertySchema.has("required") && catalogPropertySchema.get("required").asBoolean()) {
+            var catalogPropertySchema = catalogModel.path(JSON_SCHEMA_PROPERTIES).path(propertyName);
+            if (catalogPropertySchema.has(JSON_SCHEMA_REQUIRED) && catalogPropertySchema.get(JSON_SCHEMA_REQUIRED).asBoolean()) {
                 required.add(propertyName);
             }
         }
-        catalogModel.withObject("/propertiesSchema").set("required", jsonMapper.valueToTree(required));
+        catalogModel.withObject(JSON_SCHEMA_PROPERTIES_SCHEMA).set(JSON_SCHEMA_REQUIRED, jsonMapper.valueToTree(required));
     }
 
     private void addDefaultInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
         var defaultValue = modelOption.getDefaultValue();
-        if (defaultValue != null && !propertyNode.has("default")) {
+        if (defaultValue != null && !propertyNode.has(JSON_SCHEMA_DEFAULT)) {
             var propertyType = modelOption.getType();
-            var schemaPropTypeNode = propertyNode.get("type");
-            if ("boolean".equals(schemaPropTypeNode.asText())) {
+            var schemaPropTypeNode = propertyNode.get(JSON_SCHEMA_TYPE);
+            if (JSON_SCHEMA_BOOLEAN.equals(schemaPropTypeNode.asText())) {
                 // some boolean properties have its type as string in the catalog. prioritize the schema if type is declared.
-                propertyType = "boolean";
+                propertyType = JSON_SCHEMA_BOOLEAN;
             }
 
             if ("integer".equals(propertyType) && !(defaultValue instanceof String)) {
-                propertyNode.put("default", ((BigDecimal) defaultValue).intValue());
-            } else if ("boolean".equals(propertyType)) {
+                propertyNode.put(JSON_SCHEMA_DEFAULT, ((BigDecimal) defaultValue).intValue());
+            } else if (JSON_SCHEMA_BOOLEAN.equals(propertyType)) {
                 if ("true".equals(defaultValue.toString())) {
-                    propertyNode.put("default", true);
+                    propertyNode.put(JSON_SCHEMA_DEFAULT, true);
                 } else if ("false".equals(defaultValue.toString())) {
-                    propertyNode.put("default", false);
+                    propertyNode.put(JSON_SCHEMA_DEFAULT, false);
                 }
             } else {
-                propertyNode.put("default", defaultValue.toString());
+                propertyNode.put(JSON_SCHEMA_DEFAULT, defaultValue.toString());
             }
         }
     }
