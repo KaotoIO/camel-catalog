@@ -59,6 +59,14 @@ public class Constants {
         public static final String JSON_SCHEMA_ITEMS = "items";
         public static final String JSON_SCHEMA_REF = "$ref";
         public static final String JSON_SCHEMA_COMMENT = "$comment";
+        public static final String JSON_SCHEMA_SLASH_PROPERTIES = "/properties";
+        public static final String JSON_SCHEMA_DEFAULT = "default";
+        public static final String JSON_SCHEMA_FORMAT = "format";
+        public static final String JSON_SCHEMA_BOOLEAN = "boolean";
+        public static final String JSON_SCHEMA_STRING = "string";
+        public static final String CUSTOM_LOAD_BALANCER = "customLoadBalancer";
+        public static final String DEAD_LETTER_CHANNEL = "deadLetterChannel";
+        public static final String JSON_SCHEMA_PROPERTIES_SCHEMA = "/propertiesSchema";
 
         public static final String SCHEMA = "schema";
         public static final String CAMEL_YAML_DSL_FILE_NAME = "camelYamlDsl";
