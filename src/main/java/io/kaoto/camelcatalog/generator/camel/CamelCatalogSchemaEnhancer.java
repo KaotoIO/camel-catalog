@@ -434,7 +434,7 @@ public class CamelCatalogSchemaEnhancer {
             return;
         }
 
-        if (propertyNode.has(JSON_sCHEMA_COMMENT)) {
+        if (propertyNode.has(JSON_SCHEMA_COMMENT)) {
             propertyNode.put(JSON_SCHEMA_COMMENT, propertyNode.get("$comment").asText() + "|group:" + group);
         } else {
             propertyNode.put(JSON_SCHEMA_COMMENT, "group:" + group);
