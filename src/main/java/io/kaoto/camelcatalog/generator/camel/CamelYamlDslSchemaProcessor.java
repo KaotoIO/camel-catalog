@@ -228,11 +228,11 @@ public class CamelYamlDslSchemaProcessor {
             populateDefinitions(loadBalancer, relocatedDefinitions);
             for (var prop : loadBalancer.withObject("/properties").properties()) {
                 var propertyDef = (ObjectNode) prop.getValue();
-                var refParent = propertyDef.findParent("$ref");
+                var refParent = propertyDef.findParent(JSON_SCHEMA_REF);
                 if (refParent != null) {
                     var ref = getNameFromRef(refParent);
                     if (EXPRESSION_SUB_ELEMENT_DEFINITION.equals(ref)) {
-                        refParent.remove("$ref");
+                        refParent.remove(JSON_SCHEMA_REF);
                         refParent.put("type", "object");
                         refParent.put("$comment", "expression");
                     }
