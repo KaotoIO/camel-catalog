@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.*;
+import static io.kaoto.camelcatalog.model.Constants.*;
 
 /**
  * Process camelYamlDsl.json file, aka Camel YAML DSL JSON schema.
@@ -29,11 +30,7 @@ public class CamelYamlDslSchemaProcessor {
     private static final String LOAD_BALANCE_DEFINITION = "org.apache.camel.model.LoadBalanceDefinition";
     private static final String EXPRESSION_SUB_ELEMENT_DEFINITION =
             "org.apache.camel.model.ExpressionSubElementDefinition";
-    private static final String REF = "$ref";
-    private static final String ITEMS = "items";
-    private static final String PROPERTIES = "properties";
-    private static final String DEFINITIONS_PATH = "#/definitions/";
-    private static final String ITEMS_DEFINITIONS_PATH = "#/items/definitions/";
+    
     private final ObjectMapper jsonMapper;
     private final ObjectNode yamlDslSchema;
 
@@ -46,19 +43,19 @@ public class CamelYamlDslSchemaProcessor {
 
     private ObjectNode relocateToRootDefinitions(ObjectNode definitions) {
         var relocatedDefinitions = definitions.deepCopy();
-        relocatedDefinitions.findParents(REF).stream()
+        relocatedDefinitions.findParentsJSON_SCHEMA_REF.stream()
                 .map(ObjectNode.class::cast)
-                .forEach(n -> n.put(REF, getRelocatedRef(n)));
+                .forEach(n -> n.put(JSON_SCHEMA_REF, getRelocatedRef(n)));
         return relocatedDefinitions;
     }
 
     private String getRelocatedRef(ObjectNode parent) {
-        return parent.get(REF).asText().replace(ITEMS_DEFINITIONS, DEFINITIONS_PATH);
+        return parent.get(JSON_SCHEMA_REF).asText().replace(JSON_SCHEMA_ITEMS_DEFINITIONS, DEFINITIONS_PATH);
     }
 
     private String getNameFromRef(ObjectNode parent) {
-        var ref = parent.get(REF).asText();
-        return ref.contains(ITEMS) ? ref.replace(ITEMS_DEFINITIONS_PATH, "")
+        var ref = parent.getJSON_SCHEMA_REF.asText();
+        return ref.contains(JSON_SCHEMA_ITEMS) ? ref.replace(JSON_SCHEMA_ITEMS_DEFINITIONS_PATH, "")
                 : ref.replace(DEFINITIONS_PATH, "");
     }
 
@@ -66,19 +63,18 @@ public class CamelYamlDslSchemaProcessor {
         boolean added = true;
         while (added) {
             added = false;
-            for (JsonNode refParent : schema.findParents(REF)) {
+            for (JsonNode refParent : schema.findParentsJSON_SCHEMA_REF) {
                 var name = getNameFromRef((ObjectNode) refParent);
 
-                if ((!schema.has("definitions") || !schema.withObject("/definitions").has(name)) && !processorReferenceBlockList.contains(name)){
+                if ((!schema.has(JSON_SCHEMA_DEFINITIONS) || !schema.withObject(JSON_SCHEMA_SLASH_DEFINITIONS).has(name)) && !processorReferenceBlockList.contains(name)){
                     if (!definitions.has(name)) {
                         throw new IllegalStateException("Missing definition: " + name);
                     }
 
-                    if ((!schema.has("definitions") || !schema.withObject("/definitions").has(name)) && !processorReferenceBlockList.contains(name)) {
-                        var schemaDefinitions = schema.withObject("/definitions");
-                        schemaDefinitions.set(name, definitions.get(name).deepCopy());
-                        added = true;
-                        break;
+                    var schemaDefinitions = schema.withObject(JSON_SCHEMA_SLASH_DEFINITIONS);
+                    schemaDefinitions.set(name, definitions.get(name).deepCopy());
+                    added = true;
+                    break;
                     }
                 }
             }
@@ -88,7 +84,7 @@ public class CamelYamlDslSchemaProcessor {
     public Map<String, ObjectNode> getDataFormats() {
         var definitions = yamlDslSchema
                 .withObject("/items")
-                .withObject("/definitions");
+                .withObject(JSON_SCHEMA_SLASH_DEFINITIONS);
         var relocatedDefinitions = relocateToRootDefinitions(definitions);
         var fromMarshal = relocatedDefinitions
                 .withObject("/org.apache.camel.model.MarshalDefinition")
@@ -106,7 +102,7 @@ public class CamelYamlDslSchemaProcessor {
 
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : fromMarshal) {
-            if (entry.has("required")) {
+            if (entry.has(JSON_SCHEMA_REQUIRED)) {
                 var entryName = entry.withArray("/required").get(0).asText();
                 var property = entry
                         .withObject("/properties")
@@ -143,7 +139,7 @@ public class CamelYamlDslSchemaProcessor {
     public Map<String, ObjectNode> getLanguages() {
         var definitions = yamlDslSchema
                 .withObject("/items")
-                .withObject("/definitions");
+                .withObject(JSON_SCHEMA_SLASH_DEFINITIONS);
         var relocatedDefinitions = relocateToRootDefinitions(definitions);
         var languages = relocatedDefinitions
                 .withObject("/org.apache.camel.model.language.ExpressionDefinition")
@@ -152,7 +148,7 @@ public class CamelYamlDslSchemaProcessor {
 
         var answer = new LinkedHashMap<String, ObjectNode>();
         for (var entry : languages) {
-            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
+            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has(JSON_SCHEMA_REQUIRED)) {
                 throw new IllegalStateException("Unexpected language entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
@@ -190,7 +186,7 @@ public class CamelYamlDslSchemaProcessor {
     public Map<String, ObjectNode> getLoadBalancers() {
         var definitions = yamlDslSchema
                 .withObject("/items")
-                .withObject("/definitions");
+                .withObject(JSON_SCHEMA_SLASH_DEFINITIONS);
         var relocatedDefinitions = relocateToRootDefinitions(definitions);
         var loadBalancerAnyOfOneOf = relocatedDefinitions
                 .withObject("/" + LOAD_BALANCE_DEFINITION)
@@ -202,7 +198,7 @@ public class CamelYamlDslSchemaProcessor {
             if (entry.has("not")) {
                 continue;
             }
-            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has("required")) {
+            if (!entry.has("type") || !"object".equals(entry.get("type").asText()) || !entry.has(JSON_SCHEMA_REQUIRED)) {
                 throw new IllegalStateException("Unexpected loadbalancer entry " + entry.asText());
             }
             var entryName = entry.withArray("/required").get(0).asText();
