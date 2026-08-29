@@ -56,5 +56,11 @@ public class Constants {
         public static final String KAMELETS_AGGREGATE = "kamelets-aggregate";
         public static final String XPATH_FUNCTIONS = "xpathFunctions";
         public static final String XPATH_FUNCTIONS_FILENAME = "xslt-xpath-functions";
+        public static final String JSON_SCHEMA_REF = "$ref";
+        public static final String JSON_SCHEMA_ITEMS = "items";
+        public static final String JSON_SCHEMA_DEFINITIONS = "definitions";
+        public static final String JSON_SCHEMA_SLASH_DEFINITIONS = "/definitions";
+        public static final String JSON_SCHEMA_ITEMS_DEFINITIONS_PATH = "/items/definitions/";
+        public static final String JSON_SCHEMA_PROPERTIES = "properties";
 
 }
