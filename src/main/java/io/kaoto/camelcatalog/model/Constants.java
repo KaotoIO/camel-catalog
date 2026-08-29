@@ -16,7 +16,7 @@
 package io.kaoto.camelcatalog.model;
 
 import java.util.List;
-
+@SuppressWarnings("java:S1075")
 public class Constants {
 
         private Constants() {
@@ -59,7 +59,6 @@ public class Constants {
         public static final String JSON_SCHEMA_ITEMS = "items";
         public static final String JSON_SCHEMA_REF = "$ref";
         public static final String JSON_SCHEMA_COMMENT = "$comment";
-
         public static final String SCHEMA = "schema";
         public static final String CAMEL_YAML_DSL_FILE_NAME = "camelYamlDsl";
         public static final String K8S_V1_OPENAPI = "kubernetes-api-v1-openapi";
@@ -71,11 +70,9 @@ public class Constants {
         public static final String KAMELETS_AGGREGATE = "kamelets-aggregate";
         public static final String XPATH_FUNCTIONS = "xpathFunctions";
         public static final String XPATH_FUNCTIONS_FILENAME = "xslt-xpath-functions";
-        public static final String JSON_SCHEMA_REF = "$ref";
-        public static final String JSON_SCHEMA_ITEMS = "items";
-        public static final String JSON_SCHEMA_DEFINITIONS = "definitions";
         public static final String JSON_SCHEMA_SLASH_DEFINITIONS = "/definitions";
         public static final String JSON_SCHEMA_ITEMS_DEFINITIONS_PATH = "/items/definitions/";
-        public static final String JSON_SCHEMA_PROPERTIES = "properties";
+        public static final String JSON_SCHEMA_SLASH_PROPERTIES = "/properties";
+        public static final String DEFINITIONS_PATH = "#/definitions/";
 
 }
