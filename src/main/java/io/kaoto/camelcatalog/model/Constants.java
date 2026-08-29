@@ -45,6 +45,21 @@ public class Constants {
                         "io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta",
                         "io.k8s.api.core.v1.ObjectReference");
 
+        public static final String TITLE = "title";
+        public static final String DESCRIPTION = "description";
+
+        public static final String JSON_SCHEMA_ANY_OF = "anyOf";
+        public static final String JSON_SCHEMA_ONE_OF = "oneOf";
+        public static final String JSON_SCHEMA_DEFINITIONS = "definitions";
+        public static final String JSON_SCHEMA_PROPERTIES = "properties";
+        public static final String JSON_SCHEMA_REQUIRED = "required";
+        public static final String JSON_SCHEMA_TYPE = "type";
+        public static final String JSON_SCHEMA_TYPE_OBJECT = "object";
+        public static final String JSON_SCHEMA_NOT = "not";
+        public static final String JSON_SCHEMA_ITEMS = "items";
+        public static final String JSON_SCHEMA_REF = "$ref";
+        public static final String JSON_SCHEMA_COMMENT = "$comment";
+
         public static final String SCHEMA = "schema";
         public static final String CAMEL_YAML_DSL_FILE_NAME = "camelYamlDsl";
         public static final String K8S_V1_OPENAPI = "kubernetes-api-v1-openapi";

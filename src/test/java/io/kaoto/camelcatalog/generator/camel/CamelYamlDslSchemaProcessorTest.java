@@ -33,7 +33,7 @@ class CamelYamlDslSchemaProcessorTest {
         var is = YamlRoutesBuilderLoader.class.getClassLoader().getResourceAsStream("schema/camelYamlDsl.json");
         ObjectNode yamlDslSchema = (ObjectNode) jsonMapper.readTree(is);
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
     }
 
     @Test
@@ -93,7 +93,7 @@ class CamelYamlDslSchemaProcessorTest {
         var languageEntry = (ObjectNode) languages.get(0);
         languageEntry.remove("type");
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
 
         Exception exception = assertThrows(Exception.class, () ->
                 processor.getLanguages());
@@ -120,7 +120,7 @@ class CamelYamlDslSchemaProcessorTest {
         var languageEntry = (ObjectNode) languages.get(0);
         languageEntry.put("type", "string");
 
-        processor = new CamelYamlDslSchemaProcessor(jsonMapper, yamlDslSchema);
+        processor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
 
         Exception exception = assertThrows(Exception.class, () ->
                 processor.getLanguages());
@@ -138,6 +138,56 @@ class CamelYamlDslSchemaProcessorTest {
         var customLbRefProp = customLb.withObject("/properties/ref");
         assertEquals("string", customLbRefProp.get("type").asText());
         assertEquals("Ref", customLbRefProp.get("title").asText());
+    }
+
+    @Test
+    void testGetDataFormatsIgnoresMarshalOnlyNotEntry() {
+        var yamlDslSchema = jsonMapper.createObjectNode();
+        var definitions = yamlDslSchema.withObject("/items").withObject("/definitions");
+
+        var marshalOneOf = definitions
+                .withObject("/org.apache.camel.model.MarshalDefinition")
+                .putArray("anyOf")
+                .addObject()
+                .putArray("oneOf");
+        marshalOneOf.addObject().putObject("not");
+        marshalOneOf.add(dataFormatEntry("json", "org.apache.camel.model.dataformat.JsonDataFormat"));
+
+        var unmarshalOneOf = definitions
+                .withObject("/org.apache.camel.model.UnmarshalDefinition")
+                .putArray("anyOf")
+                .addObject()
+                .putArray("oneOf");
+        unmarshalOneOf.add(dataFormatEntry("json", "org.apache.camel.model.dataformat.JsonDataFormat"));
+
+        var jsonDataFormat = jsonMapper.createObjectNode();
+        jsonDataFormat.put("title", "JSon");
+        jsonDataFormat.put("description", "JSON data format");
+        jsonDataFormat.putObject("properties")
+                .putObject("library")
+                .putArray("enum")
+                .add("Jackson")
+                .add("Gson");
+        definitions.set("org.apache.camel.model.dataformat.JsonDataFormat", jsonDataFormat);
+
+        var localProcessor = new CamelYamlDslSchemaProcessor(yamlDslSchema);
+
+        var dataFormats = localProcessor.getDataFormats();
+
+        assertEquals(1, dataFormats.size());
+        assertTrue(dataFormats.containsKey("json"));
+    }
+
+    private ObjectNode dataFormatEntry(String name, String definitionName) {
+        var entry = jsonMapper.createObjectNode();
+        entry.put("type", "object");
+        entry.set("required", jsonMapper.createArrayNode().add(name));
+        entry.set("properties", jsonMapper.createObjectNode().set(name, ref(definitionName)));
+        return entry;
+    }
+
+    private ObjectNode ref(String definitionName) {
+        return jsonMapper.createObjectNode().put("$ref", "#/items/definitions/" + definitionName);
     }
 
     @Test
