@@ -42,6 +42,6 @@ const CATALOGS = {
   XSLT: ['3.0'],
 };
 
-const KAMELETS_VERSION = '4.20.0';
+const KAMELETS_VERSION = '4.22.0';
 
 module.exports = { CATALOGS, KAMELETS_VERSION };

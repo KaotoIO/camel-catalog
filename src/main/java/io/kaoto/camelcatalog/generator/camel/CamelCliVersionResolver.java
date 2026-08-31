@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 public class CamelCliVersionResolver {
     private static final Logger LOGGER = Logger.getLogger(CamelCliVersionResolver.class.getName());
 
-    static final String DEFAULT_CLI_VERSION = "4.20.0";
+    static final String DEFAULT_CLI_VERSION = "4.22.0";
 
     private static final List<VersionRule> SPRING_BOOT_RULES = List.of(
             new VersionRule(4, 19, 0, DEFAULT_CLI_VERSION),
