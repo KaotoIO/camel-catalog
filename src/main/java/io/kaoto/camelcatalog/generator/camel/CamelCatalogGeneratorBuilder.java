@@ -48,6 +48,7 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
     private File outputDirectory;
     private boolean verbose = false;
     private ResolvedVersions resolvedVersions;
+    private String defaultCliVersion;
 
     public CamelCatalogGeneratorBuilder withRuntime(CatalogRuntime runtime) {
         this.runtime = runtime;
@@ -84,6 +85,11 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
         return this;
     }
 
+    public CamelCatalogGeneratorBuilder withDefaultCliVersion(String defaultCliVersion) {
+        this.defaultCliVersion = defaultCliVersion;
+        return this;
+    }
+
     public CatalogRuntime getRuntime() {
         return runtime;
     }
@@ -99,6 +105,7 @@ public class CamelCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
         catalogGenerator.setKameletsVersion(kameletsVersion);
         catalogGenerator.setCamelKCRDsVersion(camelKCRDsVersion);
         catalogGenerator.setResolvedVersions(resolvedVersions);
+        catalogGenerator.setDefaultCliVersion(defaultCliVersion);
         return catalogGenerator;
     }
 

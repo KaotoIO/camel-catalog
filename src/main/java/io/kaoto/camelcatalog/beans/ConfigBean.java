@@ -15,6 +15,7 @@ public class ConfigBean {
     private String kameletsVersion;
     private boolean verbose = false;
     private List<String> repositories = new ArrayList<>();
+    private String defaultCliVersion;
 
     public ConfigBean() {
     }
@@ -65,5 +66,13 @@ public class ConfigBean {
 
     public void setRepositories(List<String> repositories) {
         this.repositories = repositories == null ? new ArrayList<>() : repositories;
+    }
+
+    public String getDefaultCliVersion() {
+        return defaultCliVersion;
+    }
+
+    public void setDefaultCliVersion(String defaultCliVersion) {
+        this.defaultCliVersion = defaultCliVersion;
     }
 }

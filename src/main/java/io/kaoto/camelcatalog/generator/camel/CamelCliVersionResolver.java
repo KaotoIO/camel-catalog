@@ -23,19 +23,24 @@ import java.util.logging.Logger;
 /**
  * Resolves the Camel CLI version to annotate in the catalog index.
  *
- * <p>The default CLI version is {@value #DEFAULT_CLI_VERSION}. For community (non-productized)
- * Spring Boot catalogs, the version is determined by comparing the Camel catalog version
- * against a configurable rule set. Productized (Red Hat) catalogs always use the default.
+ * <p>The default CLI version is supplied at construction time (sourced from {@code index.js}).
+ * For community (non-productized) Spring Boot catalogs, the version is determined by comparing
+ * the Camel catalog version against a configurable rule set.
+ * Productized (Red Hat) catalogs always use the default.
  */
 public class CamelCliVersionResolver {
     private static final Logger LOGGER = Logger.getLogger(CamelCliVersionResolver.class.getName());
 
-    static final String DEFAULT_CLI_VERSION = "4.22.0";
+    private final String defaultCliVersion;
+    private final List<VersionRule> springBootRules;
 
-    private static final List<VersionRule> SPRING_BOOT_RULES = List.of(
-            new VersionRule(4, 19, 0, DEFAULT_CLI_VERSION),
-            new VersionRule(0, 0, 0, "4.18.2")
-    );
+    public CamelCliVersionResolver(String defaultCliVersion) {
+        this.defaultCliVersion = defaultCliVersion;
+        this.springBootRules = List.of(
+                new VersionRule(4, 19, 0, defaultCliVersion),
+                new VersionRule(0, 0, 0, "4.18.2")
+        );
+    }
 
     /**
      * Resolves the CLI version for a given catalog version and runtime.
@@ -46,30 +51,30 @@ public class CamelCliVersionResolver {
      */
     public String resolve(String camelVersion, CatalogRuntime runtime) {
         if (camelVersion == null || runtime == null) {
-            return DEFAULT_CLI_VERSION;
+            return defaultCliVersion;
         }
 
         if (runtime == CatalogRuntime.SpringBoot && !isRedhat(camelVersion)) {
             return resolveFromRules(camelVersion);
         }
 
-        return DEFAULT_CLI_VERSION;
+        return defaultCliVersion;
     }
 
     private String resolveFromRules(String camelVersion) {
         int[] parsed = parseMajorMinorPatch(camelVersion);
         if (parsed.length == 0) {
             LOGGER.warning(() -> "Cannot parse version '" + camelVersion + "' for CLI version resolution; using default");
-            return DEFAULT_CLI_VERSION;
+            return defaultCliVersion;
         }
 
-        for (VersionRule rule : SPRING_BOOT_RULES) {
+        for (VersionRule rule : springBootRules) {
             if (compareMajorMinorPatch(parsed, rule.minMajor, rule.minMinor, rule.minPatch) >= 0) {
                 return rule.cliVersion;
             }
         }
 
-        return DEFAULT_CLI_VERSION;
+        return defaultCliVersion;
     }
 
     /**
