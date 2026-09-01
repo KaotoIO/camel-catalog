@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.10.0 (2026-09-01)
+
+### Features
+
+* **camel-cli:** decouple Camel CLI version from source code hardcoded versioning ([c20982a](https://github.com/KaotoIO/camel-catalog/commit/c20982ac5759ebde4d443fde2cecbfb965f35db2))
+
 ## 0.9.13 (2026-08-31)
 
 **Note:** Version bump only for package @kaoto/camel-catalog
