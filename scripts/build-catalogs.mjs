@@ -9,7 +9,7 @@ import process from 'node:process';
 import { resolve } from 'path';
 
 const require = createRequire(import.meta.url);
-const { CATALOGS, KAMELETS_VERSION } = require('../index.js');
+const { CATALOGS, KAMELETS_VERSION, CAMEL_CLI_VERSION } = require('../index.js');
 
 const generateCatalogs = () => {
   let camelCatalogPath = '';
@@ -37,6 +37,8 @@ const generateCatalogs = () => {
     'Default Kaoto catalog',
     '-k',
     KAMELETS_VERSION,
+    '--cli-version',
+    CAMEL_CLI_VERSION,
     ...getVersionArguments(),
   ];
 

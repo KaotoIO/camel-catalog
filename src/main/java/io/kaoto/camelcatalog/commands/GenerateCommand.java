@@ -75,6 +75,7 @@ public class GenerateCommand implements Runnable {
                                 .withOutputDirectory(catalogDefinitionFolder)
                                 .withVerbose(configBean.isVerbose())
                                 .withResolvedVersions(resolved)
+                                .withDefaultCliVersion(configBean.getDefaultCliVersion())
                                 .build();
                         case Citrus -> new CitrusCatalogGeneratorBuilder()
                                 .withCatalogVersion(downloadVersion)

@@ -44,4 +44,6 @@ const CATALOGS = {
 
 const KAMELETS_VERSION = '4.22.0';
 
-module.exports = { CATALOGS, KAMELETS_VERSION };
+const CAMEL_CLI_VERSION = '4.22.0';
+
+module.exports = { CATALOGS, KAMELETS_VERSION, CAMEL_CLI_VERSION };

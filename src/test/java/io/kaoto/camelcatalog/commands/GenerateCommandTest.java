@@ -79,6 +79,7 @@ class GenerateCommandTest {
             when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
             when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
             when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
+            when(mockBuilder.withDefaultCliVersion(any())).thenReturn(mockBuilder);
 
             when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
             when(mockBuilder.build()).thenAnswer(invocation -> {
@@ -120,6 +121,7 @@ class GenerateCommandTest {
                     when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
                     when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
                     when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
+                    when(mockBuilder.withDefaultCliVersion(any())).thenReturn(mockBuilder);
 
                     when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
                     when(mockBuilder.build()).thenAnswer(invocation -> {
@@ -180,6 +182,7 @@ class GenerateCommandTest {
                 when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
                 when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
                 when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
+                when(mockBuilder.withDefaultCliVersion(any())).thenReturn(mockBuilder);
                 when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
                 when(mockBuilder.build()).thenAnswer(invocation -> {
                     CamelCatalogGenerator gen = mock(CamelCatalogGenerator.class);

@@ -63,6 +63,8 @@ public class GenerateCommandOptions {
         Option reposOption = Option.builder().argName("repos").longOpt("repos")
                 .desc("Comma-separated extra Maven repository URLs (corporate mirrors). "
                         + "Added on top of the repositories inferred from each version.").hasArg().build();
+        Option cliVersionOption = Option.builder().argName("cliVersion").longOpt("cli-version")
+                .desc("Default Camel JBang CLI version to embed in the catalog index").hasArg().build();
 
         options.addOption(outputOption);
         options.addOption(catalogsNameOption);
@@ -74,12 +76,15 @@ public class GenerateCommandOptions {
         options.addOption(xsltVersionOption);
         options.addOption(verboseOption);
         options.addOption(reposOption);
+        options.addOption(cliVersionOption);
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
         configBean.setOutputFolder(Util.getNormalizedFolder(cmd.getOptionValue(outputOption.getOpt())));
         configBean.setCatalogsName(cmd.getOptionValue(catalogsNameOption.getOpt()));
         configBean.setKameletsVersion(cmd.getOptionValue(kameletsVersionOption.getOpt()));
+
+        configBean.setDefaultCliVersion(cmd.getOptionValue(cliVersionOption.getLongOpt()));
 
         String reposValue = cmd.getOptionValue(reposOption.getLongOpt());
         if (reposValue != null && !reposValue.isBlank()) {

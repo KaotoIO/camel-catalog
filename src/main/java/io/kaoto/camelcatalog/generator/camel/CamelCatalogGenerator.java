@@ -61,6 +61,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
     private String kameletsVersion;
     private String camelKCRDsVersion;
     private ResolvedVersions resolvedVersions;
+    private String defaultCliVersion;
 
     CamelCatalogGenerator(CamelCatalogVersionLoader camelCatalogVersionLoader, File outputDirectory) {
         this.camelCatalogVersionLoader = camelCatalogVersionLoader;
@@ -97,7 +98,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             catalogDefinition.setExecutorVersion(launcherVersion);
 
             // Resolve and set the Camel JBang CLI version
-            CamelCliVersionResolver cliResolver = new CamelCliVersionResolver();
+            CamelCliVersionResolver cliResolver = new CamelCliVersionResolver(defaultCliVersion);
             catalogDefinition.setCliVersion(cliResolver.resolve(camelCatalogVersion, camelCatalogVersionLoader.getRuntime()));
 
             if (resolvedVersions != null) {
@@ -149,6 +150,10 @@ public class CamelCatalogGenerator implements CatalogGenerator {
 
     public void setResolvedVersions(ResolvedVersions resolvedVersions) {
         this.resolvedVersions = resolvedVersions;
+    }
+
+    public void setDefaultCliVersion(String defaultCliVersion) {
+        this.defaultCliVersion = defaultCliVersion;
     }
 
     private CamelYamlDslSchemaProcessor processCamelSchema() {
