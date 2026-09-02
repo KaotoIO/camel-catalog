@@ -21,7 +21,7 @@ class GenerateCatalogWithRedHatVersionTest {
     @Test
     void testOK() {
         CatalogCliArgument catalogCliArg = new CatalogCliArgument();
-        catalogCliArg.setRuntime(CatalogRuntime.Main);
+        catalogCliArg.setRuntime(CatalogRuntime.MAIN);
         catalogCliArg.setCatalogVersion("4.4.0.redhat-00045");
 
         ConfigBean configBean = new ConfigBean();

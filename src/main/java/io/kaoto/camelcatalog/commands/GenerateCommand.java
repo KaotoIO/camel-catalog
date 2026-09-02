@@ -47,7 +47,7 @@ public class GenerateCommand implements Runnable {
 
         configBean.getCatalogVersionSet()
                 .forEach(catalogCliArg -> {
-                    if (catalogCliArg.getRuntime() == CatalogRuntime.StarterTemplates) {
+                    if (catalogCliArg.getRuntime() == CatalogRuntime.STARTER_TEMPLATES) {
                         throw new IllegalArgumentException(
                                 "StarterTemplates is not a versioned CLI runtime");
                     }
@@ -67,7 +67,7 @@ public class GenerateCommand implements Runnable {
                             + " framework=" + resolved.frameworkVersion());
 
                     var catalogGenerator = switch (catalogCliArg.getRuntime()) {
-                        case Main, Quarkus, SpringBoot -> new CamelCatalogGeneratorBuilder()
+                        case MAIN, QUARKUS, SPRING_BOOT -> new CamelCatalogGeneratorBuilder()
                                 .withRuntime(catalogCliArg.getRuntime())
                                 .withCatalogVersion(downloadVersion)
                                 .withKameletsVersion(configBean.getKameletsVersion())
@@ -77,7 +77,7 @@ public class GenerateCommand implements Runnable {
                                 .withResolvedVersions(resolved)
                                 .withDefaultCliVersion(configBean.getDefaultCliVersion())
                                 .build();
-                        case Citrus -> new CitrusCatalogGeneratorBuilder()
+                        case CITRUS -> new CitrusCatalogGeneratorBuilder()
                                 .withCatalogVersion(downloadVersion)
                                 .withOutputDirectory(catalogDefinitionFolder)
                                 .withVerbose(configBean.isVerbose())
@@ -89,7 +89,7 @@ public class GenerateCommand implements Runnable {
                                 .withVerbose(configBean.isVerbose())
                                 .withResolvedVersions(resolved)
                                 .build();
-                        case StarterTemplates -> throw new IllegalStateException(
+                        case STARTER_TEMPLATES -> throw new IllegalStateException(
                                 "StarterTemplates is not a versioned CLI runtime");
                     };
 
@@ -109,7 +109,7 @@ public class GenerateCommand implements Runnable {
 
         // Generate starter templates once — runtime-agnostic, invoked after the runtime loop
         File starterTemplatesFolder = createSubFolder(outputFolder,
-                CatalogRuntime.StarterTemplates.getRuntimeFolder());
+                CatalogRuntime.STARTER_TEMPLATES.getRuntimeFolder());
         CatalogDefinition starterDef = new StarterTemplatesGeneratorBuilder()
                 .withOutputDirectory(starterTemplatesFolder)
                 .build()

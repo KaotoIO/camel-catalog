@@ -35,7 +35,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveCommunityMainVersion() {
         // Test community version resolution for Camel Main
-        String launcherVersion = resolver.findLauncherVersion("4.18.0", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.18.0", CatalogRuntime.MAIN);
         
         assertNotNull(launcherVersion, "Launcher version should be found for community version 4.18.0");
         assertEquals("4.18.0", launcherVersion, "Launcher version should match Camel version for community");
@@ -44,7 +44,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveRedHatMainVersion() {
         // Test Red Hat version resolution for Camel Main
-        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00019", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00019", CatalogRuntime.MAIN);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Red Hat version");
         assertTrue(launcherVersion.matches("4\\.14\\.2\\.redhat-\\d{5}"), 
@@ -54,7 +54,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveCommunitySpringBootVersion() {
         // Test community version resolution for Spring Boot
-        String launcherVersion = resolver.findLauncherVersion("4.14.5", CatalogRuntime.SpringBoot);
+        String launcherVersion = resolver.findLauncherVersion("4.14.5", CatalogRuntime.SPRING_BOOT);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Spring Boot community version");
         assertEquals("4.14.5", launcherVersion, "Launcher version should match Camel version for Spring Boot");
@@ -63,7 +63,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveRedHatSpringBootVersion() {
         // Test Red Hat version resolution for Spring Boot
-        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00018", CatalogRuntime.SpringBoot);
+        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00018", CatalogRuntime.SPRING_BOOT);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Red Hat Spring Boot version");
         assertTrue(launcherVersion.startsWith("4.14.2.redhat-"), 
@@ -73,7 +73,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveCommunityQuarkusVersion() {
         // Test Quarkus BOM resolution for community version
-        String launcherVersion = resolver.findLauncherVersion("3.32.0", CatalogRuntime.Quarkus);
+        String launcherVersion = resolver.findLauncherVersion("3.32.0", CatalogRuntime.QUARKUS);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Quarkus community version");
         assertTrue(launcherVersion.startsWith("4."), 
@@ -83,7 +83,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveRedHatQuarkusVersion() {
         // Test Quarkus BOM resolution for Red Hat version
-        String launcherVersion = resolver.findLauncherVersion("3.27.1.redhat-00004", CatalogRuntime.Quarkus);
+        String launcherVersion = resolver.findLauncherVersion("3.27.1.redhat-00004", CatalogRuntime.QUARKUS);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Red Hat Quarkus version");
         assertTrue(launcherVersion.contains(".redhat-"), 
@@ -95,7 +95,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveOldVersionWithoutLauncher() {
         // Test handling of old versions where launcher doesn't exist
-        String launcherVersion = resolver.findLauncherVersion("4.8.0", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.8.0", CatalogRuntime.MAIN);
         
         assertNull(launcherVersion, "Launcher version should be null for old versions (< 4.13.0)");
     }
@@ -103,7 +103,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveOldRedHatVersionWithoutLauncher() {
         // Test handling of old Red Hat versions where launcher doesn't exist
-        String launcherVersion = resolver.findLauncherVersion("4.10.7.redhat-00009", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.10.7.redhat-00009", CatalogRuntime.MAIN);
         
         assertNull(launcherVersion, "Launcher version should be null for old Red Hat versions without launcher");
     }
@@ -111,7 +111,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveOldQuarkusVersionWithoutLauncher() {
         // Test Quarkus version that maps to old Camel version without launcher
-        String launcherVersion = resolver.findLauncherVersion("3.15.0.redhat-00010", CatalogRuntime.Quarkus);
+        String launcherVersion = resolver.findLauncherVersion("3.15.0.redhat-00010", CatalogRuntime.QUARKUS);
         
         assertNull(launcherVersion, 
                    "Launcher version should be null for Quarkus versions mapping to old Camel (< 4.13.0)");
@@ -120,21 +120,21 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveInvalidVersion() {
         // Test handling of invalid version format
-        String launcherVersion = resolver.findLauncherVersion("invalid.version", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("invalid.version", CatalogRuntime.MAIN);
         
         assertNull(launcherVersion, "Launcher version should be null for invalid version format");
     }
 
     @Test
     void testResolveVersionWithTrailingNewline() {
-        String launcherVersion = resolver.findLauncherVersion("4.18.0\n", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.18.0\n", CatalogRuntime.MAIN);
 
         assertNull(launcherVersion, "Version with trailing newline should be rejected");
     }
 
     @Test
     void testResolveVersionWithTrailingCarriageReturnNewline() {
-        String launcherVersion = resolver.findLauncherVersion("4.18.0\r\n", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.18.0\r\n", CatalogRuntime.MAIN);
 
         assertNull(launcherVersion, "Version with trailing CRLF should be rejected");
     }
@@ -142,7 +142,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveNullVersion() {
         // Test handling of null version
-        String launcherVersion = resolver.findLauncherVersion(null, CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion(null, CatalogRuntime.MAIN);
         
         assertNull(launcherVersion, "Launcher version should be null for null input version");
     }
@@ -150,7 +150,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testResolveEmptyVersion() {
         // Test handling of empty version
-        String launcherVersion = resolver.findLauncherVersion("", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("", CatalogRuntime.MAIN);
         
         assertNull(launcherVersion, "Launcher version should be null for empty input version");
     }
@@ -158,7 +158,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testHighestBuildNumberSelection() {
         // Test that the resolver selects the highest build number for Red Hat versions
-        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00019", CatalogRuntime.Main);
+        String launcherVersion = resolver.findLauncherVersion("4.14.2.redhat-00019", CatalogRuntime.MAIN);
         
         assertNotNull(launcherVersion, "Launcher version should be found");
         // The resolver should find the highest build number available (e.g., 00006 or higher)
@@ -169,7 +169,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testQuarkusBomParsing() {
         // Test that Quarkus BOM parsing extracts correct Camel version
-        String launcherVersion = resolver.findLauncherVersion("3.27.2", CatalogRuntime.Quarkus);
+        String launcherVersion = resolver.findLauncherVersion("3.27.2", CatalogRuntime.QUARKUS);
         
         assertNotNull(launcherVersion, "Launcher version should be found for Quarkus 3.27.2");
         // Quarkus 3.27.2 should map to Camel 4.14.3
@@ -180,7 +180,7 @@ class CamelLauncherVersionResolverTest {
     @Test
     void testRepositorySelectionForRedHatQuarkus() {
         // Test that Red Hat Quarkus versions query Red Hat repository
-        String launcherVersion = resolver.findLauncherVersion("3.20.0.redhat-00010", CatalogRuntime.Quarkus);
+        String launcherVersion = resolver.findLauncherVersion("3.20.0.redhat-00010", CatalogRuntime.QUARKUS);
         
         // This version maps to Camel 4.10.3, which is too old for launcher
         // But the test verifies the repository selection logic works

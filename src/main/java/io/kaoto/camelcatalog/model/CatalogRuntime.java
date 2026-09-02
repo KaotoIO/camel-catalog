@@ -14,28 +14,45 @@
  * limitations under the License.
  */
 package io.kaoto.camelcatalog.model;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+    
 public enum CatalogRuntime {
-    Main("Main"),
-    Quarkus("Quarkus"),
-    SpringBoot("Spring Boot"),
-    Citrus("Citrus"),
-    XSLT("XSLT"),
-    StarterTemplates("Starter Templates");
+    MAIN("Main", "Main"),
+    QUARKUS("Quarkus", "Quarkus"),
+    SPRING_BOOT("SpringBoot", "Spring Boot"),
+    CITRUS("Citrus", "Citrus"),
+    XSLT("XSLT", "XSLT"),
+    STARTER_TEMPLATES("StarterTemplates", "Starter Templates");
 
+    /**
+     * Stable identifier written to the generated catalogs and used to build the
+     * runtime folder names. It is part of the catalog contract, so it must not
+     * follow renames of the enum constants.
+     */
+    private final String id;
     private final String label;
 
-    CatalogRuntime(String label) {
+    CatalogRuntime(String id, String label) {
+        this.id = id;
         this.label = label;
+    }
+
+    @JsonValue
+    public String getId() {
+        return id;
     }
 
     public String getLabel() {
         return label;
     }
 
+    @JsonCreator
     public static CatalogRuntime fromString(String name) {
         for (CatalogRuntime runtime : CatalogRuntime.values()) {
-            if (runtime.name().equalsIgnoreCase(name)) {
+            if (runtime.id.equalsIgnoreCase(name)
+                    || runtime.name().equalsIgnoreCase(name)
+                    || runtime.name().replace("_", "").equalsIgnoreCase(name)) {
                 return runtime;
             }
         }
@@ -45,9 +62,9 @@ public enum CatalogRuntime {
 
     public String getRuntimeFolder() {
         return switch (this) {
-            case Main, Quarkus, SpringBoot -> "camel-" + name().toLowerCase();
-            case Citrus, XSLT -> name().toLowerCase();
-            case StarterTemplates -> "starter-templates";
+            case MAIN, QUARKUS, SPRING_BOOT -> "camel-" + id.toLowerCase();
+            case CITRUS, XSLT -> name().toLowerCase();
+            case STARTER_TEMPLATES -> "starter-templates";
         };
     }
 }

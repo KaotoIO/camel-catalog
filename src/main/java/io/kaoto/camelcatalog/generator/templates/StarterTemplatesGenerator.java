@@ -85,7 +85,7 @@ public class StarterTemplatesGenerator implements CatalogGenerator {
         var catalogDefinition = new CatalogDefinition();
         catalogDefinition.setName("Kaoto Starter Templates");
         catalogDefinition.setVersion(CATALOG_VERSION);
-        catalogDefinition.setRuntime(CatalogRuntime.StarterTemplates);
+        catalogDefinition.setRuntime(CatalogRuntime.STARTER_TEMPLATES);
 
         var allTemplates = new LinkedHashMap<String, String>();
         resourceLoader.loadResourcesFromFolderAsString(RESOURCE_FOLDER, allTemplates, ".yaml");

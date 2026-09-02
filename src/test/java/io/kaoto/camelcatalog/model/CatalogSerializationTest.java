@@ -29,7 +29,7 @@ class CatalogSerializationTest {
     void definitionExposesVersionTriple() throws Exception {
         CatalogDefinition def = new CatalogDefinition();
         def.setName("Camel Quarkus 3.33.0.redhat-00007");
-        def.setRuntime(CatalogRuntime.Quarkus);
+        def.setRuntime(CatalogRuntime.QUARKUS);
         def.setVersion("3.33.0.redhat-00007");
         def.setCliVersion("4.20.0");
         def.setCamelCatalogVersion("4.18.1.redhat-00020");
@@ -48,7 +48,7 @@ class CatalogSerializationTest {
     void libraryEntryCarriesVersionTriple() throws Exception {
         CatalogDefinition def = new CatalogDefinition();
         def.setName("Camel Quarkus 3.33.0.redhat-00007");
-        def.setRuntime(CatalogRuntime.Quarkus);
+        def.setRuntime(CatalogRuntime.QUARKUS);
         def.setVersion("3.33.0.redhat-00007");
         def.setFileName("camel-quarkus/3.33.0.redhat-00007/index-abc.json");
         def.setExecutorVersion("4.18.1.redhat-00020");
@@ -70,8 +70,8 @@ class CatalogSerializationTest {
 
     @Test
     void testStarterTemplatesRuntimeFolder() {
-        assertEquals("starter-templates", CatalogRuntime.StarterTemplates.getRuntimeFolder());
-        assertEquals("Starter Templates", CatalogRuntime.StarterTemplates.getLabel());
+        assertEquals("starter-templates", CatalogRuntime.STARTER_TEMPLATES.getRuntimeFolder());
+        assertEquals("Starter Templates", CatalogRuntime.STARTER_TEMPLATES.getLabel());
     }
 
     @Test
