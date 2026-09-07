@@ -11,8 +11,7 @@
 
 const CATALOGS = {
   Main: [
-    //
-    '4.22.0',
+    '4.20.0',
     '4.18.4',
     '4.14.9',
     '4.10.7',
@@ -21,16 +20,16 @@ const CATALOGS = {
     '4.10.7.redhat-00009',
   ],
   Quarkus: [
-    '3.39.0',
-    '3.38.0',
-    '3.33.2',
-    '3.27.4',
+    '3.37.4', // 4.20.0
+    '3.33.2', // 4.18.2
+    '3.27.4', // 4.14.7
+    '3.20.6', // 4.10.8
     '3.33.3.redhat-00001', // 4.18
     // '3.27.3.redhat-00003', // removed because there is a bug which prevents the version to be used with --console flag of Camel CLI / Camel Launcher
     '3.20.6.redhat-00004', // 4.10
   ],
   SpringBoot: [
-    '4.22.0',
+    '4.20.0',
     '4.18.4',
     '4.14.9',
     '4.10.9',
@@ -44,6 +43,6 @@ const CATALOGS = {
 
 const KAMELETS_VERSION = '4.22.0';
 
-const CAMEL_CLI_VERSION = '4.22.0';
+const CAMEL_CLI_VERSION = '4.20.0';
 
 module.exports = { CATALOGS, KAMELETS_VERSION, CAMEL_CLI_VERSION };
