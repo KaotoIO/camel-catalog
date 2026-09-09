@@ -16,6 +16,7 @@
 package io.kaoto.camelcatalog.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Locale;
     
 public enum CatalogRuntime {
     MAIN("Main", "Main"),
@@ -62,9 +63,12 @@ public enum CatalogRuntime {
 
     public String getRuntimeFolder() {
         return switch (this) {
-            case MAIN, QUARKUS, SPRING_BOOT -> "camel-" + id.toLowerCase();
-            case CITRUS, XSLT -> name().toLowerCase();
-            case STARTER_TEMPLATES -> "starter-templates";
+            case MAIN, QUARKUS, SPRING_BOOT ->
+                "camel-" + id.toLowerCase(Locale.ROOT);
+            case CITRUS, XSLT ->
+                name().toLowerCase(Locale.ROOT);
+            case STARTER_TEMPLATES ->
+                "starter-templates";
         };
     }
 }
