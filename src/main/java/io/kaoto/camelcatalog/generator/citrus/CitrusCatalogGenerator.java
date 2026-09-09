@@ -90,7 +90,7 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
     private CatalogDefinition getCatalogDefinition() {
         var catalogDefinition = new CatalogDefinition();
         catalogDefinition.setName("Citrus " + catalogVersion);
-        catalogDefinition.setRuntime(CatalogRuntime.Citrus);
+        catalogDefinition.setRuntime(CatalogRuntime.CITRUS);
         catalogDefinition.setVersion(catalogVersion);
         catalogDefinition.setFileName("index.json");
         if (resolvedVersions != null) {

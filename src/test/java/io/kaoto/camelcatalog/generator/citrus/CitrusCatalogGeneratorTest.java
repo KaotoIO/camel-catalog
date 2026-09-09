@@ -66,7 +66,7 @@ class CitrusCatalogGeneratorTest {
 
         assertNotNull(catalogDefinition);
         assertEquals("Citrus 4.10.0", catalogDefinition.getName());
-        assertEquals(CatalogRuntime.Citrus, catalogDefinition.getRuntime());
+        assertEquals(CatalogRuntime.CITRUS, catalogDefinition.getRuntime());
         assertEquals("4.10.0", catalogDefinition.getVersion());
         assertEquals("index.json", catalogDefinition.getFileName());
     }

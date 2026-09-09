@@ -73,7 +73,7 @@ public class CamelLauncherVersionResolver {
             boolean isOriginalRedhat = camelVersion.contains(".redhat-");
             
             // For Quarkus, resolve the internal Camel version from the BOM
-            if (runtime == CatalogRuntime.Quarkus) {
+            if (runtime == CatalogRuntime.QUARKUS) {
                 LOGGER.info("Resolving internal Camel version from Quarkus BOM " + camelVersion);
                 resolvedCamelVersion = resolveCamelVersionFromQuarkusBom(camelVersion);
                 if (resolvedCamelVersion == null) {
@@ -85,7 +85,7 @@ public class CamelLauncherVersionResolver {
             
             VersionInfo inputVersion = parseVersion(resolvedCamelVersion);
             // For Quarkus Red Hat versions, preserve the Red Hat repository even if extracted Camel version doesn't have .redhat suffix
-            boolean useRedhatRepo = inputVersion.isRedhat || (runtime == CatalogRuntime.Quarkus && isOriginalRedhat);
+            boolean useRedhatRepo = inputVersion.isRedhat || (runtime == CatalogRuntime.QUARKUS && isOriginalRedhat);
             String repository = useRedhatRepo ? REDHAT_GA : MAVEN_CENTRAL;
             
             LOGGER.info("Resolving camel-launcher version for Camel " + resolvedCamelVersion + 
