@@ -26,17 +26,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.kaoto.camelcatalog.generator.camel.handlers.ComponentHandler;
-import io.kaoto.camelcatalog.generator.camel.handlers.DataFormatHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.EIPHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.EntityHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.FunctionsHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.LanguageHandler;
-import io.kaoto.camelcatalog.generator.camel.handlers.LoadBalancerHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.ModelHandler;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogDefinitionEntry;
-import io.kaoto.camelcatalog.model.CatalogRuntime;
 import io.kaoto.camelcatalog.model.ResolvedVersions;
 
 import java.io.*;
@@ -183,8 +180,6 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             var catalogMap = new LinkedHashMap<String, String>();
             catalogMap.put("components",
                     Util.getPrettyJSON(new ComponentHandler(camelCatalog, runtime).generate()));
-            catalogMap.put("dataformats",
-                    Util.getPrettyJSON(new DataFormatHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
             catalogMap.put("languages",
                     Util.getPrettyJSON(new LanguageHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
             catalogMap.put("models",
@@ -198,8 +193,6 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                             camelCatalogVersionLoader.getCamelYamlDslSchema(),
                             camelCatalogVersionLoader.getKubernetesSchema(),
                             camelCatalogVersionLoader.getLocalSchemas()).generate()));
-            catalogMap.put("loadbalancers",
-                    Util.getPrettyJSON(new LoadBalancerHandler(camelCatalog, schemaProcessor, schemaEnhancer).generate()));
             catalogMap.put("functions",
                     Util.getPrettyJSON(new FunctionsHandler(camelCatalog, camelCatalogVersionLoader).generate()));
 
