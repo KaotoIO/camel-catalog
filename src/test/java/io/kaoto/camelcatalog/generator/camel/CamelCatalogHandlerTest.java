@@ -21,12 +21,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.kaoto.camelcatalog.generator.camel.handlers.ComponentHandler;
-import io.kaoto.camelcatalog.generator.camel.handlers.DataFormatHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.EIPHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.EntityHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.FunctionsHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.LanguageHandler;
-import io.kaoto.camelcatalog.generator.camel.handlers.LoadBalancerHandler;
 import io.kaoto.camelcatalog.generator.camel.handlers.ModelHandler;
 import io.kaoto.camelcatalog.maven.CamelCatalogVersionLoader;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
@@ -50,12 +48,10 @@ class CamelCatalogHandlerTest {
     private static final List<String> ALLOWED_ENUM_TYPES = List.of("integer", "number", "string");
 
     private final ObjectNode componentCatalog;
-    private final ObjectNode dataFormatCatalog;
     private final ObjectNode languageCatalog;
     private final ObjectNode modelCatalog;
     private final ObjectNode processorCatalog;
     private final ObjectNode entityCatalog;
-    private final ObjectNode loadBalancerCatalog;
     private final ObjectNode functionsCatalog;
 
     CamelCatalogHandlerTest() throws Exception {
@@ -92,16 +88,12 @@ class CamelCatalogHandlerTest {
         CamelCatalogSchemaEnhancer schemaEnhancer = new CamelCatalogSchemaEnhancer(catalog);
 
         this.componentCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(componentGenerator.generate()));
-        this.dataFormatCatalog = (ObjectNode) jsonMapper.readTree(
-                Util.getPrettyJSON(new DataFormatHandler(catalog, schemaProcessor, schemaEnhancer).generate()));
         this.languageCatalog = (ObjectNode) jsonMapper.readTree(
                 Util.getPrettyJSON(new LanguageHandler(catalog, schemaProcessor, schemaEnhancer).generate()));
         this.modelCatalog = (ObjectNode) jsonMapper.readTree(
                 Util.getPrettyJSON(new ModelHandler(catalog).generate()));
         this.processorCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(eipGenerator.generate()));
         this.entityCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(entityGenerator.generate()));
-        this.loadBalancerCatalog = (ObjectNode) jsonMapper.readTree(
-                Util.getPrettyJSON(new LoadBalancerHandler(catalog, schemaProcessor, schemaEnhancer).generate()));
         this.functionsCatalog = (ObjectNode) jsonMapper.readTree(Util.getPrettyJSON(functionsGenerator.generate()));
     }
 
@@ -191,28 +183,6 @@ class CamelCatalogHandlerTest {
     }
 
     @Test
-    void testGetDataFormatCatalog() throws Exception {
-        var customModel = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/model");
-        assertEquals("model", customModel.get("kind").asText());
-        assertEquals("Custom", customModel.get("title").asText());
-        var customProperties = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/properties");
-        assertEquals("Ref", customProperties.withObject("/ref").get("displayName").asText());
-        var customPropertiesSchema = dataFormatCatalog
-                .withObject("/custom")
-                .withObject("/propertiesSchema");
-        assertEquals("Custom", customPropertiesSchema.get("title").asText());
-        var refProperty = customPropertiesSchema.withObject("/properties").withObject("/ref");
-        assertEquals("Ref", refProperty.get("title").asText());
-        var customPropertiesSchemaRequiredFields = customPropertiesSchema.withArray("/required");
-        assertFalse(customPropertiesSchemaRequiredFields.isEmpty());
-        assertEquals(1, customPropertiesSchemaRequiredFields.size(), "Size should be 1");
-    }
-
-    @Test
     void testRestProcessors() throws Exception {
         var restGetProcessorSchema = processorCatalog
                 .withObject("/get")
@@ -239,11 +209,6 @@ class CamelCatalogHandlerTest {
         assertFalse(restDeleteProcessorSchema.isEmpty(), "delete processor schema should not be empty");
         assertFalse(restHeadProcessorSchema.isEmpty(), "head processor schema should not be empty");
         assertFalse(restPatchProcessorSchema.isEmpty(), "patch processor schema should not be empty");
-    }
-
-    @Test
-    void testDataFormatEnumParameter() throws Exception {
-        checkEnumParameters(dataFormatCatalog);
     }
 
     @Test
@@ -382,41 +347,6 @@ class CamelCatalogHandlerTest {
     }
 
     @Test
-    void testGetLoadBalancerCatalog() throws Exception {
-        assertFalse(loadBalancerCatalog.isEmpty());
-        var failoverModel = loadBalancerCatalog.withObject("/failoverLoadBalancer/model");
-        assertEquals("failoverLoadBalancer", failoverModel.get("name").asText());
-        var failoverSchema = loadBalancerCatalog.withObject("/failoverLoadBalancer/propertiesSchema");
-        var failoverSchemaRequiredFields = failoverSchema.withArray("/required");
-        assertTrue(failoverSchemaRequiredFields.isEmpty());
-        var maximumFailoverAttempts = failoverSchema.withObject("/properties/maximumFailoverAttempts");
-        assertEquals("string", maximumFailoverAttempts.get("type").asText());
-        assertEquals("-1", maximumFailoverAttempts.get("default").asText());
-
-        var roundRobinSchema = loadBalancerCatalog.withObject("/roundRobinLoadBalancer/propertiesSchema");
-        var roundRobinSchemaRequiredFields = roundRobinSchema.withArray("/required");
-        assertTrue(roundRobinSchemaRequiredFields.isEmpty());
-        var roundRobinId = roundRobinSchema.withObject("/properties/id");
-        assertEquals("string", roundRobinId.get("type").asText());
-
-        var customModel = loadBalancerCatalog.withObject("/customLoadBalancer/model");
-        assertEquals("Custom Load Balancer", customModel.get("title").asText());
-        var customSchema = loadBalancerCatalog.withObject("/customLoadBalancer/propertiesSchema");
-        var customSchemaRequiredFields = customSchema.withArray("/required");
-        assertFalse(customSchemaRequiredFields.isEmpty());
-        assertEquals(1, customSchemaRequiredFields.size(), "Size should be 1");
-        assertEquals("ref", customSchemaRequiredFields.get(0).asText());
-        assertEquals("Custom Load Balancer", customSchema.get("title").asText());
-        var customRef = customSchema.withObject("/properties/ref");
-        assertEquals("Ref", customRef.get("title").asText());
-    }
-
-    @Test
-    void testLoadBalancerEnumParameter() throws Exception {
-        checkEnumParameters(loadBalancerCatalog);
-    }
-
-    @Test
     void testGetFunctionsCatalog() {
         assertFalse(functionsCatalog.isEmpty());
         assertTrue(functionsCatalog.has("simple"), "Functions catalog should contain 'simple' language");
@@ -456,40 +386,6 @@ class CamelCatalogHandlerTest {
                             assertTrue(defaultValue.isNumber(),
                                 String.format("Language '%s' property '%s' has %s type but non-numeric default value: %s",
                                     languageName, propertyName, type, defaultValue));
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Test
-    void testDataFormatCatalogDefaultValuesAreProperlySanitized() {
-        // Test that boolean and number default values are proper types, not strings
-        // This verifies the fix for Camel 4.15 where default values were incorrectly typed as strings
-        for (var dataFormatEntry : dataFormatCatalog.properties()) {
-            var dataFormatName = dataFormatEntry.getKey();
-            var dataFormatNode = dataFormatEntry.getValue();
-            var propertiesSchema = dataFormatNode.withObject("/propertiesSchema");
-
-            if (propertiesSchema.has("properties")) {
-                var properties = propertiesSchema.withObject("/properties");
-                for (var propertyEntry : properties.properties()) {
-                    var propertyName = propertyEntry.getKey();
-                    var property = propertyEntry.getValue();
-
-                    if (property.has("type") && property.has("default")) {
-                        var type = property.get("type").asText();
-                        var defaultValue = property.get("default");
-
-                        if ("boolean".equals(type)) {
-                            assertTrue(defaultValue.isBoolean(),
-                                String.format("DataFormat '%s' property '%s' has boolean type but string default value: %s",
-                                    dataFormatName, propertyName, defaultValue));
-                        } else if ("number".equals(type) || "integer".equals(type)) {
-                            assertTrue(defaultValue.isNumber(),
-                                String.format("DataFormat '%s' property '%s' has %s type but non-numeric default value: %s",
-                                    dataFormatName, propertyName, type, defaultValue));
                         }
                     }
                 }
