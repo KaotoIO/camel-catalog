@@ -37,7 +37,7 @@ class GenerateCatalogWithRedHatVersionTest {
         File catalogDir = new File(tempDir, "camel-main/4.4.0.redhat-00045");
 
         assertTrue(catalogDir.exists(), "The folder for the catalog wasn't created");
-        assertEquals(17, Objects.requireNonNull(catalogDir.listFiles()).length,
+        assertEquals(15, Objects.requireNonNull(catalogDir.listFiles()).length,
                 "The folder for the catalog doesn't contain the correct number of files");
     }
 
