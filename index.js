@@ -11,7 +11,7 @@
 
 const CATALOGS = {
   Main: [
-    '4.20.0',
+    '4.22.1',
     '4.18.4',
     '4.14.9',
     '4.10.7',
@@ -29,7 +29,7 @@ const CATALOGS = {
     '3.20.6.redhat-00004', // 4.10
   ],
   SpringBoot: [
-    '4.20.0',
+    '4.22.1',
     '4.18.4',
     '4.14.9',
     '4.10.9',
@@ -41,8 +41,8 @@ const CATALOGS = {
   XSLT: ['3.0'],
 };
 
-const KAMELETS_VERSION = '4.20.0';
+const KAMELETS_VERSION = '4.22.1';
 
-const CAMEL_CLI_VERSION = '4.20.0';
+const CAMEL_CLI_VERSION = '4.22.1';
 
 module.exports = { CATALOGS, KAMELETS_VERSION, CAMEL_CLI_VERSION };
