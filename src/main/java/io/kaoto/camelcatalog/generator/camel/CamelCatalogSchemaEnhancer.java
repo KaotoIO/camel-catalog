@@ -498,7 +498,7 @@ public class CamelCatalogSchemaEnhancer {
 
     public void sortPropertiesByOptions(ObjectNode entitySchema, List<? extends BaseOptionModel> options) {
         var sortedSchemaProperties = jsonMapper.createObjectNode();
-        var propertiesNode = entitySchema.get("properties");
+        var propertiesNode = entitySchema.get(PROP_PROPERTIES);
         if (propertiesNode == null || !propertiesNode.isObject()) {
             return;
         }
@@ -512,7 +512,7 @@ public class CamelCatalogSchemaEnhancer {
             sortedSchemaProperties.set(propertyName, propertySchema);
         }
 
-        entitySchema.set("properties", sortedSchemaProperties);
+        entitySchema.set(PROP_PROPERTIES, sortedSchemaProperties);
     }
 
     public void setRequiredToPropertiesSchema(ObjectNode yamlDslSchema, ObjectNode catalogModel) {
@@ -520,8 +520,8 @@ public class CamelCatalogSchemaEnhancer {
         var yamlDslProperties = yamlDslSchema.withObject("/properties").properties().stream()
                 .map(Map.Entry::getKey).toList();
         for (var propertyName : yamlDslProperties) {
-            var catalogPropertySchema = catalogModel.path("properties").path(propertyName);
-            if (catalogPropertySchema.has("required") && catalogPropertySchema.get("required").asBoolean()) {
+            var catalogPropertySchema = catalogModel.path(PROP_PROPERTIES).path(propertyName);
+            if (catalogPropertySchema.has(PROP_REQUIRED) && catalogPropertySchema.get(PROP_REQUIRED).asBoolean()) {
                 required.add(propertyName);
             }
         }
@@ -530,7 +530,7 @@ public class CamelCatalogSchemaEnhancer {
 
     private void addDefaultInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
         var defaultValue = modelOption.getDefaultValue();
-        if (defaultValue != null && !propertyNode.has("default")) {
+        if (defaultValue != null && !propertyNode.has(PROP_DEFAULT)) {
             var propertyType = modelOption.getType();
             var schemaPropTypeNode = propertyNode.get("type");
             if (PROP_BOOLEAN.equals(schemaPropTypeNode.asText())) {

@@ -327,7 +327,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                 String version;
 
                 if (CAMEL_YAML_DSL_FILE_NAME.equals(name)) {
-                    outputFileName = String.format("%s-%s.json", name, Util.generateHash(schema));
+                    outputFileName = String.format(INDEX_FILENAME_FORMAT, name, Util.generateHash(schema));
                     description = "Camel YAML DSL JSON schema";
                     version = camelCatalogVersion;
                 } else if (schema.startsWith("<?xml") || schema.contains("http://www.w3.org/2001/XMLSchema")) {
