@@ -525,7 +525,7 @@ public class CamelCatalogSchemaEnhancer {
                 required.add(propertyName);
             }
         }
-        catalogModel.withObject("/propertiesSchema").set("required", jsonMapper.valueToTree(required));
+        catalogModel.withObject("/propertiesSchema").set(PROP_REQUIRED, jsonMapper.valueToTree(required));
     }
 
     private void addDefaultInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
