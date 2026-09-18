@@ -266,7 +266,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             try (JsonGenerator jsonGenerator = jsonFactory.createGenerator(writer).setPrettyPrinter(Util.createTabPrettyPrinter())) {
                 jsonMapper.writeTree(jsonGenerator, root);
                 var rootBytes = outputStream.toByteArray();
-                var outputFileName = String.format("%s-%s.json", filename, Util.generateHash(rootBytes));
+                var outputFileName = String.format(INDEX_FILENAME_FORMAT, filename, Util.generateHash(rootBytes));
                 var output = outputDirectory.toPath().resolve(outputFileName);
 
                 Files.write(output, rootBytes);

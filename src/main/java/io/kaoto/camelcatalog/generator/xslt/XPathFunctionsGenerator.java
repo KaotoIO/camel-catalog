@@ -552,8 +552,8 @@ public class XPathFunctionsGenerator {
 
     String resolveGroup(String name, String prefix, Map<String, SectionInfo> sectionMap) {
         if ("math".equals(prefix)) return "Math";
-        if ("map".equals(prefix)) return "MapFunctions";
-        if ("array".equals(prefix)) return "ArrayFunctions";
+        if ("map".equals(prefix)) return GROUP_MAP_FUNCTIONS;
+        if ("array".equals(prefix)) return GROUP_ARRAY_FUNCTIONS;
 
         SectionInfo sectionInfo = sectionMap.get(prefix + ":" + name);
         if (sectionInfo != null) {
@@ -566,7 +566,7 @@ public class XPathFunctionsGenerator {
             }
         }
 
-        return "Sequence";
+        return GROUP_SEQUENCE;
     }
 
     private void loadXsltFunctions(Map<String, List<XPathFunction>> grouped) {

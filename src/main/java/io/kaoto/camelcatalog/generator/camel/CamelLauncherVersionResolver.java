@@ -321,8 +321,8 @@ public class CamelLauncherVersionResolver {
         
         @Override
         public String toString() {
-            return String.format("%d.%d.%d%s", major, minor, patch, 
-                               isRedhat ? ".redhat-" + buildNumber : "");
+            return String.format("%d.%d.%d%s", major, minor, patch,
+                               isRedhat ? REDHAT_QUALIFIER + buildNumber : "");
         }
     }
     

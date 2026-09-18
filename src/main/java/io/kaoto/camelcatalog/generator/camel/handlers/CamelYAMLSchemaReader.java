@@ -73,9 +73,9 @@ class CamelYAMLSchemaReader {
         var processorNodeRef = (ObjectNode) camelYamlSchemaNode.get(PROP_ITEMS)
                 .get(PROP_DEFINITIONS)
                 .get("org.apache.camel.model.rest.RestDefinition")
-                .get("properties")
+                .get(PROP_PROPERTIES)
                 .get(processorName)
-                .get("items");
+                .get(PROP_ITEMS);
 
         return getJSONSchema(processorName, processorNodeRef);
     }
@@ -200,7 +200,7 @@ class CamelYAMLSchemaReader {
         if (firstSchema.has("type") && firstSchema.get("type").asText().equals("string") && secondSchema.has("type") &&
                 secondSchema.get("type").asText().equals("object")) {
             node.setAll(secondSchema);
-            node.remove("oneOf");
+            node.remove(PROP_ONE_OF);
         }
     }
 

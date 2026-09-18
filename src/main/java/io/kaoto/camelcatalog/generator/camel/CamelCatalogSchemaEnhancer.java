@@ -128,7 +128,7 @@ public class CamelCatalogSchemaEnhancer {
         });
 
         if (!requiredProperties.isEmpty()) {
-            ArrayNode requiredNode = modelNode.putArray("required");
+            ArrayNode requiredNode = modelNode.putArray(PROP_REQUIRED);
             requiredProperties.forEach(requiredNode::add);
         }
     }
@@ -182,7 +182,7 @@ public class CamelCatalogSchemaEnhancer {
     public void fillPropertiesInformation(BaseModel<? extends BaseOptionModel> model, ObjectNode modelNode) {
         List<? extends BaseOptionModel> modelOptions = model.getOptions();
 
-        modelNode.withObject("properties").fields().forEachRemaining(entry -> {
+        modelNode.withObject(PROP_PROPERTIES).fields().forEachRemaining(entry -> {
             String propertyName = entry.getKey();
             ObjectNode propertyNode = (ObjectNode) entry.getValue();
             if (propertyNode.isEmpty()) {
@@ -269,7 +269,7 @@ public class CamelCatalogSchemaEnhancer {
             return;
         }
 
-        var defaultValue = propertyNode.get("default");
+        var defaultValue = propertyNode.get(PROP_DEFAULT);
         var propertyType = propertyNode.get("type").asText();
 
         // Only process if default is currently a string
