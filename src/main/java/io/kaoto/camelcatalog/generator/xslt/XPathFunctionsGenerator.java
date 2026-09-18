@@ -482,7 +482,7 @@ public class XPathFunctionsGenerator {
 
             String funcXml = rawXml.substring(startPos, endPos);
             Pattern summaryPattern = Pattern.compile(
-                    "<fos:summary>([^<]*(?:<(?!/fos:summary>)[^<]*)*)</fos:summary>");
+                    "<fos:summary>([^<]*+(?:<(?!/fos:summary>)[^<]*+)*+)</fos:summary>");
             Matcher summaryMatcher = summaryPattern.matcher(funcXml);
             if (summaryMatcher.find()) {
                 String key = prefixMatch.group(1) + ":" + nameMatch.group(1);
