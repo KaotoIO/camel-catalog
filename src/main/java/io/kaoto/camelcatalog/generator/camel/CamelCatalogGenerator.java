@@ -50,6 +50,8 @@ import static io.kaoto.camelcatalog.model.Constants.*;
 
 public class CamelCatalogGenerator implements CatalogGenerator {
     private static final Logger LOGGER = Logger.getLogger(CamelCatalogGenerator.class.getName());
+    private static final String INDEX_FILENAME_FORMAT = "%s-%s.json";
+    private static final String METADATA_KEY = "metadata";
 
     private static final ObjectMapper jsonMapper = new ObjectMapper()
             .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
@@ -108,7 +110,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
             }
 
             String content = jsonMapper.writeValueAsString(catalogDefinition);
-            String filename = String.format("%s-%s.json", "index",
+            String filename = String.format(INDEX_FILENAME_FORMAT, "index",
                     Util.generateHash(content));
 
             File indexFile = outputDirectory.toPath().resolve(filename).toFile();
@@ -287,7 +289,7 @@ public class CamelCatalogGenerator implements CatalogGenerator {
     private void processKameletFile(String kamelet, ObjectNode targetObject) {
         try {
             JsonNode kameletNode = yamlMapper.readTree(kamelet);
-            String lowerFileName = kameletNode.get("metadata").get("name").asText().toLowerCase();
+            String lowerFileName = kameletNode.get(METADATA_KEY).get("name").asText().toLowerCase();
 
             KameletProcessor.process((ObjectNode) kameletNode);
             targetObject.putIfAbsent(lowerFileName, kameletNode);
@@ -302,8 +304,8 @@ public class CamelCatalogGenerator implements CatalogGenerator {
                 try {
                     JsonNode kameletNode1 = yamlMapper.readTree(k1);
                     JsonNode kameletNode2 = yamlMapper.readTree(k2);
-                    String kamelet1 = kameletNode1.get("metadata").get("name").asText().toLowerCase();
-                    String kamelet2 = kameletNode2.get("metadata").get("name").asText().toLowerCase();
+                    String kamelet1 = kameletNode1.get(METADATA_KEY).get("name").asText().toLowerCase();
+                    String kamelet2 = kameletNode2.get(METADATA_KEY).get("name").asText().toLowerCase();
                     return kamelet1.compareTo(kamelet2);
                 } catch (Exception e) {
                     LOGGER.log(Level.SEVERE, e.toString(), e);

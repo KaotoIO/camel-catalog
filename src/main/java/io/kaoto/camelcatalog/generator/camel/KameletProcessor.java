@@ -24,6 +24,12 @@ public class KameletProcessor {
     private KameletProcessor() {
     }
 
+    private static final String PROP_TITLE = "title";
+    private static final String PROP_DESCRIPTION = "description";
+    private static final String PROP_REQUIRED = "required";
+    private static final String PROP_PROPERTIES_PATH = "/properties";
+    private static final String PROP_DEFAULT = "default";
+    private static final String PROP_FORMAT = "format";
     private static final List<String> TO_STRING_TYPES = List.of("binary");
 
     public static void process(ObjectNode kamelet) {
@@ -32,12 +38,12 @@ public class KameletProcessor {
                 .withObject("/definition");
         schema.put("$schema", "http://json-schema.org/draft-07/schema#");
         schema.put("type", "object");
-        if (kameletDef.has("title")) schema.set("title", kameletDef.get("title"));
-        if (kameletDef.has("description")) schema.set("description", kameletDef.get("description"));
-        if (kameletDef.has("required")) schema.set("required", kameletDef.get("required"));
-        if (kameletDef.has("properties") && !kameletDef.withObject("/properties").isEmpty()) {
-            var kameletProperties = kameletDef.withObject("/properties");
-            var schemaProperties = schema.withObject("/properties");
+        if (kameletDef.has(PROP_TITLE)) schema.set(PROP_TITLE, kameletDef.get(PROP_TITLE));
+        if (kameletDef.has(PROP_DESCRIPTION)) schema.set(PROP_DESCRIPTION, kameletDef.get(PROP_DESCRIPTION));
+        if (kameletDef.has(PROP_REQUIRED)) schema.set(PROP_REQUIRED, kameletDef.get(PROP_REQUIRED));
+        if (kameletDef.has("properties") && !kameletDef.withObject(PROP_PROPERTIES_PATH).isEmpty()) {
+            var kameletProperties = kameletDef.withObject(PROP_PROPERTIES_PATH);
+            var schemaProperties = schema.withObject(PROP_PROPERTIES_PATH);
             for (var entry : kameletProperties.properties()) {
                 var name = entry.getKey();
                 var property = entry.getValue();
@@ -47,11 +53,11 @@ public class KameletProcessor {
                     schemaProperty.put("$comment", "type:" + property.get("type").asText());
                     schemaProperty.put("type", "string");
                 }
-                if (property.has("title")) schemaProperty.set("title", property.get("title"));
-                if (property.has("description")) schemaProperty.set("description", property.get("description"));
+                if (property.has(PROP_TITLE)) schemaProperty.set(PROP_TITLE, property.get(PROP_TITLE));
+                if (property.has(PROP_DESCRIPTION)) schemaProperty.set(PROP_DESCRIPTION, property.get(PROP_DESCRIPTION));
                 if (property.has("enum")) schemaProperty.set("enum", property.get("enum"));
-                if (property.has("default")) schemaProperty.set("default", property.get("default"));
-                if (property.has("format")) schemaProperty.set("format", property.get("format"));
+                if (property.has(PROP_DEFAULT)) schemaProperty.set(PROP_DEFAULT, property.get(PROP_DEFAULT));
+                if (property.has(PROP_FORMAT)) schemaProperty.set(PROP_FORMAT, property.get(PROP_FORMAT));
             }
         }
     }

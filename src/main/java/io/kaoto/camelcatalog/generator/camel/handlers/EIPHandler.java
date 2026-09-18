@@ -36,6 +36,7 @@ import java.util.logging.Logger;
 
 public class EIPHandler implements CatalogEntryHandler {
     private static final Logger LOGGER = Logger.getLogger(EIPHandler.class.getName());
+    private static final String PROP_DEFINITIONS = "definitions";
     CamelCatalog camelCatalog;
     CamelCatalogSchemaEnhancer camelCatalogSchemaEnhancer;
     String camelYamlSchema;
@@ -121,8 +122,8 @@ public class EIPHandler implements CatalogEntryHandler {
             camelCatalogSchemaEnhancer.enhanceParametersProperty(mainModel.getJavaType(), processorJSONSchema);
         }
 
-        if (processorJSONSchema.has("definitions")) {
-            iterateOverDefinitions(processorJSONSchema.withObject("definitions"), (model, node) -> {
+        if (processorJSONSchema.has(PROP_DEFINITIONS)) {
+            iterateOverDefinitions(processorJSONSchema.withObject(PROP_DEFINITIONS), (model, node) -> {
                 if (model == null) {
                     return;
                 }
@@ -147,7 +148,7 @@ public class EIPHandler implements CatalogEntryHandler {
      */
     List<String> getEIPNames() {
         HashSet<String> eipNames = new HashSet<>();
-        var eipsIterator = this.camelYamlSchemaNode.get("items").get("definitions")
+        var eipsIterator = this.camelYamlSchemaNode.get("items").get(PROP_DEFINITIONS)
                 .get("org.apache.camel.model.ProcessorDefinition")
                 .get("properties")
                 .fields();

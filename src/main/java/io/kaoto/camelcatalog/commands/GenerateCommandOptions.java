@@ -21,6 +21,7 @@ import io.kaoto.camelcatalog.model.CatalogRuntime;
 
 public class GenerateCommandOptions {
     private static final Logger LOGGER = Logger.getLogger(GenerateCommandOptions.class.getName());
+    private static final String OPT_VERSION = "version";
     private Options options = new Options();
     private ConfigBean configBean;
 
@@ -42,19 +43,19 @@ public class GenerateCommandOptions {
                 .longOpt("kamelets")
                 .desc("Kamelets catalog version. If not specified, it will use the generator installed version")
                 .hasArg().build();
-        Option camelMainVersionOption = Option.builder().argName("version").option("m").longOpt("main")
+        Option camelMainVersionOption = Option.builder().argName(OPT_VERSION).option("m").longOpt("main")
                 .desc("Camel Main version. If not specified, it will use the generator installed version")
                 .hasArg().build();
-        Option camelQuarkusVersionOption = Option.builder().argName("version").option("q").longOpt("quarkus")
+        Option camelQuarkusVersionOption = Option.builder().argName(OPT_VERSION).option("q").longOpt("quarkus")
                 .desc("Quarkus platform version, e.g. 3.28.0 or 3.33.1.redhat-00006 "
                         + "(groupId/repos inferred from the .redhat- suffix)").hasArg().build();
-        Option camelSpringbootVersionOption = Option.builder().argName("version").option("s")
+        Option camelSpringbootVersionOption = Option.builder().argName(OPT_VERSION).option("s")
                 .longOpt("springboot")
                 .desc("Camel SpringBoot version").hasArg().build();
-        Option citrusVersionOption = Option.builder().argName("version").option("c").longOpt("citrus")
+        Option citrusVersionOption = Option.builder().argName(OPT_VERSION).option("c").longOpt("citrus")
                 .desc("Citrus version. If not specified, it will use the generator installed version")
                 .hasArg().build();
-        Option xsltVersionOption = Option.builder().argName("version").option("x").longOpt("xslt")
+        Option xsltVersionOption = Option.builder().argName(OPT_VERSION).option("x").longOpt("xslt")
                 .desc("XSLT version (e.g. 3.0)")
                 .hasArg().build();
         Option verboseOption = Option.builder().argName("v").option("v").longOpt("verbose")

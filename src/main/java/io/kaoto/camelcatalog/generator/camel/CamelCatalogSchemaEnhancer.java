@@ -26,6 +26,20 @@ import java.util.*;
 
 public class CamelCatalogSchemaEnhancer {
 
+    private static final String PROP_PROPERTIES = "properties";
+    private static final String PROP_ANY_OF = "anyOf";
+    private static final String PROP_ONE_OF = "oneOf";
+    private static final String PROP_REQUIRED = "required";
+    private static final String PROP_TITLE = "title";
+    private static final String PROP_DESCRIPTION = "description";
+    private static final String PROP_OBJECT = "object";
+    private static final String PROP_DEFAULT = "default";
+    private static final String PROP_BOOLEAN = "boolean";
+    private static final String PROP_FORMAT = "format";
+    private static final String PROP_CUSTOM_LOAD_BALANCER = "customLoadBalancer";
+    private static final String PROP_DEAD_LETTER_CHANNEL = "deadLetterChannel";
+    private static final String PROP_COMMENT = "$comment";
+
     private final CamelCatalog camelCatalog;
     private final Map<String, String> javaTypeToModelName = new HashMap<>();
     private final Map<String, String> modelNameToJavaType = new HashMap<>();
@@ -46,8 +60,8 @@ public class CamelCatalogSchemaEnhancer {
      */
     public void fixDefaultValueTypesFromCamelSchema(ObjectNode schemaNode) {
         // Process properties at the root level
-        if (schemaNode.has("properties")) {
-            ObjectNode properties = (ObjectNode) schemaNode.get("properties");
+        if (schemaNode.has(PROP_PROPERTIES)) {
+            ObjectNode properties = (ObjectNode) schemaNode.get(PROP_PROPERTIES);
             properties.fields().forEachRemaining(entry -> {
                 ObjectNode propertyNode = (ObjectNode) entry.getValue();
                 fixDefaultValueInProperty(propertyNode);
@@ -57,6 +71,7 @@ public class CamelCatalogSchemaEnhancer {
         // Process definitions recursively
         if (schemaNode.has("definitions")) {
             ObjectNode definitions = (ObjectNode) schemaNode.get("definitions");
+            // note: "definitions" is intentionally not a constant here – it only appears once
             definitions.fields().forEachRemaining(entry -> {
                 ObjectNode definitionNode = (ObjectNode) entry.getValue();
                 fixDefaultValueTypesFromCamelSchema(definitionNode);
@@ -64,8 +79,8 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         // Process anyOf/oneOf arrays
-        fixDefaultValueInArrayFields(schemaNode, "anyOf");
-        fixDefaultValueInArrayFields(schemaNode, "oneOf");
+        fixDefaultValueInArrayFields(schemaNode, PROP_ANY_OF);
+        fixDefaultValueInArrayFields(schemaNode, PROP_ONE_OF);
     }
 
     /**
@@ -93,8 +108,8 @@ public class CamelCatalogSchemaEnhancer {
     public void fillRequiredPropertiesIfNeeded(BaseModel<? extends BaseOptionModel> model, ObjectNode modelNode) {
         ArrayList<String> requiredProperties = new ArrayList<>();
 
-        if (modelNode.has("required")) {
-            modelNode.get("required").elements().forEachRemaining(node -> {
+        if (modelNode.has(PROP_REQUIRED)) {
+            modelNode.get(PROP_REQUIRED).elements().forEachRemaining(node -> {
                 requiredProperties.add(node.asText());
             });
         }
@@ -104,9 +119,9 @@ public class CamelCatalogSchemaEnhancer {
                 : model.getOptions();
 
         modelOptions.forEach(option -> {
-            if (option.isRequired() && modelNode.has("properties")
-                    && modelNode.get("properties").has(option.getName())
-                    && !modelNode.get("properties").get(option.getName()).isEmpty()
+            if (option.isRequired() && modelNode.has(PROP_PROPERTIES)
+                    && modelNode.get(PROP_PROPERTIES).has(option.getName())
+                    && !modelNode.get(PROP_PROPERTIES).get(option.getName()).isEmpty()
                     && !requiredProperties.contains(option.getName())) {
                 requiredProperties.add(option.getName());
             }
@@ -200,13 +215,13 @@ public class CamelCatalogSchemaEnhancer {
 
     void addTitleAndDescription(BaseOptionModel modelOption, ObjectNode propertyNode) {
         var displayName = modelOption.getDisplayName();
-        if (!propertyNode.has("title") && displayName != null) {
-            propertyNode.put("title", displayName);
+        if (!propertyNode.has(PROP_TITLE) && displayName != null) {
+            propertyNode.put(PROP_TITLE, displayName);
         }
 
         var description = modelOption.getDescription();
-        if (!propertyNode.has("description") && description != null) {
-            propertyNode.put("description", description);
+        if (!propertyNode.has(PROP_DESCRIPTION) && description != null) {
+            propertyNode.put(PROP_DESCRIPTION, description);
         }
     }
 
@@ -240,7 +255,7 @@ public class CamelCatalogSchemaEnhancer {
     public void fillSchemaInformation(ObjectNode modelNode) {
         modelNode.put("$schema", "http://json-schema.org/draft-07/schema#");
         if (!modelNode.has("type")) {
-            modelNode.put("type", "object");
+            modelNode.put("type", PROP_OBJECT);
         }
     }
 
@@ -250,7 +265,7 @@ public class CamelCatalogSchemaEnhancer {
      * @param propertyNode the property node to fix
      */
     private void fixDefaultValueInProperty(ObjectNode propertyNode) {
-        if (!propertyNode.has("default") || !propertyNode.has("type")) {
+        if (!propertyNode.has(PROP_DEFAULT) || !propertyNode.has("type")) {
             return;
         }
 
@@ -265,11 +280,11 @@ public class CamelCatalogSchemaEnhancer {
         String defaultValueString = defaultValue.asText();
 
         // Fix boolean defaults
-        if ("boolean".equals(propertyType)) {
+        if (PROP_BOOLEAN.equals(propertyType)) {
             if ("true".equals(defaultValueString)) {
-                propertyNode.put("default", true);
+                propertyNode.put(PROP_DEFAULT, true);
             } else if ("false".equals(defaultValueString)) {
-                propertyNode.put("default", false);
+                propertyNode.put(PROP_DEFAULT, false);
             }
         }
         // Fix number/integer defaults
@@ -277,9 +292,9 @@ public class CamelCatalogSchemaEnhancer {
             try {
                 // Check if it's a decimal number
                 if (defaultValueString.contains(".")) {
-                    propertyNode.put("default", Double.parseDouble(defaultValueString));
+                    propertyNode.put(PROP_DEFAULT, Double.parseDouble(defaultValueString));
                 } else {
-                    propertyNode.put("default", Long.parseLong(defaultValueString));
+                    propertyNode.put(PROP_DEFAULT, Long.parseLong(defaultValueString));
                 }
             } catch (NumberFormatException e) {
                 // Keep as string if parsing fails
@@ -295,6 +310,7 @@ public class CamelCatalogSchemaEnhancer {
      */
     private void fixDefaultValueInArrayFields(ObjectNode node, String arrayName) {
         if (!node.has(arrayName)) {
+            // arrayName is passed as a parameter; callers use PROP_ANY_OF / PROP_ONE_OF constants
             return;
         }
 
@@ -316,31 +332,31 @@ public class CamelCatalogSchemaEnhancer {
      * @param modelNode the JSON schema node of the model
      */
     public void fillModelFormatInOneOf(ObjectNode modelNode) {
-        if (modelNode.has("anyOf") && modelNode.get("anyOf").isArray()) {
-            modelNode.withArray("anyOf").elements().forEachRemaining(node -> {
+        if (modelNode.has(PROP_ANY_OF) && modelNode.get(PROP_ANY_OF).isArray()) {
+            modelNode.withArray(PROP_ANY_OF).elements().forEachRemaining(node -> {
                 fillModelFormatInOneOf((ObjectNode) node);
             });
         }
 
-        if (!modelNode.has("oneOf")) {
+        if (!modelNode.has(PROP_ONE_OF)) {
             return;
         }
 
-        modelNode.withArray("oneOf").elements().forEachRemaining(node -> {
+        modelNode.withArray(PROP_ONE_OF).elements().forEachRemaining(node -> {
             if (node.has("$ref") && node.get("$ref").asText().contains("org.apache.camel.model.language.ExpressionDefinition")) {
-                modelNode.put("format", "expression");
-            } else if (node.has("properties") && node.get("properties").has("customLoadBalancer")
-                    && node.get("properties").get("customLoadBalancer").has("$ref")
-                    && node.get("properties").get("customLoadBalancer").get("$ref").asText().contains("org.apache.camel.model.loadbalancer")) {
-                modelNode.put("format", "loadBalancerType");
-            } else if (node.has("properties") && node.get("properties").has("asn1")
-                    && node.get("properties").get("asn1").has("$ref")
-                    && node.get("properties").get("asn1").get("$ref").asText().contains("org.apache.camel.model.dataformat")) {
-                modelNode.put("format", "dataFormatType");
-            } else if (node.has("properties") && node.get("properties").has("deadLetterChannel")
-                    && node.get("properties").get("deadLetterChannel").has("$ref")
-                    && node.get("properties").get("deadLetterChannel").get("$ref").asText().contains("org.apache.camel.model.errorhandler")) {
-                modelNode.put("format", "errorHandlerType");
+                modelNode.put(PROP_FORMAT, "expression");
+            } else if (node.has(PROP_PROPERTIES) && node.get(PROP_PROPERTIES).has(PROP_CUSTOM_LOAD_BALANCER)
+                    && node.get(PROP_PROPERTIES).get(PROP_CUSTOM_LOAD_BALANCER).has("$ref")
+                    && node.get(PROP_PROPERTIES).get(PROP_CUSTOM_LOAD_BALANCER).get("$ref").asText().contains("org.apache.camel.model.loadbalancer")) {
+                modelNode.put(PROP_FORMAT, "loadBalancerType");
+            } else if (node.has(PROP_PROPERTIES) && node.get(PROP_PROPERTIES).has("asn1")
+                    && node.get(PROP_PROPERTIES).get("asn1").has("$ref")
+                    && node.get(PROP_PROPERTIES).get("asn1").get("$ref").asText().contains("org.apache.camel.model.dataformat")) {
+                modelNode.put(PROP_FORMAT, "dataFormatType");
+            } else if (node.has(PROP_PROPERTIES) && node.get(PROP_PROPERTIES).has(PROP_DEAD_LETTER_CHANNEL)
+                    && node.get(PROP_PROPERTIES).get(PROP_DEAD_LETTER_CHANNEL).has("$ref")
+                    && node.get(PROP_PROPERTIES).get(PROP_DEAD_LETTER_CHANNEL).get("$ref").asText().contains("org.apache.camel.model.errorhandler")) {
+                modelNode.put(PROP_FORMAT, "errorHandlerType");
             }
         });
     }
@@ -376,8 +392,8 @@ public class CamelCatalogSchemaEnhancer {
 
         // Handle schemas with oneOf (multiple possible schema variants)
         // Each variant needs to be enhanced independently
-        if (schema.has("oneOf")) {
-            ArrayNode oneOfArray = (ArrayNode) schema.get("oneOf");
+        if (schema.has(PROP_ONE_OF)) {
+            ArrayNode oneOfArray = (ArrayNode) schema.get(PROP_ONE_OF);
             oneOfArray.forEach(option -> {
                 if (option.isObject()) {
                     enhanceParametersInNode((ObjectNode) option);
@@ -399,7 +415,7 @@ public class CamelCatalogSchemaEnhancer {
      * @param node the JSON schema node to enhance
      */
     private void enhanceParametersInNode(ObjectNode node) {
-        if (!node.has("properties")) {
+        if (!node.has(PROP_PROPERTIES)) {
             return;
         }
 
@@ -421,9 +437,9 @@ public class CamelCatalogSchemaEnhancer {
      * @param parameters the parameters object node to configure
      */
     private void setParametersMetadata(ObjectNode parameters) {
-        parameters.put("type", "object");
-        parameters.put("title", "Endpoint Properties");
-        parameters.put("description", "The key-value pairs of the properties to configure this endpoint");
+        parameters.put("type", PROP_OBJECT);
+        parameters.put(PROP_TITLE, "Endpoint Properties");
+        parameters.put(PROP_DESCRIPTION, "The key-value pairs of the properties to configure this endpoint");
     }
 
     private void addGroupInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
@@ -433,22 +449,22 @@ public class CamelCatalogSchemaEnhancer {
             return;
         }
 
-        if (propertyNode.has("$comment")) {
-            propertyNode.put("$comment", propertyNode.get("$comment").asText() + "|group:" + group);
+        if (propertyNode.has(PROP_COMMENT)) {
+            propertyNode.put(PROP_COMMENT, propertyNode.get(PROP_COMMENT).asText() + "|group:" + group);
         } else {
-            propertyNode.put("$comment", "group:" + group);
+            propertyNode.put(PROP_COMMENT, "group:" + group);
         }
     }
 
     private void addFormatInfo(BaseOptionModel modelOption, ObjectNode propertyNode) {
         List<String> format = new ArrayList<>();
-        if (propertyNode.has("format")) {
-            format.add(propertyNode.get("format").asText());
+        if (propertyNode.has(PROP_FORMAT)) {
+            format.add(propertyNode.get(PROP_FORMAT).asText());
         }
 
         var propertyType = modelOption.getType();
         String bean =
-                "object".equals(propertyType) && !propertyNode.has("$ref") ? modelOption.getJavaType() : null;
+                PROP_OBJECT.equals(propertyType) && !propertyNode.has("$ref") ? modelOption.getJavaType() : null;
 
         if (bean != null && !bean.startsWith("java.util.Map")) {
             format.add("bean:" + bean);
@@ -469,7 +485,7 @@ public class CamelCatalogSchemaEnhancer {
         }
 
         if (!format.isEmpty()) {
-            propertyNode.put("format", String.join("|", format));
+            propertyNode.put(PROP_FORMAT, String.join("|", format));
         }
     }
 
@@ -517,21 +533,21 @@ public class CamelCatalogSchemaEnhancer {
         if (defaultValue != null && !propertyNode.has("default")) {
             var propertyType = modelOption.getType();
             var schemaPropTypeNode = propertyNode.get("type");
-            if ("boolean".equals(schemaPropTypeNode.asText())) {
+            if (PROP_BOOLEAN.equals(schemaPropTypeNode.asText())) {
                 // some boolean properties have its type as string in the catalog. prioritize the schema if type is declared.
-                propertyType = "boolean";
+                propertyType = PROP_BOOLEAN;
             }
 
             if ("integer".equals(propertyType) && !(defaultValue instanceof String)) {
-                propertyNode.put("default", ((BigDecimal) defaultValue).intValue());
-            } else if ("boolean".equals(propertyType)) {
+                propertyNode.put(PROP_DEFAULT, ((BigDecimal) defaultValue).intValue());
+            } else if (PROP_BOOLEAN.equals(propertyType)) {
                 if ("true".equals(defaultValue.toString())) {
-                    propertyNode.put("default", true);
+                    propertyNode.put(PROP_DEFAULT, true);
                 } else if ("false".equals(defaultValue.toString())) {
-                    propertyNode.put("default", false);
+                    propertyNode.put(PROP_DEFAULT, false);
                 }
             } else {
-                propertyNode.put("default", defaultValue.toString());
+                propertyNode.put(PROP_DEFAULT, defaultValue.toString());
             }
         }
     }

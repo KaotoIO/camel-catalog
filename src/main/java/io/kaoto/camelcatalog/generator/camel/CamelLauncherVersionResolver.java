@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
  */
 public class CamelLauncherVersionResolver {
     private static final Logger LOGGER = Logger.getLogger(CamelLauncherVersionResolver.class.getName());
+    private static final String REDHAT_QUALIFIER = ".redhat-";
     private static final String MAVEN_CENTRAL = "https://repo1.maven.org/maven2";
     private static final String REDHAT_GA = "https://maven.repository.redhat.com/ga";
     private static final String CAMEL_LAUNCHER_GROUP_PATH = "org/apache/camel";
@@ -70,7 +71,7 @@ public class CamelLauncherVersionResolver {
         
         try {
             String resolvedCamelVersion = camelVersion;
-            boolean isOriginalRedhat = camelVersion.contains(".redhat-");
+            boolean isOriginalRedhat = camelVersion.contains(REDHAT_QUALIFIER);
             
             // For Quarkus, resolve the internal Camel version from the BOM
             if (runtime == CatalogRuntime.QUARKUS) {
@@ -200,7 +201,7 @@ public class CamelLauncherVersionResolver {
         String fallback = null;
         for (PomDependency dep : dependencies) {
             if ("org.apache.camel".equals(dep.groupId) && dep.version != null) {
-                if (dep.version.contains(".redhat-")) {
+                if (dep.version.contains(REDHAT_QUALIFIER)) {
                     return dep.version;
                 }
                 if (fallback == null) {

@@ -63,31 +63,39 @@ public class XPathFunctionsGenerator {
     private static final String XSLT_RESOURCE = "functions/xslt/xslt-functions-3.0.json";
     private static final String SPEC_NS = "http://www.w3.org/xpath-functions/spec/namespace";
 
+    private static final String GROUP_CONTEXT = "Context";
+    private static final String GROUP_STRING = "String";
+    private static final String GROUP_DATE_AND_TIME = "DateAndTime";
+    private static final String GROUP_SEQUENCE = "Sequence";
+    private static final String GROUP_MAP_FUNCTIONS = "MapFunctions";
+    private static final String GROUP_ARRAY_FUNCTIONS = "ArrayFunctions";
+    private static final String DEFAULT_ITEM_TYPE = "item()";
+
     private static final Map<String, String> SECTION_TO_GROUP = Map.ofEntries(
             Map.entry("accessors", "Node"),
-            Map.entry("errors-and-diagnostics", "Context"),
+            Map.entry("errors-and-diagnostics", GROUP_CONTEXT),
             Map.entry("numeric-functions", "Numeric"),
-            Map.entry("string-functions", "String"),
-            Map.entry("anyURI-functions", "String"),
+            Map.entry("string-functions", GROUP_STRING),
+            Map.entry("anyURI-functions", GROUP_STRING),
             Map.entry("boolean-functions", "Boolean"),
-            Map.entry("durations", "DateAndTime"),
-            Map.entry("dates-times", "DateAndTime"),
+            Map.entry("durations", GROUP_DATE_AND_TIME),
+            Map.entry("dates-times", GROUP_DATE_AND_TIME),
             Map.entry("QName-funcs", "QName"),
             Map.entry("node-functions", "Node"),
-            Map.entry("sequence-functions", "Sequence"),
-            Map.entry("json-functions", "Sequence"),
-            Map.entry("context", "Context"),
+            Map.entry("sequence-functions", GROUP_SEQUENCE),
+            Map.entry("json-functions", GROUP_SEQUENCE),
+            Map.entry("context", GROUP_CONTEXT),
             Map.entry("higher-order-functions", "HigherOrder"),
             Map.entry("substring.functions", "SubstringMatching"),
             Map.entry("string.match", "PatternMatching"),
-            Map.entry("map-functions", "MapFunctions"),
-            Map.entry("array-functions", "ArrayFunctions")
+            Map.entry("map-functions", GROUP_MAP_FUNCTIONS),
+            Map.entry("array-functions", GROUP_ARRAY_FUNCTIONS)
     );
 
     static final List<String> ALL_GROUPS = List.of(
-            "String", "SubstringMatching", "PatternMatching", "Numeric",
-            "DateAndTime", "Boolean", "QName", "Node", "Sequence",
-            "Context", "Math", "MapFunctions", "ArrayFunctions", "HigherOrder", "XSLT"
+            GROUP_STRING, "SubstringMatching", "PatternMatching", "Numeric",
+            GROUP_DATE_AND_TIME, "Boolean", "QName", "Node", GROUP_SEQUENCE,
+            GROUP_CONTEXT, "Math", GROUP_MAP_FUNCTIONS, GROUP_ARRAY_FUNCTIONS, "HigherOrder", "XSLT"
     );
 
     /** W3C-defined namespace prefix-to-URI bindings used across XPath 3.1 function and type references. */
@@ -315,7 +323,7 @@ public class XPathFunctionsGenerator {
         for (int i = 0; i < longestArgs.size(); i++) {
             Element argElem = longestArgs.get(i);
             String rawType = argElem.getAttribute("type");
-            if (rawType.isEmpty()) rawType = "item()";
+            if (rawType.isEmpty()) rawType = DEFAULT_ITEM_TYPE;
             TypeInfo typeInfo = parseTypeString(rawType);
             String argName = argElem.getAttribute("name");
             if (argName.isEmpty()) argName = "arg" + (i + 1);
@@ -337,7 +345,7 @@ public class XPathFunctionsGenerator {
         func.setArguments(arguments);
 
         String returnTypeStr = longest.getAttribute("return-type");
-        if (returnTypeStr.isEmpty()) returnTypeStr = "item()*";
+        if (returnTypeStr.isEmpty()) returnTypeStr = DEFAULT_ITEM_TYPE + "*";
         TypeInfo returnTypeInfo = parseTypeString(returnTypeStr);
         func.setReturnType(returnTypeInfo.baseType);
         func.setReturnCardinality(returnTypeInfo.cardinality);
@@ -351,14 +359,14 @@ public class XPathFunctionsGenerator {
 
             var sig = new KaotoFunctionSignature();
             String protoReturnType = proto.getAttribute("return-type");
-            sig.setReturnType(protoReturnType.isEmpty() ? "item()*" : protoReturnType);
+            sig.setReturnType(protoReturnType.isEmpty() ? DEFAULT_ITEM_TYPE + "*" : protoReturnType);
 
             List<KaotoFunctionSignatureArgument> sigArgs = new ArrayList<>();
             for (Element protoArg : protoArgs) {
                 var sigArg = new KaotoFunctionSignatureArgument();
                 sigArg.setName(protoArg.getAttribute("name"));
                 String type = protoArg.getAttribute("type");
-                sigArg.setType(type.isEmpty() ? "item()" : type);
+                sigArg.setType(type.isEmpty() ? DEFAULT_ITEM_TYPE : type);
                 String defaultVal = protoArg.getAttribute("default");
                 sigArg.setDefaultValue(defaultVal.isEmpty() ? null : defaultVal);
                 String usage = protoArg.getAttribute("usage");
@@ -431,7 +439,7 @@ public class XPathFunctionsGenerator {
 
     static TypeInfo parseTypeString(String typeStr) {
         if (typeStr == null || typeStr.isBlank()) {
-            return new TypeInfo("item()", "");
+            return new TypeInfo(DEFAULT_ITEM_TYPE, "");
         }
 
         String trimmed = typeStr.trim();

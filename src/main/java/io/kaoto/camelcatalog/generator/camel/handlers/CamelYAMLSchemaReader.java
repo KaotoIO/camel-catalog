@@ -6,6 +6,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 class CamelYAMLSchemaReader {
 
+    private static final String PROP_ITEMS = "items";
+    private static final String PROP_PROPERTIES = "properties";
+    private static final String PROP_DEFINITIONS = "definitions";
+    private static final String PROP_ONE_OF = "oneOf";
+
     private final SchemaPropertyFilter schemaPropertyFilter = new SchemaPropertyFilter();
     ObjectMapper jsonMapper = new ObjectMapper();
     ObjectNode camelYamlSchemaNode;
@@ -27,7 +32,7 @@ class CamelYAMLSchemaReader {
      * @return the JSON schema for a given Entity, with the initial $ref resolved and all the required definitions inlined
      */
     public ObjectNode getEntityJSONSchema(String entityName) {
-        var entityNodeRef = (ObjectNode) camelYamlSchemaNode.get("items").get("properties").get(entityName);
+        var entityNodeRef = (ObjectNode) camelYamlSchemaNode.get(PROP_ITEMS).get(PROP_PROPERTIES).get(entityName);
 
         return getJSONSchema(entityName, entityNodeRef);
     }
@@ -45,8 +50,8 @@ class CamelYAMLSchemaReader {
      * @return the JSON schema for a given Processor, with the initial $ref resolved and all the required definitions inlined
      */
     public ObjectNode getEIPJSONSchema(String eipName, String javaType) {
-        var eipJsonSchema = (ObjectNode) camelYamlSchemaNode.get("items")
-                .get("definitions")
+        var eipJsonSchema = (ObjectNode) camelYamlSchemaNode.get(PROP_ITEMS)
+                .get(PROP_DEFINITIONS)
                 .get(javaType)
                 .deepCopy();
         return processNodeSchemaObject(eipName, eipJsonSchema);
@@ -65,8 +70,8 @@ class CamelYAMLSchemaReader {
      * @return the JSON schema for a given Processor, with the initial $ref resolved and all the required definitions inlined
      */
     public ObjectNode getRestProcessorJSONSchema(String processorName) {
-        var processorNodeRef = (ObjectNode) camelYamlSchemaNode.get("items")
-                .get("definitions")
+        var processorNodeRef = (ObjectNode) camelYamlSchemaNode.get(PROP_ITEMS)
+                .get(PROP_DEFINITIONS)
                 .get("org.apache.camel.model.rest.RestDefinition")
                 .get("properties")
                 .get(processorName)
@@ -93,7 +98,7 @@ class CamelYAMLSchemaReader {
 
         inlineDefinitions(processorSchemaNode, processorSchemaDefinitionsNode);
         if (!processorSchemaDefinitionsNode.isEmpty()) {
-            processorSchemaNode.set("definitions", processorSchemaDefinitionsNode);
+            processorSchemaNode.set(PROP_DEFINITIONS, processorSchemaDefinitionsNode);
         }
 
         return processorSchemaNode;
@@ -148,28 +153,28 @@ class CamelYAMLSchemaReader {
      * @param node the node to inline the required definitions from the Camel YAML DSL schema
      */
     void inlineDefinitions(ObjectNode node, ObjectNode definitions) {
-        if (node.has("type") && "array".equals(node.get("type").asText()) && node.has("items")) {
-            var items = (ObjectNode) node.get("items");
+        if (node.has("type") && "array".equals(node.get("type").asText()) && node.has(PROP_ITEMS)) {
+            var items = (ObjectNode) node.get(PROP_ITEMS);
             if (items.has("$ref")) {
                 addRefDefinition(items, definitions);
             }
         }
 
-        if (node.has("properties")) {
-            var properties = (ObjectNode) node.get("properties");
+        if (node.has(PROP_PROPERTIES)) {
+            var properties = (ObjectNode) node.get(PROP_PROPERTIES);
             properties.fields().forEachRemaining(entry -> {
                 var property = (ObjectNode) entry.getValue();
                 if (property.has("$ref")) {
                     addRefDefinition(property, definitions);
-                } else if (property.has("items") && property.get("items").has("$ref") && !entry.getKey().equals("steps")) {
-                    var refParent = (ObjectNode) property.get("items");
+                } else if (property.has(PROP_ITEMS) && property.get(PROP_ITEMS).has("$ref") && !entry.getKey().equals("steps")) {
+                    var refParent = (ObjectNode) property.get(PROP_ITEMS);
                     addRefDefinition(refParent, definitions);
                 }
             });
         }
 
         inlineArrayFields(node, "anyOf", definitions);
-        inlineArrayFields(node, "oneOf", definitions);
+        inlineArrayFields(node, PROP_ONE_OF, definitions);
         removeSimpleStringSchemaFromOneOf(node);
     }
 
@@ -185,12 +190,12 @@ class CamelYAMLSchemaReader {
      * @param node the node to consolidate the schemas
      */
     void removeSimpleStringSchemaFromOneOf(ObjectNode node) {
-        if (!node.has("oneOf") || node.get("oneOf").size() != 2) {
+        if (!node.has(PROP_ONE_OF) || node.get(PROP_ONE_OF).size() != 2) {
             return;
         }
 
-        var firstSchema = (ObjectNode) node.get("oneOf").get(0);
-        var secondSchema = (ObjectNode) node.get("oneOf").get(1);
+        var firstSchema = (ObjectNode) node.get(PROP_ONE_OF).get(0);
+        var secondSchema = (ObjectNode) node.get(PROP_ONE_OF).get(1);
 
         if (firstSchema.has("type") && firstSchema.get("type").asText().equals("string") && secondSchema.has("type") &&
                 secondSchema.get("type").asText().equals("object")) {
@@ -236,7 +241,7 @@ class CamelYAMLSchemaReader {
         String refKey = refParent.get("$ref").asText();
 
         /* newRefKey: org.apache.camel.model.ToDefinition */
-        String newRefKey = refKey.replace("#/items/definitions/", "");
+        String newRefKey = refKey.replace("#/" + PROP_ITEMS + "/" + PROP_DEFINITIONS + "/", "");
 
         if (!definitions.has(newRefKey)) {
             var resolvedNode = getResolvedNode(refParent);
@@ -245,7 +250,7 @@ class CamelYAMLSchemaReader {
         }
 
         /* Relocating the $ref from #/items/definitions to #/definitions */
-        String newRefLocation = refKey.replace("#/items/definitions/", "#/definitions/");
+        String newRefLocation = refKey.replace("#/" + PROP_ITEMS + "/" + PROP_DEFINITIONS + "/", "#/" + PROP_DEFINITIONS + "/");
         refParent.put("$ref", newRefLocation);
     }
 }

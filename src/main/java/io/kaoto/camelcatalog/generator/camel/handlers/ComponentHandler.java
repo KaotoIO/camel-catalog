@@ -34,6 +34,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ComponentHandler implements CatalogEntryHandler {
+    private static final String PROP_TYPE_STRING = "string";
     static final Logger LOGGER = Logger.getLogger(ComponentHandler.class.getName());
     CamelCatalog camelCatalog;
     CatalogRuntime runtime;
@@ -140,17 +141,17 @@ public class ComponentHandler implements CatalogEntryHandler {
             var propertyNode = answerProperties.withObject("/" + propertyName);
             propertyNode.put("title", modelOption.getDisplayName());
             propertyNode.put("description", modelOption.getDescription());
-            var propertyType = "enum".equals(modelOption.getType()) ? "string" : modelOption.getType();
+            var propertyType = "enum".equals(modelOption.getType()) ? PROP_TYPE_STRING : modelOption.getType();
             propertyNode.put("type", propertyType);
 
             var enumOption = modelOption.getEnums();
             if (enumOption != null && !enumOption.isEmpty() && !modelOption.isMultiValue()) {
                 enumOption.forEach(e -> propertyNode.withArray("/enum").add(e));
                 if (!propertyNode.has("type") || "object".equals(propertyNode.get("type").asText())) {
-                    propertyNode.put("type", "string");
+                    propertyNode.put("type", PROP_TYPE_STRING);
                 }
             } else if ("array".equals(propertyType)) {
-                propertyNode.withObject("/items").put("type", "string");
+                propertyNode.withObject("/items").put("type", PROP_TYPE_STRING);
             }
 
             camelCatalogSchemaEnhancer.fillPropertyInformation(modelOption, propertyNode);
