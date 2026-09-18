@@ -497,7 +497,7 @@ public class XPathFunctionsGenerator {
 
         List<Event> events = new ArrayList<>();
 
-        Pattern divOpenPattern = Pattern.compile("<(div[1-3])\\s[^>]*?id=\"([^\"]+)\"[^>]*>");
+        Pattern divOpenPattern = Pattern.compile("<(div[1-3])\\s(?:[^>i]|i(?!d=))*+id=\"([^\"]+)\"[^>]*+>");
         Matcher divOpenMatcher = divOpenPattern.matcher(specXml);
         while (divOpenMatcher.find()) {
             events.add(new Event(divOpenMatcher.start(), "open", divOpenMatcher.group(1),
