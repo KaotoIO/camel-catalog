@@ -25,15 +25,22 @@ import io.kaoto.camelcatalog.model.ResolvedVersions;
  * Fluent builder for {@link XsltCatalogGenerator}.
  * Follows the same pattern as {@link io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder}.
  */
+import java.util.List;
+
 public class XsltCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
 
-    private String catalogVersion;
+    private List<String> catalogVersions;
     private File outputDirectory;
     private boolean verbose = false;
     private ResolvedVersions resolvedVersions;
 
     public XsltCatalogGeneratorBuilder withCatalogVersion(String catalogVersion) {
-        this.catalogVersion = catalogVersion;
+        this.catalogVersions = catalogVersion != null ? List.of(catalogVersion) : null;
+        return this;
+    }
+
+    public XsltCatalogGeneratorBuilder withCatalogVersions(List<String> catalogVersions) {
+        this.catalogVersions = catalogVersions;
         return this;
     }
 
@@ -54,7 +61,7 @@ public class XsltCatalogGeneratorBuilder implements CatalogGeneratorBuilder {
 
     @Override
     public CatalogGenerator build() {
-        XsltCatalogGenerator generator = new XsltCatalogGenerator(catalogVersion, outputDirectory, verbose);
+        var generator = new XsltCatalogGenerator(catalogVersions, outputDirectory, verbose);
         generator.setResolvedVersions(resolvedVersions);
         return generator;
     }

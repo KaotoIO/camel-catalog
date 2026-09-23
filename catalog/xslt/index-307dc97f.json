@@ -1,0 +1,19 @@
+{
+	"name" : "XSLT Catalogs",
+	"version" : "1",
+	"executorVersion" : null,
+	"cliVersion" : null,
+	"camelCatalogVersion" : null,
+	"runtimeProviderVersion" : null,
+	"frameworkVersion" : null,
+	"runtime" : "XSLT",
+	"catalogs" : {
+		"3.0" : {
+			"name" : "3.0",
+			"description" : "XPath and XSLT 3.0 function catalog",
+			"version" : "3.0",
+			"file" : "3.0/xslt-xpath-functions.json"
+		}
+	},
+	"schemas" : { }
+}

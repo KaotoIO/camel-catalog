@@ -15,11 +15,12 @@
  */
 package io.kaoto.camelcatalog.generator.xslt;
 
-import static io.kaoto.camelcatalog.model.Constants.XPATH_FUNCTIONS;
 import static io.kaoto.camelcatalog.model.Constants.XPATH_FUNCTIONS_FILENAME;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,18 +43,20 @@ import io.kaoto.camelcatalog.model.ResolvedVersions;
 public class XsltCatalogGenerator implements CatalogGenerator {
 
     private static final Logger LOGGER = Logger.getLogger(XsltCatalogGenerator.class.getName());
+    private static final String ROOT_CATALOG_NAME = "XSLT Catalogs";
+    private static final String ROOT_CATALOG_VERSION = "1";
 
-    private final String catalogVersion;
+    private final List<String> catalogVersions;
     private final File outputDirectory;
     private final ObjectMapper jsonMapper;
     private ResolvedVersions resolvedVersions;
 
-    public XsltCatalogGenerator(String catalogVersion, File outputDirectory) {
-        this(catalogVersion, outputDirectory, false);
+    public XsltCatalogGenerator(List<String> catalogVersions, File outputDirectory) {
+        this(catalogVersions, outputDirectory, false);
     }
 
-    public XsltCatalogGenerator(String catalogVersion, File outputDirectory, boolean verbose) {
-        this.catalogVersion = catalogVersion;
+    public XsltCatalogGenerator(List<String> catalogVersions, File outputDirectory, boolean verbose) {
+        this.catalogVersions = catalogVersions == null ? Collections.emptyList() : catalogVersions;
         this.outputDirectory = outputDirectory;
         this.jsonMapper = new ObjectMapper()
                 .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
@@ -69,39 +72,51 @@ public class XsltCatalogGenerator implements CatalogGenerator {
     @Override
     public CatalogDefinition generate() {
         try {
-            var catalog = Util.getPrettyJSON(
-                    new XPathFunctionsGenerator(getClass().getClassLoader()).generate());
-            var catalogFileName = XPATH_FUNCTIONS_FILENAME + ".json";
-
-            Files.writeString(outputDirectory.toPath().resolve(catalogFileName), catalog);
-
-            var catalogDefinition = new CatalogDefinition();
-            catalogDefinition.setName("XSLT " + catalogVersion);
-            catalogDefinition.setRuntime(CatalogRuntime.XSLT);
-            catalogDefinition.setVersion(catalogVersion);
-            catalogDefinition.getCatalogs().put(XPATH_FUNCTIONS,
-                    new CatalogDefinitionEntry(
-                            XPATH_FUNCTIONS,
-                            "XPath 3.1 and XSLT 3.0 function catalog",
-                            catalogVersion,
-                            catalogFileName));
-
-            if (resolvedVersions != null) {
-                catalogDefinition.setCamelCatalogVersion(resolvedVersions.camelCatalogVersion());
-                catalogDefinition.setRuntimeProviderVersion(resolvedVersions.runtimeProviderVersion());
-                catalogDefinition.setFrameworkVersion(resolvedVersions.frameworkVersion());
+            if (!outputDirectory.exists()) {
+                outputDirectory.mkdirs();
             }
 
-            String indexContent = jsonMapper.writeValueAsString(catalogDefinition);
-            String indexFileName = "index-" + Util.generateHash(indexContent) + ".json";
-            catalogDefinition.setFileName(indexFileName);
-            Util.createTabWriter(jsonMapper).writeValue(
-                    outputDirectory.toPath().resolve(indexFileName).toFile(), catalogDefinition);
+            var rootDefinition = new CatalogDefinition();
+            rootDefinition.setName(ROOT_CATALOG_NAME);
+            rootDefinition.setVersion(ROOT_CATALOG_VERSION);
+            rootDefinition.setRuntime(CatalogRuntime.XSLT);
 
-            return catalogDefinition;
+            for (String version : catalogVersions) {
+                File versionFolder = outputDirectory.toPath().resolve(version).toFile();
+                if (!versionFolder.exists()) {
+                    versionFolder.mkdirs();
+                }
+
+                var catalog = Util.getPrettyJSON(
+                        new XPathFunctionsGenerator(getClass().getClassLoader()).generate());
+                var catalogFileName = XPATH_FUNCTIONS_FILENAME + ".json";
+                Files.writeString(versionFolder.toPath().resolve(catalogFileName), catalog);
+
+                String relativePath = version + "/" + catalogFileName;
+                rootDefinition.getCatalogs().put(version,
+                        new CatalogDefinitionEntry(
+                                version,
+                                "XPath and XSLT " + version + " function catalog",
+                                version,
+                                relativePath));
+            }
+
+            if (resolvedVersions != null) {
+                rootDefinition.setCamelCatalogVersion(resolvedVersions.camelCatalogVersion());
+                rootDefinition.setRuntimeProviderVersion(resolvedVersions.runtimeProviderVersion());
+                rootDefinition.setFrameworkVersion(resolvedVersions.frameworkVersion());
+            }
+
+            String indexContent = jsonMapper.writeValueAsString(rootDefinition);
+            String indexFileName = "index-" + Util.generateHash(indexContent) + ".json";
+            rootDefinition.setFileName(indexFileName);
+            Util.createTabWriter(jsonMapper).writeValue(
+                    outputDirectory.toPath().resolve(indexFileName).toFile(), rootDefinition);
+
+            return rootDefinition;
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error generating XPath functions catalog", e);
-            throw new RuntimeException("Error generating XPath functions catalog", e);
+            LOGGER.log(Level.SEVERE, "Error generating XSLT catalog index", e);
+            throw new RuntimeException("Error generating XSLT catalog index", e);
         }
     }
 }

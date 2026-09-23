@@ -16,6 +16,7 @@ public class ConfigBean {
     private boolean verbose = false;
     private List<String> repositories = new ArrayList<>();
     private String defaultCliVersion;
+    private List<String> xsltVersions = new ArrayList<>();
 
     public ConfigBean() {
     }
@@ -74,5 +75,19 @@ public class ConfigBean {
 
     public void setDefaultCliVersion(String defaultCliVersion) {
         this.defaultCliVersion = defaultCliVersion;
+    }
+
+    public List<String> getXsltVersions() {
+        return xsltVersions;
+    }
+
+    public void setXsltVersions(List<String> xsltVersions) {
+        this.xsltVersions = xsltVersions == null ? new ArrayList<>() : xsltVersions;
+    }
+
+    public void addXsltVersion(String xsltVersion) {
+        if (!this.xsltVersions.contains(xsltVersion)) {
+            this.xsltVersions.add(xsltVersion);
+        }
     }
 }

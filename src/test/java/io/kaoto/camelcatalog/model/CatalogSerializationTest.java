@@ -86,4 +86,17 @@ class CatalogSerializationTest {
         CatalogLibrary roundTripped = mapper.readValue(json, CatalogLibrary.class);
         assertEquals("starter-templates/index-abc12345.json", roundTripped.getStarterTemplates());
     }
+
+    @Test
+    void testCatalogLibraryXsltCatalogsField() throws Exception {
+        var library = new CatalogLibrary(3, "test");
+        library.setXsltCatalogs("xslt/index-abc12345.json");
+
+        String json = mapper.writeValueAsString(library);
+        assertTrue(json.contains("\"xsltCatalogs\""));
+        assertTrue(json.contains("xslt/index-abc12345.json"));
+
+        CatalogLibrary roundTripped = mapper.readValue(json, CatalogLibrary.class);
+        assertEquals("xslt/index-abc12345.json", roundTripped.getXsltCatalogs());
+    }
 }

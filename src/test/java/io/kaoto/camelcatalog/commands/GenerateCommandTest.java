@@ -56,15 +56,11 @@ class GenerateCommandTest {
         catalogCliArg.setRuntime(CatalogRuntime.MAIN);
         catalogCliArg.setCatalogVersion("4.8.0");
 
-        CatalogCliArgument xsltCliArg = new CatalogCliArgument();
-        xsltCliArg.setRuntime(CatalogRuntime.XSLT);
-        xsltCliArg.setCatalogVersion("3.0");
-
         ConfigBean configBean = new ConfigBean();
         configBean.setOutputFolder(tempDir.toString());
         configBean.setCatalogsName("test-camel-catalog");
         configBean.addCatalogVersion(catalogCliArg);
-        configBean.addCatalogVersion(xsltCliArg);
+        configBean.addXsltVersion("3.0");
         configBean.setKameletsVersion("1.0.0");
 
         generateCommand = new GenerateCommand(configBean);
@@ -137,8 +133,8 @@ class GenerateCommandTest {
                     doCallRealMethod().when(mockLibrary).getName();
                     doCallRealMethod().when(mockLibrary).getDefinitions();
                     doCallRealMethod().when(mockLibrary).addDefinition(any(CatalogDefinition.class));
-                    doCallRealMethod().when(mockLibrary).setXsltCatalog(anyString());
-                    doCallRealMethod().when(mockLibrary).getXsltCatalog();
+                    doCallRealMethod().when(mockLibrary).setXsltCatalogs(anyString());
+                    doCallRealMethod().when(mockLibrary).getXsltCatalogs();
                 })
         ) {
             generateCommand.run();
@@ -169,12 +165,80 @@ class GenerateCommandTest {
             assertNull(catalogDefinition.getFrameworkVersion());
 
             // XSLT must be stored as a dedicated top-level path string, not inside definitions
-            String xsltCatalog = library.getXsltCatalog();
-            assertNotNull(xsltCatalog, "xsltCatalog must be set on the library");
-            assertTrue(xsltCatalog.startsWith("xslt/3.0/index-"),
-                    "xsltCatalog path must point into xslt/3.0/ with a hashed filename: " + xsltCatalog);
-            assertTrue(xsltCatalog.endsWith(".json"),
-                    "xsltCatalog path must end with .json: " + xsltCatalog);
+            String xsltCatalogs = library.getXsltCatalogs();
+            assertNotNull(xsltCatalogs, "xsltCatalogs must be set on the library");
+            assertTrue(xsltCatalogs.startsWith("xslt/index-"),
+                    "xsltCatalogs path must point into xslt/ with a hashed filename: " + xsltCatalogs);
+            assertTrue(xsltCatalogs.endsWith(".json"),
+                    "xsltCatalogs path must end with .json: " + xsltCatalogs);
+
+            // Verify the XSLT root index file and resolution of the 3.0 version entry
+            File xsltRootIndexFile = new File(tempDir, xsltCatalogs);
+            assertTrue(xsltRootIndexFile.exists(), "XSLT root index file must exist at " + xsltRootIndexFile);
+
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                CatalogDefinition xsltRootDef = mapper.readValue(xsltRootIndexFile, CatalogDefinition.class);
+                assertEquals("XSLT Catalogs", xsltRootDef.getName());
+                assertEquals(CatalogRuntime.XSLT, xsltRootDef.getRuntime());
+                assertTrue(xsltRootDef.getCatalogs().containsKey("3.0"), "XSLT root index must contain '3.0' version entry");
+
+                CatalogDefinitionEntry entry30 = xsltRootDef.getCatalogs().get("3.0");
+                assertEquals("3.0", entry30.name());
+                assertEquals("3.0", entry30.version());
+                assertEquals("3.0/xslt-xpath-functions.json", entry30.file());
+
+                // Verify the resolved 3.0 function catalog file exists
+                File xpathFuncsFile = new File(xsltRootIndexFile.getParentFile(), entry30.file());
+                assertTrue(xpathFuncsFile.exists(), "xslt-xpath-functions.json file must exist at " + xpathFuncsFile);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to verify XSLT catalog files", e);
+            }
+        }
+    }
+    @Test
+    void testXsltNotGeneratedWhenNotSpecified() {
+        ConfigBean noXsltConfig = new ConfigBean();
+        noXsltConfig.setOutputFolder(tempDir.toString());
+        noXsltConfig.setCatalogsName("test-camel-catalog");
+        CatalogCliArgument catalogCliArg = new CatalogCliArgument();
+        catalogCliArg.setRuntime(CatalogRuntime.MAIN);
+        catalogCliArg.setCatalogVersion("4.8.0");
+        noXsltConfig.addCatalogVersion(catalogCliArg);
+        noXsltConfig.setKameletsVersion("1.0.0");
+
+        GenerateCommand cmd = new GenerateCommand(noXsltConfig);
+
+        try (
+                var mockedBuilder = mockConstruction(CamelCatalogGeneratorBuilder.class, (mockBuilder, context) -> {
+                    when(mockBuilder.withRuntime(any(CatalogRuntime.class))).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withCatalogVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withKameletsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withCamelKCRDsVersion(anyString())).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withVerbose(anyBoolean())).thenCallRealMethod().thenReturn(mockBuilder);
+                    when(mockBuilder.withResolvedVersions(any())).thenReturn(mockBuilder);
+                    when(mockBuilder.withDefaultCliVersion(any())).thenReturn(mockBuilder);
+                    when(mockBuilder.withOutputDirectory(any(File.class))).thenReturn(mockBuilder);
+                    when(mockBuilder.build()).thenAnswer(invocation -> {
+                        CamelCatalogGenerator catalogGenerator = mock(CamelCatalogGenerator.class);
+                        when(catalogGenerator.generate()).thenReturn(catalogDefinition);
+                        return catalogGenerator;
+                    });
+                });
+                var mockedLibrary = mockConstruction(CatalogLibrary.class, (mockLibrary, context) -> {
+                    mockLibrary.definitions = new ArrayList<>();
+                    doCallRealMethod().when(mockLibrary).getName();
+                    doCallRealMethod().when(mockLibrary).getDefinitions();
+                    doCallRealMethod().when(mockLibrary).addDefinition(any(CatalogDefinition.class));
+                    doCallRealMethod().when(mockLibrary).setStarterTemplates(any());
+                    doCallRealMethod().when(mockLibrary).getStarterTemplates();
+                    doCallRealMethod().when(mockLibrary).setXsltCatalogs(any());
+                    doCallRealMethod().when(mockLibrary).getXsltCatalogs();
+                })) {
+            cmd.run();
+
+            CatalogLibrary library = mockedLibrary.constructed().get(0);
+            assertNull(library.getXsltCatalogs(), "xsltCatalogs must be null when xslt versions are not specified");
         }
     }
 

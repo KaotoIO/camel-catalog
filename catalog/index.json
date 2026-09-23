@@ -224,5 +224,5 @@
 		}
 	],
 	"starterTemplates" : "starter-templates/index-e8af9122.json",
-	"xsltCatalog" : "xslt/3.0/index-4afc8091.json"
+	"xsltCatalogs" : "xslt/index-307dc97f.json"
 }

@@ -7,6 +7,7 @@ import io.kaoto.camelcatalog.generator.camel.CamelCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.Util;
 import io.kaoto.camelcatalog.generator.citrus.CitrusCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.generator.templates.StarterTemplatesGeneratorBuilder;
+import io.kaoto.camelcatalog.generator.xslt.XsltCatalogGenerator;
 import io.kaoto.camelcatalog.generator.xslt.XsltCatalogGeneratorBuilder;
 import io.kaoto.camelcatalog.maven.PomFetcher;
 import io.kaoto.camelcatalog.maven.RuntimeVersionResolver;
@@ -19,6 +20,8 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class GenerateCommand implements Runnable {
@@ -47,9 +50,10 @@ public class GenerateCommand implements Runnable {
 
         configBean.getCatalogVersionSet()
                 .forEach(catalogCliArg -> {
-                    if (catalogCliArg.getRuntime() == CatalogRuntime.STARTER_TEMPLATES) {
+                    if (catalogCliArg.getRuntime() == CatalogRuntime.STARTER_TEMPLATES
+                            || catalogCliArg.getRuntime() == CatalogRuntime.XSLT) {
                         throw new IllegalArgumentException(
-                                "StarterTemplates is not a versioned CLI runtime");
+                                catalogCliArg.getRuntime() + " is not a versioned CLI runtime");
                     }
 
                     ResolvedVersions resolved = versionResolver.resolve(
@@ -83,14 +87,8 @@ public class GenerateCommand implements Runnable {
                                 .withVerbose(configBean.isVerbose())
                                 .withResolvedVersions(resolved)
                                 .build();
-                        case XSLT -> new XsltCatalogGeneratorBuilder()
-                                .withCatalogVersion(downloadVersion)
-                                .withOutputDirectory(catalogDefinitionFolder)
-                                .withVerbose(configBean.isVerbose())
-                                .withResolvedVersions(resolved)
-                                .build();
-                        case STARTER_TEMPLATES -> throw new IllegalStateException(
-                                "StarterTemplates is not a versioned CLI runtime");
+                        case XSLT, STARTER_TEMPLATES -> throw new IllegalStateException(
+                                catalogCliArg.getRuntime() + " is not a versioned CLI runtime");
                     };
 
                     CatalogDefinition catalogDefinition = catalogGenerator.generate();
@@ -104,11 +102,7 @@ public class GenerateCommand implements Runnable {
 
                     catalogDefinition.setFileName(relateIndexFile);
 
-                    if (catalogCliArg.getRuntime() == CatalogRuntime.XSLT) {
-                        library.setXsltCatalog(relateIndexFile);
-                    } else {
-                        library.addDefinition(catalogDefinition);
-                    }
+                    library.addDefinition(catalogDefinition);
                 });
 
         // Generate starter templates once — runtime-agnostic, invoked after the runtime loop
@@ -122,6 +116,21 @@ public class GenerateCommand implements Runnable {
                 .relativize(starterTemplatesFolder.toPath().resolve(starterDef.getFileName()))
                 .toString().replace(File.separator, "/");
         library.setStarterTemplates(relativeStarterIndex);
+
+        // Generate XSLT catalogs once — runtime-agnostic, invoked after the runtime loop
+        if (!configBean.getXsltVersions().isEmpty()) {
+            File xsltFolder = createSubFolder(outputFolder, CatalogRuntime.XSLT.getRuntimeFolder());
+            CatalogDefinition xsltRootDef = new XsltCatalogGeneratorBuilder()
+                    .withOutputDirectory(xsltFolder)
+                    .withCatalogVersions(configBean.getXsltVersions())
+                    .withVerbose(configBean.isVerbose())
+                    .build()
+                    .generate();
+            String relativeXsltIndex = outputFolder.toPath()
+                    .relativize(xsltFolder.toPath().resolve(xsltRootDef.getFileName()))
+                    .toString().replace(File.separator, "/");
+            library.setXsltCatalogs(relativeXsltIndex);
+        }
 
         ObjectMapper jsonMapper = new ObjectMapper()
                 .configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);

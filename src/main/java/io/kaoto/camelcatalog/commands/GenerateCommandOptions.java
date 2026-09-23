@@ -97,7 +97,13 @@ public class GenerateCommandOptions {
         addRuntimeVersions(configBean, cmd, camelQuarkusVersionOption, CatalogRuntime.QUARKUS);
         addRuntimeVersions(configBean, cmd, camelSpringbootVersionOption, CatalogRuntime.SPRING_BOOT);
         addRuntimeVersions(configBean, cmd, citrusVersionOption, CatalogRuntime.CITRUS);
-        addRuntimeVersions(configBean, cmd, xsltVersionOption, CatalogRuntime.XSLT);
+
+        String[] xsltVersions = cmd.getOptionValues(xsltVersionOption.getOpt());
+        if (xsltVersions != null) {
+            for (String v : xsltVersions) {
+                configBean.addXsltVersion(v);
+            }
+        }
 
         if (configBean.getCatalogVersionSet().isEmpty()) {
             addDefaultVersions(configBean);

@@ -18,6 +18,7 @@ package io.kaoto.camelcatalog.generator.xslt;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
+import io.kaoto.camelcatalog.model.CatalogDefinitionEntry;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import io.kaoto.camelcatalog.model.ResolvedVersions;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,33 +47,34 @@ class XsltCatalogGeneratorTest {
 
     @Test
     void testConstructorInitialization() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
         assertNotNull(generator);
     }
 
     @Test
-    void testGenerateReturnsValidCatalogDefinition() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+    void testGenerateReturnsValidRootCatalogDefinition() {
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
         CatalogDefinition catalogDefinition = generator.generate();
 
         assertNotNull(catalogDefinition);
-        assertEquals("XSLT 3.0", catalogDefinition.getName());
+        assertEquals("XSLT Catalogs", catalogDefinition.getName());
         assertEquals(CatalogRuntime.XSLT, catalogDefinition.getRuntime());
-        assertEquals("3.0", catalogDefinition.getVersion());
+        assertEquals("1", catalogDefinition.getVersion());
         assertTrue(catalogDefinition.getFileName().startsWith("index-"),
                 "fileName should be a hashed index filename");
         assertTrue(catalogDefinition.getFileName().endsWith(".json"),
                 "fileName should end with .json");
+        assertTrue(catalogDefinition.getCatalogs().containsKey("3.0"));
     }
 
     @Test
     void testGenerateCreatesCatalogFile() throws Exception {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
         generator.generate();
 
-        Path catalogFile = tempDir.resolve("xslt-xpath-functions.json");
+        Path catalogFile = tempDir.resolve("3.0").resolve("xslt-xpath-functions.json");
         assertTrue(Files.exists(catalogFile));
 
         JsonNode catalog = objectMapper.readTree(catalogFile.toFile());
@@ -81,36 +83,42 @@ class XsltCatalogGeneratorTest {
     }
 
     @Test
-    void testGenerateCreatesIndexFile() throws Exception {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+    void testGenerateCreatesIndexFiles() throws Exception {
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDefinition = generator.generate();
 
-        Path indexFile = tempDir.resolve(catalogDefinition.getFileName());
-        assertTrue(Files.exists(indexFile));
+        Path rootIndexFile = tempDir.resolve(rootDefinition.getFileName());
+        assertTrue(Files.exists(rootIndexFile));
 
-        JsonNode index = objectMapper.readTree(indexFile.toFile());
-        assertEquals("XSLT 3.0", index.get("name").asText());
-        assertEquals("XSLT", index.get("runtime").asText());
-        assertEquals("3.0", index.get("version").asText());
+        JsonNode rootIndex = objectMapper.readTree(rootIndexFile.toFile());
+        assertEquals("XSLT Catalogs", rootIndex.get("name").asText());
+        assertEquals("XSLT", rootIndex.get("runtime").asText());
+        assertEquals("1", rootIndex.get("version").asText());
+
+        CatalogDefinitionEntry entry30 = rootDefinition.getCatalogs().get("3.0");
+        assertNotNull(entry30);
+        assertEquals("3.0/xslt-xpath-functions.json", entry30.file());
+        Path v30FunctionsFile = tempDir.resolve(entry30.file());
+        assertTrue(Files.exists(v30FunctionsFile));
     }
 
     @Test
-    void testGenerateCatalogDefinitionHasXPathFunctionsEntry() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+    void testGenerateCatalogDefinitionHasVersionEntry() {
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDefinition = generator.generate();
 
-        assertTrue(catalogDefinition.getCatalogs().containsKey("xpathFunctions"));
-        var entry = catalogDefinition.getCatalogs().get("xpathFunctions");
-        assertEquals("xpathFunctions", entry.name());
-        assertEquals("xslt-xpath-functions.json", entry.file());
+        assertTrue(rootDefinition.getCatalogs().containsKey("3.0"));
+        var entry = rootDefinition.getCatalogs().get("3.0");
+        assertEquals("3.0", entry.name());
+        assertEquals("3.0/xslt-xpath-functions.json", entry.file());
         assertEquals("3.0", entry.version());
     }
 
     @Test
     void testGenerateWithResolvedVersions() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
         var resolvedVersions = new ResolvedVersions(
                 "4.15.0",
@@ -120,48 +128,39 @@ class XsltCatalogGeneratorTest {
         );
         generator.setResolvedVersions(resolvedVersions);
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDefinition = generator.generate();
 
-        assertNotNull(catalogDefinition);
-        assertEquals("4.15.0", catalogDefinition.getCamelCatalogVersion());
-        assertEquals("4.15.0", catalogDefinition.getRuntimeProviderVersion());
-        assertEquals("3.27.0", catalogDefinition.getFrameworkVersion());
+        assertNotNull(rootDefinition);
+        assertEquals("4.15.0", rootDefinition.getCamelCatalogVersion());
+        assertEquals("4.15.0", rootDefinition.getRuntimeProviderVersion());
+        assertEquals("3.27.0", rootDefinition.getFrameworkVersion());
     }
 
     @Test
     void testGenerateWithNullResolvedVersions() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDefinition = generator.generate();
 
-        assertNotNull(catalogDefinition);
-        assertNull(catalogDefinition.getCamelCatalogVersion());
-        assertNull(catalogDefinition.getRuntimeProviderVersion());
-        assertNull(catalogDefinition.getFrameworkVersion());
+        assertNotNull(rootDefinition);
+        assertNull(rootDefinition.getCamelCatalogVersion());
+        assertNull(rootDefinition.getRuntimeProviderVersion());
+        assertNull(rootDefinition.getFrameworkVersion());
     }
 
     @Test
-    void testCatalogDefinitionNameFormat() {
-        String[] versions = {"3.0", "3.1", "4.0-SNAPSHOT"};
+    void testGenerateMultipleVersions() {
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0", "3.1"), outputDirectory);
+        CatalogDefinition rootDefinition = generator.generate();
 
-        for (String version : versions) {
-            var generator = new XsltCatalogGenerator(version, outputDirectory);
-            CatalogDefinition catalogDefinition = generator.generate();
-
-            assertEquals("XSLT " + version, catalogDefinition.getName());
-        }
-    }
-
-    @Test
-    void testCatalogDefinitionFileName() {
-        var generator = new XsltCatalogGenerator("3.0", outputDirectory);
-
-        CatalogDefinition catalogDefinition = generator.generate();
-
-        assertTrue(catalogDefinition.getFileName().startsWith("index-"),
-                "fileName should be a hashed index filename");
-        assertTrue(catalogDefinition.getFileName().endsWith(".json"),
-                "fileName should end with .json");
+        assertEquals("XSLT Catalogs", rootDefinition.getName());
+        assertEquals(2, rootDefinition.getCatalogs().size());
+        assertTrue(rootDefinition.getCatalogs().containsKey("3.0"));
+        assertTrue(rootDefinition.getCatalogs().containsKey("3.1"));
+        assertEquals("3.0/xslt-xpath-functions.json", rootDefinition.getCatalogs().get("3.0").file());
+        assertEquals("3.1/xslt-xpath-functions.json", rootDefinition.getCatalogs().get("3.1").file());
+        assertTrue(Files.exists(tempDir.resolve("3.0/xslt-xpath-functions.json")));
+        assertTrue(Files.exists(tempDir.resolve("3.1/xslt-xpath-functions.json")));
     }
 
 }

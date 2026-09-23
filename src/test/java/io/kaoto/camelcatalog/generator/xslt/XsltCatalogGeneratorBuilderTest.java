@@ -55,9 +55,10 @@ class XsltCatalogGeneratorBuilderTest {
 
         CatalogDefinition catalogDefinition = generator.generate();
 
-        assertEquals("XSLT 3.0", catalogDefinition.getName());
-        assertEquals("3.0", catalogDefinition.getVersion());
+        assertEquals("XSLT Catalogs", catalogDefinition.getName());
+        assertEquals("1", catalogDefinition.getVersion());
         assertEquals(CatalogRuntime.XSLT, catalogDefinition.getRuntime());
+        assertTrue(catalogDefinition.getCatalogs().containsKey("3.0"));
     }
 
     @Test
@@ -73,7 +74,7 @@ class XsltCatalogGeneratorBuilderTest {
 
         generator.generate();
 
-        assertTrue(new File(outputDir, "xslt-xpath-functions.json").exists());
+        assertTrue(new File(outputDir, "3.0/xslt-xpath-functions.json").exists());
         assertTrue(Arrays.stream(outputDir.list()).anyMatch(f -> f.startsWith("index-") && f.endsWith(".json")),
                 "Expected a hashed index-*.json file in " + outputDir);
     }
@@ -94,11 +95,11 @@ class XsltCatalogGeneratorBuilderTest {
                 .withResolvedVersions(resolvedVersions)
                 .build();
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDef = generator.generate();
 
-        assertEquals("4.15.0", catalogDefinition.getCamelCatalogVersion());
-        assertEquals("4.15.0", catalogDefinition.getRuntimeProviderVersion());
-        assertEquals("3.27.0", catalogDefinition.getFrameworkVersion());
+        assertEquals("4.15.0", rootDef.getCamelCatalogVersion());
+        assertEquals("4.15.0", rootDef.getRuntimeProviderVersion());
+        assertEquals("3.27.0", rootDef.getFrameworkVersion());
     }
 
     @Test
@@ -109,11 +110,11 @@ class XsltCatalogGeneratorBuilderTest {
                 .withVerbose(false)
                 .build();
 
-        CatalogDefinition catalogDefinition = generator.generate();
+        CatalogDefinition rootDef = generator.generate();
 
-        assertNull(catalogDefinition.getCamelCatalogVersion());
-        assertNull(catalogDefinition.getRuntimeProviderVersion());
-        assertNull(catalogDefinition.getFrameworkVersion());
+        assertNull(rootDef.getCamelCatalogVersion());
+        assertNull(rootDef.getRuntimeProviderVersion());
+        assertNull(rootDef.getFrameworkVersion());
     }
 
     @Test
@@ -128,10 +129,32 @@ class XsltCatalogGeneratorBuilderTest {
     }
 
     @Test
+    void testBuilderWithMultipleVersions() {
+        File outputDir = tempDir.resolve("multi-version").toFile();
+        outputDir.mkdirs();
+
+        CatalogGenerator generator = new XsltCatalogGeneratorBuilder()
+                .withCatalogVersions(java.util.List.of("3.0"))
+                .withOutputDirectory(outputDir)
+                .withVerbose(false)
+                .build();
+
+        CatalogDefinition rootDef = generator.generate();
+
+        assertNotNull(rootDef);
+        assertEquals("XSLT Catalogs", rootDef.getName());
+        assertEquals("1", rootDef.getVersion());
+        assertTrue(rootDef.getCatalogs().containsKey("3.0"));
+        assertTrue(new File(outputDir, "3.0/xslt-xpath-functions.json").exists());
+        assertTrue(new File(outputDir, rootDef.getFileName()).exists());
+    }
+
+    @Test
     void testBuilderFluentChaining() {
         var builder = new XsltCatalogGeneratorBuilder();
 
         assertSame(builder, builder.withCatalogVersion("3.0"));
+        assertSame(builder, builder.withCatalogVersions(java.util.List.of("3.0")));
         assertSame(builder, builder.withOutputDirectory(tempDir.toFile()));
         assertSame(builder, builder.withVerbose(false));
         assertSame(builder, builder.withResolvedVersions(null));
