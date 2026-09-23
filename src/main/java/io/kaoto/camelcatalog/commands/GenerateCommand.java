@@ -104,7 +104,11 @@ public class GenerateCommand implements Runnable {
 
                     catalogDefinition.setFileName(relateIndexFile);
 
-                    library.addDefinition(catalogDefinition);
+                    if (catalogCliArg.getRuntime() == CatalogRuntime.XSLT) {
+                        library.setXsltCatalog(relateIndexFile);
+                    } else {
+                        library.addDefinition(catalogDefinition);
+                    }
                 });
 
         // Generate starter templates once — runtime-agnostic, invoked after the runtime loop

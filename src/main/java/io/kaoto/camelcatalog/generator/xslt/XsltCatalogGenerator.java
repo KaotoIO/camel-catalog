@@ -79,7 +79,6 @@ public class XsltCatalogGenerator implements CatalogGenerator {
             catalogDefinition.setName("XSLT " + catalogVersion);
             catalogDefinition.setRuntime(CatalogRuntime.XSLT);
             catalogDefinition.setVersion(catalogVersion);
-            catalogDefinition.setFileName("index.json");
             catalogDefinition.getCatalogs().put(XPATH_FUNCTIONS,
                     new CatalogDefinitionEntry(
                             XPATH_FUNCTIONS,
@@ -93,8 +92,11 @@ public class XsltCatalogGenerator implements CatalogGenerator {
                 catalogDefinition.setFrameworkVersion(resolvedVersions.frameworkVersion());
             }
 
+            String indexContent = jsonMapper.writeValueAsString(catalogDefinition);
+            String indexFileName = "index-" + Util.generateHash(indexContent) + ".json";
+            catalogDefinition.setFileName(indexFileName);
             Util.createTabWriter(jsonMapper).writeValue(
-                    outputDirectory.toPath().resolve("index.json").toFile(), catalogDefinition);
+                    outputDirectory.toPath().resolve(indexFileName).toFile(), catalogDefinition);
 
             return catalogDefinition;
         } catch (Exception e) {

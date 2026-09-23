@@ -27,6 +27,7 @@ public class CatalogLibrary {
     private final int version;
     private final String name;
     private String starterTemplates;
+    private String xsltCatalog;
 
     @JsonCreator
     public CatalogLibrary(@JsonProperty("version") int version, @JsonProperty("name") String name) {
@@ -48,6 +49,14 @@ public class CatalogLibrary {
 
     public void setStarterTemplates(String starterTemplates) {
         this.starterTemplates = starterTemplates;
+    }
+
+    public String getXsltCatalog() {
+        return xsltCatalog;
+    }
+
+    public void setXsltCatalog(String xsltCatalog) {
+        this.xsltCatalog = xsltCatalog;
     }
 
     public List<CatalogLibraryEntry> getDefinitions() {

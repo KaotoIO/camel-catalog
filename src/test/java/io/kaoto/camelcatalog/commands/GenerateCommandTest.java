@@ -137,6 +137,8 @@ class GenerateCommandTest {
                     doCallRealMethod().when(mockLibrary).getName();
                     doCallRealMethod().when(mockLibrary).getDefinitions();
                     doCallRealMethod().when(mockLibrary).addDefinition(any(CatalogDefinition.class));
+                    doCallRealMethod().when(mockLibrary).setXsltCatalog(anyString());
+                    doCallRealMethod().when(mockLibrary).getXsltCatalog();
                 })
         ) {
             generateCommand.run();
@@ -146,7 +148,9 @@ class GenerateCommandTest {
             assertEquals(1, mockedLibrary.constructed().size());
             assertEquals(3, ref.version);
             assertEquals("test-camel-catalog", ref.name);
-            assertEquals(2, library.getDefinitions().size());
+
+            // XSLT must NOT be in definitions
+            assertEquals(1, library.getDefinitions().size());
 
             CatalogLibraryEntry catalogLibraryEntry = library.getDefinitions().get(0);
             assertEquals("test-camel-catalog", catalogLibraryEntry.name());
@@ -164,11 +168,13 @@ class GenerateCommandTest {
             assertNull(catalogDefinition.getRuntimeProviderVersion());
             assertNull(catalogDefinition.getFrameworkVersion());
 
-            CatalogLibraryEntry xsltEntry = library.getDefinitions().get(1);
-            assertEquals("XSLT 3.0", xsltEntry.name());
-            assertEquals("3.0", xsltEntry.version());
-            assertEquals("XSLT", xsltEntry.runtime());
-            assertEquals("xslt/3.0/index.json", xsltEntry.fileName());
+            // XSLT must be stored as a dedicated top-level path string, not inside definitions
+            String xsltCatalog = library.getXsltCatalog();
+            assertNotNull(xsltCatalog, "xsltCatalog must be set on the library");
+            assertTrue(xsltCatalog.startsWith("xslt/3.0/index-"),
+                    "xsltCatalog path must point into xslt/3.0/ with a hashed filename: " + xsltCatalog);
+            assertTrue(xsltCatalog.endsWith(".json"),
+                    "xsltCatalog path must end with .json: " + xsltCatalog);
         }
     }
 

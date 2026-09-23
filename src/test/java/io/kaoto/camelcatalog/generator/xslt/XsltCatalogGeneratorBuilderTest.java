@@ -24,6 +24,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,7 +74,8 @@ class XsltCatalogGeneratorBuilderTest {
         generator.generate();
 
         assertTrue(new File(outputDir, "xslt-xpath-functions.json").exists());
-        assertTrue(new File(outputDir, "index.json").exists());
+        assertTrue(Arrays.stream(outputDir.list()).anyMatch(f -> f.startsWith("index-") && f.endsWith(".json")),
+                "Expected a hashed index-*.json file in " + outputDir);
     }
 
     @Test

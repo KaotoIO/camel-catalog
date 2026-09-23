@@ -60,7 +60,10 @@ class XsltCatalogGeneratorTest {
         assertEquals("XSLT 3.0", catalogDefinition.getName());
         assertEquals(CatalogRuntime.XSLT, catalogDefinition.getRuntime());
         assertEquals("3.0", catalogDefinition.getVersion());
-        assertEquals("index.json", catalogDefinition.getFileName());
+        assertTrue(catalogDefinition.getFileName().startsWith("index-"),
+                "fileName should be a hashed index filename");
+        assertTrue(catalogDefinition.getFileName().endsWith(".json"),
+                "fileName should end with .json");
     }
 
     @Test
@@ -81,9 +84,9 @@ class XsltCatalogGeneratorTest {
     void testGenerateCreatesIndexFile() throws Exception {
         var generator = new XsltCatalogGenerator("3.0", outputDirectory);
 
-        generator.generate();
+        CatalogDefinition catalogDefinition = generator.generate();
 
-        Path indexFile = tempDir.resolve("index.json");
+        Path indexFile = tempDir.resolve(catalogDefinition.getFileName());
         assertTrue(Files.exists(indexFile));
 
         JsonNode index = objectMapper.readTree(indexFile.toFile());
@@ -155,7 +158,10 @@ class XsltCatalogGeneratorTest {
 
         CatalogDefinition catalogDefinition = generator.generate();
 
-        assertEquals("index.json", catalogDefinition.getFileName());
+        assertTrue(catalogDefinition.getFileName().startsWith("index-"),
+                "fileName should be a hashed index filename");
+        assertTrue(catalogDefinition.getFileName().endsWith(".json"),
+                "fileName should end with .json");
     }
 
 }
