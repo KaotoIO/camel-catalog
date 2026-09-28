@@ -72,9 +72,11 @@ class XsltCatalogGeneratorTest {
     void testGenerateCreatesCatalogFile() throws Exception {
         var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
 
-        generator.generate();
+        CatalogDefinition rootDefinition = generator.generate();
 
-        Path catalogFile = tempDir.resolve("3.0").resolve("xslt-xpath-functions.json");
+        // filename now includes a content hash, e.g. xslt-xpath-functions-<hash>.json
+        String catalogFileName = rootDefinition.getCatalogs().get("3.0").file();
+        Path catalogFile = tempDir.resolve(catalogFileName);
         assertTrue(Files.exists(catalogFile));
 
         JsonNode catalog = objectMapper.readTree(catalogFile.toFile());
@@ -98,7 +100,10 @@ class XsltCatalogGeneratorTest {
 
         CatalogDefinitionEntry entry30 = rootDefinition.getCatalogs().get("3.0");
         assertNotNull(entry30);
-        assertEquals("3.0/xslt-xpath-functions.json", entry30.file());
+        assertTrue(entry30.file().startsWith("3.0/xslt-xpath-functions-"),
+                "catalog entry file should start with versioned prefix");
+        assertTrue(entry30.file().endsWith(".json"),
+                "catalog entry file should end with .json");
         Path v30FunctionsFile = tempDir.resolve(entry30.file());
         assertTrue(Files.exists(v30FunctionsFile));
     }
@@ -112,7 +117,10 @@ class XsltCatalogGeneratorTest {
         assertTrue(rootDefinition.getCatalogs().containsKey("3.0"));
         var entry = rootDefinition.getCatalogs().get("3.0");
         assertEquals("3.0", entry.name());
-        assertEquals("3.0/xslt-xpath-functions.json", entry.file());
+        assertTrue(entry.file().startsWith("3.0/xslt-xpath-functions-"),
+                "catalog entry file should start with versioned prefix");
+        assertTrue(entry.file().endsWith(".json"),
+                "catalog entry file should end with .json");
         assertEquals("3.0", entry.version());
     }
 
@@ -157,10 +165,23 @@ class XsltCatalogGeneratorTest {
         assertEquals(2, rootDefinition.getCatalogs().size());
         assertTrue(rootDefinition.getCatalogs().containsKey("3.0"));
         assertTrue(rootDefinition.getCatalogs().containsKey("3.1"));
-        assertEquals("3.0/xslt-xpath-functions.json", rootDefinition.getCatalogs().get("3.0").file());
-        assertEquals("3.1/xslt-xpath-functions.json", rootDefinition.getCatalogs().get("3.1").file());
-        assertTrue(Files.exists(tempDir.resolve("3.0/xslt-xpath-functions.json")));
-        assertTrue(Files.exists(tempDir.resolve("3.1/xslt-xpath-functions.json")));
+        String file30 = rootDefinition.getCatalogs().get("3.0").file();
+        String file31 = rootDefinition.getCatalogs().get("3.1").file();
+        assertTrue(file30.startsWith("3.0/xslt-xpath-functions-") && file30.endsWith(".json"));
+        assertTrue(file31.startsWith("3.1/xslt-xpath-functions-") && file31.endsWith(".json"));
+        assertTrue(Files.exists(tempDir.resolve(file30)));
+        assertTrue(Files.exists(tempDir.resolve(file31)));
+    }
+
+    @Test
+    void testFunctionCatalogFilenameIncludesContentHash() {
+        var generator = new XsltCatalogGenerator(java.util.List.of("3.0"), outputDirectory);
+        CatalogDefinition rootDefinition = generator.generate();
+
+        String catalogFile = rootDefinition.getCatalogs().get("3.0").file();
+        // filename must be: xslt-xpath-functions-<hash>.json  (not fixed)
+        assertTrue(catalogFile.matches("3\\.0/xslt-xpath-functions-[0-9a-f]+\\.json"),
+                "function catalog filename must contain a content hash: " + catalogFile);
     }
 
 }
