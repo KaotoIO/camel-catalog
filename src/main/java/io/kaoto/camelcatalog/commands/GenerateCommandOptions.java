@@ -1,5 +1,6 @@
 package io.kaoto.camelcatalog.commands;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.apache.camel.catalog.CamelCatalog;
@@ -22,6 +23,7 @@ import io.kaoto.camelcatalog.model.CatalogRuntime;
 public class GenerateCommandOptions {
     private static final Logger LOGGER = Logger.getLogger(GenerateCommandOptions.class.getName());
     private static final String OPT_VERSION = "version";
+    private static final Set<String> SUPPORTED_XSLT_VERSIONS = Set.of("3.0", "3.1");
     private Options options = new Options();
     private ConfigBean configBean;
 
@@ -101,6 +103,10 @@ public class GenerateCommandOptions {
         String[] xsltVersions = cmd.getOptionValues(xsltVersionOption.getOpt());
         if (xsltVersions != null) {
             for (String v : xsltVersions) {
+                if (!SUPPORTED_XSLT_VERSIONS.contains(v)) {
+                    throw new ParseException("Unsupported XSLT version: " + v
+                            + ". Supported versions are: " + SUPPORTED_XSLT_VERSIONS);
+                }
                 configBean.addXsltVersion(v);
             }
         }

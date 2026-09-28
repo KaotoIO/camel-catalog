@@ -72,9 +72,11 @@ class XsltCatalogGeneratorBuilderTest {
                 .withVerbose(false)
                 .build();
 
-        generator.generate();
+        CatalogDefinition rootDef = generator.generate();
 
-        assertTrue(new File(outputDir, "3.0/xslt-xpath-functions.json").exists());
+        String catalogFile = rootDef.getCatalogs().get("3.0").file();
+        assertTrue(new File(outputDir, catalogFile).exists(),
+                "function catalog file must exist at " + catalogFile);
         assertTrue(Arrays.stream(outputDir.list()).anyMatch(f -> f.startsWith("index-") && f.endsWith(".json")),
                 "Expected a hashed index-*.json file in " + outputDir);
     }
@@ -145,7 +147,9 @@ class XsltCatalogGeneratorBuilderTest {
         assertEquals("XSLT Catalogs", rootDef.getName());
         assertEquals("1", rootDef.getVersion());
         assertTrue(rootDef.getCatalogs().containsKey("3.0"));
-        assertTrue(new File(outputDir, "3.0/xslt-xpath-functions.json").exists());
+        String catalogFile = rootDef.getCatalogs().get("3.0").file();
+        assertTrue(new File(outputDir, catalogFile).exists(),
+                "function catalog file must exist at " + catalogFile);
         assertTrue(new File(outputDir, rootDef.getFileName()).exists());
     }
 
