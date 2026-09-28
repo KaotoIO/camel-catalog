@@ -92,7 +92,9 @@ public class XsltCatalogGenerator implements CatalogGenerator {
                 var catalogFileName = XPATH_FUNCTIONS_FILENAME + "-" + Util.generateHash(catalog) + ".json";
                 Files.writeString(versionFolder.toPath().resolve(catalogFileName), catalog);
 
-                String relativePath = version + "/" + catalogFileName;
+                String relativePath = outputDirectory.toPath()
+                        .relativize(versionFolder.toPath().resolve(catalogFileName))
+                        .toString().replace(File.separator, "/");
                 rootDefinition.getCatalogs().put(version,
                         new CatalogDefinitionEntry(
                                 version,
