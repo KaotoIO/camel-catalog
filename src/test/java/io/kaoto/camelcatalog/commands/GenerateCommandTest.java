@@ -186,11 +186,14 @@ class GenerateCommandTest {
                 CatalogDefinitionEntry entry30 = xsltRootDef.getCatalogs().get("3.0");
                 assertEquals("3.0", entry30.name());
                 assertEquals("3.0", entry30.version());
-                assertEquals("3.0/xslt-xpath-functions.json", entry30.file());
+                assertTrue(entry30.file().startsWith("3.0/xslt-xpath-functions-"),
+                        "catalog entry file should start with versioned prefix: " + entry30.file());
+                assertTrue(entry30.file().endsWith(".json"),
+                        "catalog entry file should end with .json: " + entry30.file());
 
                 // Verify the resolved 3.0 function catalog file exists
                 File xpathFuncsFile = new File(xsltRootIndexFile.getParentFile(), entry30.file());
-                assertTrue(xpathFuncsFile.exists(), "xslt-xpath-functions.json file must exist at " + xpathFuncsFile);
+                assertTrue(xpathFuncsFile.exists(), "function catalog file must exist at " + xpathFuncsFile);
             } catch (Exception e) {
                 throw new RuntimeException("Failed to verify XSLT catalog files", e);
             }

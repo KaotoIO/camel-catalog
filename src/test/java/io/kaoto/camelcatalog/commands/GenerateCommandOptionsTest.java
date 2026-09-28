@@ -118,6 +118,31 @@ public class GenerateCommandOptionsTest {
         generateCommandOptions.configure(args);
 
         assertTrue(configBean.getCatalogVersionSet().size() == 3);
+    }
 
+    @Test
+    public void testConfigureWithSupportedXsltVersions() throws ParseException {
+        ConfigBean configBean = new ConfigBean();
+        GenerateCommandOptions generateCommandOptions = new GenerateCommandOptions(configBean);
+        String[] args = { "-o", "outputDir", "-n", "catalogName", "-k", "kameletsVersion", "-x", "3.0", "-x", "3.1" };
+
+        generateCommandOptions.configure(args);
+
+        assertEquals(2, configBean.getXsltVersions().size());
+        assertTrue(configBean.getXsltVersions().contains("3.0"));
+        assertTrue(configBean.getXsltVersions().contains("3.1"));
+    }
+
+    @Test
+    public void testConfigureRejectsUnsupportedXsltVersion() {
+        ConfigBean configBean = new ConfigBean();
+        GenerateCommandOptions generateCommandOptions = new GenerateCommandOptions(configBean);
+        String[] args = { "-o", "outputDir", "-n", "catalogName", "-k", "kameletsVersion", "-x", "2.0" };
+
+        Exception exception = assertThrows(ParseException.class, () -> {
+            generateCommandOptions.configure(args);
+        });
+
+        assertTrue(exception.getMessage().contains("Unsupported XSLT version: 2.0"));
     }
 }
