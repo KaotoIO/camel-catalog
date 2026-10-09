@@ -1,0 +1,232 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$defs" : {
+    "ConditionalBeanGroup" : {
+      "type" : "object",
+      "properties" : {
+        "beans" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ConditionalBeanInfo"
+          }
+        },
+        "configEntry" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "runtimeDependencies" : {
+          "$ref" : "#/$defs/Map(String,List(String))"
+        }
+      }
+    },
+    "ConditionalBeanInfo" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "string"
+        },
+        "javaType" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameFromConfig" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ConfigEntry" : {
+      "type" : "object",
+      "properties" : {
+        "configTag" : {
+          "type" : "string"
+        },
+        "defaultValue" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "example" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "required" : {
+          "type" : "boolean"
+        },
+        "selectsFrom" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FactoryVariant" : {
+      "type" : "object",
+      "properties" : {
+        "additionalDependencies" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "className" : {
+          "type" : "string"
+        },
+        "gav" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FactoryVariants" : {
+      "type" : "object",
+      "properties" : {
+        "base" : {
+          "$ref" : "#/$defs/FactoryVariant"
+        },
+        "quarkus" : {
+          "$ref" : "#/$defs/FactoryVariant"
+        },
+        "springboot" : {
+          "$ref" : "#/$defs/FactoryVariant"
+        }
+      }
+    },
+    "FeatureBeans" : {
+      "type" : "object",
+      "properties" : {
+        "beans" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ForageBean"
+          }
+        },
+        "feature" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ForageBean" : {
+      "type" : "object",
+      "properties" : {
+        "className" : {
+          "type" : "string"
+        },
+        "configEntries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ConfigEntry"
+          }
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "gav" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "propertiesFile" : {
+          "type" : "string"
+        },
+        "repositories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "runtimeDependencies" : {
+          "$ref" : "#/$defs/Map(String,List(String))"
+        }
+      }
+    },
+    "ForageFactory" : {
+      "type" : "object",
+      "properties" : {
+        "autowired" : {
+          "type" : "boolean"
+        },
+        "beansByFeature" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/FeatureBeans"
+          }
+        },
+        "components" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "conditionalBeans" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ConditionalBeanGroup"
+          }
+        },
+        "configEntries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ConfigEntry"
+          }
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "factoryType" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "propertiesFile" : {
+          "type" : "string"
+        },
+        "variants" : {
+          "$ref" : "#/$defs/FactoryVariants"
+        }
+      }
+    },
+    "Map(String,List(String))" : {
+      "type" : "object"
+    },
+    "Map(String,String)" : {
+      "type" : "object"
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "factories" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/ForageFactory"
+      }
+    },
+    "generatedBy" : {
+      "type" : "string"
+    },
+    "runtimeVersions" : {
+      "$ref" : "#/$defs/Map(String,String)"
+    },
+    "timestamp" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "version" : {
+      "type" : "string"
+    }
+  }
+}

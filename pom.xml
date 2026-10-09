@@ -25,6 +25,7 @@
     <version.maven-enforcer-plugin>3.6.2</version.maven-enforcer-plugin>
     <version.maven-compiler-plugin>3.14.1</version.maven-compiler-plugin>
     <version.maven-surefire-plugin>3.5.4</version.maven-surefire-plugin>
+    <forage.version>1.6.0</forage.version>
   </properties>
   <dependencies>
     <dependency>
@@ -115,6 +116,12 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <version>5.21.0</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.kaoto.forage</groupId>
+      <artifactId>forage-catalog</artifactId>
+      <version>${forage.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
   <build>
@@ -250,6 +257,32 @@
             <goals>
               <goal>report</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-forage-catalog</id>
+            <phase>generate-resources</phase>
+            <goals>
+                <goal>unpack</goal>
+            </goals>
+
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>io.kaoto.forage</groupId>
+                  <artifactId>forage-catalog</artifactId>
+                  <version>${forage.version}</version>
+                  <type>jar</type>
+                  <includes>catalog/**</includes>
+                  <outputDirectory>${project.build.directory}/forage-catalog</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
           </execution>
         </executions>
       </plugin>

@@ -1,0 +1,76 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$defs" : {
+    "ConfigEntry" : {
+      "type" : "object",
+      "properties" : {
+        "configTag" : {
+          "type" : "string"
+        },
+        "defaultValue" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "example" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "required" : {
+          "type" : "boolean"
+        },
+        "selectsFrom" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ConfigurationModule" : {
+      "type" : "object",
+      "properties" : {
+        "artifactId" : {
+          "type" : "string"
+        },
+        "configEntries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/$defs/ConfigEntry"
+          }
+        },
+        "groupId" : {
+          "type" : "string"
+        },
+        "propertiesFile" : {
+          "type" : "string"
+        }
+      }
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "generatedBy" : {
+      "type" : "string"
+    },
+    "modules" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/$defs/ConfigurationModule"
+      }
+    },
+    "timestamp" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "version" : {
+      "type" : "string"
+    }
+  }
+}
