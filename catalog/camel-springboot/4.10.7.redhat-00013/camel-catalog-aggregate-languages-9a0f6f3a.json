@@ -67,7 +67,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -144,36 +144,8 @@
 				"secret" : false,
 				"description" : "The expression value in your chosen language syntax"
 			},
-			"trimResult" : {
-				"index" : 2,
-				"kind" : "attribute",
-				"displayName" : "Trim Result",
-				"group" : "common",
-				"required" : false,
-				"type" : "boolean",
-				"javaType" : "java.lang.Boolean",
-				"deprecated" : false,
-				"autowired" : false,
-				"secret" : false,
-				"defaultValue" : false,
-				"description" : "Whether to trim the returned values when this language are in use. For example the output result may contain unwanted line breaks at the beginning and end such as when using Java DSL with multi-line blocks. Is default false to be backwards compatible with existing behavior."
-			},
-			"pretty" : {
-				"index" : 3,
-				"kind" : "attribute",
-				"displayName" : "Pretty",
-				"group" : "common",
-				"required" : false,
-				"type" : "boolean",
-				"javaType" : "java.lang.Boolean",
-				"deprecated" : false,
-				"autowired" : false,
-				"secret" : false,
-				"defaultValue" : false,
-				"description" : "To pretty format the output (only JSon or XML supported)"
-			},
 			"resultType" : {
-				"index" : 4,
+				"index" : 2,
 				"kind" : "attribute",
 				"displayName" : "Result Type",
 				"group" : "common",
@@ -186,7 +158,7 @@
 				"description" : "Sets the class of the result type (type from output)"
 			},
 			"trim" : {
-				"index" : 5,
+				"index" : 3,
 				"kind" : "attribute",
 				"displayName" : "Trim",
 				"group" : "advanced",
@@ -198,7 +170,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -340,7 +312,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -445,7 +417,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -543,7 +515,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -633,7 +605,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -744,7 +716,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -882,7 +854,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1025,7 +997,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1151,7 +1123,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1259,7 +1231,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1468,7 +1440,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1612,7 +1584,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1777,7 +1749,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1904,7 +1876,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -1945,7 +1917,7 @@
 			"name" : "ognl",
 			"title" : "OGNL",
 			"description" : "Evaluates an OGNL expression (Apache Commons OGNL).",
-			"deprecated" : true,
+			"deprecated" : false,
 			"firstVersion" : "1.1.0",
 			"label" : "language,java",
 			"javaType" : "org.apache.camel.model.language.OgnlExpression",
@@ -2007,7 +1979,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2110,7 +2082,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2213,7 +2185,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2290,51 +2262,8 @@
 				"secret" : false,
 				"description" : "The expression value in your chosen language syntax"
 			},
-			"trimResult" : {
-				"index" : 2,
-				"kind" : "attribute",
-				"displayName" : "Trim Result",
-				"group" : "common",
-				"required" : false,
-				"type" : "boolean",
-				"javaType" : "java.lang.Boolean",
-				"deprecated" : false,
-				"autowired" : false,
-				"secret" : false,
-				"defaultValue" : false,
-				"description" : "Whether to trim the returned values when this language are in use. For example the output result may contain unwanted line breaks at the beginning and end such as when using Java DSL with multi-line blocks. Is default false to be backwards compatible with existing behavior."
-			},
-			"pretty" : {
-				"index" : 3,
-				"kind" : "attribute",
-				"displayName" : "Pretty",
-				"group" : "common",
-				"required" : false,
-				"type" : "boolean",
-				"javaType" : "java.lang.Boolean",
-				"deprecated" : false,
-				"autowired" : false,
-				"secret" : false,
-				"defaultValue" : false,
-				"description" : "To pretty format the output (only JSon or XML supported)"
-			},
-			"nested" : {
-				"index" : 4,
-				"kind" : "attribute",
-				"displayName" : "Nested",
-				"group" : "advanced",
-				"label" : "advanced",
-				"required" : false,
-				"type" : "boolean",
-				"javaType" : "java.lang.Boolean",
-				"deprecated" : false,
-				"autowired" : false,
-				"secret" : false,
-				"defaultValue" : false,
-				"description" : "If the result is a nested simple expression should this expression be evaluated as well"
-			},
 			"resultType" : {
-				"index" : 5,
+				"index" : 2,
 				"kind" : "attribute",
 				"displayName" : "Result Type",
 				"group" : "common",
@@ -2347,7 +2276,7 @@
 				"description" : "Sets the class of the result type (type from output)"
 			},
 			"trim" : {
-				"index" : 6,
+				"index" : 3,
 				"kind" : "attribute",
 				"displayName" : "Trim",
 				"group" : "advanced",
@@ -2359,7 +2288,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2462,7 +2391,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2691,7 +2620,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2826,7 +2755,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -2937,7 +2866,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -3196,7 +3125,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -3425,7 +3354,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
@@ -3630,7 +3559,7 @@
 				"autowired" : false,
 				"secret" : false,
 				"defaultValue" : true,
-				"description" : "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end."
+				"description" : "Whether to trim the value to remove leading and trailing whitespaces and line breaks"
 			}
 		},
 		"propertiesSchema" : {
