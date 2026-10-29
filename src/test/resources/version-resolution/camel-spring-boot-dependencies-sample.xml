@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.apache.camel.springboot</groupId>
+  <artifactId>camel-spring-boot-dependencies</artifactId>
+  <version>4.18.3.redhat-00006</version>
+  <packaging>pom</packaging>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.camel.springboot</groupId>
+        <artifactId>camel-catalog-provider-springboot</artifactId>
+        <version>4.18.3.redhat-00006</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-catalog</artifactId>
+        <version>4.18.3.redhat-00005</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

@@ -13,7 +13,7 @@ the Apache Camel version:
 |--------------|-----------------------------------------|-------|
 | `Main`       | the Apache Camel version                | Used as-is. |
 | `Quarkus`    | the **Quarkus platform** version        | What `camel run --quarkus-version` takes. The camel-quarkus and Apache Camel versions are derived from it (see mapping below). |
-| `SpringBoot` | the Camel Spring Boot version           | Tracks the Apache Camel version 1:1; the Spring Boot framework version is resolved transitively. |
+| `SpringBoot` | the Camel Spring Boot version           | The Apache Camel version is read from `camel-spring-boot-dependencies` (Red Hat builds have their own build numbers, e.g. Camel Spring Boot 4.18.3.redhat-00006 uses Apache Camel 4.18.3.redhat-00005); the Spring Boot framework version is resolved transitively. |
 | `Citrus`     | the Citrus catalog version              | Used as-is. |
 
 ## Provenance: community vs. Red Hat
