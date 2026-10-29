@@ -116,9 +116,26 @@ public class RuntimeVersionResolver {
 
     private ResolvedVersions resolveSpringBoot(String camelSpringBootVersion) {
         String springBootVersion = resolveSpringBootVersionFromCamelSpringBoot(camelSpringBootVersion);
-        // Camel Spring Boot tracks the Apache Camel version 1:1.
-        return new ResolvedVersions(camelSpringBootVersion, camelSpringBootVersion, springBootVersion,
+        String camelVersion = resolveCamelVersionFromCamelSpringBoot(camelSpringBootVersion);
+        return new ResolvedVersions(camelVersion, camelSpringBootVersion, springBootVersion,
                 camelSpringBootVersion);
+    }
+
+    /**
+     * Reads the Apache Camel version managed by {@code camel-spring-boot-dependencies}. Camel Spring
+     * Boot follows the Apache Camel version, but the Red Hat builds have their own build numbers,
+     * e.g. Camel Spring Boot 4.18.3.redhat-00006 uses Apache Camel 4.18.3.redhat-00005.
+     */
+    String resolveCamelVersionFromCamelSpringBoot(String camelSpringBootVersion) {
+        String dependenciesPom = pomFetcher.fetchPom("org.apache.camel.springboot", "camel-spring-boot-dependencies",
+                camelSpringBootVersion, repositoriesFor(camelSpringBootVersion, customRepositories));
+        String camelVersion = extractCamelVersionFromCamelSpringBootDependencies(dependenciesPom);
+        if (camelVersion == null) {
+            LOGGER.warning("Could not resolve Apache Camel version from camel-spring-boot-dependencies "
+                    + camelSpringBootVersion + "; falling back to the Camel Spring Boot version");
+            return camelSpringBootVersion;
+        }
+        return camelVersion;
     }
 
     /**
@@ -175,6 +192,17 @@ public class RuntimeVersionResolver {
      */
     public static String extractCamelQuarkusVersionFromPlatformBom(String pomXml) {
         return extractManagedVersion(pomXml, "org.apache.camel.quarkus", "camel-quarkus-catalog");
+    }
+
+    /**
+     * Parses the Camel Spring Boot BOM ({@code org.apache.camel.springboot:camel-spring-boot-dependencies})
+     * and returns the managed version of {@code org.apache.camel:camel-catalog} — i.e. the Apache Camel
+     * version.
+     *
+     * @return the Apache Camel version, or {@code null} if not present.
+     */
+    public static String extractCamelVersionFromCamelSpringBootDependencies(String pomXml) {
+        return extractManagedVersion(pomXml, "org.apache.camel", "camel-catalog");
     }
 
     /**

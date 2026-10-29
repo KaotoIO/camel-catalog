@@ -236,15 +236,14 @@ public class CamelCatalogVersionLoader {
 
     MavenCoordinates getYamlDslMavenCoordinates(CatalogRuntime runtime, String version, ResolvedVersions resolvedVersions) {
         return switch (runtime) {
-            case QUARKUS -> {
-                // For Quarkus, use the resolved Apache Camel version to load the core camel-yaml-dsl artifact
-                // instead of camel-quarkus-yaml-dsl, because the Quarkus variant doesn't contain the schema file.
+            case QUARKUS, SPRING_BOOT -> {
+                // Use the resolved Apache Camel version to load the core camel-yaml-dsl artifact: the Quarkus variant
+                // doesn't contain the schema file, and loading the artifact of the Apache Camel version makes the
+                // KaotoMavenVersionManager read the catalog resources from the camel-catalog jar of that version,
+                // which can differ from the runtime version (e.g. Red Hat builds of Camel Spring Boot).
                 String camelVersion = resolvedVersions != null ? resolvedVersions.camelCatalogVersion() : version;
                 yield new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, camelVersion);
             }
-            case SPRING_BOOT ->
-                    new MavenCoordinates(Constants.APACHE_CAMEL_ORG + ".springboot", "camel-yaml-dsl-starter",
-                            version);
             default -> new MavenCoordinates(Constants.APACHE_CAMEL_ORG, Constants.CAMEL_YAML_DSL_PACKAGE, version);
         };
     }

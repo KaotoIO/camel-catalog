@@ -17,6 +17,7 @@ package io.kaoto.camelcatalog.maven;
 
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import io.kaoto.camelcatalog.model.MavenCoordinates;
+import io.kaoto.camelcatalog.model.ResolvedVersions;
 import org.apache.camel.catalog.quarkus.QuarkusRuntimeProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -132,8 +133,19 @@ public class CamelCatalogVersionLoaderTest {
         MavenCoordinates coords = camelCatalogVersionLoader
                 .getYamlDslMavenCoordinates(CatalogRuntime.SPRING_BOOT, "4.12.0", null);
         assertNotNull(coords);
-        assertEquals("org.apache.camel.springboot", coords.getGroupId());
-        assertEquals("camel-yaml-dsl-starter", coords.getArtifactId());
+        assertEquals("org.apache.camel", coords.getGroupId());
+        assertEquals("camel-yaml-dsl", coords.getArtifactId());
         assertEquals("4.12.0", coords.getVersion());
+    }
+
+    @Test
+    void testGetYamlDslMavenCoordinatesSpringBootUsesTheApacheCamelVersion() {
+        ResolvedVersions resolvedVersions = new ResolvedVersions("4.18.3.redhat-00005", "4.18.3.redhat-00006",
+                "3.5.11", "4.18.3.redhat-00006");
+        MavenCoordinates coords = camelCatalogVersionLoader
+                .getYamlDslMavenCoordinates(CatalogRuntime.SPRING_BOOT, "4.18.3.redhat-00006", resolvedVersions);
+        assertEquals("org.apache.camel", coords.getGroupId());
+        assertEquals("camel-yaml-dsl", coords.getArtifactId());
+        assertEquals("4.18.3.redhat-00005", coords.getVersion());
     }
 }

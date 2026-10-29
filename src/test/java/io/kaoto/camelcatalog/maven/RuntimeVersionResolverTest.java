@@ -23,6 +23,41 @@ class RuntimeVersionResolverTest {
     }
 
     @Test
+    void extractsCamelVersionFromCamelSpringBootDependencies() throws Exception {
+        String pom = fixture("camel-spring-boot-dependencies-sample.xml");
+        String result = RuntimeVersionResolver.extractCamelVersionFromCamelSpringBootDependencies(pom);
+        assertEquals("4.18.3.redhat-00005", result);
+    }
+
+    @Test
+    void resolvesCamelVersionOfRedhatCamelSpringBoot() throws Exception {
+        String pom = fixture("camel-spring-boot-dependencies-sample.xml");
+        java.util.List<String> requestedRepositories = new java.util.ArrayList<>();
+        PomFetcher pomFetcher = (groupId, artifactId, version, repositories) -> {
+            requestedRepositories.addAll(repositories);
+            boolean dependenciesPom = "camel-spring-boot-dependencies".equals(artifactId)
+                    && "4.18.3.redhat-00006".equals(version);
+            return dependenciesPom ? pom : null;
+        };
+
+        String result = new RuntimeVersionResolver(pomFetcher, null, java.util.List.of())
+                .resolveCamelVersionFromCamelSpringBoot("4.18.3.redhat-00006");
+
+        assertEquals("4.18.3.redhat-00005", result);
+        org.junit.jupiter.api.Assertions.assertTrue(requestedRepositories.contains(RuntimeVersionResolver.REDHAT_GA));
+    }
+
+    @Test
+    void fallsBackToCamelSpringBootVersionWhenDependenciesPomIsMissing() {
+        PomFetcher pomFetcher = (groupId, artifactId, version, repositories) -> null;
+
+        String result = new RuntimeVersionResolver(pomFetcher, null, java.util.List.of())
+                .resolveCamelVersionFromCamelSpringBoot("4.23.0");
+
+        assertEquals("4.23.0", result);
+    }
+
+    @Test
     void returnsNullWhenCatalogDependencyMissing() {
         String pom = "<project><dependencyManagement><dependencies></dependencies>"
                 + "</dependencyManagement></project>";
