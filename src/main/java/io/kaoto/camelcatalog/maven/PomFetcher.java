@@ -18,8 +18,8 @@ package io.kaoto.camelcatalog.maven;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +38,14 @@ public interface PomFetcher {
 
     /** Default HTTP-based implementation. */
     static PomFetcher http() {
+        return http(UrlStreams.CONNECT_TIMEOUT, UrlStreams.READ_TIMEOUT);
+    }
+
+    /**
+     * HTTP-based implementation that moves on to the next repository when one doesn't connect or answer within the
+     * given timeouts.
+     */
+    static PomFetcher http(Duration connectTimeout, Duration readTimeout) {
         final Logger logger = Logger.getLogger(PomFetcher.class.getName());
         return (groupId, artifactId, version, repositoryBaseUrls) -> {
             String groupPath = groupId.replace('.', '/');
@@ -45,7 +53,7 @@ public interface PomFetcher {
                 String normalized = base.endsWith("/") ? base.substring(0, base.length() - 1) : base;
                 String url = String.format("%s/%s/%s/%s/%s-%s.pom",
                         normalized, groupPath, artifactId, version, artifactId, version);
-                try (InputStream is = new URI(url).toURL().openStream()) {
+                try (InputStream is = UrlStreams.open(url, connectTimeout, readTimeout)) {
                     return IOUtils.toString(is, StandardCharsets.UTF_8);
                 } catch (Exception e) {
                     logger.log(Level.FINE, () -> "POM not found at " + url + ": " + e.getMessage());

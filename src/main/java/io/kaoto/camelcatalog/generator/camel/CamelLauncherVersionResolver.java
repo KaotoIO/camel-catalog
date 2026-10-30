@@ -18,12 +18,12 @@ package io.kaoto.camelcatalog.generator.camel;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import io.kaoto.camelcatalog.maven.UrlStreams;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -129,7 +129,7 @@ public class CamelLauncherVersionResolver {
             
             LOGGER.fine("Fetching Quarkus BOM from: " + pomUrl);
             
-            try (InputStream is = new URI(pomUrl).toURL().openStream()) {
+            try (InputStream is = UrlStreams.open(pomUrl)) {
                 String pomContent = IOUtils.toString(is, StandardCharsets.UTF_8);
                 
                 // Parse XML to find org.apache.camel dependency version
@@ -221,7 +221,7 @@ public class CamelLauncherVersionResolver {
         
         LOGGER.fine("Fetching metadata from: " + metadataUrl);
         
-        try (InputStream is = new URI(metadataUrl).toURL().openStream()) {
+        try (InputStream is = UrlStreams.open(metadataUrl)) {
             String xmlContent = IOUtils.toString(is, StandardCharsets.UTF_8);
             MavenMetadata metadata = xmlMapper.readValue(xmlContent, MavenMetadata.class);
             

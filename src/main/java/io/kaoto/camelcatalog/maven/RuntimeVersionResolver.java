@@ -125,12 +125,21 @@ public class RuntimeVersionResolver {
      * Reads the Apache Camel version managed by {@code camel-spring-boot-dependencies}. Camel Spring
      * Boot follows the Apache Camel version, but the Red Hat builds have their own build numbers,
      * e.g. Camel Spring Boot 4.18.3.redhat-00006 uses Apache Camel 4.18.3.redhat-00005.
+     *
+     * @throws IllegalStateException if the BOM of a Red Hat build can't be read, because its Camel
+     *                               Spring Boot version can't stand in for the Apache Camel version
      */
     String resolveCamelVersionFromCamelSpringBoot(String camelSpringBootVersion) {
         String dependenciesPom = pomFetcher.fetchPom("org.apache.camel.springboot", "camel-spring-boot-dependencies",
                 camelSpringBootVersion, repositoriesFor(camelSpringBootVersion, customRepositories));
         String camelVersion = extractCamelVersionFromCamelSpringBootDependencies(dependenciesPom);
         if (camelVersion == null) {
+            if (isRedhat(camelSpringBootVersion)) {
+                throw new IllegalStateException("Could not read the Apache Camel version from "
+                        + "org.apache.camel.springboot:camel-spring-boot-dependencies:" + camelSpringBootVersion
+                        + ". Red Hat builds have their own build numbers, so the Camel Spring Boot version can't be"
+                        + " used as the Apache Camel version.");
+            }
             LOGGER.warning("Could not resolve Apache Camel version from camel-spring-boot-dependencies "
                     + camelSpringBootVersion + "; falling back to the Camel Spring Boot version");
             return camelSpringBootVersion;
