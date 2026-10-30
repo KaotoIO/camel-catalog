@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RuntimeVersionResolverTest {
 
@@ -48,13 +50,26 @@ class RuntimeVersionResolverTest {
     }
 
     @Test
-    void fallsBackToCamelSpringBootVersionWhenDependenciesPomIsMissing() {
+    void fallsBackToCommunityCamelSpringBootVersionWhenDependenciesPomIsMissing() {
         PomFetcher pomFetcher = (groupId, artifactId, version, repositories) -> null;
 
         String result = new RuntimeVersionResolver(pomFetcher, null, java.util.List.of())
                 .resolveCamelVersionFromCamelSpringBoot("4.23.0");
 
         assertEquals("4.23.0", result);
+    }
+
+    @Test
+    void failsForRedhatCamelSpringBootWhenDependenciesPomIsMissing() {
+        PomFetcher pomFetcher = (groupId, artifactId, version, repositories) -> null;
+        RuntimeVersionResolver resolver = new RuntimeVersionResolver(pomFetcher, null, java.util.List.of());
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class,
+                () -> resolver.resolveCamelVersionFromCamelSpringBoot("4.18.3.redhat-00006"));
+
+        assertTrue(exception.getMessage()
+                .contains("org.apache.camel.springboot:camel-spring-boot-dependencies:4.18.3.redhat-00006"),
+                exception.getMessage());
     }
 
     @Test
