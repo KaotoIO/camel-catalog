@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -107,7 +107,7 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
      * @param fileSuffix the file extension to load (e.g. ".json" or ".xsd")
      */
     private void loadAndWriteCatalogFiles(String fileSuffix) {
-        final Map<String, String> catalogFiles = new HashMap<>();
+        final Map<String, String> catalogFiles = new LinkedHashMap<>();
         resourceLoader.loadResourcesFromFolderAsString("org/citrusframework/schema/citrus/%s".formatted(catalogVersion),
                 catalogFiles, fileSuffix);
         catalogFiles.forEach((file, schema) -> {
@@ -144,6 +144,8 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
 
             ObjectNode rootObject = (ObjectNode) rootNode;
 
+            normalizeGroupDelimiters(rootObject);
+
             // Process property schemas defined in citrus-catalog-aggregate-test-actions and citrus-catalog-aggregate-test-containers
             rootObject.properties().forEach(entry -> {
                 JsonNode actionNode = entry.getValue();
@@ -171,7 +173,7 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
                 }
             });
 
-            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+            return objectMapper.writeValueAsString(rootNode);
         } catch (Exception e) {
             // If processing fails, return original content
             return jsonContent;
@@ -226,6 +228,62 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
             postProcessSchemaNode(items);
         }
 
+    }
+
+    /**
+     * Normalizes group delimiters in aggregate test action/container schemas by converting
+     * hyphen-separated group names to colon-separated format (e.g., "camel-cli-cmd" becomes "camel:cli:cmd").
+     * This ensures consistent representation across all Citrus catalog versions.
+     * @param rootObject the root JSON object containing all test action/container entries
+     */
+    private void normalizeGroupDelimiters(ObjectNode rootObject) {
+        Map<String, JsonNode> entries = new LinkedHashMap<>();
+        rootObject.fields().forEachRemaining(e -> entries.put(e.getKey(), e.getValue()));
+
+        Map<String, String> keyMapping = new LinkedHashMap<>();
+        for (String key : entries.keySet()) {
+            keyMapping.put(key, convertGroupDelimiter(key, entries));
+        }
+
+        boolean needsConversion = keyMapping.entrySet().stream()
+                .anyMatch(e -> !e.getKey().equals(e.getValue()));
+
+        if (!needsConversion) {
+            return;
+        }
+
+        rootObject.removeAll();
+        for (Map.Entry<String, JsonNode> entry : entries.entrySet()) {
+            String oldKey = entry.getKey();
+            String newKey = keyMapping.get(oldKey);
+            JsonNode value = entry.getValue();
+
+            if (value.isObject() && !newKey.equals(oldKey)) {
+                ObjectNode obj = (ObjectNode) value;
+                if (obj.has("name")) {
+                    obj.put("name", keyMapping.getOrDefault(obj.get("name").asText(), obj.get("name").asText()));
+                }
+                if (obj.has("group")) {
+                    obj.put("group", keyMapping.getOrDefault(obj.get("group").asText(), obj.get("group").asText()));
+                }
+            }
+
+            rootObject.set(newKey, value);
+        }
+    }
+
+    private String convertGroupDelimiter(String name, Map<String, JsonNode> entries) {
+        JsonNode entry = entries.get(name);
+        if (entry == null || !entry.has("group")) {
+            return name;
+        }
+        String group = entry.get("group").asText();
+        if (!name.startsWith(group) || name.length() <= group.length()) {
+            return name;
+        }
+        String convertedGroup = convertGroupDelimiter(group, entries);
+        String suffix = name.substring(group.length() + 1);
+        return convertedGroup + ":" + suffix;
     }
 
     /**

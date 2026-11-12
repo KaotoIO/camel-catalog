@@ -684,6 +684,148 @@ class CitrusCatalogGeneratorTest {
     }
 
     @Test
+    void testNormalizeGroupDelimiters() throws Exception {
+        String testActionsJson = """
+            {
+              "action": {
+                "kind": "testAction",
+                "name": "action",
+                "title": "Action"
+              },
+              "camel": {
+                "kind": "testActionGroup",
+                "name": "camel",
+                "title": "Camel"
+              },
+              "camel-cli": {
+                "kind": "testActionGroup",
+                "name": "camel-cli",
+                "group": "camel",
+                "title": "CLI"
+              },
+              "camel-cli-cmd": {
+                "kind": "testActionGroup",
+                "name": "camel-cli-cmd",
+                "group": "camel-cli",
+                "title": "Cmd"
+              },
+              "camel-cli-cmd-send": {
+                "kind": "testAction",
+                "name": "camel-cli-cmd-send",
+                "group": "camel-cli-cmd",
+                "title": "Send",
+                "propertiesSchema": {
+                  "type": "object",
+                  "properties": {
+                    "endpoint": { "type": "string" }
+                  }
+                }
+              },
+              "soap-assertFault": {
+                "kind": "testAction",
+                "name": "soap-assertFault",
+                "group": "soap",
+                "title": "Assert Fault",
+                "propertiesSchema": {
+                  "type": "object",
+                  "properties": {
+                    "faultCode": { "type": "string" }
+                  }
+                }
+              },
+              "soap": {
+                "kind": "testActionGroup",
+                "name": "soap",
+                "title": "SOAP"
+              }
+            }
+            """;
+
+        generator = new CitrusCatalogGenerator("4.10.0", outputDirectory, false);
+
+        var method = CitrusCatalogGenerator.class.getDeclaredMethod(
+            "postProcessActionSchema", String.class);
+        method.setAccessible(true);
+
+        String result = (String) method.invoke(generator, testActionsJson);
+
+        JsonNode resultNode = objectMapper.readTree(result);
+
+        // Non-grouped entries remain unchanged
+        assertTrue(resultNode.has("action"), "action should remain unchanged");
+        assertTrue(resultNode.has("camel"), "camel group should remain unchanged");
+        assertTrue(resultNode.has("soap"), "soap group should remain unchanged");
+
+        // Single-level group: camel-cli -> camel:cli
+        assertFalse(resultNode.has("camel-cli"), "old key camel-cli should be gone");
+        assertTrue(resultNode.has("camel:cli"), "new key camel:cli should exist");
+        assertEquals("camel:cli", resultNode.get("camel:cli").get("name").asText());
+        assertEquals("camel", resultNode.get("camel:cli").get("group").asText());
+
+        // Nested group: camel-cli-cmd -> camel:cli:cmd
+        assertFalse(resultNode.has("camel-cli-cmd"), "old key camel-cli-cmd should be gone");
+        assertTrue(resultNode.has("camel:cli:cmd"), "new key camel:cli:cmd should exist");
+        assertEquals("camel:cli:cmd", resultNode.get("camel:cli:cmd").get("name").asText());
+        assertEquals("camel:cli", resultNode.get("camel:cli:cmd").get("group").asText());
+
+        // Deeply nested: camel-cli-cmd-send -> camel:cli:cmd:send
+        assertFalse(resultNode.has("camel-cli-cmd-send"), "old key camel-cli-cmd-send should be gone");
+        assertTrue(resultNode.has("camel:cli:cmd:send"), "new key camel:cli:cmd:send should exist");
+        assertEquals("camel:cli:cmd:send", resultNode.get("camel:cli:cmd:send").get("name").asText());
+        assertEquals("camel:cli:cmd", resultNode.get("camel:cli:cmd:send").get("group").asText());
+
+        // Simple group: soap-assertFault -> soap:assertFault
+        assertFalse(resultNode.has("soap-assertFault"), "old key soap-assertFault should be gone");
+        assertTrue(resultNode.has("soap:assertFault"), "new key soap:assertFault should exist");
+        assertEquals("soap:assertFault", resultNode.get("soap:assertFault").get("name").asText());
+        assertEquals("soap", resultNode.get("soap:assertFault").get("group").asText());
+    }
+
+    @Test
+    void testNormalizeGroupDelimitersIdempotent() throws Exception {
+        String alreadyNormalized = """
+            {
+              "camel": {
+                "kind": "testActionGroup",
+                "name": "camel",
+                "title": "Camel"
+              },
+              "camel:cli": {
+                "kind": "testActionGroup",
+                "name": "camel:cli",
+                "group": "camel",
+                "title": "CLI"
+              },
+              "camel:cli:run": {
+                "kind": "testAction",
+                "name": "camel:cli:run",
+                "group": "camel:cli",
+                "title": "Run",
+                "propertiesSchema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+            """;
+
+        generator = new CitrusCatalogGenerator("5.2.0", outputDirectory, false);
+
+        var method = CitrusCatalogGenerator.class.getDeclaredMethod(
+            "postProcessActionSchema", String.class);
+        method.setAccessible(true);
+
+        String result = (String) method.invoke(generator, alreadyNormalized);
+        JsonNode resultNode = objectMapper.readTree(result);
+
+        assertTrue(resultNode.has("camel:cli"), "camel:cli should remain");
+        assertTrue(resultNode.has("camel:cli:run"), "camel:cli:run should remain");
+        assertEquals("camel:cli", resultNode.get("camel:cli").get("name").asText());
+        assertEquals("camel:cli:run", resultNode.get("camel:cli:run").get("name").asText());
+        assertEquals("camel:cli", resultNode.get("camel:cli:run").get("group").asText());
+    }
+
+    @Test
     void testRemoveEmptyOneOfAfterCleanup() throws Exception {
         String testActionsJson = """
             {
