@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.10.10 (2026-11-16)
+
+### Bug Fixes
+
+* **templates:** nest the YAML route starter's steps under from ([995d433](https://github.com/KaotoIO/camel-catalog/commit/995d433929bc7c7db6dbf7655eefddab6978cf75)), closes [#214](https://github.com/KaotoIO/camel-catalog/issues/214)
+
 ## 0.10.9 (2026-11-12)
 
 **Note:** Version bump only for package @kaoto/camel-catalog
