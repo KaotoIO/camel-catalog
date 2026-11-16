@@ -18,7 +18,7 @@
 			"name" : "camel-route-yaml",
 			"description" : "Camel route starter using the YAML DSL",
 			"version" : "1",
-			"file" : "camel-route-camel-9397aead.yaml"
+			"file" : "camel-route-camel-e3b73a95.yaml"
 		},
 		"citrus-yaml" : {
 			"name" : "citrus-yaml",

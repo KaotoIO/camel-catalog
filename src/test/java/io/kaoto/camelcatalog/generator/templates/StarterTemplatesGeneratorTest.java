@@ -16,6 +16,9 @@
 
 package io.kaoto.camelcatalog.generator.templates;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.kaoto.camelcatalog.model.CatalogDefinition;
 import io.kaoto.camelcatalog.model.CatalogRuntime;
 import org.junit.jupiter.api.Test;
@@ -155,6 +158,25 @@ class StarterTemplatesGeneratorTest {
         String content = Files.readString(tempDir.toPath().resolve(entry.file()));
         assertFalse(content.contains(KAOTO_ID_TOKEN),
                 "Citrus template must not contain " + KAOTO_ID_TOKEN);
+    }
+
+    @Test
+    void testCamelRouteYamlTemplateNestsStepsUnderFrom() throws Exception {
+        var generator = new StarterTemplatesGeneratorBuilder()
+                .withOutputDirectory(tempDir)
+                .build();
+
+        CatalogDefinition def = generator.generate();
+
+        var entry = def.getCatalogs().get("camel-route-yaml");
+        assertNotNull(entry, "Missing catalog entry: camel-route-yaml");
+        JsonNode route = new ObjectMapper(new YAMLFactory())
+                .readTree(tempDir.toPath().resolve(entry.file()).toFile())
+                .path(0).path("route");
+
+        assertFalse(route.has("steps"), "Route steps must be nested under 'from', not under 'route'");
+        JsonNode steps = route.path("from").path("steps");
+        assertTrue(steps.isArray() && !steps.isEmpty(), "Route template must define steps under 'from'");
     }
 
     @Test
