@@ -30,6 +30,7 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
     private static final String REQUIRED = "required";
     private static final String PROPERTIES = "properties";
     private static final String ITEMS = "items";
+    private static final String GROUP = "group";
 
     private final String catalogVersion;
     private final File outputDirectory;
@@ -263,8 +264,8 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
                 if (obj.has("name")) {
                     obj.put("name", keyMapping.getOrDefault(obj.get("name").asText(), obj.get("name").asText()));
                 }
-                if (obj.has("group")) {
-                    obj.put("group", keyMapping.getOrDefault(obj.get("group").asText(), obj.get("group").asText()));
+                if (obj.has(GROUP)) {
+                    obj.put(GROUP, keyMapping.getOrDefault(obj.get(GROUP).asText(), obj.get(GROUP).asText()));
                 }
             }
 
@@ -274,10 +275,10 @@ public class CitrusCatalogGenerator implements CatalogGenerator {
 
     private String convertGroupDelimiter(String name, Map<String, JsonNode> entries) {
         JsonNode entry = entries.get(name);
-        if (entry == null || !entry.has("group")) {
+        if (entry == null || !entry.has(GROUP)) {
             return name;
         }
-        String group = entry.get("group").asText();
+        String group = entry.get(GROUP).asText();
         if (!name.startsWith(group) || name.length() <= group.length()) {
             return name;
         }

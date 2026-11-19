@@ -779,6 +779,21 @@ class CitrusCatalogGeneratorTest {
         assertTrue(resultNode.has("soap:assertFault"), "new key soap:assertFault should exist");
         assertEquals("soap:assertFault", resultNode.get("soap:assertFault").get("name").asText());
         assertEquals("soap", resultNode.get("soap:assertFault").get("group").asText());
+
+        // Verify schemas and metadata are fully preserved through normalization
+        assertEquals(
+            objectMapper.readTree(testActionsJson).get("camel-cli-cmd-send").get("propertiesSchema"),
+            resultNode.get("camel:cli:cmd:send").get("propertiesSchema"),
+            "propertiesSchema should be preserved through normalization");
+        assertEquals(
+            objectMapper.readTree(testActionsJson).get("soap-assertFault").get("propertiesSchema"),
+            resultNode.get("soap:assertFault").get("propertiesSchema"),
+            "propertiesSchema should be preserved through normalization");
+
+        // Re-normalizing the output should produce identical results (idempotency)
+        String secondPass = (String) method.invoke(generator, result);
+        JsonNode secondNode = objectMapper.readTree(secondPass);
+        assertEquals(resultNode, secondNode, "Second normalization pass should produce identical output");
     }
 
     @Test
@@ -823,6 +838,13 @@ class CitrusCatalogGeneratorTest {
         assertEquals("camel:cli", resultNode.get("camel:cli").get("name").asText());
         assertEquals("camel:cli:run", resultNode.get("camel:cli:run").get("name").asText());
         assertEquals("camel:cli", resultNode.get("camel:cli:run").get("group").asText());
+
+        JsonNode inputNode = objectMapper.readTree(alreadyNormalized);
+        assertEquals(inputNode, resultNode, "Normalization should not alter already-normalized catalog");
+
+        String secondPass = (String) method.invoke(generator, result);
+        JsonNode secondNode = objectMapper.readTree(secondPass);
+        assertEquals(resultNode, secondNode, "Second normalization pass should produce identical output");
     }
 
     @Test
